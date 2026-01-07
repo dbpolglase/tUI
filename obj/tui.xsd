@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" >
+
+<xs:simpleType name="colorATTR">
+<xs:restriction base="xs:string">
+<xs:enumeration value="WA_NORMAL"/>
+<xs:enumeration value="WA_STANDOUT"/>
+<xs:enumeration value="WA_UNDERLINE"/>
+<xs:enumeration value="WA_REVERSE"/>
+<xs:enumeration value="WA_BLINK"/>
+<xs:enumeration value="WA_DIM"/>
+<xs:enumeration value="WA_BOLD"/>
+<xs:enumeration value="WA_ALTCHARSET"/>
+<xs:enumeration value="WA_INVIS"/>
+<xs:enumeration value="WA_PROTECT"/>
+<xs:enumeration value="WA_HORIZONTAL"/>
+<xs:enumeration value="WA_LEFT"/>
+<xs:enumeration value="WA_LOW"/>
+<xs:enumeration value="WA_RIGHT"/>
+<xs:enumeration value="WA_TOP"/>
+<xs:enumeration value="WA_VERTICAL"/>
+<xs:enumeration value="WA_ITALIC"/>
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="typeMSG">
+<xs:restriction base="xs:string">
+<xs:enumeration value="info"/>
+<xs:enumeration value="warning"/>
+<xs:enumeration value="error"/>
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="typeComponent">
+<xs:restriction base="xs:string">
+<xs:enumeration value="button"/>
+<xs:enumeration value="ckbutton"/>
+<xs:enumeration value="lsbutton"/>
+<xs:enumeration value="label"/>
+<xs:enumeration value="field"/>
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="display">
+<xs:restriction base="xs:string">
+<xs:enumeration value="normal"/>
+<xs:enumeration value="hidden"/>
+<xs:enumeration value="open"/>
+<xs:enumeration value="nSelect"/>
+</xs:restriction>
+</xs:simpleType>
+
+
+<xs:element name="TUI">
+<xs:complexType>
+<xs:all>
+
+<xs:element name="Proyect">
+<xs:complexType>
+<xs:all>
+<xs:element name="Name" type="xs:string">
+</xs:element>
+<xs:element name="Description" type="xs:string"></xs:element>
+<xs:element name="Main" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+<xs:element name="End" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+<xs:element name="Init" type="xs:string"></xs:element>
+<xs:element name="Properties">
+<xs:complexType>
+<xs:all>
+<xs:element name="Mouse" minOccurs="0" maxOccurs="1"></xs:element>
+<xs:element name="Color" minOccurs="0" maxOccurs="1"></xs:element>
+<xs:element name="Error" minOccurs="0" maxOccurs="1" type="xs:string"></xs:element>
+<xs:element name="Borders" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="Up"></xs:attribute>
+<xs:attribute name="Dw"></xs:attribute>
+<xs:attribute name="Lf"></xs:attribute>
+<xs:attribute name="Rg"></xs:attribute>
+<xs:attribute name="Cul"></xs:attribute>
+<xs:attribute name="Cur"></xs:attribute>
+<xs:attribute name="Cdl"></xs:attribute>
+<xs:attribute name="Cdr"></xs:attribute>
+</xs:complexType>
+</xs:element> 
+<xs:element name="SBorders" minOccurs="0" maxOccurs="1">
+<xs:complexType> 
+<xs:attribute name="Up"></xs:attribute>
+<xs:attribute name="Dw"></xs:attribute>
+<xs:attribute name="Lf"></xs:attribute>
+<xs:attribute name="Rg"></xs:attribute>
+<xs:attribute name="Cul"></xs:attribute>
+<xs:attribute name="Cur"></xs:attribute>
+<xs:attribute name="Cdl"></xs:attribute>
+<xs:attribute name="Cdr"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Check" minOccurs="0" maxOccurs="1">
+<xs:complexType>  
+<xs:attribute name="chCheck"></xs:attribute>
+<xs:attribute name="chIsCheck"></xs:attribute>
+<xs:attribute name="chNoCheck"></xs:attribute>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="checksEdit" minOccurs="0">
+<xs:complexType>
+<xs:all>
+<xs:element name="checkEdit">
+<xs:complexType>
+<xs:attribute name="Name" type="xs:string"   use="required">    
+</xs:attribute>
+<xs:attribute name="Align" type="xs:string"  use="required">
+</xs:attribute>  
+<xs:attribute name="Mode" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+</xs:all>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Colors" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Color" maxOccurs="unbounded">
+<xs:complexType>
+<xs:attribute name="Name" type="xs:string" use="required"></xs:attribute>
+<xs:attribute name="foreground" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="background" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="attr" type="colorATTR" use="required"></xs:attribute>
+<xs:attribute name="attr2" type="colorATTR"></xs:attribute>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Msgs" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Msg" minOccurs="0" maxOccurs="3">
+<xs:complexType>
+<xs:all>
+<xs:element name="Title" type="xs:string"></xs:element> 
+<xs:element name="Color" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="Buttons" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:all>
+<xs:element name="Button1" type="xs:string" minOccurs="0" maxOccurs="1">
+</xs:element>
+<xs:element name="Button2" type="xs:string" minOccurs="0" maxOccurs="1">
+</xs:element>   
+</xs:all>
+</xs:complexType>
+</xs:element>
+</xs:all>
+<xs:attribute name="type" type="typeMSG"></xs:attribute>
+<xs:attribute name="nroButtons" type="xs:int"></xs:attribute>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Keymaps" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Keymap" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="Enter" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="ch1"></xs:attribute >
+<xs:attribute name="ch2"></xs:attribute>
+<xs:attribute name="ch3"></xs:attribute>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Out" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="ch1"></xs:attribute >
+<xs:attribute name="ch2"></xs:attribute>
+<xs:attribute name="ch3"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Next" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="ch1"></xs:attribute >
+<xs:attribute name="ch2"></xs:attribute>
+<xs:attribute name="ch3"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Previous" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="ch1"></xs:attribute >
+<xs:attribute name="ch2"></xs:attribute>
+<xs:attribute name="ch3"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Up" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="ch1"></xs:attribute >
+<xs:attribute name="ch2"></xs:attribute>
+<xs:attribute name="ch3"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Down" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="ch1"></xs:attribute >
+<xs:attribute name="ch2"></xs:attribute>
+<xs:attribute name="ch3"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Left" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="ch1"></xs:attribute >
+<xs:attribute name="ch2"></xs:attribute>
+<xs:attribute name="ch3"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Right" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="ch1"></xs:attribute >
+<xs:attribute name="ch2"></xs:attribute>
+<xs:attribute name="ch3"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Fn" minOccurs="0" maxOccurs="1"> </xs:element>
+
+</xs:all>
+<xs:attribute name="Name" type="xs:string" use="required"></xs:attribute>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Panels" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Panel" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="Title" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+<xs:element name="Color" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+<xs:element name="Dimension">
+<xs:complexType>
+<xs:attribute name="border" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="x" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="y" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="high" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="width" type="xs:int" use="required"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Move" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="enter" type="xs:string"></xs:attribute>
+<xs:attribute name="out" type="xs:string"></xs:attribute>
+<xs:attribute name="next" type="xs:string"></xs:attribute>
+<xs:attribute name="previous" type="xs:string"></xs:attribute>
+<xs:attribute name="up" type="xs:string"></xs:attribute> 
+<xs:attribute name="down" type="xs:string"></xs:attribute>
+<xs:attribute name="left" type="xs:string"></xs:attribute>
+<xs:attribute name="right" type="xs:string"></xs:attribute>
+<xs:attribute name="F1" type="xs:string"></xs:attribute>
+<xs:attribute name="F2" type="xs:string"></xs:attribute>
+<xs:attribute name="F3" type="xs:string"></xs:attribute>
+<xs:attribute name="F4" type="xs:string"></xs:attribute>
+<xs:attribute name="F5" type="xs:string"></xs:attribute>
+<xs:attribute name="F6" type="xs:string"></xs:attribute>
+<xs:attribute name="F7" type="xs:string"></xs:attribute>
+<xs:attribute name="F8" type="xs:string"></xs:attribute>
+<xs:attribute name="F9" type="xs:string"></xs:attribute>
+<xs:attribute name="F10" type="xs:string"></xs:attribute>
+<xs:attribute name="F11" type="xs:string"></xs:attribute>
+<xs:attribute name="F12" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="FPanel" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="preCreate" type="xs:string"></xs:attribute>
+<xs:attribute name="postCreate" type="xs:string"></xs:attribute>
+<xs:attribute name="preShow" type="xs:string"></xs:attribute>
+<xs:attribute name="postShow" type="xs:string"></xs:attribute>
+<xs:attribute name="preHide" type="xs:string"></xs:attribute>
+<xs:attribute name="postHide" type="xs:string"></xs:attribute>
+<xs:attribute name="preActivate" type="xs:string"></xs:attribute>
+<xs:attribute name="postActivate" type="xs:string"></xs:attribute>
+<xs:attribute name="preDeactivate" type="xs:string"></xs:attribute>
+<xs:attribute name="postDeactivate" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="FAction" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="enter" type="xs:string"></xs:attribute>
+<xs:attribute name="out" type="xs:string"></xs:attribute>
+<xs:attribute name="next" type="xs:string"></xs:attribute>
+<xs:attribute name="previous" type="xs:string"></xs:attribute>
+<xs:attribute name="up" type="xs:string"></xs:attribute>
+<xs:attribute name="down" type="xs:string"></xs:attribute>
+<xs:attribute name="left" type="xs:string"></xs:attribute>
+<xs:attribute name="right" type="xs:string"></xs:attribute>
+<xs:attribute name="Fn" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Components" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Component" maxOccurs="unbounded">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded">
+<xs:element name="Color" type="xs:string"  maxOccurs="1"></xs:element>
+<xs:element name="Keymap" type="xs:string"  maxOccurs="1"></xs:element>
+<xs:element name="Dimension" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="border" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="x" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="y" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="high" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="width" type="xs:int" use="required"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Edit" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="chToEDIT" type="xs:string"></xs:attribute>
+<xs:attribute name="editType" type="xs:string" use="required"></xs:attribute> 
+<xs:attribute name="auto" type="xs:string"></xs:attribute>
+<xs:attribute name="secret" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Text" type="xs:string">
+</xs:element>
+<xs:element name="Move"  maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="enter" type="xs:string"></xs:attribute>
+<xs:attribute name="out" type="xs:string"></xs:attribute>
+<xs:attribute name="next" type="xs:string"></xs:attribute>
+<xs:attribute name="previous" type="xs:string"></xs:attribute>
+<xs:attribute name="up" type="xs:string"></xs:attribute> 
+<xs:attribute name="down" type="xs:string"></xs:attribute>
+<xs:attribute name="left" type="xs:string"></xs:attribute>
+<xs:attribute name="right" type="xs:string"></xs:attribute>
+<xs:attribute name="F1" type="xs:string"></xs:attribute>
+<xs:attribute name="F2" type="xs:string"></xs:attribute>
+<xs:attribute name="F3" type="xs:string"></xs:attribute>
+<xs:attribute name="F4" type="xs:string"></xs:attribute>
+<xs:attribute name="F5" type="xs:string"></xs:attribute>
+<xs:attribute name="F6" type="xs:string"></xs:attribute>
+<xs:attribute name="F7" type="xs:string"></xs:attribute>
+<xs:attribute name="F8" type="xs:string"></xs:attribute>
+<xs:attribute name="F9" type="xs:string"></xs:attribute>
+<xs:attribute name="F10" type="xs:string"></xs:attribute>
+<xs:attribute name="F11" type="xs:string"></xs:attribute>
+<xs:attribute name="F12" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="FAction" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="enter" type="xs:string"></xs:attribute>
+<xs:attribute name="out" type="xs:string"></xs:attribute>
+<xs:attribute name="next" type="xs:string"></xs:attribute>
+<xs:attribute name="previous" type="xs:string"></xs:attribute>
+<xs:attribute name="up" type="xs:string"></xs:attribute>
+<xs:attribute name="down" type="xs:string"></xs:attribute>
+<xs:attribute name="left" type="xs:string"></xs:attribute>
+<xs:attribute name="right" type="xs:string"></xs:attribute>
+<xs:attribute name="Fn" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="FComponent" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="preCreate" type="xs:string"></xs:attribute>
+<xs:attribute name="postCreate" type="xs:string"></xs:attribute>
+<xs:attribute name="preShow" type="xs:string"></xs:attribute>
+<xs:attribute name="postShow" type="xs:string"></xs:attribute>
+<xs:attribute name="preHide" type="xs:string"></xs:attribute>
+<xs:attribute name="postHide" type="xs:string"></xs:attribute>
+<xs:attribute name="preActivate" type="xs:string"></xs:attribute>
+<xs:attribute name="postActivate" type="xs:string"></xs:attribute>
+<xs:attribute name="preDeactivate" type="xs:string"></xs:attribute>
+<xs:attribute name="postDeactivate" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+</xs:choice>
+<xs:attribute name="Id" type="xs:string" ></xs:attribute> 
+<xs:attribute name="Name" type="xs:string" use="required"></xs:attribute>
+<xs:attribute name="Type" type="typeComponent" use="required"></xs:attribute>
+<xs:attribute name="Check" type="xs:string"></xs:attribute>
+<xs:attribute name="chCheck" type="xs:string"></xs:attribute>
+<xs:attribute name="chIsCheck" type="xs:string"></xs:attribute>
+<xs:attribute name="chNoCheck" type="xs:string"></xs:attribute>
+<xs:attribute name="display" type="display"></xs:attribute>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:all>
+<xs:attribute name="Id" type="xs:int"></xs:attribute>
+<xs:attribute name="Name" type="xs:string" use="required"></xs:attribute>
+<xs:attribute name="opToMade" type="xs:string" use="required"></xs:attribute>
+<xs:attribute name="Level" type="xs:int" use="required"></xs:attribute>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Tables" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Table" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="Title" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+<xs:element name="Keymap" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+<xs:element name="Dimension">
+<xs:complexType>
+<xs:attribute name="border" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="x" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="y" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="high" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="width" type="xs:int" use="required"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Style">
+<xs:complexType>
+<xs:attribute name="head" type="xs:int"></xs:attribute>
+<xs:attribute name="vLine" type="xs:int"></xs:attribute>
+<xs:attribute name="hLine" type="xs:int"></xs:attribute>
+<xs:attribute name="colorHead" type="xs:string"></xs:attribute>
+<xs:attribute name="colorData" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Elements">
+<xs:complexType>
+<xs:sequence>
+
+<xs:element name="Element" maxOccurs="unbounded">
+<xs:complexType>
+<xs:simpleContent>
+<xs:extension base="xs:string">
+<xs:attribute name="size" type="xs:integer" use="required" />
+</xs:extension>
+</xs:simpleContent>
+</xs:complexType>
+</xs:element>
+
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="FTable" minOccurs="0" maxOccurs="1"> 
+<xs:complexType>
+<xs:attribute name="preCreate" type="xs:string"></xs:attribute>
+<xs:attribute name="postCreate" type="xs:string"></xs:attribute>
+<xs:attribute name="preShow" type="xs:string"></xs:attribute> 
+<xs:attribute name="postShow" type="xs:string"></xs:attribute>
+<xs:attribute name="preHide" type="xs:string"></xs:attribute>
+<xs:attribute name="postHide" type="xs:string"></xs:attribute>
+<xs:attribute name="preActivate" type="xs:string"></xs:attribute>
+<xs:attribute name="postActivate" type="xs:string"></xs:attribute>
+<xs:attribute name="preDeactivate" type="xs:string"></xs:attribute>
+<xs:attribute name="postDeactivate" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Move" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="enter" type="xs:string"></xs:attribute>
+<xs:attribute name="out" type="xs:string"></xs:attribute>
+<xs:attribute name="next" type="xs:string"></xs:attribute>
+<xs:attribute name="previous" type="xs:string"></xs:attribute>
+<xs:attribute name="up" type="xs:string"></xs:attribute>
+<xs:attribute name="down" type="xs:string"></xs:attribute>
+<xs:attribute name="left" type="xs:string"></xs:attribute>
+<xs:attribute name="right" type="xs:string"></xs:attribute>
+<xs:attribute name="F1" type="xs:string"></xs:attribute>
+<xs:attribute name="F2" type="xs:string"></xs:attribute>
+<xs:attribute name="F3" type="xs:string"></xs:attribute>
+<xs:attribute name="F4" type="xs:string"></xs:attribute>
+<xs:attribute name="F5" type="xs:string"></xs:attribute>
+<xs:attribute name="F6" type="xs:string"></xs:attribute>
+<xs:attribute name="F7" type="xs:string"></xs:attribute>
+<xs:attribute name="F8" type="xs:string"></xs:attribute>
+<xs:attribute name="F9" type="xs:string"></xs:attribute>
+<xs:attribute name="F10" type="xs:string"></xs:attribute>
+<xs:attribute name="F11" type="xs:string"></xs:attribute>
+<xs:attribute name="F12" type="xs:string"></xs:attribute>
+  </xs:complexType>
+</xs:element>
+<xs:element name="FAction" minOccurs="0" maxOccurs="1">
+<xs:complexType>  
+<xs:attribute name="enter" type="xs:string">	</xs:attribute>
+<xs:attribute name="out" type="xs:string"></xs:attribute>
+<xs:attribute name="next" type="xs:string"></xs:attribute>
+<xs:attribute name="previous" type="xs:string"></xs:attribute>
+<xs:attribute name="up" type="xs:string"></xs:attribute>
+<xs:attribute name="down" type="xs:string"></xs:attribute>
+<xs:attribute name="left" type="xs:string"></xs:attribute>
+<xs:attribute name="right" type="xs:string"></xs:attribute>
+<xs:attribute name="Fn" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+</xs:all>
+<xs:attribute name="Id" type="xs:int"></xs:attribute>
+<xs:attribute name="Name" type="xs:string" use="required"></xs:attribute>
+<xs:attribute name="opToMade" type="xs:string" use="required"></xs:attribute>
+<xs:attribute name="Level" type="xs:int" use="required"></xs:attribute>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="Edits" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Edit" maxOccurs="unbounded">
+<xs:complexType>
+<xs:all>
+<xs:element name="Title" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+<xs:element name="Keymap" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+<xs:element name="Dimension">
+<xs:complexType>
+<xs:attribute name="border" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="x" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="y" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="high" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="width" type="xs:int" use="required"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="Color" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+<xs:element name="Move" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="enter" type="xs:string"></xs:attribute>
+<xs:attribute name="out" type="xs:string"></xs:attribute>
+<xs:attribute name="next" type="xs:string"></xs:attribute>
+<xs:attribute name="previous" type="xs:string"></xs:attribute> 
+<xs:attribute name="up" type="xs:string"></xs:attribute>
+<xs:attribute name="down" type="xs:string"></xs:attribute>
+<xs:attribute name="left" type="xs:string"></xs:attribute>
+<xs:attribute name="right" type="xs:string"></xs:attribute>
+<xs:attribute name="F1" type="xs:string"></xs:attribute>
+<xs:attribute name="F2" type="xs:string"></xs:attribute>
+<xs:attribute name="F3" type="xs:string"></xs:attribute>
+<xs:attribute name="F4" type="xs:string"></xs:attribute>
+<xs:attribute name="F5" type="xs:string"></xs:attribute>
+<xs:attribute name="F6" type="xs:string"></xs:attribute>
+<xs:attribute name="F7" type="xs:string"></xs:attribute>
+<xs:attribute name="F8" type="xs:string"></xs:attribute>
+<xs:attribute name="F9" type="xs:string"></xs:attribute>
+<xs:attribute name="F10" type="xs:string"></xs:attribute>
+<xs:attribute name="F11" type="xs:string"></xs:attribute>
+<xs:attribute name="F12" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="FAction" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="enter" type="xs:string"></xs:attribute>
+<xs:attribute name="out" type="xs:string"></xs:attribute>
+<xs:attribute name="next" type="xs:string"></xs:attribute>
+<xs:attribute name="previous" type="xs:string"></xs:attribute>
+<xs:attribute name="up" type="xs:string"></xs:attribute> 
+<xs:attribute name="down" type="xs:string"></xs:attribute>
+<xs:attribute name="left" type="xs:string"></xs:attribute>
+<xs:attribute name="right" type="xs:string"></xs:attribute>
+<xs:attribute name="Fn" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>                                                             
+<xs:element name="FEdit" minOccurs="0" maxOccurs="1">
+<xs:complexType>
+<xs:attribute name="preCreate" type="xs:string"></xs:attribute>
+<xs:attribute name="postCreate" type="xs:string"></xs:attribute>
+<xs:attribute name="preShow" type="xs:string"></xs:attribute> 
+<xs:attribute name="postShow" type="xs:string"></xs:attribute>
+<xs:attribute name="preHide" type="xs:string"></xs:attribute> 
+<xs:attribute name="postHide" type="xs:string"></xs:attribute>
+<xs:attribute name="preActivate" type="xs:string"></xs:attribute>
+<xs:attribute name="postActivate" type="xs:string"></xs:attribute> 
+<xs:attribute name="preDeactivate" type="xs:string"></xs:attribute>
+<xs:attribute name="postDeactivate" type="xs:string"></xs:attribute>    
+</xs:complexType>
+</xs:element>
+</xs:all>
+<xs:attribute name="Name" type="xs:string" use="required"></xs:attribute>
+<xs:attribute name="opToMade" type="xs:string" use="required"></xs:attribute>
+<xs:attribute name="Level" type="xs:int" use="required"></xs:attribute>
+<xs:attribute name="Id" type="xs:int"></xs:attribute>
+<xs:attribute name="ReadOnly" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+</xs:all>
+<xs:attribute name="TUI" type="xs:string"></xs:attribute>
+</xs:complexType>
+</xs:element>
+
+</xs:schema>
