@@ -1,0 +1,4666 @@
+<?xml version="1.0"?>
+<TUI xmlns:tui="http://tui">
+	<Proyect>
+		<Name>tUI</Name>
+		<Description>Proyect to make tui</Description>
+		<Main>MyMain</Main>
+		<End>MyEnd</End>
+		<Init>welcome:welcome</Init>
+		<Properties>
+			<Mouse/>
+			<Color/>
+			<Error>errores.txt</Error>
+		</Properties>
+	</Proyect>
+	<checksEdit>
+		<checkEdit Name="OneTo9" Align="right" Mode="replace" />
+	</checksEdit>
+	<Colors>
+		<Color Name="miColor1" foreground="1" background="2" attr="WA_NORMAL"/>
+		<Color Name="miColor1Inv" foreground="2" background="1" attr="WA_NORMAL"/>
+		<Color Name="miColor2" foreground="2" background="1" attr="WA_NORMAL"/>
+		<Color Name="miColor2Inv" foreground="2" background="1" attr="WA_NORMAL"  />
+		<Color Name="miColor3" foreground="2" background="4" attr="WA_BOLD" attr2="WA_BLINK" />
+                <Color Name="miColor4" foreground="7" background="2" attr="WA_NORMAL"/>
+		<Color Name="miColor5" foreground="4" background="3" attr="WA_NORMAL"/>
+		<Color Name="miColor6" foreground="1" background="3" attr="WA_NORMAL"/>
+		<Color Name="miColor7" foreground="2" background="6" attr="WA_BOLD"/>
+	</Colors>
+	<Msgs>
+	</Msgs>
+        <Keymaps>
+                <Keymap Name="propio">
+                <Enter ch1="10" ch2="0" ch3="0"/>
+                <Out ch1="27" ch2="0" ch3="0"/>
+                <Next ch1="9" ch2="0" ch3="0"/>
+                <Previous ch1="353" ch2="0" ch3="0"/>
+                <Up ch1="259" ch2="0" ch3="0"/>
+                <Down ch1="258" ch2="0" ch3="0"/>
+                <Left ch1="260" ch2="0" ch3="0"/>
+                <Right ch1="261" ch2="0" ch3="0"/>
+                <Fn/>
+                </Keymap>
+        </Keymaps>
+	<Panels>
+		<Panel Id="-1" Name="welcome" opToMade="destroy" Level="999">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="0" y="0" high="24" width="80"/>
+		<Components>
+		        <Component Name="welcome" Type="button" >
+			<Color>miColor1</Color>
+			<Dimension border="1" x="25" y="4" high="16" width="28"/>
+			<Text>@@@@@@@@@@@@@@@@@@@@@    \n @@@@@@@@@@@@@@@@@@@@@@@  \n @@@@                 @@@ \n @@@@@@@ TERMINAL  @@@@@@ \n @@@@ USER INTERFACE  @@@ \n @@@@@@@           @@@@@@ \n @@@@                 @@@ \n @@@@       TUI       @@@ \n  @@@      =====      @@@ \n  @@@                  #@ \n  @##   Press Enter    #@@\n  @#                  ##@ \n   ### DBP ###############\n      ###########2025#####</Text>
+			<Move  enter="mnPrincipal:mnPproyect"  />
+		        </Component>
+		</Components>
+		</Panel>
+
+		<Panel Id="-1" Name="mnPrincipal" opToMade="none" Level="0">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="0" y="0" high="3" width="80"/>
+		<Components>
+		<Component Name="mnPproyect" Type="button" Id="1">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="1" y="0" high="3" width="9"/>
+			<Text>Proyect</Text>
+			<Move  enter="mnProyect:mnPnew"  next=":2"  previous=":mnPexit"  left=":mnPexit"  right=":mnPgeneral" />
+		</Component>
+		<Component Name="mnPgeneral" Type="button" Id="2">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="11" y="0" high="3" width="9"/>
+			<Text>General</Text>
+			<Move  enter="mnGeneral:mnGproperties"  next=":mnPviews"  previous=":mnPproyect"  left=":mnPproyect"  right=":mnPviews" />
+			<FAction  enter="PROY_checkOpen" />
+		</Component>
+		<Component Name="mnPviews" Type="button" Id="3">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="21" y="0" high="3" width="9"/>
+			<Text>Views</Text>
+			<Move  enter="mnViews:Vpanels"  next=":mnPcomponents"  previous=":mnPgeneral"  left=":mnPgeneral"  right=":mnPcomponents" />
+			<FAction  enter="PROY_checkOpen" />
+		</Component>
+		<Component Name="mnPcomponents" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="31" y="0" high="3" width="12"/>
+			<Text>Components</Text>
+			<Move  enter="tcomp:"  next=":mnPlist"  previous=":mnPviews"  left=":mnPviews"  right=":mnPlist" />
+			<FAction  enter="PROY_checkOpen" />
+		</Component>
+		<Component Name="mnPlist" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="44" y="0" high="3" width="9"/>
+			<Text>List</Text>
+			<Move  enter="mnList:colors"  next=":mnPedit"  previous=":mnPcomponents"  left=":mnPcomponents"  right=":mnPedit" />
+			<FAction  enter="PROY_checkOpen" />
+		</Component>
+		<Component Name="mnPedit" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="54" y="0" high="3" width="9"/>
+			<Text>Edit</Text>
+			<Move  enter="mnEdit:open"  next=":mnPcompile"  previous=":mnPlist"  left=":mnPlist"  right=":mnPcompile" />
+			<FAction  enter="PROY_checkOpen" />
+		</Component>
+		<Component Name="mnPcompile" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="64" y="0" high="3" width="8"/>
+			<Text>Make </Text>
+			<Move  enter="mnMake:check"  next=":mnPexit"  previous=":mnPedit"  left=":mnPedit"  right=":mnPexit" />
+			<FAction  enter="PROY_checkOpen" />
+		</Component>
+		<Component Name="mnPexit" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="73" y="0" high="3" width="6"/>
+			<Text>Exit</Text>
+			<Move  enter=":"  next=":mnPproyect"  previous=":mnPcompile"  left=":mnPcompile"  right=":mnPproyect" />
+			<FAction  enter="PROY_exit" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="mnGeneral" opToMade="hide" Level="2">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="11" y="3" high="11" width="14"/>
+			<Move  out="mnPrincipal:mnPgeneral"  left="mnPrincipal:mnPproyect"  right="mnPrincipal:mnPviews" />
+		<Components>
+		<Component Name="mnGproperties" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="0" high="3" width="14"/>
+			<Text>Properties</Text>
+			<Move  enter="frmPProyect:frmPPmouse"  next=":mnGkeymap"  previous=":mnGmsgs"  up=":mnGmsgs"  down=":mnGkeymap" />
+		</Component>
+		<Component Name="mnGkeymap" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="2" high="3" width="14"/>
+			<Text>Keymap</Text>
+			<Move  enter="mnKeymap:mnKnew"  next=":mnGeditFunction"  previous=":mnGproperties"  up=":mnGproperties"  down=":mnGeditFunction" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="mnGeditFunction" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="4" high="3" width="14"/>
+			<Text>Ed. Functions</Text>
+			<Move  enter="frmEFunction:frmEFname"  next=":mnGcolors"  previous=":mnGkeymap"  up=":mnGkeymap"  down=":mnGcolors" />
+		</Component>
+		<Component Name="mnGcolors" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="6" high="3" width="14"/>
+			<Text>Colors</Text>
+			<Move  enter="colors:Cnew"  next=":mnGmsgs"  previous=":mnGeditFunction"  up=":mnGeditFunction"  down=":mnGmsgs" />
+		</Component>
+		<Component Name="mnGmsgs" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="8" high="3" width="14"/>
+			<Text>Msgs</Text>
+			<Move  enter="msgs:information"  next=":mnGproperties"  previous=":mnGcolors"  up=":mnGcolors"  down=":mnGproperties" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="mnProyect" opToMade="hide" Level="4">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="1" y="3" high="11" width="9"/>
+			<Move  out="mnPrincipal:mnPproyect"  left="mnPrincipal:mnPexit"  right="mnPrincipal:mnPgeneral" />
+		<Components>
+		<Component Name="mnPnew" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="0" high="3" width="9"/>
+			<Text>New</Text>
+			<Move  enter="frmNProyect:frmNPname"  next=":mnPopen"  previous=":mnPtest"  up=":mnPtest"  down=":mnPopen" />
+		</Component>
+		<Component Name="mnPopen" Type="button" >
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="2" high="3" width="9"/>
+			<Text>Open</Text>
+			<Move  enter="frmOProyect:frmOPname"  next=":mnPclose"  previous=":mnPnew"  up=":mnPnew"  down=":mnPclose" />
+		</Component>
+		<Component Name="mnPclose" Type="button" display="hidden">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="4" high="3" width="9"/>
+			<Text>Close</Text>
+			<Move  next=":mnPsave"  previous=":mnPopen"  up=":mnPopen"  down=":mnPsave" />
+			<FAction  enter="PROY_close" />
+		</Component>
+		<Component Name="mnPsave" Type="button" display="nSelect">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="6" high="3" width="9"/>
+			<Text>Save</Text>
+			<Move  enter="frmSave:frmSPname"  next=":mnPtest"  previous=":mnPclose"  up=":mnPclose"  down=":mnPtest" />
+		</Component>
+		<Component Name="mnPtest" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="8" high="3" width="9"/>
+			<Text>T.TEST</Text>
+			<Move  enter="fttest:ttytest"  next=":mnPnew"  previous=":mnPsave"  up=":mnPsave"  down=":mnPnew" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="mnKeymap" opToMade="hide" Level="3">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="25" y="5" high="5" width="9"/>
+			<Move  out="mnGeneral:mnGkeymap"  left="mnGeneral:mnGkeymap" />
+		<Components>
+		<Component Name="mnKnew" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="0" high="3" width="9"/>
+			<Text>New</Text>
+			<Move  enter="frmkeymap:nkeymap"  next=":mnKchange"  previous=":mnKchange"  up=":mnKchange"  down=":mnKchange" />
+		</Component>
+		<Component Name="mnKchange" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="2" high="3" width="9"/>
+			<Text>Change</Text>
+			<Move  enter="tmselect:"  next=":mnKnew"  previous=":mnKnew"  up=":mnKnew"  down=":mnKnew" />
+			<FAction  enter="KEYM_change" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="mnList" opToMade="hide" Level="2">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="44" y="3" high="7" width="14"/>
+			<FPanel />
+			<Move  out="mnPrincipal:mnPlist"  left="mnPrincipal:mnPcomponents"  right="mnPrincipal:mnPedit" />
+			<FAction />
+		<Components>
+		<Component Name="colors" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="0" high="3" width="14"/>
+			<Text>Colors</Text>
+			<Move  enter="tlistColors:"  next=":views"  previous=":calls"  up=":calls"  down=":views" />
+		</Component>
+		<Component Name="views" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="2" high="3" width="14"/>
+			<Text>Views</Text>
+			<Move  enter="tlistViews:"  next=":calls"  previous=":colors"  up=":colors"  down=":calls" />
+		</Component>
+		<Component Name="calls" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="4" high="3" width="14"/>
+			<Text>Calls</Text>
+			<Move  enter="tlistCalls:"  next=":colors"  previous=":views"  up=":views"  down=":colors" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="mnMake" opToMade="hide" Level="2">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="64" y="3" high="7" width="14"/>
+			<Move  out="mnPrincipal:mnPcompile"  left="mnPrincipal:mnPedit"  right="mnPrincipal:mnPexit" />
+		<Components>
+		<Component Name="check" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="0" high="3" width="14"/>
+			<Text>Check</Text>
+			<Move  enter="frmCheck:ckenter"  next=":compile"  previous=":run"  up=":run"  down=":compile" />
+		</Component>
+		<Component Name="compile" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="2" high="3" width="14"/>
+			<Text>Compile</Text>
+			<Move  enter="frCompile:ckenter"  next=":run"  previous=":check"  up=":check"  down=":run" />
+		</Component>
+		<Component Name="run" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="4" high="3" width="14"/>
+			<Text>Execute</Text>
+			<FAction  enter="RUN_execute" />
+			<Move  next=":check"  previous=":compile"  up=":compile"  down=":check" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="frmkeymap" opToMade="destroy" Level="1">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="4" high="19" width="60"/>
+			<FPanel  preShow="KEYM_load" />
+			<Move  out="mnPrincipal:mnPgeneral" />
+		<Components>
+		<Component Name="frmK00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Define a user KEYMAP  </Text>
+		</Component>
+		<Component Name="frmK01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="13"/>
+			<Text>Name:</Text>
+		</Component>
+		<Component Name="nkeymap" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="3" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":bkmEnter"  next=":bkmEnter"  down=":bkmEnter" />
+		</Component>
+		<Component Name="bkmEnter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="5" high="1" width="9"/>
+			<Text>Enter:</Text>
+			<Move next=":bkmOut"  previous=":nkeymap"  up=":nkeymap"  down=":bkmOut" />
+			<FAction  enter="KEYM_new" />
+		</Component>
+		<Component Name="etkenter0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="5" high="1" width="5"/>
+		</Component>
+		<Component Name="enter0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="5" high="1" width="4"/>
+		</Component>
+		<Component Name="etkenter1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="5" high="1" width="5"/>
+		</Component>
+		<Component Name="enter1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="5" high="1" width="4"/>
+		</Component>
+		<Component Name="etkenter2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="5" high="1" width="5"/>
+		</Component>
+		<Component Name="enter2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="44" y="5" high="1" width="5"/>
+		</Component>
+		<Component Name="bkmOut" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="6" high="1" width="9"/>
+			<Text>Out:</Text>
+			<Move  enter=":bkmNext"  next=":bkmNext"  previous=":bkmEnter"  up=":bkmEnter"  down=":bkmNext" />
+			<FAction  enter="KEYM_new" />
+		</Component>
+		<Component Name="etkout0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="6" high="1" width="5"/>
+		</Component>
+		<Component Name="out0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="6" high="1" width="4"/>
+		</Component>
+		<Component Name="etkout1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="6" high="1" width="5"/>
+		</Component>
+		<Component Name="out1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="6" high="1" width="4"/>
+		</Component>
+		<Component Name="etkout2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="6" high="1" width="5"/>
+		</Component>
+		<Component Name="out2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="44" y="6" high="1" width="5"/>
+		</Component>
+		<Component Name="bkmNext" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="7" high="1" width="9"/>
+			<Text>Next:</Text>
+			<Move  enter=":bkmPrevious"  next=":bkmPrevious"  previous=":bkmOut"  up=":bkmOut"  down=":bkmPrevious" />
+			<FAction  enter="KEYM_new" />
+		</Component>
+		<Component Name="etknext0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="7" high="1" width="5"/>
+		</Component>
+		<Component Name="next0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="7" high="1" width="4"/>
+		</Component>
+		<Component Name="etknext1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="7" high="1" width="5"/>
+		</Component>
+		<Component Name="next1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="7" high="1" width="4"/>
+		</Component>
+		<Component Name="etknext2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="7" high="1" width="5"/>
+		</Component>
+		<Component Name="next2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="44" y="7" high="1" width="5"/>
+		</Component>
+		<Component Name="bkmPrevious" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="8" high="1" width="9"/>
+			<Text>Previous:</Text>
+			<Move  enter=":bkmUp"  next=":bkmUp"  previous=":bkmNext"  up=":bkmNext"  down=":bkmUp" />
+			<FAction  enter="KEYM_new" />
+		</Component>
+		<Component Name="etkprevious0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="8" high="1" width="5"/>
+		</Component>
+		<Component Name="previous0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="8" high="1" width="4"/>
+		</Component>
+		<Component Name="etkprevious1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="8" high="1" width="5"/>
+		</Component>
+		<Component Name="previous1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="8" high="1" width="4"/>
+		</Component>
+		<Component Name="etkprevious2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="8" high="1" width="5"/>
+		</Component>
+		<Component Name="previous2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="44" y="8" high="1" width="5"/>
+		</Component>
+		<Component Name="bkmUp" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="9" high="1" width="9"/>
+			<Text>Up:</Text>
+			<Move  enter=":bkmDown"  next=":bkmDown"  previous=":bkmPrevious"  up=":bkmPrevious"  down=":bkmDown" />
+			<FAction  enter="KEYM_new" />
+		</Component>
+		<Component Name="etkup0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="9" high="1" width="5"/>
+		</Component>
+		<Component Name="up0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="9" high="1" width="4"/>
+		</Component>
+		<Component Name="etkup1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="9" high="1" width="5"/>
+		</Component>
+		<Component Name="up1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="9" high="1" width="4"/>
+		</Component>
+		<Component Name="etkup2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="9" high="1" width="5"/>
+		</Component>
+		<Component Name="up2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="44" y="9" high="1" width="5"/>
+		</Component>
+		<Component Name="bkmDown" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="10" high="1" width="9"/>
+			<Text>Down:</Text>
+			<Move  enter=":bkmLeft"  next=":bkmLeft"  previous=":bkmUp"  up=":bkmUp"  down=":bkmLeft" />
+			<FAction  enter="KEYM_new" />
+		</Component>
+		<Component Name="etkdown0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="10" high="1" width="5"/>
+		</Component>
+		<Component Name="down0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="10" high="1" width="4"/>
+		</Component>
+		<Component Name="etkdown1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="10" high="1" width="5"/>
+		</Component>
+		<Component Name="down1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="10" high="1" width="4"/>
+		</Component>
+		<Component Name="etkdown2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="10" high="1" width="5"/>
+		</Component>
+		<Component Name="down2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="44" y="10" high="1" width="5"/>
+		</Component>
+		<Component Name="bkmLeft" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="11" high="1" width="9"/>
+			<Text>Left:</Text>
+			<Move  enter=":bkmRight"  next=":bkmRight"  previous=":bkmDown"  up=":bkmDown"  down=":bkmRight" />
+			<FAction  enter="KEYM_new" />
+		</Component>
+		<Component Name="etkleft0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="11" high="1" width="5"/>
+		</Component>
+		<Component Name="left0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="11" high="1" width="4"/>
+		</Component>
+		<Component Name="etkleft1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="11" high="1" width="5"/>
+		</Component>
+		<Component Name="left1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="11" high="1" width="4"/>
+		</Component>
+		<Component Name="etkleft2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="11" high="1" width="5"/>
+		</Component>
+		<Component Name="left2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="44" y="11" high="1" width="5"/>
+		</Component>
+		<Component Name="bkmRight" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="12" high="1" width="9"/>
+			<Text>Right:</Text>
+			<Move  enter=":bkmFunction"  next=":bkmFunction"  previous=":bkmLeft"  up=":bkmLeft"  down=":bkmFunction" />
+			<FAction  enter="KEYM_new" />
+		</Component>
+		<Component Name="etkright0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="12" high="1" width="5"/>
+		</Component>
+		<Component Name="right0" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="12" high="1" width="4"/>
+		</Component>
+		<Component Name="etkright1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="12" high="1" width="5"/>
+		</Component>
+		<Component Name="right1" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="12" high="1" width="4"/>
+		</Component>
+		<Component Name="etkright2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="12" high="1" width="5"/>
+		</Component>
+		<Component Name="right2" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="44" y="12" high="1" width="5"/>
+		</Component>
+		<Component Name="bkmFunction" Type="ckbutton" Check="y" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="13" high="1" width="25"/>
+			<Text>Use Keys Functions: ? </Text>
+			<Move  enter=":frmKenter"  next=":frmKenter"  previous=":bkmRight"  up=":bkmRight"  down=":frmKenter" />
+		</Component>
+		<Component Name="frmKcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="3" y="15" high="3" width="12"/>
+			<Text>Cancel</Text>
+			<Move  enter="mnPrincipal:mnPgeneral"  next=":frmKtest"  previous=":bkmFunction"  up=":bkmFunction"  left=":frmKenter"  right=":frmKtest" />
+		</Component>
+		<Component Name="frmKtest" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="17" y="15" high="3" width="12"/>
+			<Text>Test</Text>
+			<Move  next=":frmKdelete"  previous=":bkmFunction"  up=":bkmFunction"  left=":frmKcancel"  right=":frmKdelete" />
+			<FAction  enter="TEST_keymap" />
+		</Component>
+		<Component Name="frmKdelete" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="31" y="15" high="3" width="12"/>
+			<Text>Delete</Text>
+			<Move  enter="mnPrincipal:mnPgeneral"  next=":frmKenter"  previous=":bkmFunction"  up=":bkmFunction"  left=":frmKtest"  right=":frmKenter" />
+			<FAction  enter="KEYM_delete" />
+		</Component>
+		<Component Name="frmKenter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="45" y="15" high="3" width="12"/>
+			<Text>Do it!</Text>
+			<Move  previous=":bkmFunction"  up=":bkmFunction"  left=":frmKdelete"  right=":frmKcancel" />
+			<FAction  enter="KEYM_create" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="frmEFunction" opToMade="hide" Level="1">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="5" high="17" width="60"/>
+			<Move  out="mnPrincipal:mnPgeneral"/>
+			<FPanel  preShow="EDF_load" />
+		<Components>
+		<Component Name="frmEF00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Define yours Application Check Edit Functions </Text>
+		</Component>
+		<Component Name="frmEF01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="3" high="1" width="25"/>
+			<Text>Existing Edit Functions:</Text>
+		</Component>
+		<Component Name="frmEFlist" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="28" y="3" high="5" width="30"/>
+			<Move  next=":frmEFname" />
+			<FAction  enter="EDF_select" />
+		</Component>
+		<Component Name="frmEF02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="8" high="1" width="20"/>
+			<Text>User Edit Function:</Text>
+		</Component>
+		<Component Name="frmEFname" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="26" y="8" high="1" width="30"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmEFAlign" next=":frmEFAlign"  previous=":frmEFlist"  down=":frmEFAlign" />
+		</Component>
+		<Component Name="frmEF03" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="9" high="1" width="9"/>
+			<Text>Align :</Text>
+		</Component>
+		<Component Name="frmEFAlign" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="18" y="9" high="4" width="7"/>
+			<Text>LEFT</Text>
+			<Text>RIGHT</Text>
+			<Move  enter=":frmEFMode" next=":frmEFMode"  previous=":frmEFname"  right=":frmEFMode" />
+		</Component>
+		<Component Name="frmEF04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="9" high="1" width="9"/>
+			<Text>Mode :</Text>
+		</Component>
+		<Component Name="frmEFMode" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="40" y="9" high="4" width="10"/>
+			<Text>INSERT</Text>
+			<Text>REPLACE</Text>
+			<Move  enter=":frmEFAdd" next=":frmEFAdd"  previous=":frmEFAlign"  left=":frmEFAlign" />
+		</Component>
+		<Component Name="frmEFAdd" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="5" y="13" high="3" width="12"/>
+			<Text>Add</Text>
+			<Move  next=":frmEFDel"  previous=":frmEFMode"  up=""  left=":frmEFenter"  right=":frmEFDel" />
+			<FAction  enter="EDF_new" />
+		</Component>
+		<Component Name="frmEFDel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="25" y="13" high="3" width="12"/>
+			<Text>Del</Text>
+			<Move  next=":frmEFenter"  previous=":frmEFMode"  up=""  left=":frmEFAdd"  right=":frmEFenter" />
+			<FAction  enter="EDF_delete" />
+		</Component>
+		<Component Name="frmEFenter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="45" y="13" high="3" width="12"/>
+			<Text>Done</Text>
+			<Move  enter="mnPrincipal:mnPgeneral"  previous=":frmEFname"  up=":frmEFname"  left=":frmEFDel"  right=":frmEFAdd" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="colors" opToMade="hide" Level="3">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="25" y="9" high="5" width="9"/>
+			<Move  out="mnGeneral:mnGcolors" left="mnGeneral:mnGcolors" />
+		<Components>
+		<Component Name="Cnew" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="0" high="3" width="9"/>
+			<Text>New</Text>
+			<Move  enter="frmColor:frmCname"  next=":Cchange" previous=":Cchange"  up=":Cchange"  down=":Cchange"  />
+		</Component>
+		<Component Name="Cchange" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="2" high="3" width="9"/>
+			<Text>Change</Text>
+			<Move  enter="tmselect:"  next=":Cnew"  previous=":Cnew"  up=":Cnew"  down=":Cnew" />
+			<FAction  enter="COLOR_change" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="msgs" opToMade="hide" Level="3">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="10" high="7" width="13"/>
+			<Move  out="mnGeneral:mnGmsgs"  left="mnGeneral:mnGmsgs"/>
+		<Components>
+		<Component Name="information" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="0" high="3" width="13"/>
+			<Text>Information</Text>
+			<Move  enter="frmMsgs:frmMtitle" previous=":error" up=":error"  next=":warning" down=":warning"  />
+			<FAction  enter="MSG_select" />
+		</Component>
+		<Component Name="warning" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="2" high="3" width="13"/>
+			<Text>Warning</Text>
+			<Move  enter="frmMsgs:frmMtitle"  previous=":information" up=":information"  next=":error" down=":error" />
+			<FAction  enter="MSG_select" />
+		</Component>
+		<Component Name="error" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="4" high="3" width="13"/>
+			<Text>Error</Text>
+			<Move  enter="frmMsgs:frmMtitle" previous=":warning" up=":warning"  next=":information" down=":information" />
+			<FAction  enter="MSG_select" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="mnViews" opToMade="hide" Level="2">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="3" high="9" width="9"/>
+			<Move  out="mnPrincipal:mnPviews"  left="mnPrincipal:mnPgeneral"  right="mnPrincipal:mnPcomponents" />
+		<Components>
+		<Component Name="Vpanels" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="0" high="3" width="9"/>
+			<Text>Panels</Text>
+			<Move  enter="telement:"  next=":Vtables"  previous=":Vcopy"  up=":Vcopy"  down=":Vtables" />
+			<FAction  enter="VIEW_panelChange" />
+		</Component>
+		<Component Name="Vtables" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="2" high="3" width="9"/>
+			<Text>Tables</Text>
+			<Move  enter="telement:"  next=":Vedit"  previous=":Vpanels"  up=":Vpanels"  down=":Vedit" />
+			<FAction  enter="VIEW_tableChange" />
+		</Component>
+		<Component Name="Vedit" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="4" high="3" width="9"/>
+			<Text>Edit</Text>
+			<Move  enter="telement:"  next=":Vcopy"  previous=":Vtables"  up=":Vtables"  down=":Vcopy" />
+			<FAction  enter="VIEW_editChange" />
+			<FComponent />
+		</Component>
+		<Component Name="Vcopy" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="0" y="6" high="3" width="9"/>
+			<Text>Copy</Text>
+			<Move  enter="telement:"  next=":Vpanels"  previous=":Vedit"  up=":Vedit"  down=":Vpanels" />
+			<FAction  enter="VIEW_copyChange" />
+			<FComponent />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Name="PLcomponents" opToMade="hide" Level="9">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="4" y="10" high="7" width="14"/>
+			<Move  out="-:" />
+		<Components>
+		<Component Name="Colabel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="12"/>
+			<Text>Label</Text>
+			<Move  enter="CoL:CoLid"  next=":CoButton"  previous=":CoField"  up=":CoField"  down=":CoButton" />
+		</Component>
+		<Component Name="CoButton" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="1" y="2" high="1" width="12"/>
+			<Text>Button</Text>
+			<Move  enter="CoB:CoBid"  next=":CoCheck"  previous=":Colabel"  up=":Colabel"  down=":CoCheck" />
+		</Component>
+		<Component Name="CoCheck" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="1" y="3" high="1" width="12"/>
+			<Text>Ck. Button</Text>
+			<Move  enter="CoCB:CoCBid"  next=":CoLsButton"  previous=":CoButton"  up=":CoButton"  down=":CoLsButton" />
+		</Component>
+		<Component Name="CoLsButton" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="1" y="4" high="1" width="12"/>
+			<Text>List Button</Text>
+			<Move  enter="CoLB:CoLBid"  next=":CoField"  previous=":CoCheck"  up=":CoCheck"  down=":CoField" />
+		</Component>
+		<Component Name="CoField" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="1" y="5" high="1" width="12"/>
+			<Text>Field</Text>
+			<Move  enter="CoED:CoEDid"  next=":Colabel"  previous=":CoLsButton"  up=":CoLsButton"  down=":Colabel" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="frmNProyect" opToMade="destroy" Level="2">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="5" high="14" width="60"/>
+			<Move out="mnPrincipal:mnPproyect"/>
+		<Components>
+		<Component Name="frmNP00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+                        <Text>INDICATE THE NAME OF THE NEW PROYECT </Text>
+		</Component>
+		<Component Name="frmNP01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="4" high="1" width="13"/>
+                        <Text>Name:</Text>
+		</Component>
+		<Component Name="frmNPname" Type="field">
+			<Color>miColor1</Color>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Dimension border="0" x="20" y="4" high="1" width="36"/>
+			<Move  enter=":frmNPdescripcion"  next=":frmNPdescripcion"  down=":frmNPdescripcion" />
+		</Component>
+		<Component Name="frmNP02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="6" high="1" width="13"/>
+                        <Text>Description:</Text>
+		</Component>
+		<Component Name="frmNPdescripcion" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="6" high="2" width="36"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move next=":frmNPenter"  previous=":frmNPname" up=":frmNPname" />
+		</Component>
+		<Component Name="frmNPcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="12" y="9" high="3" width="12"/>
+                        <Text>Cancel</Text>
+			<Move  enter="mnPrincipal:mnPproyect"  next=":frmNPenter"  previous=":frmNPdescripcion"  up=":frmNPdescripcion"  left=":frmNPenter"  right=":frmNPenter" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="frmNPenter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="36" y="9" high="3" width="12"/>
+                        <Text>Do It!</Text>
+			<Move  enter="mnPrincipal:mnPproyect"  previous=":frmNPdescripcion"  up="mnPrincipal:mnPproyect"  left=":frmNPcancel"  right=":frmNPcancel" />
+			<FAction  enter="PROY_new" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="frmOProyect" opToMade="destroy" Level="2">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="5" high="14" width="60"/>
+			<Move  out="mnPrincipal:mnPproyect" /> 
+		<Components>
+		<Component Name="frmOP00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+		        <Text>INDICATE THE NAME OF THE XML PROYECT FILE </Text>
+		</Component>
+		<Component Name="frmOP01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="4" high="1" width="13"/>
+                        <Text>Proyect:</Text>
+		</Component>
+		<Component Name="frmOPname" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="4" high="1" width="36"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmOPenter" next=":frmOPenter"  down=":frmOPenter" />
+		</Component>
+		<Component Name="frmOPcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="12" y="9" high="3" width="12"/>
+                        <Text>Cancel</Text>
+			<Move  enter="mnPrincipal:mnPproyect"  next=":frmOPenter"  previous=":frmOPname"  up=":frmOPname"  left=":frmOPenter"  right=":frmOPenter" />
+		</Component>
+		<Component Name="frmOPenter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="36" y="9" high="3" width="12"/>
+                        <Text>Do It!</Text>
+			<Move  enter="mnPrincipal:mnPproyect"  previous=":frmOPname"  up=":frmOPname"  left=":frmOPcancel"  right=":frmOPcancel" />
+			<FAction  enter="PROY_open" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="frmSave" opToMade="destroy" Level="2">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="5" high="14" width="60"/>
+			<Move out="mnPrincipal:mnPproyect" />
+			<FPanel  preShow="PROY_loadSave" />
+		<Components>
+		<Component Name="frmSP00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>INDICATE THE NAME OF THE SAVE FILE </Text>
+		</Component>
+		<Component Name="frmSP01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="4" high="1" width="13"/>
+			<Text>Name:</Text>
+		</Component>
+		<Component Name="frmSPname" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="4" high="1" width="36"/>
+			<Move  enter=":frmSPenter" next=":frmSPenter"  down=":frmSPenter" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="frmSPcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="12" y="9" high="3" width="12"/>
+			<Text>Cancel</Text>
+			<Move  enter="mnPrincipal:mnPproyect"  next=":frmSPenter"  previous=":frmSPname"  up=":frmSPname"  left=":frmSPenter"  right=":frmSPenter" />
+		</Component>
+		<Component Name="frmSPenter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="36" y="9" high="3" width="12"/>
+			<Text>Do It!</Text>
+			<Move  enter="mnPrincipal:mnPproyect"  out="mnPrincipal:mnPproyect"  previous=":frmSPname"  up=":frmSPname"  left=":frmSPcancel"  right=":frmSPcancel" />
+			<FAction  enter="PROY_save" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="fttest" opToMade="hide" Level="1">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="5" high="15" width="60"/>
+			<Move out="mnPrincipal:mnPproyect" />
+		<Components>
+		<Component Name="ett00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>SPECIFY the TTY  TERM for TEST </Text>
+		</Component>
+		<Component Name="ett01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="4" high="1" width="10"/>
+			<Text>Term:</Text>
+		</Component>
+		<Component Name="term" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="4" high="1" width="40"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Text>xterm-256color</Text>
+			<Move  enter=":ttytest" next=":ttytest"  down=":ttytest" />
+		</Component>
+		<Component Name="ett02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="7" high="1" width="10"/>
+			<Text>Tty:</Text>
+		</Component>
+		<Component Name="ttytest" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="7" high="1" width="40"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Text>/dev/pts</Text>
+			<Move  enter=":fttenter"  next=":fttenter"  previous=":term"  up=":term"  down=":fttcancel" />
+		</Component>
+		<Component Name="fttcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="12" y="9" high="3" width="12"/>
+			<Text>Cancel</Text>
+			<Move  enter="mnPrincipal:mnPproyect" next=":fttenter"  previous=":ttytest"  up=":ttytest"  left=":fttenter"  right=":fttenter" />
+		</Component>
+		<Component Name="fttenter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="36" y="9" high="3" width="12"/>
+			<Text>Do It!</Text>
+			<Move  enter="mnPrincipal:mnPproyect" next=":term"  previous=":fttcancel"  up=":ttytest"  left=":fttcancel"  right=":fttcancel" />
+			<FAction  enter="PROY_test" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="frmPProyect" opToMade="hide" Level="1">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="5" high="16" width="64"/>
+			<FPanel  preShow="PROY_loadProperties" />
+			<Move  out="mnPrincipal:mnPgeneral" />
+		<Components>
+		<Component Name="frmPP00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>SPECIFY the Proyect Properties </Text>
+		</Component>
+		<Component Name="frmPPmouse" Type="ckbutton"  Check="y" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="15"/>
+			<Text>Use Mouse: ? </Text>
+			<Move  enter=":frmPPcolor"  next=":frmPPcolor"  down=":frmPPerror"  right=":frmPPcolor" />
+		</Component>
+		<Component Name="frmPPcolor" Type="ckbutton" Check="y" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="25" y="3" high="1" width="15"/>
+			<Text>Use Colors: ? </Text>
+			<Move  next=":frmPPerror"  previous=":frmPPmouse"  down=":frmPPferror"  left=":frmPPmouse" />
+		</Component>
+		<Component Name="frmPPerror" Type="ckbutton" Check="y">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="4" high="1" width="25"/>
+			<Text>Print Errors: ? to File: </Text>
+			<Move  next=":frmPPferror"  previous=":frmPPcolor"  up=":frmPPmouse" down=":chCheck"  right=":frmPPferror" />
+		</Component>
+		<Component Name="frmPPferror" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="31" y="4" high="1" width="20"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Text>errors.err</Text>
+			<Move  enter=":chCheck"  next=":chCheck"  previous=":frmPPerror"  up=":frmPPmouse"  down=":chCheck"  left=":frmPPerror" />
+		</Component>
+		<Component Name="frmPP21" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="5" high="1" width="12"/>
+			<Text>Ch. Check:</Text>
+		</Component>
+		<Component Name="chCheck" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="17" y="5" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":chisCheck"  next=":chisCheck"  previous=":frmPPerror"  up=":frmPPerror"  down=":frmPPup"  right=":chisCheck" />
+		</Component>
+		<Component Name="frmPP22" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="5" high="1" width="13"/>
+			<Text>Ch. is Check:</Text>
+		</Component>
+		<Component Name="chisCheck" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="5" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":chnoCheck"  next=":chnoCheck"  previous=":chisCheck"  up=":frmPPerror"  down=":frmPPup"  left=":chCheck"  right=":chnoCheck" />
+		</Component>
+		<Component Name="frmPP23" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="5" high="1" width="14"/>
+			<Text>Ch. No Check:</Text>
+		</Component>
+		<Component Name="chnoCheck" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="54" y="5" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmPPup"  next=":frmPPup"  previous=":chisCheck"  up=":frmPPerror"  down=":frmPPup"  left=":chisCheck" />
+		</Component>
+		<Component Name="frmPP01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="6" high="1" width="13"/>
+			<Text>Borders:</Text>
+		</Component>
+		<Component Name="frmPP02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="18" y="6" high="1" width="3"/>
+			<Text>Up:</Text>
+		</Component>
+		<Component Name="frmPPup" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="6" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmPPdw"  next=":frmPPdw"  previous=":chCheck"  up=":chCheck"  down=":frmSPup"  right=":frmPPdw" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmPP03" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="23" y="6" high="1" width="3"/>
+			<Text>Dw:</Text>
+		</Component>
+		<Component Name="frmPPdw" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="26" y="6" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmPPlf"  next=":frmPPlf"  previous=":frmPPup"  up=":chCheck"  down=":frmSPdw"  left=":frmPPup"  right=":frmPPlf" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmPP04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="28" y="6" high="1" width="3"/>
+			<Text>Lf:</Text>
+		</Component>
+		<Component Name="frmPPlf" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="31" y="6" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmPPrg"  next=":frmPPrg"  previous=":frmPPdw"  up=":chCheck"  down=":frmSPlf"  left=":frmPPdw"  right=":frmPPrg" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmPP05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="6" high="1" width="3"/>
+			<Text>Rg:</Text>
+		</Component>
+		<Component Name="frmPPrg" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="6" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmPPcul"  next=":frmPPcul"  previous=":frmPPlf"  up=":chCheck"  down=":frmSPrg"  left=":frmPPlf"  right=":frmPPcul" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmPP06" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="6" high="1" width="4"/>
+			<Text>Cul:</Text>
+		</Component>
+		<Component Name="frmPPcul" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="42" y="6" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmPPcur"  next=":frmPPcur"  previous=":frmPPrg"  up=":chCheck"  down=":frmSPcul"  left=":frmPPrg"  right=":frmPPcur" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmPP07" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="44" y="6" high="1" width="4"/>
+			<Text>Cur:</Text>
+		</Component>
+		<Component Name="frmPPcur" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="48" y="6" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmPPcdl"  next=":frmPPcdl"  previous=":frmPPcul"  up=":chCheck"  down=":frmSPcur"  left=":frmPPcul"  right=":frmPPcdl" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmPP08" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="50" y="6" high="1" width="4"/>
+			<Text>Cdl:</Text>
+		</Component>
+		<Component Name="frmPPcdl" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="54" y="6" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmPPcdr"  next=":frmPPcdr"  previous=":frmPPcur"  up=":chCheck"  down=":frmSPcdl"  left=":frmPPcur"  right=":frmPPcdr" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmPP09" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="56" y="6" high="1" width="4"/>
+			<Text>Cdr:</Text>
+		</Component>
+		<Component Name="frmPPcdr" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="60" y="6" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmSPup"  next=":frmSPup"  previous=":frmPPcdl"  up=":chCheck"  down=":frmSPcdr"  left=":frmPPcdl" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmSP01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="7" high="1" width="13"/>
+			<Text>Scr. Borders:</Text>
+		</Component>
+		<Component Name="frmSP02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="18" y="7" high="1" width="3"/>
+			<Text>Up:</Text>
+		</Component>
+		<Component Name="frmSPup" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="7" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmSPdw"  next=":frmSPdw"  previous=":frmPPcdr"  up=":frmPPup"  down=":frmPPmainf"  right=":frmSPdw" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmSP03" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="23" y="7" high="1" width="3"/>
+			<Text>Dw:</Text>
+		</Component>
+		<Component Name="frmSPdw" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="26" y="7" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmSPlf"  next=":frmSPlf"  previous=":frmSPup"  up=":frmPPdw"  down=":frmPPmainf"  left=":frmSPup"  right=":frmSPlf" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmSP04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="28" y="7" high="1" width="3"/>
+			<Text>Lf:</Text>
+		</Component>
+		<Component Name="frmSPlf" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="31" y="7" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmSPrg"  next=":frmSPrg"  previous=":frmSPdw"  up=":frmPPlf"  down=":frmPPmainf"  left=":frmSPdw"  right=":frmSPrg" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmSP05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="7" high="1" width="3"/>
+			<Text>Rg:</Text>
+		</Component>
+		<Component Name="frmSPrg" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="7" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmSPcul"  next=":frmSPcul"  previous=":frmSPlf"  up=":frmPPrg"  down=":frmPPmainf"  left=":frmSPlf"  right=":frmSPcul" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmSP06" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="7" high="1" width="4"/>
+			<Text>Cul:</Text>
+		</Component>
+		<Component Name="frmSPcul" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="42" y="7" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmSPcur"  next=":frmSPcur"  previous=":frmSPrg"  up=":frmPPcul"  down=":frmPPmainf"  left=":frmSPrg"  right=":frmSPcur" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmSP07" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="44" y="7" high="1" width="4"/>
+			<Text>Cur:</Text>
+		</Component>
+		<Component Name="frmSPcur" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="48" y="7" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmSPcdl"  next=":frmSPcdl"  previous=":frmSPcul"  up=":frmPPcur"  down=":frmPPmainf"  left=":frmSPcul"  right=":frmSPcdl" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmSP08" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="50" y="7" high="1" width="4"/>
+			<Text>Cdl:</Text>
+		</Component>
+		<Component Name="frmSPcdl" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="54" y="7" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmSPcdr"  next=":frmSPcdr"  previous=":frmSPcur"  up=":frmPPcdl"  down=":frmPPmainf"  left=":frmSPcur"  right=":frmSPcdr" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmSP09" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="56" y="7" high="1" width="4"/>
+			<Text>Cdr:</Text>
+		</Component>
+		<Component Name="frmSPcdr" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="60" y="7" high="1" width="1"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmPPmainf"  next=":frmPPmainf"  previous=":frmSPcdl"  up=":frmPPcdr"  down=":frmPPmainf"  left=":frmSPcdl" />
+			<FComponent  postCreate="PROY_replace" />
+		</Component>
+		<Component Name="frmSP10" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="8" high="1" width="20"/>
+			<Text>User Main Function:</Text>
+		</Component>
+		<Component Name="frmPPmainf" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="26" y="8" high="1" width="30"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmPPendf"  next=":frmPPendf"  previous=":frmSPup"  up=":frmSPup"  down=":frmPPendf" />
+		</Component>
+		<Component Name="frmPP11" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="1" width="20"/>
+			<Text>User End  Function:</Text>
+		</Component>
+		<Component Name="frmPPendf" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="26" y="9" high="1" width="30"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmPPinit"  next=":frmPPinit"  previous=":frmPPmainf"  up=":frmPPmainf"  down=":frmPPinit" />
+		</Component>
+		<Component Name="frmPP12" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="10" high="1" width="12"/>
+			<Text>Init View:</Text>
+		</Component>
+		<Component Name="frmPPinit" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="26" y="10" high="1" width="30"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Text>&lt;view:component&gt;</Text>
+			<Move  enter=":frmPPenter"  next=":frmPPenter"  previous=":frmPPendf"  up=":frmPPendf"  down=":frmPPenter" />
+		</Component>
+		<Component Name="frmPPcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="12" y="12" high="3" width="12"/>
+			<Text>Cancel</Text>
+			<Move  enter="mnPrincipal:mnPgeneral"  next=":frmPPenter"  previous=":frmPPinit"  up=":frmPPinit"  right=":frmPPenter" />
+		</Component>
+		<Component Name="frmPPenter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="36" y="12" high="3" width="12"/>
+			<Text>Do It!</Text>
+			<Move  enter="mnPrincipal:mnPgeneral"  previous=":frmPPinit"  up=":frmPPinit"  left=":frmPPcancel"  right=":frmPPcancel" />
+			<FAction  enter="PROY_propertiesDoIt" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="frmMsgs" opToMade="hide" Level="1">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="5" high="16" width="60"/>
+			<Move out="mnPrincipal:mnPgeneral" />
+			<FPanel  preShow="MSG_load" />
+		<Components>
+		<Component Name="frmMet00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>SPECIFY the Characteristics for the Message </Text>
+		</Component>
+		<Component Name="frmMet01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="3" high="1" width="12"/>
+			<Text>Title:</Text>
+		</Component>
+		<Component Name="frmMtitle" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="3" high="1" width="40"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmMnbuttons" next=":frmMnbuttons"  down=":frmMnbuttons" />
+		</Component>
+		<Component Name="frmMet02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="4" high="1" width="12"/>
+			<Text>Nro Buttons:</Text>
+		</Component>
+		<Component Name="frmMnbuttons" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="18" y="4" high="4" width="5"/>
+			<Text>0</Text>
+			<Text>1</Text>
+			<Text>2</Text>
+			<Move  enter=":frmMcolor"  next=":frmMcolor"  previous=":frmMtitle"  right=":frmMcolor" />
+			<FAction  enter="MSG_buttons" />
+		</Component>
+		<Component Name="frmMet03" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="25" y="4" high="1" width="10"/>
+			<Text>Color:</Text>
+		</Component>
+		<Component Name="frmMcolor" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="36" y="4" high="4" width="20"/>
+			<Move  enter=":frmMbutton1" next=":frmMbutton1"  previous=":frmMnbuttons"  left=":frmMnbuttons"  right=":frmMbutton1" />
+		</Component>
+		<Component Name="frmMet04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="9" high="1" width="14"/>
+			<Text>Button1 Text:</Text>
+		</Component>
+		<Component Name="frmMbutton1" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="9" high="1" width="20"/>
+			<Edit  chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmMbutton2"  next=":frmMbutton2"  previous=":frmMcolor"  up=":frmMcolor"  down=":frmMbutton2" />
+		</Component>
+		<Component Name="frmMet05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="5" y="10" high="1" width="14"/>
+			<Text>Button2 Text:</Text>
+		</Component>
+		<Component Name="frmMbutton2" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="10" high="1" width="20"/>
+			<Move  enter=":frmMenter" next=":frmMenter"  previous=":frmMbutton1"  up=":frmMbutton1"  down=":frmMenter" />
+		</Component>
+		<Component Name="frmMcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="5" y="12" high="3" width="10"/>
+			<Text>Cancel</Text>
+			<Move  enter="mnPrincipal:mnPgeneral" next=":frmMtest"  previous=":frmMbutton2"  up=":frmMbutton2"  left=":frmMenter"  right=":frmMtest" />
+		</Component>
+		<Component Name="frmMtest" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="25" y="12" high="3" width="10"/>
+			<Text>TEST</Text>
+			<FAction  enter="TEST_msg" />
+			<Move  next=":frmMenter"  previous=":frmMbutton2"  up=":frmMbutton2"  left=":frmMcancel"  right=":frmMenter" />
+		</Component>
+		<Component Name="frmMenter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="45" y="12" high="3" width="10"/>
+			<Text>Do It!</Text>
+			<Move  enter="mnPrincipal:mnPgeneral" next=":frmMtitle"  previous=":frmMbutton2"  up=":frmMbutton2"  left=":frmMtest"  right=":frmMcancel" />
+			<FAction  enter="MSG_change" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="frmColor" opToMade="destroy" Level="1">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="5" high="18" width="60"/>
+			<Move  out="mnPrincipal:mnPgeneral" /> 
+			<FPanel  preShow="COLOR_load" />
+		<Components>
+		<Component Name="frmC00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Define the Colors</Text>
+		</Component>
+		<Component Name="frmC01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="12"/>
+			<Text>Name:</Text>
+		</Component>
+		<Component Name="frmCname" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="3" high="1" width="36"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":frmCbcolor"  next=":frmCbcolor" down=":frmCbcolor" />
+		</Component>
+		<Component Name="frmC02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="4" high="1" width="12"/>
+			<Text>Background:</Text>
+		</Component>
+		<Component Name="frmCbcolor" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="16" y="4" high="4" width="12"/>
+			<Text>0-BLACK</Text>
+			<Text>1-BLUE</Text>
+			<Text>2-GREEN</Text>
+			<Text>3-CYAN</Text>
+			<Text>4-RED</Text>
+			<Text>5-MAGENTA</Text>
+			<Text>6-YELLOW</Text>
+			<Text>7-WHITE</Text>
+			<Move  enter=":frmCfcolor" next=":frmCfcolor"  previous=":frmCname"  right=":frmCfcolor" />
+		</Component>
+		<Component Name="frmC03" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="4" high="1" width="12"/>
+			<Text>Foreground:</Text>
+		</Component>
+		<Component Name="frmCfcolor" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="42" y="4" high="5" width="12"/>
+			<Text>0-BLACK</Text>
+			<Text>1-BLUE</Text>
+			<Text>2-GREEN</Text>
+			<Text>3-CYAN</Text>
+			<Text>4-RED</Text>
+			<Text>5-MAGENTA</Text>
+			<Text>6-YELLOW</Text>
+			<Text>7-WHITE</Text>
+			<Move  enter=":frmCtext"  next=":frmCtext"  previous=":frmCbcolor"  left=":frmCbcolor" />
+		</Component>
+		<Component Name="frmC04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="1" width="12"/>
+			<Text>Type Text:</Text>
+		</Component>
+		<Component Name="frmCtext" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="16" y="9" high="4" width="20"/>
+			<Text>WA_NORMAL</Text>
+			<Text>WA_STANDOUT</Text>
+			<Text>WA_UNDERLINE</Text>
+			<Text>WA_REVERSE</Text>
+			<Text>WA_BLINK</Text>
+			<Text>WA_DIM</Text>
+			<Text>WA_BOLD</Text>
+			<Text>WA_ALTCHARSET</Text>
+			<Text>WA_INVIS</Text>
+			<Text>WA_PROTECT</Text>
+			<Text>WA_HORIZONTAL</Text>
+			<Text>WA_LEFT</Text>
+			<Text>WA_LOW</Text>
+			<Text>WA_RIGHT</Text>
+			<Text>WA_TOP</Text>
+			<Text>WA_VERTICAL</Text>
+			<Text>WA_ITALIC</Text>
+			<Move  enter=":frmCcreate" next=":frmCcreate"  previous=":frmCfcolor" />
+		</Component>
+		<Component Name="frmCcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="4" y="14" high="3" width="10"/>
+			<Text>Cancel</Text>
+			<Move  enter="mnPrincipal:mnPgeneral"  next=":frmCtest"  previous=":frmCtext"  up=":frmCtext"  left=":frmCcreate"  right=":frmCtest" />
+		</Component>
+		<Component Name="frmCtest" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="14" high="3" width="10"/>
+			<Text>Test</Text>
+			<Move  next=":frmCdelete"  previous=":frmCcancel"  up=":frmCtext"  down=":frmCbcolor"  left=":frmCcancel"  right=":frmCdelete" />
+			<FAction  enter="TEST_color" />
+		</Component>
+		<Component Name="frmCdelete" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="33" y="14" high="3" width="10"/>
+			<Text>Delete</Text>
+			<Move  enter="mnPrincipal:mnPgeneral"  next=":frmCcreate"  previous=":frmCtext"  up=":frmCtext"  left=":frmCtest"  right=":frmCcreate" />
+			<FAction  enter="COLOR_delete" />
+		</Component>
+		<Component Name="frmCcreate" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="47" y="14" high="3" width="10"/>
+			<Text>Do It!</Text>
+			<Move  next=":frmCname"  previous=":frmCdelete"  up=":frmCtext"  left=":frmCdelete"  right=":frmCcancel" />
+			<FAction  enter="COLOR_new" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="fnpanel" opToMade="destroy" Level="2">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="4" high="19" width="61"/>
+			<FPanel  preShow="PANEL_load" />
+			<Move  out="-:" />
+			<FAction />
+		<Components>
+		<Component Name="npe00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Describe a PANEL View</Text>
+
+		</Component>
+		<Component Name="fnpet00" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="2" high="1" width="5"/>
+			<Text>ID:</Text>
+		</Component>
+		<Component Name="pid" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="9" y="2" high="1" width="3"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":fnpnombre"  next=":fnpnombre"  down=":ptitle"  right=":fnpnombre" />
+		</Component>
+		<Component Name="fnpet01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="2" high="1" width="8"/>
+			<Text>Name:</Text>
+		</Component>
+		<Component Name="fnpnombre" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="2" high="1" width="25"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":plevel"  next=":plevel"  previous=":pid"  down=":ptitle"  left=":pid"  right=":plevel" />
+		</Component>
+		<Component Name="fnpet04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="48" y="2" high="1" width="8"/>
+			<Text>Level:</Text>
+		</Component>
+		<Component Name="plevel" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="55" y="2" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":ptitle"  next=":ptitle"  previous=":fnpnombre"  down=":ptitle"  left=":fnpnombre" />
+		</Component>
+		<Component Name="fnpet14" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="7"/>
+			<Text>Title:</Text>
+		</Component>
+		<Component Name="ptitle" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="11" y="3" high="1" width="37"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":pop"  next=":pop"  previous=":plevel"  up=":pid"  down=":pcolor" />
+		</Component>
+		<Component Name="fnpet15" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="49" y="3" high="1" width="3"/>
+			<Text>Op:</Text>
+		</Component>
+		<Component Name="pop" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="53" y="3" high="4" width="6"/>
+			<Text>NONE</Text>
+			<Text>HIDE</Text>
+			<Text>DELE</Text>
+			<Move  enter=":pcolor"  next=":pcolor"  previous=":ptitle"  left=":ptitle" />
+		</Component>
+		<Component Name="fnpet05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="4" high="1" width="7"/>
+			<Text>Color:</Text>
+		</Component>
+		<Component Name="pcolor" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="12" y="4" high="4" width="18"/>
+			<Move  enter=":fnpborder"  next=":fnpborder"  previous=":pop" />
+		</Component>
+		<Component Name="fnpborder" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="8" high="1" width="11"/>
+			<Text>Border : ? </Text>
+			<Move  enter=":pX"  next=":pX"  previous=":pcolor"  up=":pcolor"  down=":comps"  right=":pX" />
+		</Component>
+		<Component Name="fnpet06" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="8" high="1" width="12"/>
+			<Text>DIMENSIONS</Text>
+		</Component>
+		<Component Name="fnpet07" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="8" high="1" width="3"/>
+			<Text>X:</Text>
+		</Component>
+		<Component Name="pX" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="8" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":pY"  next=":pY"  previous=":fnpborder"  up=":pcolor"  down=":comps"  left=":fnpborder"  right=":pY" />
+		</Component>
+		<Component Name="fnpet08" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="8" high="1" width="3"/>
+			<Text>Y:</Text>
+		</Component>
+		<Component Name="pY" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="8" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":pWidth"  next=":pWidth"  previous=":pX"  up=":pcolor"  down=":comps"  left=":pX"  right=":pWidth" />
+		</Component>
+		<Component Name="fnpet09" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="39" y="8" high="1" width="6"/>
+			<Text>Width:</Text>
+		</Component>
+		<Component Name="pWidth" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="46" y="8" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":pHigh"  next=":pHigh"  previous=":pY"  up=":pcolor"  down=":comps"  left=":pY"  right=":pHigh" />
+		</Component>
+		<Component Name="fnpet10" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="50" y="8" high="1" width="6"/>
+			<Text>High:</Text>
+		</Component>
+		<Component Name="pHigh" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="56" y="8" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":npfunctions"  next=":comps"  previous=":pWidth"  up=":pcolor"  down=":comps"  left=":pWidth" />
+		</Component>
+		<Component Name="comps" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="15" y="9" high="3" width="35"/>
+			<Text>COMPONENTS:</Text>
+			<Move  enter="tselect:"  next=":npfunctions"  previous=":fnpborder"  up=":fnpborder"  down=":npfunctions"  left=":pmove" />
+			<FAction  enter="VIEW_panelComps" />
+		</Component>
+		<Component Name="npfunctions" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="3" y="12" high="3" width="19"/>
+			<Text>App. Functions</Text>
+			<Move  enter="fAppCalls:fACPreCr"  next=":pmove"  previous=":comps"  up=":comps"  down=":npcancel"  right=":pmove" />
+			<FAction  enter="VIEW_panelCalls" />
+		</Component>
+		<Component Name="pmove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="29" y="12" high="3" width="14"/>
+			<Text>Moves</Text>
+			<Move  enter="aMove:empanelenter"  next=":pamove"  previous=":npfunctions"  up=":comps"  down=":nptest"  left=":npfunctions"  right=":pamove" />
+			<FAction  enter="VIEW_panelMove" />
+		</Component>
+		<Component Name="pamove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="45" y="12" high="3" width="14"/>
+			<Text>App. Moves</Text>
+			<Move  enter="fMove:amenterfunction"  next=":npcreate"  previous=":pmove"  up=":comps"  down=":npcreate"  left=":pmove" />
+			<FAction  enter="VIEW_panelMove" />
+		</Component>
+		<Component Name="npcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="5" y="15" high="3" width="10"/>
+			<Text>Cancel</Text>
+			<Move  enter="mnPrincipal:mnPviews"  next=":npdelete"  previous=":npfunctions"  up=":npfunctions"  right=":npdelete" />
+		</Component>
+		<Component Name="npdelete" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="18" y="15" high="3" width="10"/>
+			<Text>Delete</Text>
+			<Move  enter="-:"  next=":nptest"  previous=":npcancel"  up=":pmove"  left=":npcancel"  right=":nptest" />
+			<FAction  enter="VIEW_panelDelete" />
+		</Component>
+		<Component Name="nptest" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="31" y="15" high="3" width="10"/>
+			<Text>Test</Text>
+			<Move  next=":npcreate"  previous=":npfunctions"  up=":pamove"  left=":npdelete"  right=":npcreate" />
+			<FAction  enter="TEST_panel" />
+		</Component>
+		<Component Name="npcreate" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="44" y="15" high="3" width="10"/>
+			<Text>Do It!</Text>
+			<Move next=":pid"  previous=":npfunctions"  up=":pamove"  left=":nptest" />
+			<FAction  enter="VIEW_panelDoIt" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="fnedit" opToMade="destroy" Level="2">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="3" high="21" width="61"/>
+			<FPanel  preShow="EDIT_load" />
+			<Move  out="-:" />
+		<Components>
+		<Component Name="nee00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Describe a EDIT View</Text>
+		</Component>
+		<Component Name="fepet00" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="2" high="1" width="5"/>
+			<Text>ID:</Text>
+		</Component>
+		<Component Name="epid" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="9" y="2" high="1" width="3"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":fnenombre"  next=":fnenombre"  down=":etitle"  right=":fnenombre" />
+		</Component>
+		<Component Name="fneet01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="2" high="1" width="8"/>
+			<Text>Name:</Text>
+		</Component>
+		<Component Name="fnenombre" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="2" high="1" width="25"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":elevel"  next=":elevel"  previous=":epid"  down=":etitle"  left=":epid"  right=":elevel" />
+		</Component>
+		<Component Name="fneet04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="48" y="2" high="1" width="8"/>
+			<Text>Level:</Text>
+		</Component>
+		<Component Name="elevel" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="55" y="2" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":etitle"  next=":etitle"  previous=":fnenombre"  down=":ecolor"  left=":fnenombre" />
+		</Component>
+		<Component Name="fneet14" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="7"/>
+			<Text>Title:</Text>
+		</Component>
+		<Component Name="etitle" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="11" y="3" high="1" width="37"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":eop"  next=":eop"  previous=":elevel"  up=":epid"  down=":eread"  right=":eop" />
+		</Component>
+		<Component Name="fneet15" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="49" y="3" high="1" width="3"/>
+			<Text>Op:</Text>
+		</Component>
+		<Component Name="eop" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="53" y="3" high="4" width="6"/>
+			<Text>NONE</Text>
+			<Text>HIDE</Text>
+			<Text>DELE</Text>
+			<Move  enter=":eread"  next=":eread"  previous=":etitle"  left=":etitle" />
+		</Component>
+		<Component Name="eread" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="4" high="1" width="12"/>
+			<Text>Read Only: ?</Text>
+			<Move  enter=":efile"  next=":efile"  previous=":eop"  up=":etitle"  down=":efile" />
+		</Component>
+		<Component Name="fneet24" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="5" high="1" width="7"/>
+			<Text>File: </Text>
+		</Component>
+		<Component Name="efile" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="11" y="5" high="1" width="37"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fneborder"  next=":fneborder"  previous=":eread"  up=":eread"  down=":fneborder" />
+		</Component>
+		<Component Name="fneborder" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="7" high="1" width="11"/>
+			<Text>Border : ? </Text>
+			<Move  enter=":eX"  next=":eX"  previous=":efile"  up=":efile"  down=":ecolor"  right=":eX" />
+		</Component>
+		<Component Name="fneet06" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="7" high="1" width="12"/>
+			<Text>DIMENSIONS</Text>
+		</Component>
+		<Component Name="fneet07" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="7" high="1" width="3"/>
+			<Text>X:</Text>
+		</Component>
+		<Component Name="eX" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="7" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":eY"  next=":eY"  previous=":fneborder"  up=":efile"  down=":ecolor"  left=":fneborder"  right=":eY" />
+		</Component>
+		<Component Name="fneet08" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="7" high="1" width="3"/>
+			<Text>Y:</Text>
+		</Component>
+		<Component Name="eY" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="7" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":eWidth"  next=":eWidth"  previous=":eX"  up=":efile"  down=":ecolor"  left=":eX"  right=":eWidth" />
+		</Component>
+		<Component Name="fneet09" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="39" y="7" high="1" width="6"/>
+			<Text>Width:</Text>
+		</Component>
+		<Component Name="eWidth" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="46" y="7" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":eHigh"  next=":eHigh"  previous=":eY"  up=":efile"  down=":emove"  left=":eY"  right=":eHigh" />
+		</Component>
+		<Component Name="fneet10" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="50" y="7" high="1" width="6"/>
+			<Text>High:</Text>
+		</Component>
+		<Component Name="eHigh" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="56" y="7" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":ecolor"  next=":ecolor"  previous=":eWidth"  up=":efile"  down=":eamove"  left=":eWidth" />
+		</Component>
+		<Component Name="fneet05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="1" width="7"/>
+			<Text>Color:</Text>
+		</Component>
+		<Component Name="ecolor" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="9" high="4" width="18"/>
+			<Move  enter=":ekeymap"  next=":ekeymap"  previous=":eHigh"  right=":ekeymap" />
+		</Component>
+		<Component Name="ekeymap" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="9" high="1" width="8"/>
+			<Text>Keymap:</Text>
+			<Move  enter=":CoLKeymap" next=":efunctions"  previous=":ecolor"  down=":emove"  up=":fneborder" left=":ecolor" />
+			<FAction enter="COMP_selectKEYM" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLKeymap" Type="lsbutton" display="open">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="38" y="10" high="4" width="18"/>
+			<Move  enter=":efunctions" />
+			<FAction />
+			<FComponent postDeactivate="COMP_deselectKEYM"/>
+		</Component>
+		<Component Name="CoTKeymap" Type="field" >
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="9" high="1" width="20"/>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="efunctions" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="3" y="13" high="3" width="19"/>
+			<Text>App. Functions</Text>
+			<Move  enter="fAppCalls:fACPreCr"  next=":emove"  previous=":ekeymap"  up=":ecolor"  down=":necancel"  right=":emove" />
+			<FAction  enter="VIEW_panelCalls" />
+		</Component>
+		<Component Name="emove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="29" y="13" high="3" width="14"/>
+			<Text>Moves</Text>
+			<Move  enter="aMove:empanelenter"  next=":eamove"  previous=":efunctions"  up=":ekeymap"  down=":netest"  left=":efunctions"  right=":eamove" />
+			<FAction  enter="VIEW_panelMove" />
+		</Component>
+		<Component Name="eamove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="45" y="13" high="3" width="14"/>
+			<Text>App. Moves</Text>
+			<Move  enter="fMove:amenterfunction"  next=":necreate"  previous=":emove"  up=":ekeymap"  down=":necreate"  left=":emove" />
+			<FAction  enter="VIEW_panelMove" />
+		</Component>
+		<Component Name="necancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="5" y="17" high="3" width="10"/>
+			<Text>Cancel</Text>
+			<Move  enter="mnPrincipal:mnPviews"  next=":nedelete"  previous=":ekeymap"  up=":efunctions"  right=":nedelete" />
+		</Component>
+		<Component Name="nedelete" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="18" y="17" high="3" width="10"/>
+			<Text>Delete</Text>
+			<Move  enter="-:" next=":netest"  previous=":necancel"  up=":efunctions"  left=":necancel"  right=":netest" />
+			<FAction  enter="VIEW_editDelete" />
+		</Component>
+		<Component Name="netest" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="31" y="17" high="3" width="10"/>
+			<Text>Test</Text>
+			<FAction  enter="TEST_edit" />
+			<Move  next=":necreate"  previous=":nedelete"  up=":emove"  left=":nedelete"  right=":necreate" />
+		</Component>
+		<Component Name="necreate" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="44" y="17" high="3" width="10"/>
+			<Text>Do It!</Text>
+			<Move  next=":epid"  previous=":netest"  up=":eamove"  left=":netest" />
+			<FAction  enter="VIEW_editDoIt" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="fntable" opToMade="destroy" Level="2">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="3" high="21" width="61"/>
+			<Title>Describe a TABLE View</Title>
+			<FPanel  preShow="TABLE_load" />
+			<Move  out="-:" />
+		<Components>
+		<Component Name="fntet00" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="1" high="1" width="5"/>
+			<Text>ID:</Text>
+		</Component>
+		<Component Name="tpid" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="9" y="1" high="1" width="3"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":fntnombre"  next=":fntnombre"  down=":ttitle"  right=":fntnombre" />
+		</Component>
+		<Component Name="fntet01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="1" high="1" width="8"/>
+			<Text>Name:</Text>
+		</Component>
+		<Component Name="fntnombre" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="1" high="1" width="25"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":tlevel"  next=":tlevel"  previous=":tpid"  down=":ttitle"  left=":tpid"  right=":tlevel" />
+		</Component>
+		<Component Name="fntet04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="48" y="1" high="1" width="8"/>
+			<Text>Level:</Text>
+		</Component>
+		<Component Name="tlevel" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="55" y="1" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":ttitle"  next=":ttitle"  previous=":fntnombre"  down=":top"  left=":fntnombre" />
+		</Component>
+		<Component Name="fntet44" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="2" high="1" width="7"/>
+			<Text>Title:</Text>
+		</Component>
+		<Component Name="ttitle" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="11" y="2" high="1" width="37"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":top"  next=":top"  previous=":tlevel"  up=":tpid"  down=":tlcolumn"  right=":top" />
+		</Component>
+		<Component Name="fntet15" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="49" y="2" high="1" width="3"/>
+			<Text>Op:</Text>
+		</Component>
+		<Component Name="top" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="53" y="2" high="4" width="6"/>
+                        <Text>NONE</Text>
+                        <Text>HIDE</Text>
+                        <Text>DELE</Text>
+			<Move  enter=":tlcolumn"  next=":tlcolumn"  previous=":ttitle"  left=":ttitle" />
+		</Component>
+		<Component Name="fntet34" Type="label">
+			<Color>miColor6</Color>
+			<Dimension border="0" x="2" y="3" high="5" width="47"/>
+		</Component>
+		<Component Name="fntet14" Type="label">
+			<Color>miColor6</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="12"/>
+			<Text>Columns Len:</Text>
+		</Component>
+		<Component Name="tlcolumn" Type="field">
+			<Color>miColor6</Color>
+			<Dimension border="0" x="15" y="3" high="1" width="3"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":tcolumn"  next=":tcolumn"  previous=":top"  up=":ttitle"  down=":tcolumn" />
+		</Component>
+		<Component Name="tcolumn" Type="field">
+			<Color>miColor6</Color>
+			<Dimension border="0" x="3" y="4" high="1" width="24"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":taddElem"  next=":taddElem"  previous=":tlcolumn"  up=":ttitle"  down=":taddElem"  right=":tElemens" />
+		</Component>
+		<Component Name="taddElem" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="3" y="5" high="3" width="8"/>
+			<Text>Add:</Text>
+			<Move  next=":tdelElem"  previous=":tcolumn"  up=":tlcolumn"  down=":tborder"  right=":tdelElem" />
+			<FAction  enter="COMP_addTableColumn" />
+		</Component>
+		<Component Name="tdelElem" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="12" y="5" high="3" width="8"/>
+			<Text>Del:</Text>
+			<Move  next=":tElemens"  previous=":taddElem"  up=":tlcolumn"  down=":tborder"  left=":taddElem"  right=":tElemens" />
+			<FAction  enter="COMP_delTableColumn" />
+		</Component>
+		<Component Name="tElemens" Type="lsbutton">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="27" y="3" high="5" width="25"/>
+			<Move  next=":tborder"  previous=":tdelElem"  left=":tdelElem" />
+			<FAction  enter="COMP_selTableColumn" />
+		</Component>
+		<Component Name="tborder" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="8" high="1" width="11"/>
+			<Text>Border: ? </Text>
+			<Move  enter=":tX"  next=":tX"  previous=":taddElem"  up=":tlcolumn"  down=":thcolor"  right=":tX" />
+		</Component>
+		<Component Name="fntet06" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="8" high="1" width="12"/>
+			<Text>DIMENSIONS</Text>
+		</Component>
+		<Component Name="fntet07" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="8" high="1" width="3"/>
+			<Text>X:</Text>
+		</Component>
+		<Component Name="tX" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="8" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":tY"  next=":tY"  previous=":tborder"  up=":tlcolumn"  down=":thcolor"  left=":tborder"  right=":tY" />
+		</Component>
+		<Component Name="fntet08" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="8" high="1" width="3"/>
+			<Text>Y:</Text>
+		</Component>
+		<Component Name="tY" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="8" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":tWidth"  next=":tWidth"  previous=":tX"  up=":tlcolumn"  down=":thcolor"  left=":tX"  right=":tWidth" />
+		</Component>
+		<Component Name="fntet09" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="39" y="8" high="1" width="6"/>
+			<Text>Width:</Text>
+		</Component>
+		<Component Name="tWidth" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="46" y="8" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":tHigh"  next=":tHigh"  previous=":tY"  up=":tlcolumn"  down=":tdcolor"  left=":tY"  right=":tHigh" />
+		</Component>
+		<Component Name="fntet10" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="50" y="8" high="1" width="6"/>
+			<Text>High:</Text>
+		</Component>
+		<Component Name="tHigh" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="56" y="8" high="1" width="2"/>
+			<Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":thcolor"  next=":thcolor"  previous=":tWidth"  up=":tlcolumn"  down=":tdcolor"  left=":tWidth" />
+		</Component>
+		<Component Name="fntet05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="2" width="8"/>
+			<Text>Head C.:</Text>
+		</Component>
+		<Component Name="thcolor" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="12" y="9" high="3" width="18"/>
+			<Move  enter=":tdcolor"  next=":tdcolor"  previous=":tHigh"  right=":tdcolor" />
+		</Component>
+		<Component Name="fntet25" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="31" y="9" high="2" width="8"/>
+			<Text>Data C.:</Text>
+		</Component>
+		<Component Name="tdcolor" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="40" y="9" high="3" width="18"/>
+			<Move  enter=":head"  next=":head"  previous=":thcolor"  left=":thcolor" />
+		</Component>
+		<Component Name="head" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="12" high="1" width="15"/>
+			<Text>Show Head: ? </Text>
+			<Move  enter=":vline"  next=":vline"  previous=":tdcolor"  up=":thcolor"  down=":vline"  right=":tkeymap" />
+		</Component>
+		<Component Name="vline" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="13" high="1" width="15"/>
+			<Text>Vtl. Line: ? </Text>
+			<Move  enter=":hline"  next=":hline"  previous=":head"  up=":head"  down=":tfunctions"  right=":hline" />
+		</Component>
+		<Component Name="hline" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="18" y="13" high="1" width="15"/>
+			<Text>Hzt. Line: ? </Text>
+			<Move  enter=":tkeymap"  next=":tkeymap"  previous=":vline"  up=":head"  down=":tfunctions"  left=":vline"  right=":tkeymap" />
+		</Component>
+		<Component Name="tkeymap" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="12" high="1" width="8"/>
+			<Text>Keymap:</Text>
+			<Move  enter=":CoLKeymap" next=":tfunctions"  previous=":hline"  down=":tmove"  up=":tdcolor" left=":hline" />
+			<FAction enter="COMP_selectKEYM" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLKeymap" Type="lsbutton" display="open">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="38" y="13" high="4" width="18"/>
+			<Move  enter=":tfunctions" />
+			<FAction />
+			<FComponent postDeactivate="COMP_deselectKEYM"/>
+		</Component>
+		<Component Name="CoTKeymap" Type="field" display="nSelect">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="38" y="12" high="1" width="20"/>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="tfunctions" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="3" y="14" high="3" width="19"/>
+			<Text>App. Functions</Text>
+			<Move  enter="fAppCalls:fACPreCr"  next=":tmove"  previous=":tkeymap"  up=":vline"  down=":ntcancel"  right=":tmove" />
+			<FAction  enter="VIEW_panelCalls" />
+		</Component>
+		<Component Name="tmove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="29" y="14" high="3" width="14"/>
+			<Text>Moves</Text>
+			<Move  enter="aMove:empanelenter"  next=":tamove"  previous=":tfunctions"  up=":hline"  down=":ntcancel"  left=":tfunctions"  right=":tamove" />
+			<FAction  enter="VIEW_panelMove" />
+		</Component>
+		<Component Name="tamove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="45" y="14" high="3" width="14"/>
+			<Text>App. Moves</Text>
+			<Move  enter="fMove:amenterfunction"  next=":ntcreate"  previous=":tmove"  up=":tkeymap"  down=":ntcreate"  left=":tmove" />
+			<FAction  enter="VIEW_panelMove" />
+		</Component>
+		<Component Name="ntcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="5" y="17" high="3" width="10"/>
+			<Text>Cancel</Text>
+			<Move  enter="mnPrincipal:mnPviews"  next=":ntdelete"  previous=":tamove"  up=":tfunctions"  right=":ntdelete" />
+		</Component>
+		<Component Name="ntdelete" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="18" y="17" high="3" width="10"/>
+			<Text>Delete</Text>
+			<Move  enter="-:" next=":nttest"  previous=":tfunctions"  up=":tfunctions"  left=":ntcancel"  right=":nttest" />
+			<FAction  enter="VIEW_tableDelete" />
+		</Component>
+		<Component Name="nttest" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="31" y="17" high="3" width="10"/>
+			<Text>Test</Text>
+			<Move  next=":ntcreate"  previous=":tfunctions"  up=":tmove"  left=":ntdelete"  right=":ntcreate" />
+			<FAction  enter="TEST_table" />
+		</Component>
+		<Component Name="ntcreate" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="44" y="17" high="3" width="10"/>
+			<Text>Do It!</Text>
+			<Move  next=":tpid"  previous=":tfunctions"  up=":tamove"  left=":nttest" />
+			<FAction  enter="VIEW_tableDoIt" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="frmVCopy" opToMade="destroy" Level="12">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="5" high="17" width="60"/>
+			<FPanel  preShow="VIEW_copyLoad" />
+			<Move  out="mnPrincipal:mnPviews" />
+		<Components>
+		<Component Name="frmEF00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Create a View by Copy </Text>
+		</Component>
+		<Component Name="frmEF01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="3" high="1" width="20"/>
+			<Text>From:</Text>
+		</Component>
+		<Component Name="fromView" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="26" y="3" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+		</Component>
+		<Component Name="to" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="4" high="1" width="20"/>
+			<Text>To:</Text>
+		</Component>
+		<Component Name="toView" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="26" y="4" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":component"  next=":component"  down=":component" />
+		</Component>
+		<Component Name="component" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="6" high="1" width="31"/>
+			<Text>Copy components .......... : ?</Text>
+			<Move  enter=":moves"  next=":moves"  previous=":toView"  up=":toView"  down=":moves" />
+		</Component>
+		<Component Name="moves" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="7" high="1" width="31"/>
+			<Text>Copy moves ............... : ?</Text>
+			<Move  enter=":appMoves"  next=":appMoves"  previous=":component"  up=":component"  down=":appMoves" />
+		</Component>
+		<Component Name="appMoves" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="8" high="1" width="31"/>
+			<Text>Copy applications moves .. : ?</Text>
+			<Move  enter=":appCalls"  next=":appCalls"  previous=":moves"  up=":moves"  down=":appCalls" />
+		</Component>
+		<Component Name="appCalls" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="1" width="31"/>
+			<Text>Copy applications calls .. : ?</Text>
+			<Move  enter=":enter"  next=":enter"  previous=":appMoves"  up=":appMoves"  down=":enter" />
+		</Component>
+		<Component Name="cancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="15" y="13" high="3" width="12"/>
+			<Text>Cancel</Text>
+			<Move  enter="mnPrincipal:mnPviews"  next=":enter"  previous=":appCalls"  up=":appCalls"  right=":enter" />
+		</Component>
+		<Component Name="enter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="35" y="13" high="3" width="12"/>
+			<Text>Do It!</Text>
+			<Move  enter="mnPrincipal:mnPviews"  previous=":appCalls"  up=":appCalls"  left=":cancel" />
+			<FAction  enter="VIEW_copyDoIt" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="frmCCopy" opToMade="destroy" Level="12">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="5" high="17" width="60"/>
+			<FPanel  preShow="COMP_loadCopy" />
+			<Move  out="-:" />
+		<Components>
+		<Component Name="frmEF00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+		</Component>
+		<Component Name="frmEF01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="3" high="1" width="20"/>
+		</Component>
+		<Component Name="fromComponent" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="26" y="3" high="1" width="30"/>
+		</Component>
+		<Component Name="to" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="4" high="1" width="20"/>
+		</Component>
+		<Component Name="toComponent" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="26" y="4" high="1" width="30"/>
+			<Move  enter=":attach"  next=":attach"  down=":attach" />
+		</Component>
+		<Component Name="etAttach" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="6" high="1" width="20"/>
+		</Component>
+		<Component Name="attach" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="30" y="6" high="4" width="25"/>
+			<Move  enter=":moves"  next=":moves"  previous=":toComponent"  down=":moves" />
+		</Component>
+		<Component Name="moves" Type="ckbutton">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="8" high="1" width="25"/>
+			<Move  enter=":appMoves"  next=":appMoves"  previous=":attach"  up=":appMoves"  down=":appMoves" />
+		</Component>
+		<Component Name="appMoves" Type="ckbutton">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="1" width="25"/>
+			<Move  enter=":appCalls"  next=":appCalls"  previous=":moves"  up=":appCalls"  down=":appCalls" />
+		</Component>
+		<Component Name="appCalls" Type="ckbutton">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="10" high="1" width="25"/>
+			<Move  enter=":enter"  next=":enter"  previous=":appMoves"  up=":enter"  down=":enter" />
+		</Component>
+		<Component Name="cancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="15" y="13" high="3" width="12"/>
+			<Move  next=":enter"  previous=":appCalls"  up=""  right=":enter" />
+		</Component>
+		<Component Name="enter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="35" y="13" high="3" width="12"/>
+			<Move  previous=":appCalls"  up=""  left=":cancel" />
+			<FAction />
+			<FComponent />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="aMove" opToMade="destroy" Level="11">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="4" high="20" width="60"/>
+			<FPanel  preShow="MOVE_load" />
+			<Move  out="-:"  F2="tmselect:" />
+			<FAction  Fn="MOVE_selectHelp" />
+		<Components>
+		<Component Name="em00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+                        <Text>Describe Application Moves Functions</Text>
+		</Component>
+		<Component Name="panel" Type="field" display="hidden">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="2" high="1" width="40"/>
+			<Move />
+			<FAction />
+		</Component>
+		<Component Name="em01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="9"/>
+			<Text>Enter   :</Text>
+		</Component>
+		<Component Name="em11" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="4" high="1" width="9"/>
+			<Text>Out     :</Text>
+		</Component>
+		<Component Name="em21" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="5" high="1" width="9"/>
+			<Text>Next    :</Text>
+		</Component>
+		<Component Name="em31" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="6" high="1" width="9"/>
+			<Text>Previous:</Text>
+		</Component>
+		<Component Name="em41" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="7" high="1" width="9"/>
+			<Text>Up      :</Text>
+		</Component>
+		<Component Name="em51" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="8" high="1" width="9"/>
+			<Text>Down    :</Text>
+		</Component>
+		<Component Name="em61" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="1" width="9"/>
+			<Text>Left    :</Text>
+		</Component>
+		<Component Name="em71" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="10" high="1" width="9"/>
+			<Text>Right   :</Text>
+		</Component>
+		<Component Name="em81" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="11" high="1" width="9"/>
+			<Text>Fn :</Text>
+		</Component>
+		<Component Name="em83" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="12" high="1" width="4"/>
+			<Text>Fn :</Text>
+		</Component>
+		<Component Name="em84" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="13" high="1" width="4"/>
+			<Text>Fn :</Text>
+		</Component>
+		<Component Name="em85" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="14" high="1" width="4"/>
+			<Text>Fn :</Text>
+		</Component>
+		<Component Name="empanelenter" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="3" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":emcompenter"  next=":emcompenter"  down=":empanelout"  right=":emcompenter" />
+			<FAction  enter="MOVE_enterPanel" />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="empanelout" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="4" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":emcompout"  next=":emcompout"  previous=":emcompenter"  up=":empanelenter"  down=":empanelnext"  right=":emcompout" />
+			<FAction  enter="MOVE_enterPanel" />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="empanelnext" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="5" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":emcompnext"  next=":emcompnext"  previous=":emcompout"  up=":empanelout"  down=":empanelprev"  right=":emcompnext" />
+			<FAction  enter="MOVE_enterPanel" />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="empanelprev" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="6" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":emcompprev"  next=":emcompprev"  previous=":emcompnext"  up=":empanelnext"  down=":empanelup"  right=":emcompprev" />
+			<FAction  enter="MOVE_enterPanel" />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="empanelup" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="7" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":emcompup"  next=":emcompup"  previous=":emcompprev"  up=":empanelprev"  down=":empaneldown"  right=":emcompup" />
+			<FAction  enter="MOVE_enterPanel" />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="empaneldown" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="8" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":emcompdown"  next=":emcompdown"  previous=":emcompup"  up=":empanelup"  down=":empanelleft"  right=":emcompdown" />
+			<FAction  enter="MOVE_enterPanel" />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="empanelleft" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="9" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":emcompleft"  next=":emcompleft"  previous=":emcompdown"  up=":empaneldown"  down=":empanelright"  right=":emcompleft" />
+			<FAction  enter="MOVE_enterPanel" />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="empanelright" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="10" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":emcompright"  next=":emcompright"  previous=":emcompleft"  up=":empanelleft"  down=":empanelFn0"  right=":emcompright" />
+			<FAction  enter="MOVE_enterPanel" />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="empanelFn0" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="7" y="11" high="1" width="1"/>
+			<Edit chToEDIT="." editType="OneTo9" auto="y"/>
+			<Move  enter=":empanelF0"  next=":empanelF0"  previous=":emcompright"  up=":empanelright"  down=":empanelFn1"  right=":empanelF0" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="empanelF0" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="11" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":emcompF0"  next=":emcompF0"  previous=":empanelFn0"  up=":empanelright"  down=":empanelF1"  left=":empanelFn0"  right=":emcompF0" />
+			<FAction  enter="MOVE_enterPanel" />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="empanelFn1" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="7" y="12" high="1" width="1"/>
+			<Edit chToEDIT="." editType="OneTo9" auto="y"/>
+			<Move  enter=":empanelF1"  next=":empanelF1"  previous=":emcompF0"  up=":empanelFn0"  down=":empanelFn2"  right=":empanelF1" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="empanelF1" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="12" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":emcompF1"  next=":emcompF1"  previous=":empanelFn1"  up=":empanelF0"  down=":empanelF2"  left=":empanelFn1"  right=":emcompF1" />
+			<FAction  enter="MOVE_enterPanel" />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="empanelFn2" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="7" y="13" high="1" width="1"/>
+			<Edit chToEDIT="." editType="OneTo9" auto="y"/>
+			<Move  enter=":empanelF2"  next=":empanelF2"  previous=":emcompF1"  up=":empanelFn1"  down=":empanelFn3"  right=":empanelF2" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="empanelF2" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="13" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":emcompF2"  next=":emcompF2"  previous=":empanelFn2"  up=":empanelF1"  down=":empanelF3"  left=":empanelFn2"  right=":emcompF2" />
+			<FAction  enter="MOVE_enterPanel" />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="empanelFn3" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="7" y="14" high="1" width="1"/>
+			<Edit chToEDIT="." editType="OneTo9" auto="y"/>
+			<Move  enter=":empanelF3"  next=":empanelF3"  previous=":emcompF2"  up=":empanelFn2"  down=":nesave"  right=":empanelF3" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="empanelF3" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="14" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":emcompF3"  next=":emcompF3"  previous=":empanelFn3"  up=":empanelF2"  down=":nesave"  left=":empanelFn3"  right=":emcompF3" />
+			<FAction  enter="MOVE_enterPanel" />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="em12" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="34" y="3" high="1" width="2"/>
+			<Text>:</Text>
+		</Component>
+		<Component Name="em22" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="34" y="4" high="1" width="2"/>
+			<Text>:</Text>
+		</Component>
+		<Component Name="em32" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="34" y="5" high="1" width="2"/>
+			<Text>:</Text>
+		</Component>
+		<Component Name="em42" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="34" y="6" high="1" width="2"/>
+			<Text>:</Text>
+		</Component>
+		<Component Name="em52" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="34" y="7" high="1" width="2"/>
+			<Text>:</Text>
+		</Component>
+		<Component Name="em62" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="34" y="8" high="1" width="2"/>
+			<Text>:</Text>
+		</Component>
+		<Component Name="em72" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="34" y="9" high="1" width="2"/>
+			<Text>:</Text>
+		</Component>
+		<Component Name="em82" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="34" y="10" high="1" width="2"/>
+			<Text>:</Text>
+		</Component>
+		<Component Name="em92" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="34" y="11" high="1" width="2"/>
+			<Text>:</Text>
+		</Component>
+		<Component Name="em93" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="34" y="12" high="1" width="2"/>
+			<Text>:</Text>
+		</Component>
+		<Component Name="em94" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="34" y="13" high="1" width="2"/>
+			<Text>:</Text>
+		</Component>
+		<Component Name="em95" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="34" y="14" high="1" width="2"/>
+			<Text>:</Text>
+		</Component>
+		<Component Name="emcompenter" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="3" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":empanelout"  next=":empanelout"  previous=":empanelenter"  down=":emcompout"  left=":empanelenter" />
+			<FAction />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="emcompout" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="4" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":empanelnext"  next=":empanelnext"  previous=":empanelout"  up=":emcompenter"  down=":emcompnext"  left=":empanelout" />
+			<FAction />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="emcompnext" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="5" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":empanelprev"  next=":empanelprev"  previous=":empanelnext"  up=":emcompout"  down=":emcompprev"  left=":empanelnext" />
+			<FAction />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="emcompprev" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="6" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":empanelup"  next=":empanelup"  previous=":empanelprev"  up=":emcompnext"  down=":emcompup"  left=":empanelprev" />
+			<FAction />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="emcompup" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="7" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":empaneldown"  next=":empaneldown"  previous=":empanelup"  up=":emcompprev"  down=":emcompdown"  left=":empanelup" />
+			<FAction />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="emcompdown" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="8" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":empanelleft"  next=":empanelleft"  previous=":empaneldown"  up=":emcompup"  down=":emcompleft"  left=":empaneldown" />
+			<FAction />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="emcompleft" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="9" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":empanelright"  next=":empanelright"  previous=":empanelleft"  up=":emcompdown"  down=":emcompright"  left=":empanelleft" />
+			<FAction />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="emcompright" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="10" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":empanelFn0"  next=":empanelFn0"  previous=":empanelright"  up=":emcompleft"  down=":emcompF0"  left=":empanelright" />
+			<FAction />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="emcompF0" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="11" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":empanelFn1"  next=":empanelFn1"  previous=":empanelF0"  up=":emcompright"  down=":emcompF1"  left=":empanelF0" />
+			<FAction />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="emcompF1" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="12" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":empanelFn2"  next=":empanelFn2"  previous=":empanelF1"  up=":emcompF0"  down=":emcompF2"  left=":empanelF1" />
+			<FAction />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="emcompF2" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="13" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":empanelFn3"  next=":empanelFn3"  previous=":empanelF2"  up=":emcompF1"  down=":emcompF3"  left=":empanelF2" />
+			<FAction />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="emcompF3" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="14" high="1" width="20"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":nesave"  next=":nesave"  previous=":empanelF3"  up=":emcompF2"  down=":nesave"  left=":empanelF3" />
+			<FAction />
+			<FComponent  preActivate="COMP_preEnterPanel" />
+		</Component>
+		<Component Name="em99" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="6" y="18" high="1" width="50"/>
+			<Text> F2 to Select List </Text>
+		</Component>
+		<Component Name="nesave" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="25" y="15" high="3" width="10"/>
+			<Text>Do It!</Text>
+			<Move  enter="-:"  previous=":emcompF3"  up=":empanelFn3" />
+			<FAction  enter="MOVE_save" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="fAppCalls" opToMade="destroy" Level="11">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="4" high="20" width="60"/>
+			<FPanel  preShow="FUNC_load" />
+			<Move  out="-:" />
+		<Components>
+		<Component Name="frmac00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Describe Application Callbacks </Text>
+
+		</Component>
+		<Component Name="frmac01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="16"/>
+			<Text>PRE Create     :</Text>
+		</Component>
+		<Component Name="frmac02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="4" high="1" width="16"/>
+			<Text>POST Create    :</Text>
+		</Component>
+		<Component Name="frmac03" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="5" high="1" width="16"/>
+			<Text>PRE Show       :</Text>
+		</Component>
+		<Component Name="frmac04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="6" high="1" width="16"/>
+			<Text>POST Show      :</Text>
+		</Component>
+		<Component Name="frmac05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="7" high="1" width="16"/>
+			<Text>PRE Activate   :</Text>
+		</Component>
+		<Component Name="frmac06" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="8" high="1" width="16"/>
+			<Text>POST Activate  :</Text>
+		</Component>
+		<Component Name="frmac07" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="1" width="16"/>
+			<Text>PRE Deactivate :</Text>
+		</Component>
+		<Component Name="frmac08" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="10" high="1" width="16"/>
+			<Text>POST Deactivate:</Text>
+		</Component>
+		<Component Name="frmac09" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="11" high="1" width="16"/>
+			<Text>PRE Hide       :</Text>
+		</Component>
+		<Component Name="frmac10" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="12" high="1" width="16"/>
+			<Text>POST Hide      :</Text>
+		</Component>
+		<Component Name="frmac11" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="13" high="1" width="16"/>
+			<Text>PRE Destroy    :</Text>
+		</Component>
+		<Component Name="frmac12" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="14" high="1" width="16"/>
+			<Text>POST Destroy   :</Text>
+		</Component>
+		<Component Name="fACPreCr" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="3" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fACPostCr"  next=":fACPostCr"  previous=":fACPostDest"   down=":fACPostCr" />
+		</Component>
+		<Component Name="fACPostCr" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="4" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fACPreSh"  next=":fACPreSh"  previous=":fACPreCr"  up=":fACPreCr"  down=":fACPreSh" />
+		</Component>
+		<Component Name="fACPreSh" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="5" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fACPostSh"  next=":fACPostSh"  previous=":fACPostCr"  up=":fACPostCr"  down=":fACPostSh" />
+		</Component>
+		<Component Name="fACPostSh" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="6" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fACPreAct"  next=":fACPreAct"  previous=":fACPreSh"  up=":fACPreSh"  down=":fACPreAct" />
+		</Component>
+		<Component Name="fACPreAct" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="7" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fACPostAct"  next=":fACPostAct"  previous=":fACPostSh"  up=":fACPostSh"  down=":fACPostAct" />
+		</Component>
+		<Component Name="fACPostAct" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="8" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fACPreDAct"  next=":fACPreDAct"  previous=":fACPreAct"  up=":fACPreAct"  down=":fACPreDAct" />
+		</Component>
+		<Component Name="fACPreDAct" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="9" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fACPostDAct"  next=":fACPostDAct"  previous=":fACPostAct"  up=":fACPostAct"  down=":fACPostDAct" />
+		</Component>
+		<Component Name="fACPostDAct" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="10" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fACPreHide"  next=":fACPreHide"  previous=":fACPreDAct"  up=":fACPreDAct"  down=":fACPreHide" />
+		</Component>
+		<Component Name="fACPreHide" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="11" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fACPostHide"  next=":fACPostHide"  previous=":fACPostDAct"  up=":fACPostDAct"  down=":fACPostHide" />
+		</Component>
+		<Component Name="fACPostHide" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="12" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fACPreDest"  next=":fACPreDest"  previous=":fACPreHide"  up=":fACPreHide"  down=":fACPreDest" />
+		</Component>
+		<Component Name="fACPreDest" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="13" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fACPostDest"  next=":fACPostDest"  previous=":fACPostHide"  up=":fACPostHide"  down=":fACPostDest" />
+		</Component>
+		<Component Name="fACPostDest" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="20" y="14" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":fACsave"  next=":fACsave"  previous=":fACPreDest"  up=":fACPreDest"  down=":fACsave" />
+		</Component>
+		<Component Name="fACsave" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="25" y="15" high="3" width="10"/>
+			<Text>Do It!</Text>
+			<Move  enter="-:"  previous=":fACPostDest"  up=":fACPostDest" />
+			<FAction  enter="FUNC_save" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="fMove" opToMade="destroy" Level="11">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="4" high="19" width="60"/>
+			<FPanel  preShow="MOVE_loadFunction" />
+			<Move  out="-:" />
+		<Components>
+		<Component Name="am00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Describe Element Moves</Text>
+		</Component>
+		<Component Name="am01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="6" y="3" high="1" width="10"/>
+			<Text>Enter   :</Text>
+		</Component>
+		<Component Name="am11" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="6" y="4" high="1" width="10"/>
+			<Text>Out     :</Text>
+		</Component>
+		<Component Name="am21" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="6" y="5" high="1" width="10"/>
+			<Text>Next    :</Text>
+		</Component>
+		<Component Name="am31" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="6" y="6" high="1" width="10"/>
+			<Text>Previous:</Text>
+		</Component>
+		<Component Name="am41" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="6" y="7" high="1" width="10"/>
+			<Text>Up      :</Text>
+		</Component>
+		<Component Name="am51" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="6" y="8" high="1" width="10"/>
+			<Text>Down    :</Text>
+		</Component>
+		<Component Name="am61" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="6" y="9" high="1" width="10"/>
+			<Text>Left    :</Text>
+		</Component>
+		<Component Name="am71" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="6" y="10" high="1" width="10"/>
+			<Text>Right   :</Text>
+		</Component>
+		<Component Name="am81" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="6" y="11" high="1" width="9"/>
+			<Text>Fn      :</Text>
+		</Component>
+		<Component Name="amenterfunction" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="3" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":amoutfunction"  next=":amoutfunction"  down=":amoutfunction" />
+		</Component>
+		<Component Name="amoutfunction" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="4" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":amnextfunction"  next=":amnextfunction"  previous=":amenterfunction"  up=":amenterfunction"  down=":amnextfunction" />
+		</Component>
+		<Component Name="amnextfunction" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="5" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":amprevfunction"  next=":amprevfunction"  previous=":amoutfunction"  up=":amoutfunction"  down=":amprevfunction" />
+		</Component>
+		<Component Name="amprevfunction" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="6" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":amupfunction"  next=":amupfunction"  previous=":amnextfunction"  up=":amnextfunction"  down=":amupfunction" />
+		</Component>
+		<Component Name="amupfunction" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="7" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":amdownfunction"  next=":amdownfunction"  previous=":amprevfunction"  up=":amprevfunction"  down=":amdownfunction" />
+		</Component>
+		<Component Name="amdownfunction" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="8" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":amleftfunction"  next=":amleftfunction"  previous=":amupfunction"  up=":amupfunction"  down=":amleftfunction" />
+		</Component>
+		<Component Name="amleftfunction" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="9" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":amrightfunction"  next=":amrightfunction"  previous=":amdownfunction"  up=":amdownfunction"  down=":amrightfunction" />
+		</Component>
+		<Component Name="amrightfunction" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="10" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":amFnfunction"  next=":amFnfunction"  previous=":amleftfunction"  up=":amleftfunction"  down=":amFnfunction" />
+		</Component>
+		<Component Name="amFnfunction" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="21" y="11" high="1" width="30"/>
+			<Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":nasave"  next=":nasave"  previous=":amrightfunction"  up=":amrightfunction"  down=":nasave" />
+		</Component>
+		<Component Name="nasave" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="25" y="13" high="3" width="10"/>
+			<Text>Do It!</Text>
+			<Move  enter="-:"  previous=":amFnfunction"  up=":amFnfunction" />
+			<FAction  enter="MOVE_saveFunction" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="CoL" opToMade="destroy" Level="10">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="4" high="19" width="61"/>
+			<FPanel  preShow="COMP_loadLABEL" />
+			<FAction out="COMP_out"/>
+			<Move  out="-:" />
+		<Components>
+		<Component Name="col00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+                        <Text>Describe a New Label Component </Text>
+		</Component>
+		<Component Name="col01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="2" high="1" width="5"/>
+			<Text>ID:</Text>
+		</Component>
+		<Component Name="CoLid" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="9" y="2" high="1" width="3"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":cname"  next=":cname"  down=":CoLVisible"  right=":cname" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="col02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="2" high="1" width="8"/>
+			<Text>Name:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cname" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="2" high="1" width="25"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":CoLVisible"  next=":CoLVisible"  previous=":CoLid"  down=":CoLColor"  left=":CoLid" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="col11" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="7"/>
+			<Text>Panel:</Text>
+
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cpanel" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="3" high="1" width="25"/>
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLVisible" Type="ckbutton"  Check="y" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="4" high="1" width="12"/>
+			<Text>Visible: ? </Text>
+			<Move  enter=":CoLColor" next=":CoLColor"  previous=":cname"  up=":CoLid"  down=":CoLBorder"  right=":CoLColor" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLSelect" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="4" high="1" width="12"/>
+			<Text>Select.: ?</Text>
+			<Move  enter=":CoLColor" next=":CoLColor"  previous=":CoLVisible"  up=":CoLid"  left=":CoLVisible" down=":CoLBorder"  right=":CoLColor" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="col04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="4" high="1" width="7"/>
+			<Text>Color :</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLColor" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="38" y="4" high="4" width="18"/>
+			<Move  enter=":CoLBorder"  next=":CoLBorder"  previous=":CoLVisible"  left=":CoLVisible" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBorder" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="8" high="1" width="11"/>
+                        <Text>Border : ? </Text>
+			<Move  enter=":CoLX"  next=":CoLX"  previous=":CoLColor"  up=":CoLVisible"  down=":CoLText"  right=":CoLX" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="col05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="8" high="1" width="12"/>
+                        <Text>Dimensions </Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="col06" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="8" high="1" width="3"/>
+                        <Text>X:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLX" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoLY"  next=":CoLY"  previous=":CoLBorder"  up=":CoLVisible"  down=":CoLText"  left=":CoLBorder"  right=":CoLY" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="col07" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="8" high="1" width="3"/>
+                        <Text>Y:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLY" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoLWidth"  next=":CoLWidth"  previous=":CoLX"  up=":CoLVisible"  down=":CoLText"  left=":CoLX"  right=":CoLWidth" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="col08" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="39" y="8" high="1" width="6"/>
+                        <Text>Width:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLWidth" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="46" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoLHigh"  next=":CoLHigh"  previous=":CoLY"  up=":CoLVisible"  down=":CoLText"  left=":CoLY"  right=":CoLHigh" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="col09" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="50" y="8" high="1" width="6"/>
+                        <Text>High:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLHigh" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="56" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoLText"  next=":CoLText"  previous=":CoLWidth"  up=":CoLVisible"  down=":CoLText"  left=":CoLWidth" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="col03" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="1" width="7"/>
+			<Text>Text:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLText" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="11" y="9" high="2" width="45"/>
+			<Move  next=":CoLFunctions"  previous=":CoLHigh" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLFunctions" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="3" y="11" high="3" width="19"/>
+			<Text> App. Functions </Text>
+			<Move  enter="fAppCalls:fACPreCr"  next=":CoLcancel"  previous=":CoLText"  up=":CoLText"  down=":CoLcreate"  right=":CoLcancel" />
+			<FAction  enter="COMP_reqCalls" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="5" y="15" high="3" width="8"/>
+			<Text>Cancel</Text>
+			<Move  enter="-:"  next=":CoLdelete"  previous=":CoLFunctions"  up=":CoLFunctions"  right=":CoLdelete" />
+			<FAction enter="COMP_out"/>
+			<FComponent />
+		</Component>
+		<Component Name="CoLdelete" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="15" high="3" width="8"/>
+			<Text>Delete</Text>
+			<Move  enter="-:"  next=":CoLtest"  previous=":CoLcancel"  up=":CoLFunctions"  left=":CoLcancel"  right=":CoLtest" />
+			<FAction  enter="COMP_delete" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLtest" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="33" y="15" high="3" width="8"/>
+			<Text>Test</Text>
+			<Move  next=":CoLcreate"  previous=":CoLdelete"  up=":CoLFunctions"  left=":CoLdelete"  right=":CoLcreate" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLcreate" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="47" y="15" high="3" width="8"/>
+			<Text>Do It!</Text>
+			<Move  previous=":CoLFunctions"  up=":CoLFunctions"  left=":CoLtest" />
+			<FAction  enter="COMP_labelDoIt" />
+			<FComponent />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="CoB" opToMade="destroy" Level="10">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="4" high="19" width="61"/>
+			<FPanel  preShow="COMP_loadButton" />
+			<Move  out="-:" />
+			<FAction out="COMP_out"/>
+		<Components>
+		<Component Name="cob00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Describe a New BUTTON Component</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cob01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="2" high="1" width="5"/>
+			<Text>Id:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoBid" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="9" y="2" high="1" width="3"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  next=":cname"  down=":CoBVisible"  right=":cname" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cob02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="2" high="1" width="8"/>
+			<Text>Name:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cname" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="2" high="1" width="25"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  next=":CoBVisible"  previous=":CoBid"  down=":CoBColor"  left=":CoBid" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cob11" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="7"/>
+			<Text>Panel:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cpanel" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="3" high="1" width="25"/>
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoBVisible" Type="ckbutton" Check="y" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="4" high="1" width="12"/>
+			<Text>Visible: ?</Text>
+			<Move  enter=":CoBSelect" next=":CoBSelect"  previous=":cname"  up=":CoBid"  down=":CoBKeymap"  right=":CoBSelect" />
+			<FAction enter="COMP_Visible" />
+			<FComponent />
+		</Component>
+		<Component Name="CoBSelect" Type="ckbutton" Check="y" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="4" high="1" width="12"/>
+			<Text>Select.: ?</Text>
+			<Move  enter=":CoBColor" next=":CoBColor"  previous=":CoBVisible"  up=":CoBid"  down=":CoBKeymap"  left=":CoBVisible" right=":CoBColor" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoBKeymap" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="5" high="1" width="7"/>
+			<Text>Keymap</Text>
+			<Move  enter=":CoLKeymap" next=":CoBBorder"  previous=":CoBColor"  down=":CoBBorder"  up=":CoBVisible" right=":CoBColor" />
+			<FAction enter="COMP_selectKEYM" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLKeymap" Type="lsbutton" display="open">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="3" y="6" high="4" width="18"/>
+			<Move  enter=":CoBBorder" />
+			<FAction />
+			<FComponent postDeactivate="COMP_deselectKEYM"/>
+		</Component>
+		<Component Name="CoTKeymap" Type="field" display="nSelect">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="6" high="1" width="20"/>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cob04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="4" high="1" width="7"/>
+			<Text>Color:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoBColor" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="35" y="4" high="4" width="18"/>
+			<Move  next=":CoBKeymap"  previous=":CoBSelect" left=":CoBSelect" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoBBorder" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="8" high="1" width="11"/>
+			<Text>Border: ? </Text>
+			<Move  next=":CoBX"  previous=":CoBKeymap"  up=":CoBKeymap"  down=":CoBText"  right=":CoBX" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cob05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="8" high="1" width="12"/>
+			<Text>Dimensions:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cob06" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="8" high="1" width="3"/>
+			<Text>X:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoBX" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  next=":CoBY"  previous=":CoBBorder"  up=":CoBColor"  down=":CoBText"  left=":CoBBorder"  right=":CoBY" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cob07" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="8" high="1" width="3"/>
+			<Text>Y:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoBY" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  next=":CoBWidth"  previous=":CoBX"  up=":CoBColor"  down=":CoBText"  left=":CoBX"  right=":CoBWidth" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cob08" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="39" y="8" high="1" width="6"/>
+			<Text>Width:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoBWidth" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="46" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  next=":CoBHigh"  previous=":CoBY"  up=":CoBColor"  down=":CoBText"  left=":CoBY"  right=":CoBHigh" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cob09" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="50" y="8" high="1" width="6"/>
+			<Text>High:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoBHigh" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="56" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  next=":CoBText"  previous=":CoBWidth"  up=":CoBColor"  down=":CoBText"  left=":CoBWidth"  right=":CoBText" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cob03" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="1" width="7"/>
+			<Text>Text:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoBText" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="11" y="9" high="2" width="45"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  next=":CoBFunctions"  previous=":CoBHigh"  up=":CoBBorder" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoBFunctions" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="3" y="12" high="3" width="19"/>
+			<Text> App. Functions </Text>
+			<Move  enter="fAppCalls:fACPreCr"  next=":CoBamove"  previous=":CoBText"  up=":CoBText"  down=":CoBcancel"  right=":CoBamove" />
+			<FAction  enter="COMP_reqCalls" />
+			<FComponent />
+		</Component>
+		<Component Name="CoBamove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="25" y="12" high="3" width="14"/>
+			<Text> Aut. Moves </Text>
+			<Move  enter="aMove:empanelenter"  next=":CoBpmove"  previous=":CoBFunctions"  up=":CoBText"  down=":CoBtest"  left=":CoBFunctions"  right=":CoBpmove" />
+			<FAction  enter="COMP_reqMoves" />
+			<FComponent />
+		</Component>
+		<Component Name="CoBpmove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="43" y="12" high="3" width="14"/>
+			<Text> App. Moves </Text>
+			<Move  enter="fMove:amenterfunction"  next=":CoBcancel"  previous=":CoBamove"  up=":CoBText"  down=":CoBcreate"  left=":CoBamove" />
+			<FAction  enter="COMP_reqMoves" />
+			<FComponent />
+		</Component>
+		<Component Name="CoBcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="5" y="15" high="3" width="8"/>
+			<Text>Cancel</Text>
+			<Move  enter="-:"  next=":CoBdelete"  previous=":CoBpmove"  up=":CoBFunctions"  right=":CoBdelete" />
+			<FAction enter="COMP_out"/>
+			<FComponent />
+		</Component>
+		<Component Name="CoBdelete" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="15" high="3" width="8"/>
+			<Text>Delete</Text>
+			<Move  enter="-:"  next=":CoBtest"  previous=":CoBcancel"  up=":CoBFunctions"  left=":CoBcancel" right=":CoBtest" />
+			<FAction  enter="COMP_delete" />
+			<FComponent />
+		</Component>
+		<Component Name="CoBtest" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="33" y="15" high="3" width="8"/>
+			<Text>Test</Text>
+			<Move  next=":CoBcreate"  previous=":CoBdelete"  up=":CoBamove"  left=":CoBdelete"  right=":CoBcreate" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoBcreate" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="47" y="15" high="3" width="8"/>
+			<Text>Do It!</Text>
+			<Move previous=":CoBtest"  up=":CoBpmove"  left=":CoBtest" />
+                        <FAction  enter="COMP_buttonDoIt" />
+			<FComponent />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="CoCB" opToMade="destroy" Level="10">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="4" high="19" width="61"/>
+			<FPanel  preShow="COMP_loadCkButton" />
+			<Move  out="-:" />
+			<FAction out="COMP_out"/>
+		<Components>
+		<Component Name="cocb00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Describe a New Check Button Component</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cocb01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="2" high="1" width="5"/>
+			<Text>Id:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBid" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="9" y="2" high="1" width="3"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":cname"  next=":cname"  down=":CoCBVisible"  right=":cname" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cocb02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="2" high="1" width="8"/>
+			<Text>Name:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cname" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="2" high="1" width="25"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":CoCBVisible"  next=":CoCBVisible"  previous=":CoCBid"  down=":CoCBVisible"  left=":CoCBid" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cbol11" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="7"/>
+			<Text>Panel:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cpanel" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="3" high="1" width="25"/>
+			<Move  next=":CoCBVisible"  previous=":CoCBid"  down=":CoCBColor"  left=":CoCBid" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBVisible" Type="ckbutton" Check="1" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="4" high="1" width="12"/>
+			<Text>Visible: ?</Text>
+			<Move  enter=":CoCBSelect"  next=":CoCBSelect"  previous=":cname"  up=":CoCBid"  down=":CoCBKeymap"  right=":CoCBSelect" />
+			<FAction enter="COMP_Visible" />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBSelect" Type="ckbutton" Check="y" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="4" high="1" width="12"/>
+			<Text>Select.: ?</Text>
+			<Move  enter=":CoCBColor"  next=":CoCBColor"  previous=":CoCBVisible"  left=":CoCBVisible" up=":CoCBid"  down=":CoCBKeymap"  right=":CoCBColor" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBKeymap" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="5" high="1" width="7"/>
+			<Text>Keymap</Text>
+			<Move  enter=":CoLKeymap"  next=":CoCBBorder"  previous=":CoCBColor"  up=":CoCBVisible"  down=":CoCBBorder"  right=":CoCBColor" />
+			<FAction enter="COMP_selectKEYM" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLKeymap" Type="lsbutton" display="open">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="3" y="6" high="4" width="18"/>
+			<Move  enter=":CoCBBorder" />
+			<FAction />
+			<FComponent postDeactivate="COMP_deselectKEYM"/>
+		</Component>
+		<Component Name="CoTKeymap" Type="field" display="nSelect">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="6" high="1" width="20"/>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cocb04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="4" high="1" width="7"/>
+			<Text>Color:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBColor" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="35" y="4" high="4" width="18"/>
+			<Move  enter=":CoCBKeymap"  next=":CoCBKeymap"  previous=":CoCBSelect"  left=":CoCBSelect" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBBorder" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="8" high="1" width="11"/>
+			<Text>Border: ?</Text>
+			<Move  enter=":CoCBX"  next=":CoCBX"  previous=":CoCBColor"  up=":CoCBKeymap"  down=":CoCBText"  right=":CoCBX" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cocb05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="8" high="1" width="12"/>
+			<Text>Dimensions</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cocb06" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="8" high="1" width="3"/>
+			<Text>X:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBX" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoCBY"  next=":CoCBY"  previous=":CoCBBorder"  up=":CoCBColor"  down=":CoCBText"  left=":CoCBBorder"  right=":CoCBY" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cocb07" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="8" high="1" width="3"/>
+			<Text>Y:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBY" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoCBWidth"  next=":CoCBWidth"  previous=":CoCBX"  up=":CoCBColor"  down=":CoCBText"  left=":CoCBX"  right=":CoCBWidth" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cocb08" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="39" y="8" high="1" width="6"/>
+			<Text>Width:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBWidth" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="46" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoCBHigh"  next=":CoCBHigh"  previous=":CoCBY"  up=":CoCBColor"  down=":CoCBText"  left=":CoCBY"  right=":CoCBHigh" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cocb09" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="50" y="8" high="1" width="6"/>
+			<Text>High:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBHigh" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="56" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoCBText"  next=":CoCBText"  previous=":CoCBWidth"  up=":CoCBColor"  down=":CoCBText"  left=":CoCBWidth"  right=":CoCBText" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cocb10" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="1" width="7"/>
+			<Text>Text:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBText" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="11" y="9" high="2" width="45"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":CoCBisCheck"  next=":CoCBisCheck"  previous=":CoCBHigh"  />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBisCheck" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="11" high="1" width="11"/>
+			<Text>Check: ?</Text>
+			<Move  enter=":CoCBchcheck"  next=":CoCBchcheck"  previous=":CoCBText"  up=":CoCBText"  down=":CoCBFunctions"  right=":CoCBchcheck" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cocb21" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="16" y="11" high="1" width="10"/>
+			<Text>Ch Check</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBchcheck" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="11" high="1" width="1"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":CoCBchischeck"  next=":CoCBchischeck"  previous=":CoCBisCheck"  up=":CoCBText"  down=":CoCBamove"  left=":CoCBisCheck"  right=":CoCBchischeck" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cocb11" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="29" y="11" high="1" width="12"/>
+			<Text>Ch Is Check</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBchischeck" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="42" y="11" high="1" width="1"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":CoCBchncheck"  next=":CoCBchncheck"  previous=":CoCBchcheck"  up=":CoCBText"  down=":CoCBamove"  left=":CoCBchcheck"  right=":CoCBchncheck" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cocb12" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="44" y="11" high="1" width="12"/>
+			<Text>Ch No Check</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBchncheck" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="57" y="11" high="1" width="1"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":CoCBFunctions"  next=":CoCBFunctions"  previous=":CoCBchischeck"  up=":CoCBText"  down=":CoCBpmove"  left=":CoCBchischeck" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBFunctions" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="3" y="12" high="3" width="19"/>
+			<Text> App. Functions </Text>
+			<Move  enter="fAppCalls:fACPreCr"  next=":CoCBamove"  previous=":CoCBchncheck"  up=":CoCBisCheck"  down=":CoCBcancel"  right=":CoCBamove" />
+			<FAction  enter="COMP_reqCalls" />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBamove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="25" y="12" high="3" width="14"/>
+			<Text> Aut. Moves </Text>
+			<Move  enter="aMove:empanelenter"  next=":CoCBpmove"  previous=":CoCBFunctions"  up=":CoCBchischeck"  down=":CoCBtest"  left=":CoCBFunctions"  right=":CoCBpmove" />
+			<FAction  enter="COMP_reqMoves" />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBpmove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="43" y="12" high="3" width="14"/>
+			<Text> App. Moves </Text>
+			<Move  enter="fMove:amenterfunction"  next=":CoCBcreate"  previous=":CoCBamove"  up=":CoCBchncheck"  down=":CoCBcreate"  left=":CoCBamove" />
+			<FAction  enter="COMP_reqMoves" />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="5" y="15" high="3" width="8"/>
+			<Text>Cancel</Text>
+			<Move  enter="-:"  next=":CoCBdelete"  previous=":CoCBpmove"  up=":CoCBFunctions"  right=":CoCBdelete" />
+			<FAction enter="COMP_out"/>
+			<FComponent />
+		</Component>
+		<Component Name="CoCBdelete" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="15" high="3" width="8"/>
+			<Text>Delete</Text>
+			<Move  enter="-:"  next=":CoCBtest"  previous=":CoCBcancel"  up=":CoCBFunctions"  left=":CoCBcancel" right=":CoCBtest" />
+			<FAction  enter="COMP_delete" />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBtest" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="33" y="15" high="3" width="8"/>
+			<Text>Test</Text>
+			<Move  next=":CoCBcreate"  previous=":CoCBdelete"  up=":CoCBamove"  left=":CoCBdelete"  right=":CoCBcreate" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoCBcreate" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="47" y="15" high="3" width="8"/>
+			<Text>Do It!</Text>
+			<Move  previous=":CoCBtest"  up=":CoCBpmove"  left=":CoCBtest" />
+                        <FAction  enter="COMP_ckbuttonDoIt" />
+			<FComponent />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="CoLB" opToMade="destroy" Level="10">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="4" high="20" width="61"/>
+			<FPanel  preShow="COMP_loadLsButton" />
+			<Move  out="-:" />
+			<FAction out="COMP_out"/>
+		<Components>
+		<Component Name="colb00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+                        <Text>Describe a New Component List Button</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="colb01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="2" high="1" width="5"/>
+                        <Text>Id:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBid" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="9" y="2" high="1" width="3"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":cname"  next=":cname"  down=":CoDisplay"  right=":cname" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="colb02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="2" high="1" width="8"/>
+                        <Text>Name:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cname" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="2" high="1" width="25"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":CoDisplay"  next=":CoDisplay"  previous=":CoLBid"  down=":CoDisplay"  left=":CoLBid" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="lbol11" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="7"/>
+                        <Text>Panel:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cpanel" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="3" high="1" width="25"/>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="colb98" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="4" high="1" width="10"/>
+                        <Text>Display:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoDisplay" Type="lsbutton">
+			<Color>miColor2</Color>
+			<Dimension border="0" x="15" y="4" high="1" width="12"/>
+                        <Text>NORMAL</Text>
+                        <Text>HIDDEN</Text>
+                        <Text>NOT SELECT</Text>
+                        <Text>OPEN</Text>
+			<Move  next=":CoLBColor"  previous=":cname" right=":CoLBColor" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBKeymap" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="5" high="1" width="7"/>
+                        <Text>Keymap</Text>
+			<Move  enter=":CoLKeymap" next=":CoLBBorder"  previous=":CoLBColor"  up=":CoDisplay"  down=":CoLBBorder"  right=":CoLBColor" />
+			<FAction enter="COMP_selectKEYM" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLKeymap" Type="lsbutton" display="open">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="3" y="6" high="4" width="18"/>
+			<Move  enter=":CoLBBorder" />
+			<FAction />
+			<FComponent postDeactivate="COMP_deselectKEYM"/>
+		</Component>
+		<Component Name="CoTKeymap" Type="field" display="nSelect">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="6" high="1" width="20"/>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="colb04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="4" high="1" width="7"/>
+                        <Text>Color:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBColor" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="35" y="4" high="4" width="18"/>
+			<Move  enter=":CoLBKeymap"  next=":CoLBKeymap"  previous=":CoDisplay"  left=":CoDisplay" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBBorder" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="8" high="1" width="11"/>
+                        <Text>Border: ?</Text>
+			<Move  enter=":CoLBX"  next=":CoLBX"  previous=":CoLBKeymap"  up=":CoLBKeymap"  down=":CoLBText"  right=":CoLBX" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="colb05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="8" high="1" width="12"/>
+                        <Text>Dimensions</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="colb06" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="8" high="1" width="3"/>
+                        <Text>X:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBX" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoLBY"  next=":CoLBY"  previous=":CoLBBorder"  up=":CoLBKeymap"  down=":CoLBText"  left=":CoLBBorder"  right=":CoLBY" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="colb07" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="8" high="1" width="3"/>
+                        <Text>Y:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBY" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoLBWidth"  next=":CoLBWidth"  previous=":CoLBX"  up=":CoLBColor"  down=":CoLBText"  left=":CoLBX"  right=":CoLBWidth" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="colb08" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="39" y="8" high="1" width="6"/>
+                        <Text>Width:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBWidth" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="46" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoLBHigh"  next=":CoLBHigh"  previous=":CoLBY"  up=":CoLBColor"  down=":CoLBText"  left=":CoLBY"  right=":CoLBHigh" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="colb09" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="50" y="8" high="1" width="6"/>
+                        <Text>High:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBHigh" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="56" y="8" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoLBText"  next=":CoLBText"  previous=":CoLBWidth"  up=":CoLBColor"  down=":CoLBText"  left=":CoLBWidth" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="colb10" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="1" width="7"/>
+                        <Text>Text:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBText" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="10" high="1" width="25"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":CoLBTAdd"  next=":CoLBTAdd"  previous=":CoLBHigh"  up=":CoLBBorder"  down=":CoLBTAdd" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBData" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="29" y="9" high="4" width="28"/>
+			<Move  next=":CoLBFunctions"  previous=":CoLBText"  left=":CoLBText" />
+			<FAction enter="COMP_lbData" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBTAdd" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="6" y="11" high="2" width="5"/>
+                        <Text>Add</Text>
+			<Move  enter=":CoLBText" next=":CoLBTdel"  previous=":CoLBText"  up=":CoLBText"  down=":CoLBFunctions"  right=":CoLBTdel" />
+			<FAction enter="COMP_addList"/>
+			<FComponent />
+		</Component>
+		<Component Name="CoLBTdel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="11" high="2" width="5"/>
+                        <Text>Del</Text>
+			<Move  enter=":CoLBText" next=":CoLBFunctions"  previous=":CoLBTAdd"  up=":CoLBText"  down=":CoLBFunctions"  left=":CoLBTAdd" />
+			<FAction enter="COMP_delList" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBFunctions" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="3" y="13" high="3" width="19"/>
+			<Text> App. Functions </Text>
+                        <Text>Del</Text>
+			<Move  enter="fAppCalls:fACPreCr"  next=":CoLBamove"  previous=":CoLBText"  up=":CoLBText"  down=":CoLBcancel"  right=":CoLBamove" />
+			<FAction  enter="COMP_reqCalls" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBamove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="25" y="13" high="3" width="14"/>
+			<Text> Aut. Moves </Text>
+			<Move  enter="aMove:empanelenter"  next=":CoLBpmove"  previous=":CoLBFunctions"  up=":CoLBText"  down=":CoLBtest"  left=":CoLBFunctions"  right=":CoLBpmove" />
+			<FAction  enter="COMP_reqMoves" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBpmove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="43" y="13" high="3" width="14"/>
+			<Text> App. Moves </Text>
+			<Move  enter="fMove:amenterfunction"  next=":CoLBcreate"  previous=":CoLBamove"  up=":CoLBText"  down=":CoLBcreate"  left=":CoLBamove" />
+			<FAction  enter="COMP_reqMoves" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="5" y="16" high="3" width="8"/>
+			<Text>Cancel</Text>
+			<Move  enter="-:" next=":CoLBdelete"  previous=":CoLBpmove"  up=":CoLBFunctions"  right=":CoLBdelete" />
+			<FAction enter="COMP_out"/>
+			<FComponent />
+		</Component>
+		<Component Name="CoLBdelete" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="16" high="3" width="8"/>
+			<Text>Delete</Text>
+			<Move  enter="-:" next=":CoLBtest"  previous=":CoLBcancel"  up=":CoLBFunctions"  left=":CoLBcancel" right=":CoLBtest" />
+			<FAction  enter="COMP_delete" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBtest" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="33" y="16" high="3" width="8"/>
+			<Text>Test</Text>
+			<Move  next=":CoLBcreate"  previous=":CoLBdelete"  up=":CoLBamove"  left=":CoLBdelete"  right=":CoLBcreate" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoLBcreate" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="47" y="16" high="3" width="8"/>
+			<Text>Do It!</Text>
+			<Move  previous=":CoLBpmove"  up=":CoLBpmove"  left=":CoLBtest" />
+                        <FAction  enter="COMP_lsbuttonDoIt" />
+			<FComponent />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="CoED" opToMade="destroy" Level="10">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="4" high="20" width="61"/>
+			<FPanel  preShow="COMP_loadField" />
+			<Move  out="-:" />
+			<FAction out="COMP_out"/>
+		<Components>
+		<Component Name="coed00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Describe a New Field Component</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="coed01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="2" high="1" width="5"/>
+			<Text>Id:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDid" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="9" y="2" high="1" width="3"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":cname"  next=":cname"  down=":CoEDVisible"  right=":cname" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="coed02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="2" high="1" width="8"/>
+			<Text>Name:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cname" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="22" y="2" high="1" width="25"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":CoEDVisible"  next=":CoEDVisible"  previous=":CoEDid"  down=":CoEDColor"  left=":CoEDid" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="edol11" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="3" high="1" width="7"/>
+			<Text>Panel:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="cpanel" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="13" y="3" high="1" width="25"/>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDVisible" Type="ckbutton" Check="y" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="4" high="1" width="12"/>
+			<Text>Visible: ?</Text>
+			<Move  enter=":CoEDSelect"  next=":CoEDSelect"  previous=":cname"  up=":CoEDid"  down=":CoEDAuto"  right=":CoEDSelect" />
+			<FAction enter="COMP_Visible" />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDSelect" Type="ckbutton" Check="y" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="4" high="1" width="12"/>
+			<Text>Select.: ?</Text>
+			<Move  enter=":CoEDColor"  next=":CoEDColor"  previous=":CoEDVisible" left=":CoEDVisible" up=":CoEDid"  down=":CoEDAuto"  right=":CoEDColor" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDAuto" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="5" high="1" width="15"/>
+			<Text>Auto Enter: ?</Text>
+			<Move  enter=":CoEDSecret"  next=":CoEDSecret"  previous=":CoEDColor"  up=":CoEDVisible"  down=":CoEDKeymap"  right=":CoEDSecret" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDSecret" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="19" y="5" high="1" width="12"/>
+			<Text>Secret: ?</Text>
+			<Move  enter=":CoEDKeymap"  next=":CoEDKeymap"  previous=":CoEDAuto"  up=":CoEDColor"  down=":CoEDKeymap"  left=":CoEDAuto" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDKeymap" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="6" high="1" width="7"/>
+			<Text>Keymap</Text>
+			<Move  enter=":CoLKeymap" next=":CoEDmode"  previous=":CoEDSecret"  up=":CoEDAuto"  down=":CoEDmode" />
+			<FAction enter="COMP_selectKEYM" />
+			<FComponent />
+		</Component>
+		<Component Name="CoLKeymap" Type="lsbutton" display="open">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="3" y="7" high="4" width="18"/>
+			<Move  enter=":CoEDmode" />
+			<FAction />
+			<FComponent postDeactivate="COMP_deselectKEYM"/>
+		</Component>
+		<Component Name="CoTKeymap" Type="field" display="nSelect">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="7" high="1" width="20"/>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="coed04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="4" high="1" width="7"/>
+			<Text>Color:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDColor" Type="lsbutton">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="35" y="4" high="4" width="18"/>
+			<Move  enter=":CoEDAuto"  next=":CoEDAuto"  previous=":CoEDSelect"  left=":CoEDSelect" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="coed34" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="8" high="1" width="7"/>
+			<Text>Ch ED:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDmode" Type="field"> 
+			<Color>miColor1</Color>
+			<Dimension border="0" x="11" y="8" high="1" width="1"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Text>.</Text>
+			<Move  enter=":CoEDBFunction"  next=":CoEDBFunction"  previous=":CoEDKeymap"  up=":CoEDKeymap"  down=":CoEDBorder"  right=":CoEDBFunction" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDBFunction" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="16" y="8" high="1" width="15"/>
+			<Text>Edit Functions</Text>
+			<Move  enter=":CoEDLEFunction" next=":CoEDBorder"  previous=":CoEDmode"  up=":CoEDKeymap"  down=":CoEDBorder"  left=":CoEDmode" />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDLEFunction" Type="lsbutton" display="open">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="16" y="9" high="4" width="18"/>
+			<Move  enter=":CoEDBFunction" />
+			<FAction />
+			<FComponent postDeactivate="COMP_deselectEdFunc"/>
+		</Component>
+		<Component Name="CoEDTEFunction" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="37" y="8" high="1" width="20"/>
+                        <Text>none</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDBorder" Type="ckbutton" chIsCheck="Y" chNoCheck="N">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="9" high="1" width="11"/>
+			<Text>Border: ?</Text>
+			<Move  enter=":CoEDX"  next=":CoEDX"  previous=":CoEDBFunction"  up=":CoEDmode"  down=":CoEDText"  right=":CoEDX" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="coed05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="15" y="9" high="1" width="12"/>
+			<Text>Dimensions</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="coed06" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="27" y="9" high="1" width="3"/>
+			<Text>X:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDX" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="30" y="9" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoEDY"  next=":CoEDY"  previous=":CoEDBorder"  up=":CoEDBFunction"  down=":CoEDText"  left=":CoEDBorder"  right=":CoEDY" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="coed07" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="33" y="9" high="1" width="3"/>
+			<Text>Y:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDY" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="36" y="9" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoEDWidth"  next=":CoEDWidth"  previous=":CoEDX"  up=":CoEDBFunction"  down=":CoEDText"  left=":CoEDX"  right=":CoEDWidth" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="coed08" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="39" y="9" high="1" width="6"/>
+			<Text>Width:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDWidth" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="46" y="9" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoEDHigh"  next=":CoEDHigh"  previous=":CoEDY"  up=":CoEDBFunction"  down=":CoEDText"  left=":CoEDY"  right=":CoEDHigh" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="coed09" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="50" y="9" high="1" width="6"/>
+			<Text>High:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDHigh" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="56" y="9" high="1" width="2"/>
+                        <Edit chToEDIT="." editType="numeric" auto="y"/>
+			<Move  enter=":CoEDText"  next=":CoEDText"  previous=":CoEDWidth"  up=":CoEDBFunction"  down=":CoEDText"  left=":CoEDWidth" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="coed10" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="10" high="1" width="7"/>
+			<Text>Text:</Text>
+			<Move />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDText" Type="field">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="3" y="11" high="2" width="50"/>
+                        <Edit chToEDIT="." editType="7ascii" auto="y"/>
+			<Move  enter=":CoEDFunctions"  next=":CoEDFunctions"  previous=":CoEDHigh" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDFunctions" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="3" y="13" high="3" width="19"/>
+			<Text> App. Functions </Text>
+
+			<Move  enter="fAppCalls:fACPreCr"  next=":CoEDamove"  previous=":CoEDText"  up=":CoEDText"  down=":CoEDcancel"  right=":CoEDamove" />
+			<FAction  enter="COMP_reqCalls" />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDamove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="25" y="13" high="3" width="14"/>
+			 <Text> Aut. Moves </Text>
+			<Move  enter="aMove:empanelenter"  next=":CoEDpmove"  previous=":CoEDFunctions"  up=":CoEDText"  down=":CoEDtest"  left=":CoEDFunctions"  right=":CoEDpmove" />
+			<FAction  enter="COMP_reqMoves" />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDpmove" Type="button">
+			<Color>miColor6</Color>
+			<Dimension border="1" x="43" y="13" high="3" width="14"/>
+			<Text> App. Moves </Text>
+			<Move  enter="fMove:amenterfunction"  next=":CoEDcreate"  previous=":CoEDamove"  up=":CoEDText"  down=":CoEDcreate"  left=":CoEDamove" />
+			<FAction  enter="COMP_reqMoves" />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDcancel" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="5" y="16" high="3" width="8"/>
+			<Text>Cancel</Text>
+			<Move  enter="-:" next=":CoEDdelete"  previous=":CoEDpmove"  up=":CoEDFunctions"  right=":CoEDdelete" />
+			<FAction enter="COMP_out"/>
+			<FComponent />
+		</Component>
+		<Component Name="CoEDdelete" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="19" y="16" high="3" width="8"/>
+			<Text>Delete</Text>
+			<Move  enter="-:" next=":CoEDtest"  previous=":CoEDcancel"  up=":CoEDFunctions"  left=":CoEDcancel" right=":CoEDtest" />
+			<FAction  enter="COMP_delete" />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDtest" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="33" y="16" high="3" width="8"/>
+			<Text> Test </Text>
+			<Move  next=":CoEDcreate"  previous=":CoEDdelete"  up=":CoEDamove"  left=":CoEDdelete"  right=":CoEDcreate" />
+			<FAction />
+			<FComponent />
+		</Component>
+		<Component Name="CoEDcreate" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="47" y="16" high="3" width="8"/>
+			<Text>Do It!</Text>
+			<Move previous=":CoEDpmove"  up=":CoEDpmove"  left=":CoEDtest" />
+                        <FAction  enter="COMP_fieldDoIt" />
+			<FComponent />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="frmCheck" opToMade="destroy" Level="1">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="5" high="17" width="60"/>
+			<FPanel  postActivate="RUN_check" />
+			<Move  out="mnPrincipal:mnPcompile" />
+			<FAction />
+		<Components>
+		<Component Name="frmEC00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Checking  The Proyect </Text>
+		</Component>
+		<Component Name="frmEC01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="3" high="1" width="30"/>
+			<Text>Checking  The Properties </Text>
+		</Component>
+		<Component Name="prop" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="3" high="1" width="10"/>
+			<Text>pending</Text>
+		</Component>
+		<Component Name="frmEC02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="4" high="1" width="30"/>
+			<Text>Checking  Keymaps        </Text>
+		</Component>
+		<Component Name="keymap" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="4" high="1" width="10"/>
+			<Text>pending</Text>
+		</Component>
+		<Component Name="frmEC03" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="5" high="1" width="30"/>
+			<Text>Checking  Edit Functions </Text>
+		</Component>
+		<Component Name="edf" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="5" high="1" width="10"/>
+			<Text>pending</Text>
+		</Component>
+		<Component Name="frmEC04" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="6" high="1" width="30"/>
+			<Text>Checking  Colors         </Text>
+		</Component>
+		<Component Name="color" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="6" high="1" width="10"/>
+			<Text>pending</Text>
+		</Component>
+		<Component Name="frmEC05" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="7" high="1" width="30"/>
+			<Text>Checking  Message  Box   </Text>
+		</Component>
+		<Component Name="msgs" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="7" high="1" width="10"/>
+			<Text>pending</Text>
+		</Component>
+		<Component Name="frmEC06" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="8" high="1" width="30"/>
+			<Text>Checking  Components     </Text>
+		</Component>
+		<Component Name="comps" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="8" high="1" width="10"/>
+			<Text>pending</Text>
+		</Component>
+		<Component Name="frmEC07" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="9" high="1" width="30"/>
+			<Text>Checking  Panel Views    </Text>
+		</Component>
+		<Component Name="panels" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="9" high="1" width="10"/>
+			<Text>pending</Text>
+		</Component>
+		<Component Name="frmEC08" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="10" high="1" width="30"/>
+			<Text>Checking  Table Views    </Text>
+		</Component>
+		<Component Name="tables" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="10" high="1" width="10"/>
+			<Text>pending</Text>
+		</Component>
+		<Component Name="frmEC09" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="11" high="1" width="30"/>
+			<Text>Checking  Edits Views    </Text>
+		</Component>
+		<Component Name="edit" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="11" high="1" width="10"/>
+			<Text>pending</Text>
+		</Component>
+		<Component Name="ckenter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="30" y="13" high="3" width="10"/>
+			<Text>Result </Text>
+			<Move  enter="CheckFile:" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="frCompile" opToMade="destroy" Level="1">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="10" y="5" high="17" width="60"/>
+			<FPanel  postActivate="RUN_compile" />
+			<Move  out="mnPrincipal:mnPcompile" />
+		<Components>
+		<Component Name="frmEC00" Type="label">
+			<Color>miColor4</Color>
+			<Dimension border="0" x="1" y="1" high="1" width="58"/>
+			<Text>Compiling The Proyect </Text>
+		</Component>
+		<Component Name="frmEC01" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="3" high="1" width="30"/>
+			<Text>Creating  The Directory     : </Text>
+		</Component>
+		<Component Name="directory" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="3" high="1" width="10"/>
+			<Text>pending</Text>
+		</Component>
+		<Component Name="frmEC02" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="4" high="1" width="30"/>
+			<Text>Saving &amp; copy the Proyect   : </Text>
+		</Component>
+		<Component Name="saving" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="4" high="1" width="10"/>
+			<Text>pending</Text>
+		</Component>
+		<Component Name="frmEC03" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="2" y="5" high="1" width="30"/>
+			<Text>Compiling the Proyect       : </Text>
+		</Component>
+		<Component Name="compile" Type="label">
+			<Color>miColor1</Color>
+			<Dimension border="0" x="35" y="5" high="1" width="10"/>
+			<Text>pending</Text>
+		</Component>
+		<Component Name="ckenter" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="30" y="13" high="3" width="10"/>
+			<Text>Results</Text>
+			<FAction  enter="RUN_compileFile" />
+			<Move  enter="CheckFile:" />
+		</Component>
+		</Components>
+		</Panel>
+		<Panel Id="-1" Name="mnEdit" opToMade="hide" Level="2">
+			<Color>miColor5</Color>
+			<Dimension border="0" x="0" y="0" high="3" width="80"/>
+			<FAction  Fn="PROY_editMenu" />
+			<Move  F2="101:" F4="mnPrincipal:mnPedit" />
+		<Components>
+		<Component Name="open" Type="button">
+			<Color>miColor5</Color>
+			<Dimension border="1" x="1" y="0" high="3" width="15"/>
+			<Text>F2 - Open</Text>
+			<Move  enter="101:"  next=":save"  previous=":close"  left=":close"  right=":save"  F2="101:" />
+			<FAction  enter="PROY_editOpen" />
+		</Component>
+		<Component Name="save" Type="button" display="hidden">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="16" y="0" high="3" width="15"/>
+			<Text>F3 - Save</Text>
+			<Move  next=":close"  previous=":open"  left=":open"  right=":close" />
+			<FAction  enter="PROY_editSave" />
+		</Component>
+		<Component Name="close" Type="button">
+			<Color>miColor1</Color>
+			<Dimension border="1" x="31" y="0" high="3" width="15"/>
+			<Text>F4 - Close</Text>
+			<Move  enter="mnPrincipal:mnPedit"  next=":open"  previous=":save"  left=":save"  right=":open"  F4="mnPrincipal:mnPedit" />
+			<FAction  enter="PROY_editClose" />
+		</Component>
+		</Components>
+		</Panel>
+	</Panels>
+	<Tables>
+		<Table Id="20" Name="telement" opToMade="hide" Level="1">
+		<Dimension border="1" x="1" y="4" high="18" width="18"/>
+		<Style head="1"    colorHead="miColor4"  colorData="miColor5"  />
+		<Elements>
+			<Element size="15">ELEMENT</Element>
+		</Elements>
+		<FTable  preShow="SELECT_load" />
+		<Move  out="-:" />
+		<FAction  enter="SELECT_enter"  out="SELECT_out" />
+		</Table>
+		<Table Id="20" Name="tmselect" opToMade="hide" Level="12">
+		<Dimension border="1" x="35" y="10" high="10" width="33"/>
+		<Style head="1"    colorHead="miColor4"  colorData="miColor5"  />
+		<Elements>
+			<Element size="27">SELECT VALUE</Element>
+		</Elements>
+		<FTable  preShow="SELECT_load" />
+		<Move  out="-:" />
+		<FAction  enter="SELECT_enter" />
+		</Table>
+		<Table Id="20" Name="tselect" opToMade="hide" Level="9">
+		<Dimension border="1" x="35" y="10" high="10" width="33"/>
+		<Style head="1"    colorHead="miColor4"  colorData="miColor5"  />
+		<Elements>
+			<Element size="27">SELECT VALUE</Element>
+		</Elements>
+		<FTable  preShow="SELECT_optionLoad"  preActivate="SELECT_optionUpdate" />
+		<Move  out="-:" />
+		<FAction  enter="SELECT_optionEnter" />
+		</Table>
+		<Table Id="20" Name="tlistViews" opToMade="destroy" Level="9">
+		<Dimension border="1" x="3" y="3" high="20" width="75"/>
+		<Style head="1"  hLine="1"   colorHead="miColor5"  colorData="miColor1"  />
+		<Elements>
+			<Element size="8">V. TYPE</Element>
+			<Element size="25">V. NAME </Element>
+			<Element size="25">C. NAME </Element>
+			<Element size="9">C. TYPE</Element>
+		</Elements>
+		<FTable  preShow="SELECT_listViews" />
+		<Move  out="-:" />
+		<FAction />
+		</Table>
+		<Table Id="20" Name="tlistColors" opToMade="destroy" Level="9">
+		<Dimension border="1" x="3" y="3" high="20" width="75"/>
+		<Style head="1"  hLine="1"   colorHead="miColor5"  colorData="miColor1"  />
+		<Elements>
+			<Element size="25">COLOR</Element>
+			<Element size="12">FOREGROUND</Element>
+			<Element size="12">BACKGROUND</Element>
+			<Element size="12">ESPECIAL</Element>
+		</Elements>
+		<FTable  preShow="SELECT_listColors" />
+		<Move  out="-:" />
+		<FAction />
+		</Table>
+		<Table Id="20" Name="tlistCalls" opToMade="destroy" Level="9">
+		<Dimension border="1" x="3" y="3" high="20" width="75"/>
+		<Style head="1"  hLine="1"   colorHead="miColor5"  colorData="miColor1"  />
+<Keymap>propio</Keymap>
+		<Elements>
+			<Element size="20">VIEW</Element>
+			<Element size="20">COMPONENT</Element>
+			<Element size="12">TYPE</Element>
+			<Element size="12">EVENT</Element>
+			<Element size="20">FUNCTION</Element>
+		</Elements>
+		<FTable  preShow="SELECT_listCalls" />
+		<Move  out="-:" />
+		<FAction />
+		</Table>
+		<Table Id="-1" Name="tcomp" opToMade="destroy" Level="2">
+		<Dimension border="1" x="1" y="4" high="18" width="18"/>
+		<Style head="1"  colorHead="miColor4"  colorData="miColor5"  />
+		<Elements>
+			<Element size="13">PANEL</Element>
+			<Element size="13">COMPONENT</Element>
+		</Elements>
+		<FTable  preShow="SELECT_compLoad"  />
+		<Move  out="mnPrincipal:mnPcomponents" />
+		<FAction  enter="SELECT_compEnter" />
+		</Table>
+	</Tables>
+	<Edits>
+		<Edit Name="XmlFile" opToMade="hide" Level="2" Id="101"  >
+		<Dimension border="1" x="3" y="3" high="20" width="75"/>
+		<Color>miColor1</Color>
+		<Move  F4="mnPrincipal:mnPedit" />
+		<FAction  Fn="PROY_editPanel" />
+		<FEdit />
+		</Edit>
+		<Edit Name="CheckFile" opToMade="destroy" Level="9" Id="22"  ReadOnly="s"  >
+		<Dimension border="1" x="3" y="3" high="20" width="75"/>
+		<Color>miColor1</Color>
+		<FEdit />
+		<Move  out="mnPrincipal:mnPcompile" enter="mnPrincipal:mnPcompile" />
+		<FAction />
+		</Edit>
+	</Edits>
+</TUI>
