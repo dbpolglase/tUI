@@ -73,5 +73,8 @@ int ERR_isError()
 
 int ERR_lastError()
 {
-  return lastError;
+ int error;
+   error=lastError;
+   lastError=0;
+  return error;
 }
