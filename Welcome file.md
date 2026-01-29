@@ -1500,19 +1500,256 @@ Fn="callback" (optional) /&gt;
 </code></pre>
 <h3 id="sección-fpanelfcomponentftablefedit">sección FPanel,FComponent,FTable,FEdit</h3>
 <p>En los callback del ciclo de vida la sintaxis seria, similar en todos los casos:</p>
-<p>&lt;FPanel|  preCreate=“callback” (optional)<br>
-preShow=“callback” (optional)<br>
-preActivate=“callback” (optional)<br>
-preDeactivate=“callback” (optional)<br>
-preHide=“callback” (optional)<br>
-preDestroy=“callback” (optional)<br>
-postCreate=“callback” (optional)<br>
-postShow=“callback” (optional)<br>
-postActivate=“callback” (optional)<br>
-postDeactivate=“callback” (optional)<br>
-postHide=“callback” (optional)<br>
-postDestroy=“callback” (optional)<br>
-/&gt;</p>
+<pre><code>&lt;FPanel|  preCreate="callback" (optional)
+preShow="callback" (optional)
+preActivate="callback" (optional)
+preDeactivate="callback" (optional)
+preHide="callback" (optional)
+preDestroy="callback" (optional)
+postCreate="callback" (optional)
+postShow="callback" (optional)
+postActivate="callback" (optional)
+postDeactivate="callback" (optional)
+postHide="callback" (optional)
+postDestroy="callback" (optional)
+/&gt;
+</code></pre>
+<h2 id="programación">Programación</h2>
+<h3 id="estructuras">Estructuras</h3>
+<p>Las estructuras básicas se incluyen en tBasic.h y describen los tipos que dan soporte a la misma.<br>
+Pueden ser manipulables directamente por el usuario en los callbacks pero no es aconsejable.<br>
+En cualquier caso vamos a mostrar las más importantes.</p>
+<h4 id="ttext">tTEXT</h4>
+<p>Es la estructura básica que da soporte a la información asociada a cada elemento.</p>
+<pre><code>typedef struct {
+  char *** text;   (informacion)
+  enum TMode mode; (es fija o dinamica)
+  FILE * fd;       (file origen de informacion).
+  unsigned short delete; (borrar o no con OP_DESTROY)
+  unsigned short resize; (reservar maa espacio según necesidad)
+  unsigned short maxColumns; ( tamaños maximos reservados)
+  unsigned short maxLines;
+  unsigned short maxFields;
+  unsigned short nroColumns; (tamaños ocupados)
+  unsigned short nroLines;
+  unsigned short nroFields;
+  unsigned short actColumn; (posicion actual mostrada)
+  unsigned short actLine;
+  unsigned short actField;
+  unsigned short check;     (chek by default).
+}tText,*tTextPtr;
+</code></pre>
+<h4 id="tdim">tDim</h4>
+<p>Definición del marco</p>
+<pre><code>typedef struct {
+   unsigned short border;
+   unsigned short x;
+   unsigned short y;
+   unsigned short alto;
+   unsigned short ancho;
+} tDim,*tDimPtr;
+</code></pre>
+<h4 id="tcursor">tCursor</h4>
+<p>Posición del cursor.</p>
+<pre><code>typedef struct {
+   unsigned short x;
+   unsigned short y;
+} tCursor,*tCursorPtr;
+</code></pre>
+<h4 id="tchattr">tChAttr</h4>
+<p>Da soporte a los colores de la aplicación</p>
+<pre><code>typedef struct {
+   int colorpair; /* par color background/foreground */
+   int   attr;   /* conjunto de attributos WA* */
+}tChAttr,*tChAttrPtr;
+</code></pre>
+<h4 id="tstatus">tStatus</h4>
+<p>Se utilizá dentro de la lógica de la aplicación para gestionar el estado de los elementos.</p>
+<pre><code>typedef struct {
+   enum EAlign align;    /* left|right */
+   enum EDisplay visible; /* visible,hidden,open, not Selected */
+   unsigned short ckCheck; /* definición de check */
+   unsigned short ckIsCheck;
+   unsigned short ckNoCheck;
+   unsigned short defCheck;
+   unsigned short activa;  /* activo o no */
+   enum EInsert   insert;  /* Insert o replace */
+   unsigned short multiLine; /* mas de 1 linea */
+   unsigned short actField; /* elemento act. visible */
+   unsigned short actLine;
+   unsigned short actColumn;
+   unsigned short nactFields; /* nro. elementos visibles */
+   unsigned short nactLines;
+   unsigned short nactColumns;
+} tStatus,*tStatusPtr;
+</code></pre>
+<h4 id="feditcheck">feditCheck</h4>
+<p>Describe las funciones de validación de los fields</p>
+<pre><code>typedef struct feditCheck{
+  enum EditType tipo; /* predefinida o de usuario */
+  enum EAlign  align; 
+  enum EInsert insert;
+  int (*checkEdit)(int * caracter); /* funcion de usuario */
+  struct feditCheck * siguiente;
+} tfeditCheck, * tfeditCheckPtr;
+</code></pre>
+<h4 id="tedit">tEDIT</h4>
+<p>Contiene la información especifica de los campos fields</p>
+<pre><code>typedef struct {
+   unsigned short secret; /* mostrar con * */
+   int chToEDIT;  /* caracter de muestra */
+   int editType; /* validación */
+   unsigned short autoComplet; 
+} tEDIT, * tEDITPtr;
+</code></pre>
+<h4 id="tvisual">tVisual</h4>
+<p>Estructura  maestra de visualización con todo lo necesario</p>
+<pre><code>typedef struct {
+   WINDOW * win; /* ncurses window */
+   WINDOW * wBack; /* ncurses window to restore */
+   unsigned short scroll; /* tiene scroll */
+   tChAttr color;  /* color */
+   tDim dimension; /* dimension */
+   tCursor cursor; /* cursor *7
+   tStatus status; /estado */
+} tVisual,*tVisualPtr;
+</code></pre>
+<h4 id="tcomponent">tComponent</h4>
+<p>Estructura que define el componente</p>
+<pre><code>typedef struct miComponente{
+   int id;   
+   char name[MAX_COMPONENT_NAME];
+   enum CComponents type;
+   void * parent;   /* panel del que cuelga */
+   tVisual * visual; /* información para visualizacion */
+   tText * text;     /* información a representar */
+   tEDIT * editMode;  /* solo para tipo fields */
+   tmapKeys * mapkey; /* mapa de teclas */
+   tMove * move;    /* movimientos */
+   tFActionPanel * personalAction; /* acciones de usuario */
+   tFComponent * personalFComponent; /* capturas del ciclo de vida */
+} tComponent, * tComponentPtr;
+</code></pre>
+<blockquote>
+<p>Nos saltamos la descripción de las estructuras tmapKeys, tMove,<br>
+tFactionPanel y tFComponent por ser triviales</p>
+</blockquote>
+<h4 id="tpanel">tPanel</h4>
+<p>Estructura que da soporte al panel</p>
+<pre><code>typedef struct {
+   int id;
+   char name[MAX_NAME_VIEW];
+   unsigned short opToMade; /* al eliminar */
+   char title[MAX_VIEW_TITLE]; /* titulo */
+   tVisual * visual;  /* información de visualizacion */
+   tFPanel * personalFPanel; 
+   tMove * move;
+   tFActionPanel * personalAction;
+   tlComponent * elements; /* lista de componentes */
+   tComponent * activeElement; /* componente activo */
+} tPanel, * tPanelPtr;
+
+typedef struct tableColumn{
+   char * title;
+   unsigned short len;
+   struct tableColumn * next;
+} tTableColumn, * tTableColumnPtr;
+</code></pre>
+<h4 id="ttable">tTable</h4>
+<p>Estructura que soporta las tablas</p>
+<pre><code>typedef struct {
+   int id;
+   char name[MAX_NAME_VIEW];
+   unsigned short opToMade; /* al eliminar */
+   char title[MAX_VIEW_TITLE];
+   tVisualPtr vTable;  /* Visual del conjunto head + data */
+   tVisualPtr vHead; /* Visual de la cabecera */
+   tVisualPtr vData; /* Visual de los datos */
+   unsigned short vline; /vertical line */
+   unsigned short hline; /* horizontal line */
+   unsigned short nColumns; /* nro de columnas visibles */
+   unsigned short nLines;  /* nro de columnas visibles */
+   tText * text;        /* datos. */
+   tmapKeys * mapkey;   /* mapa de teclado */
+   tMove * move;
+   tFActionTable * personalAction;
+   tFTable * personalFTable;
+   tTableColumnPtr columns; /* columnas */
+} tTable, * tTablePtr;
+
+typedef struct tableColumn{  
+   char * title;            /* Titulo columna */
+   unsigned short len;      /* Tamaño */
+   struct tableColumn * next;
+} tTableColumn, * tTableColumnPtr;
+</code></pre>
+<h4 id="tedit-1">tEdit</h4>
+<p>Estructura de la vista Edit.</p>
+<pre><code>typedef struct {
+   int id;
+   char name[MAX_NAME_VIEW];
+   char file[MAX_NAME_FILE];
+   unsigned short opToMade; /* al eliminar */
+   char title[MAX_VIEW_TITLE];
+   tVisualPtr vHead; /* visual de la cabecera */
+   tVisualPtr vData; /* visual de los datos. */
+   tText * text;     /* información actual */
+   tmapKeys * mapkey; /* mapa de teclado */
+   enum EMode mode;   /* ROnly o RW */
+   tMove * move;
+   tFActionEdit * personalAction;
+   tFEdit * personalFEdit;
+} tEdit, * tEditPtr;
+</code></pre>
+<h4 id="tview">tView</h4>
+<p>Las conjunto de vistas estan soportadas por la estructura tView.</p>
+<pre><code>typedef struct {
+ enum CViews type; /* panel/table/edit */
+ unsigned short level; /* nivel */
+ WINDOW * wBack;  /* ventana a mostrar al ocultar */
+ tCaller caller;  /* quien nos ha llamado. */
+ union {
+    tPanel * panel;
+    tTable * table;
+    tEdit * edit;
+    } view;
+}tView,*tViewPtr;
+</code></pre>
+<h3 id="api">API</h3>
+<h3 id="errores-1">errores</h3>
+<p>Se incluye en el fichero error.h</p>
+<pre><code>/*
+ * Initialization, refer if must print the errors and the file to do.
+ * by default no print
+ */
+void ERR_printError(int print,char * file);
+
+/* Declare a fatal error, print de mesaje y exit */
+void ERR_fatalError(int error, char* format,...);
+
+/* Declare a regular error.  */
+void ERR_Error(int error, char * format,... );
+
+/* Indicate if error */
+int ERR_isError();
+
+/* Return the last error if any and restore a no error.  */
+int ERR_lastError();
+</code></pre>
+<h3 id="colores">colores</h3>
+<p>Se incluye en el hdrs color.h</p>
+<pre><code> * Initialize the colors,
+ * Mandatory */
+int COLOR_inicializar(unsigned short useColor);
+/* Get the pair color for a bg, fg color */
+int COLOR_get(unsigned short bg, unsigned short fg);
+/* Get the bg of a colorpair */
+int COLOR_getBackground(int colorpair );
+/* Get the fg of a colorpair */
+int COLOR_getForeground(int colorpair );
+/* Add the WA font to color struct */
+int COLOR_Attrb(tChAttr * color,int attributo);
+</code></pre>
 <h2 id="manage-file-publication">Manage file publication</h2>
 <p>Since one file can be published to multiple locations, you can list and manage publish locations by clicking <strong>File publication</strong> in the <strong>Publish</strong> sub-menu. This allows you to list and remove publication locations that are linked to your file.</p>
 <h1 id="markdown-extensions">Markdown extensions</h1>
@@ -1559,7 +1796,7 @@ postDestroy=“callback” (optional)<br>
 </blockquote>
 <h2 id="uml-diagrams">UML diagrams</h2>
 <p>You can render UML diagrams using <a href="https://mermaidjs.github.io/">Mermaid</a>. For example, this will produce a sequence diagram:</p>
-<pre class=" language-mermaid"><svg id="mermaid-svg-xvcGUjQ1QpbiSMMb" width="100%" xmlns="http://www.w3.org/2000/svg" height="543" style="max-width: 814px;" viewBox="-50 -10 814 543"><style>#mermaid-svg-xvcGUjQ1QpbiSMMb{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}#mermaid-svg-xvcGUjQ1QpbiSMMb .error-icon{fill:#552222;}#mermaid-svg-xvcGUjQ1QpbiSMMb .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-xvcGUjQ1QpbiSMMb .edge-thickness-normal{stroke-width:2px;}#mermaid-svg-xvcGUjQ1QpbiSMMb .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-xvcGUjQ1QpbiSMMb .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-xvcGUjQ1QpbiSMMb .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-xvcGUjQ1QpbiSMMb .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-xvcGUjQ1QpbiSMMb .marker{fill:#666;stroke:#666;}#mermaid-svg-xvcGUjQ1QpbiSMMb .marker.cross{stroke:#666;}#mermaid-svg-xvcGUjQ1QpbiSMMb svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-xvcGUjQ1QpbiSMMb .actor{stroke:hsl(0,0%,83%);fill:#eee;}#mermaid-svg-xvcGUjQ1QpbiSMMb text.actor > tspan{fill:#333;stroke:none;}#mermaid-svg-xvcGUjQ1QpbiSMMb .actor-line{stroke:#666;}#mermaid-svg-xvcGUjQ1QpbiSMMb .messageLine0{stroke-width:1.5;stroke-dasharray:none;stroke:#333;}#mermaid-svg-xvcGUjQ1QpbiSMMb .messageLine1{stroke-width:1.5;stroke-dasharray:2,2;stroke:#333;}#mermaid-svg-xvcGUjQ1QpbiSMMb #arrowhead path{fill:#333;stroke:#333;}#mermaid-svg-xvcGUjQ1QpbiSMMb .sequenceNumber{fill:white;}#mermaid-svg-xvcGUjQ1QpbiSMMb #sequencenumber{fill:#333;}#mermaid-svg-xvcGUjQ1QpbiSMMb #crosshead path{fill:#333;stroke:#333;}#mermaid-svg-xvcGUjQ1QpbiSMMb .messageText{fill:#333;stroke:#333;}#mermaid-svg-xvcGUjQ1QpbiSMMb .labelBox{stroke:hsl(0,0%,83%);fill:#eee;}#mermaid-svg-xvcGUjQ1QpbiSMMb .labelText,#mermaid-svg-xvcGUjQ1QpbiSMMb .labelText > tspan{fill:#333;stroke:none;}#mermaid-svg-xvcGUjQ1QpbiSMMb .loopText,#mermaid-svg-xvcGUjQ1QpbiSMMb .loopText > tspan{fill:#333;stroke:none;}#mermaid-svg-xvcGUjQ1QpbiSMMb .loopLine{stroke-width:2px;stroke-dasharray:2,2;stroke:hsl(0,0%,83%);fill:hsl(0,0%,83%);}#mermaid-svg-xvcGUjQ1QpbiSMMb .note{stroke:hsl(60,100%,23.3333333333%);fill:#ffa;}#mermaid-svg-xvcGUjQ1QpbiSMMb .noteText,#mermaid-svg-xvcGUjQ1QpbiSMMb .noteText > tspan{fill:#333;stroke:none;}#mermaid-svg-xvcGUjQ1QpbiSMMb .activation0{fill:#f4f4f4;stroke:#666;}#mermaid-svg-xvcGUjQ1QpbiSMMb .activation1{fill:#f4f4f4;stroke:#666;}#mermaid-svg-xvcGUjQ1QpbiSMMb .activation2{fill:#f4f4f4;stroke:#666;}#mermaid-svg-xvcGUjQ1QpbiSMMb:root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-svg-xvcGUjQ1QpbiSMMb sequence{fill:apa;}</style><g></g><g><line id="actor6" x1="75" y1="5" x2="75" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="75" dy="0">Alice</tspan></text></g><g><line id="actor7" x1="318" y1="5" x2="318" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="243" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="318" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="318" dy="0">Bob</tspan></text></g><g><line id="actor8" x1="539" y1="5" x2="539" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="464" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="539" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="539" dy="0">John</tspan></text></g><defs><marker id="arrowhead" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><defs><marker id="filled-head" refX="18" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 18,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><defs><marker id="sequencenumber" refX="15" refY="15" markerWidth="60" markerHeight="40" orient="auto"><circle cx="15" cy="15" r="6"></circle></marker></defs><text x="197" y="80" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Hello Bob, how are you?</text><line x1="75" y1="113" x2="318" y2="113" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="fill: none;"></line><text x="429" y="128" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">How about you John?</text><line x1="318" y1="161" x2="539" y2="161" class="messageLine1" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="197" y="176" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">I am good thanks!</text><line x1="318" y1="209" x2="75" y2="209" class="messageLine1" stroke-width="2" stroke="none" marker-end="url(#crosshead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="429" y="224" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">I am good thanks!</text><line x1="318" y1="257" x2="539" y2="257" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#crosshead)" style="fill: none;"></line><g><rect x="564" y="267" fill="#EDF2AE" stroke="#666" width="150" height="84" rx="0" ry="0" class="note"></rect><text x="639" y="272" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">Bob thinks a long</tspan></text><text x="639" y="288" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">long time, so long</tspan></text><text x="639" y="304" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">that the text does</tspan></text><text x="639" y="320" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">not fit on a row.</tspan></text></g><text x="197" y="366" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Checking with John...</text><line x1="318" y1="399" x2="75" y2="399" class="messageLine1" stroke-width="2" stroke="none" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="307" y="414" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Yes... John, how are you?</text><line x1="75" y1="447" x2="539" y2="447" class="messageLine0" stroke-width="2" stroke="none" style="fill: none;"></line><g><rect x="0" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="75" dy="0">Alice</tspan></text></g><g><rect x="243" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="318" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="318" dy="0">Bob</tspan></text></g><g><rect x="464" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="539" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="539" dy="0">John</tspan></text></g></svg></pre>
+<pre class=" language-mermaid"><svg id="mermaid-svg-Zy08jBEzkiDQCpQ8" width="100%" xmlns="http://www.w3.org/2000/svg" height="543" style="max-width: 814px;" viewBox="-50 -10 814 543"><style>#mermaid-svg-Zy08jBEzkiDQCpQ8{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .error-icon{fill:#552222;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .edge-thickness-normal{stroke-width:2px;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .marker{fill:#666;stroke:#666;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .marker.cross{stroke:#666;}#mermaid-svg-Zy08jBEzkiDQCpQ8 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .actor{stroke:hsl(0,0%,83%);fill:#eee;}#mermaid-svg-Zy08jBEzkiDQCpQ8 text.actor > tspan{fill:#333;stroke:none;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .actor-line{stroke:#666;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .messageLine0{stroke-width:1.5;stroke-dasharray:none;stroke:#333;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .messageLine1{stroke-width:1.5;stroke-dasharray:2,2;stroke:#333;}#mermaid-svg-Zy08jBEzkiDQCpQ8 #arrowhead path{fill:#333;stroke:#333;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .sequenceNumber{fill:white;}#mermaid-svg-Zy08jBEzkiDQCpQ8 #sequencenumber{fill:#333;}#mermaid-svg-Zy08jBEzkiDQCpQ8 #crosshead path{fill:#333;stroke:#333;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .messageText{fill:#333;stroke:#333;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .labelBox{stroke:hsl(0,0%,83%);fill:#eee;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .labelText,#mermaid-svg-Zy08jBEzkiDQCpQ8 .labelText > tspan{fill:#333;stroke:none;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .loopText,#mermaid-svg-Zy08jBEzkiDQCpQ8 .loopText > tspan{fill:#333;stroke:none;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .loopLine{stroke-width:2px;stroke-dasharray:2,2;stroke:hsl(0,0%,83%);fill:hsl(0,0%,83%);}#mermaid-svg-Zy08jBEzkiDQCpQ8 .note{stroke:hsl(60,100%,23.3333333333%);fill:#ffa;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .noteText,#mermaid-svg-Zy08jBEzkiDQCpQ8 .noteText > tspan{fill:#333;stroke:none;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .activation0{fill:#f4f4f4;stroke:#666;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .activation1{fill:#f4f4f4;stroke:#666;}#mermaid-svg-Zy08jBEzkiDQCpQ8 .activation2{fill:#f4f4f4;stroke:#666;}#mermaid-svg-Zy08jBEzkiDQCpQ8:root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-svg-Zy08jBEzkiDQCpQ8 sequence{fill:apa;}</style><g></g><g><line id="actor9" x1="75" y1="5" x2="75" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="75" dy="0">Alice</tspan></text></g><g><line id="actor10" x1="318" y1="5" x2="318" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="243" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="318" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="318" dy="0">Bob</tspan></text></g><g><line id="actor11" x1="539" y1="5" x2="539" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="464" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="539" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="539" dy="0">John</tspan></text></g><defs><marker id="arrowhead" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><defs><marker id="filled-head" refX="18" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 18,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><defs><marker id="sequencenumber" refX="15" refY="15" markerWidth="60" markerHeight="40" orient="auto"><circle cx="15" cy="15" r="6"></circle></marker></defs><text x="197" y="80" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Hello Bob, how are you?</text><line x1="75" y1="113" x2="318" y2="113" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="fill: none;"></line><text x="429" y="128" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">How about you John?</text><line x1="318" y1="161" x2="539" y2="161" class="messageLine1" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="197" y="176" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">I am good thanks!</text><line x1="318" y1="209" x2="75" y2="209" class="messageLine1" stroke-width="2" stroke="none" marker-end="url(#crosshead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="429" y="224" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">I am good thanks!</text><line x1="318" y1="257" x2="539" y2="257" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#crosshead)" style="fill: none;"></line><g><rect x="564" y="267" fill="#EDF2AE" stroke="#666" width="150" height="84" rx="0" ry="0" class="note"></rect><text x="639" y="272" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">Bob thinks a long</tspan></text><text x="639" y="288" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">long time, so long</tspan></text><text x="639" y="304" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">that the text does</tspan></text><text x="639" y="320" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">not fit on a row.</tspan></text></g><text x="197" y="366" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Checking with John...</text><line x1="318" y1="399" x2="75" y2="399" class="messageLine1" stroke-width="2" stroke="none" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="307" y="414" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Yes... John, how are you?</text><line x1="75" y1="447" x2="539" y2="447" class="messageLine0" stroke-width="2" stroke="none" style="fill: none;"></line><g><rect x="0" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="75" dy="0">Alice</tspan></text></g><g><rect x="243" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="318" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="318" dy="0">Bob</tspan></text></g><g><rect x="464" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="539" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="539" dy="0">John</tspan></text></g></svg></pre>
 <p>And this will produce a flow chart:</p>
-<pre class=" language-mermaid"><svg id="mermaid-svg-iKsoDsTujwD42rfp" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="174.4375" style="max-width: 502.75px;" viewBox="0 0 502.75 174.4375"><style>#mermaid-svg-iKsoDsTujwD42rfp{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}#mermaid-svg-iKsoDsTujwD42rfp .error-icon{fill:#552222;}#mermaid-svg-iKsoDsTujwD42rfp .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-iKsoDsTujwD42rfp .edge-thickness-normal{stroke-width:2px;}#mermaid-svg-iKsoDsTujwD42rfp .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-iKsoDsTujwD42rfp .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-iKsoDsTujwD42rfp .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-iKsoDsTujwD42rfp .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-iKsoDsTujwD42rfp .marker{fill:#666;stroke:#666;}#mermaid-svg-iKsoDsTujwD42rfp .marker.cross{stroke:#666;}#mermaid-svg-iKsoDsTujwD42rfp svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-iKsoDsTujwD42rfp .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#mermaid-svg-iKsoDsTujwD42rfp .cluster-label text{fill:#333;}#mermaid-svg-iKsoDsTujwD42rfp .cluster-label span{color:#333;}#mermaid-svg-iKsoDsTujwD42rfp .label text,#mermaid-svg-iKsoDsTujwD42rfp span{fill:#000000;color:#000000;}#mermaid-svg-iKsoDsTujwD42rfp .node rect,#mermaid-svg-iKsoDsTujwD42rfp .node circle,#mermaid-svg-iKsoDsTujwD42rfp .node ellipse,#mermaid-svg-iKsoDsTujwD42rfp .node polygon,#mermaid-svg-iKsoDsTujwD42rfp .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-svg-iKsoDsTujwD42rfp .node .label{text-align:center;}#mermaid-svg-iKsoDsTujwD42rfp .node.clickable{cursor:pointer;}#mermaid-svg-iKsoDsTujwD42rfp .arrowheadPath{fill:#333333;}#mermaid-svg-iKsoDsTujwD42rfp .edgePath .path{stroke:#666;stroke-width:1.5px;}#mermaid-svg-iKsoDsTujwD42rfp .flowchart-link{stroke:#666;fill:none;}#mermaid-svg-iKsoDsTujwD42rfp .edgeLabel{background-color:white;text-align:center;}#mermaid-svg-iKsoDsTujwD42rfp .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-svg-iKsoDsTujwD42rfp .cluster rect{fill:hsl(210,66.6666666667%,95%);stroke:#26a;stroke-width:1px;}#mermaid-svg-iKsoDsTujwD42rfp .cluster text{fill:#333;}#mermaid-svg-iKsoDsTujwD42rfp .cluster span{color:#333;}#mermaid-svg-iKsoDsTujwD42rfp div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(-160,0%,93.3333333333%);border:1px solid #26a;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-svg-iKsoDsTujwD42rfp:root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-svg-iKsoDsTujwD42rfp flowchart{fill:apa;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-A LE-B" id="L-A-B" style="opacity: 1;"><path class="path" d="M109.66244612068965,67.609375L170.0546875,38.859375L246.125,38.859375" marker-end="url(https://stackedit.io/app#arrowhead9)" style="fill:none"></path><defs><marker id="arrowhead9" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-A LE-C" id="L-A-C" style="opacity: 1;"><path class="path" d="M109.66244612068965,114.328125L170.0546875,143.078125L226.921875,143.078125" marker-end="url(https://stackedit.io/app#arrowhead10)" style="fill:none"></path><defs><marker id="arrowhead10" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-B LE-D" id="L-B-D" style="opacity: 1;"><path class="path" d="M307.84375,38.859375L352.046875,38.859375L400.1027516807447,68.9128733192553" marker-end="url(https://stackedit.io/app#arrowhead11)" style="fill:none"></path><defs><marker id="arrowhead11" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-C LE-D" id="L-C-D" style="opacity: 1;"><path class="path" d="M327.046875,143.078125L352.046875,143.078125L400.1027516807447,114.0246266807447" marker-end="url(https://stackedit.io/app#arrowhead12)" style="fill:none"></path><defs><marker id="arrowhead12" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(170.0546875,38.859375)" style="opacity: 1;"><g transform="translate(-31.8671875,-13.359375)" class="label"><rect rx="0" ry="0" width="63.734375" height="26.71875"></rect><foreignObject width="63.734375" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-B" class="edgeLabel L-LS-A' L-LE-B">Link text</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-C" class="edgeLabel L-LS-A' L-LE-C"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-D" class="edgeLabel L-LS-B' L-LE-D"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-C-D" class="edgeLabel L-LS-C' L-LE-D"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-40" transform="translate(60.59375,90.96875)" style="opacity: 1;"><rect rx="0" ry="0" x="-52.59375" y="-23.359375" width="105.1875" height="46.71875" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-42.59375,-13.359375)"><foreignObject width="85.1875" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Square Rect</div></foreignObject></g></g></g><g class="node default" id="flowchart-B-41" transform="translate(276.984375,38.859375)" style="opacity: 1;"><circle x="-30.859375" y="-23.359375" r="30.859375" class="label-container"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-20.859375,-13.359375)"><foreignObject width="41.71875" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Circle</div></foreignObject></g></g></g><g class="node default" id="flowchart-C-43" transform="translate(276.984375,143.078125)" style="opacity: 1;"><rect rx="5" ry="5" x="-50.0625" y="-23.359375" width="100.125" height="46.71875" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-40.0625,-13.359375)"><foreignObject width="80.125" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Round Rect</div></foreignObject></g></g></g><g class="node default" id="flowchart-D-45" transform="translate(435.8984375,90.96875)" style="opacity: 1;"><polygon points="58.8515625,0 117.703125,-58.8515625 58.8515625,-117.703125 0,-58.8515625" transform="translate(-58.8515625,58.8515625)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-32.03125,-13.359375)"><foreignObject width="64.0625" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Rhombus</div></foreignObject></g></g></g></g></g></g></svg></pre>
+<pre class=" language-mermaid"><svg id="mermaid-svg-pPWpMpKnvdt6MXrK" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="174.4375" style="max-width: 502.75px;" viewBox="0 0 502.75 174.4375"><style>#mermaid-svg-pPWpMpKnvdt6MXrK{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}#mermaid-svg-pPWpMpKnvdt6MXrK .error-icon{fill:#552222;}#mermaid-svg-pPWpMpKnvdt6MXrK .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-pPWpMpKnvdt6MXrK .edge-thickness-normal{stroke-width:2px;}#mermaid-svg-pPWpMpKnvdt6MXrK .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-pPWpMpKnvdt6MXrK .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-pPWpMpKnvdt6MXrK .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-pPWpMpKnvdt6MXrK .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-pPWpMpKnvdt6MXrK .marker{fill:#666;stroke:#666;}#mermaid-svg-pPWpMpKnvdt6MXrK .marker.cross{stroke:#666;}#mermaid-svg-pPWpMpKnvdt6MXrK svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-pPWpMpKnvdt6MXrK .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#mermaid-svg-pPWpMpKnvdt6MXrK .cluster-label text{fill:#333;}#mermaid-svg-pPWpMpKnvdt6MXrK .cluster-label span{color:#333;}#mermaid-svg-pPWpMpKnvdt6MXrK .label text,#mermaid-svg-pPWpMpKnvdt6MXrK span{fill:#000000;color:#000000;}#mermaid-svg-pPWpMpKnvdt6MXrK .node rect,#mermaid-svg-pPWpMpKnvdt6MXrK .node circle,#mermaid-svg-pPWpMpKnvdt6MXrK .node ellipse,#mermaid-svg-pPWpMpKnvdt6MXrK .node polygon,#mermaid-svg-pPWpMpKnvdt6MXrK .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-svg-pPWpMpKnvdt6MXrK .node .label{text-align:center;}#mermaid-svg-pPWpMpKnvdt6MXrK .node.clickable{cursor:pointer;}#mermaid-svg-pPWpMpKnvdt6MXrK .arrowheadPath{fill:#333333;}#mermaid-svg-pPWpMpKnvdt6MXrK .edgePath .path{stroke:#666;stroke-width:1.5px;}#mermaid-svg-pPWpMpKnvdt6MXrK .flowchart-link{stroke:#666;fill:none;}#mermaid-svg-pPWpMpKnvdt6MXrK .edgeLabel{background-color:white;text-align:center;}#mermaid-svg-pPWpMpKnvdt6MXrK .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-svg-pPWpMpKnvdt6MXrK .cluster rect{fill:hsl(210,66.6666666667%,95%);stroke:#26a;stroke-width:1px;}#mermaid-svg-pPWpMpKnvdt6MXrK .cluster text{fill:#333;}#mermaid-svg-pPWpMpKnvdt6MXrK .cluster span{color:#333;}#mermaid-svg-pPWpMpKnvdt6MXrK div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(-160,0%,93.3333333333%);border:1px solid #26a;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-svg-pPWpMpKnvdt6MXrK:root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-svg-pPWpMpKnvdt6MXrK flowchart{fill:apa;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-A LE-B" id="L-A-B" style="opacity: 1;"><path class="path" d="M109.66244612068965,67.609375L170.0546875,38.859375L246.125,38.859375" marker-end="url(https://stackedit.io/app#arrowhead13)" style="fill:none"></path><defs><marker id="arrowhead13" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-A LE-C" id="L-A-C" style="opacity: 1;"><path class="path" d="M109.66244612068965,114.328125L170.0546875,143.078125L226.921875,143.078125" marker-end="url(https://stackedit.io/app#arrowhead14)" style="fill:none"></path><defs><marker id="arrowhead14" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-B LE-D" id="L-B-D" style="opacity: 1;"><path class="path" d="M307.84375,38.859375L352.046875,38.859375L400.1027516807447,68.9128733192553" marker-end="url(https://stackedit.io/app#arrowhead15)" style="fill:none"></path><defs><marker id="arrowhead15" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-C LE-D" id="L-C-D" style="opacity: 1;"><path class="path" d="M327.046875,143.078125L352.046875,143.078125L400.1027516807447,114.0246266807447" marker-end="url(https://stackedit.io/app#arrowhead16)" style="fill:none"></path><defs><marker id="arrowhead16" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(170.0546875,38.859375)" style="opacity: 1;"><g transform="translate(-31.8671875,-13.359375)" class="label"><rect rx="0" ry="0" width="63.734375" height="26.71875"></rect><foreignObject width="63.734375" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-B" class="edgeLabel L-LS-A' L-LE-B">Link text</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-C" class="edgeLabel L-LS-A' L-LE-C"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-D" class="edgeLabel L-LS-B' L-LE-D"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-C-D" class="edgeLabel L-LS-C' L-LE-D"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-56" transform="translate(60.59375,90.96875)" style="opacity: 1;"><rect rx="0" ry="0" x="-52.59375" y="-23.359375" width="105.1875" height="46.71875" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-42.59375,-13.359375)"><foreignObject width="85.1875" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Square Rect</div></foreignObject></g></g></g><g class="node default" id="flowchart-B-57" transform="translate(276.984375,38.859375)" style="opacity: 1;"><circle x="-30.859375" y="-23.359375" r="30.859375" class="label-container"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-20.859375,-13.359375)"><foreignObject width="41.71875" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Circle</div></foreignObject></g></g></g><g class="node default" id="flowchart-C-59" transform="translate(276.984375,143.078125)" style="opacity: 1;"><rect rx="5" ry="5" x="-50.0625" y="-23.359375" width="100.125" height="46.71875" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-40.0625,-13.359375)"><foreignObject width="80.125" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Round Rect</div></foreignObject></g></g></g><g class="node default" id="flowchart-D-61" transform="translate(435.8984375,90.96875)" style="opacity: 1;"><polygon points="58.8515625,0 117.703125,-58.8515625 58.8515625,-117.703125 0,-58.8515625" transform="translate(-58.8515625,58.8515625)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-32.03125,-13.359375)"><foreignObject width="64.0625" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Rhombus</div></foreignObject></g></g></g></g></g></g></svg></pre>
 
