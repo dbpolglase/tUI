@@ -615,7 +615,7 @@ Text: NAME:</p>
 <p>A continuación vamos a definir el campo nombre editable.<br>
 Para lo cual retrocedemos y seleccionamos NEW FIELD e introducimos los datos:</p>
 <p>ID: 1<br>
-Name: nombre<br>
+Name: name<br>
 Visible Y<br>
 Selec Y,<br>
 Color, colorForm<br>
@@ -623,8 +623,11 @@ Auto Enter Y, el auto enter fuerza un evento enter en el momento que se rellena 
 Secret N, los campos que se marcan como secret muestran * en lugar del echo normal.<br>
 Keymap, si pulsamos sobre este botón nos permite seleccionar entre los keymap de usuario que hayamos definido. En nuestro caso el de defecto.<br>
 Ch. Ed: . es el  carácter a mostrar en las posiciones no rellenas del campo, por defecto son ‘.’ que indican el tamaño del campo.<br>
-Edit Functions: vamos a pulsar sobre el mismo y seleccionar apha como validación.<br>
-Border, N<br>
+Edit Functions: vamos a pulsar sobre este texto y seleccionar apha como validación.</p>
+<blockquote>
+<p>Este es un ejemplo list button con display OPEN</p>
+</blockquote>
+<p>Border, N<br>
 Dimension, 24,2 (a continuación de la etiqueta) y 20,1 (campo de 20 caracteres)<br>
 Texto: no indicamos nada ya que no queremos un valor por defecto.</p>
 <p>Salvamos y probamos.</p>
@@ -691,8 +694,7 @@ Text: MADE</p>
 <p>Vamos a definir los movimientos del formulario:<br>
 En el panel: Form1 aplicamos el movimiento "-1: " al evento Out (Formulario de Panel -&gt; Moves). Esto provocará que la tecla ESC en cualquier lugar del formulario retorne a la vista anterior.</p>
 <blockquote>
-<p>Los movimientos tipo -n, indica a la aplicación hacer un retroceso de<br>
-n en el camino de llamadas que ha terminado en esta vista.<br>
+<p>Los movimientos tipo -n, indica a la aplicación hacer “n” retrocesos en el camino de vistas  que ha terminado en esta vista.<br>
 De esta forma una vista puede ser invocada desde distintos puntos y retornar de forma natural a los mismos.</p>
 </blockquote>
 <p>En la vista menu1 / boton2 vamos a aplicar en  Moves form1:name para el evento Enter, de forma que se habrá el formulario al pulsar sobre el botón2 del menu1.</p>
@@ -720,15 +722,12 @@ Previous, Up, ":1</p>
 Enter, Next, “:4”<br>
 Previous, :":2"</p>
 <blockquote>
-<p>Obsérvese que no indicamos tratamiento para los eventos Up, Down, en<br>
-este caso up, down se utilizan para elegir el navegar dentro de la<br>
-lista de valores del list buttón si no lo tratamos no será posible la<br>
-navegación.</p>
+<p>Obsérvese que no indicamos tratamiento para los eventos Up, Down, en este caso up, down se utilizan para elegir el navegar dentro de la lista de valores del list buttón por lo que si los tratamos seria imposible cambiar entre valores.</p>
 </blockquote>
 <p>En el elemento botón indicamos:<br>
 Enter, -:</p>
 <blockquote>
-<p>Es decir al pulsar sobre el botón salir o volver al menú</p>
+<p>-: es equivalente a -1: Es decir al pulsar sobre el botón salir o volver al menú</p>
 </blockquote>
 <p>Next down, :1<br>
 Previous,up , :-3</p>
@@ -739,7 +738,7 @@ El Xml tendrá un aspecto como este:</p>
 &lt;TUI xmlns:tui="http://tui"&gt;
         &lt;Proyect&gt;
                 &lt;Name&gt;Application1&lt;/Name&gt;
-                &lt;Description&gt;my first tUI application&lt;/Description&gt;
+                &lt;Description&gt;My first tui Application&lt;/Description&gt;
                 &lt;Main&gt;&lt;/Main&gt;
                 &lt;End&gt;&lt;/End&gt;
                 &lt;Init&gt;menu1:boton1&lt;/Init&gt;
@@ -747,14 +746,15 @@ El Xml tendrá un aspecto como este:</p>
                         &lt;Mouse/&gt;
                         &lt;Color/&gt;
                         &lt;Error&gt;errors.err&lt;/Error&gt;
-                        &lt;Borders Up="45" Dw="45" Lf="124" Rg="124" Cul="43" Cur="43" Cdl="43" Cdr="43"/&gt;
-                        &lt;SBorders Up="45" Dw="45" Lf="124" Rg="35" Cul="43" Cur="43" Cdl="94" Cdr="118"/&gt;
+                        &lt;Borders Lf="124" Rg="124" Up="45" Dw="45" Cul="43" Cur="43" Cdl="43" Cdr="43"/&gt;
+                        &lt;SBorders Lf="124" Rg="35" Up="45" Dw="45" Cul="43" Cur="43" Cdl="94" Cdr="118"/&gt;
                 &lt;/Properties&gt;
         &lt;/Proyect&gt;
         &lt;Colors&gt;
                 &lt;Color Name="colorMenu" foreground="0" background="2" attr="WA_NORMAL"/&gt;
+                &lt;Color Name="colorForm" foreground="3" background="1" attr="WA_NORMAL"/&gt;
         &lt;/Colors&gt;
-         &lt;Msgs&gt;
+        &lt;Msgs&gt;
         &lt;/Msgs&gt;
         &lt;Panels&gt;
                 &lt;Panel Id="0" Name="menu1" opToMade="none" Level="1"&gt;
@@ -764,19 +764,19 @@ El Xml tendrá un aspecto como este:</p>
                         &lt;Move  out="exit:" /&gt;
                         &lt;FAction /&gt;
                 &lt;Components&gt;
-                &lt;Component Id="0" Name="boton1" Type="button" &gt;
-                        &lt;Color&gt;colorMenu&lt;/Color&gt;
-                        &lt;Dimension border="1" x="0" y="0" high="3" width="10"/&gt;
-                        &lt;Text&gt;OPCION A&lt;/Text&gt;
-                        &lt;Move  enter="nivel2:boton1"  next=":boton2"  previous=":boton2"  left=":boton2"  right=":boton2" /&gt;
-                        &lt;FAction /&gt;
-                        &lt;FComponent /&gt;
-                &lt;/Component&gt;
                 &lt;Component Id="0" Name="boton2" Type="button" &gt;
                         &lt;Color&gt;colorMenu&lt;/Color&gt;
                         &lt;Dimension border="1" x="12" y="0" high="3" width="10"/&gt;
-                        &lt;Text&gt;OPCION B&lt;/Text&gt;
+                        &lt;Text&gt;OPTION B&lt;/Text&gt;
                         &lt;Move  enter="form1:name"  next=":boton1"  previous=":boton1"  left=":boton1"  right=":boton1" /&gt;
+                        &lt;FAction /&gt;
+                        &lt;FComponent /&gt;
+                &lt;/Component&gt;
+                &lt;Component Id="0" Name="boton1" Type="button" &gt;
+                        &lt;Color&gt;colorMenu&lt;/Color&gt;
+                        &lt;Dimension border="1" x="0" y="0" high="3" width="10"/&gt;
+                        &lt;Text&gt;OPTION A&lt;/Text&gt;
+                        &lt;Move  enter="nivel2:boton1"  next=":boton2"  previous=":boton2"  left=":boton2"  right=":boton2" /&gt;
                         &lt;FAction /&gt;
                         &lt;FComponent /&gt;
                 &lt;/Component&gt;
@@ -789,34 +789,34 @@ El Xml tendrá un aspecto como este:</p>
                         &lt;Move  out="menu1:boton1" /&gt;
                         &lt;FAction /&gt;
                 &lt;Components&gt;
-                &lt;Component Id="0" Name="boton1" Type="button" &gt;
-                        &lt;Color&gt;colorMenu&lt;/Color&gt;
-                        &lt;Dimension border="1" x="0" y="0" high="3" width="10"/&gt;
-                        &lt;Text&gt;OPCION A&lt;/Text&gt;
-                        &lt;Move  next=":boton2"  previous=":boton2"  left=":boton2"  right=":boton2" /&gt;
-                        &lt;FAction /&gt;
-                        &lt;FComponent /&gt;
-                &lt;/Component&gt;
                 &lt;Component Id="0" Name="boton2" Type="button" &gt;
                         &lt;Color&gt;colorMenu&lt;/Color&gt;
                         &lt;Dimension border="1" x="12" y="0" high="3" width="10"/&gt;
-                        &lt;Text&gt;OPCION B&lt;/Text&gt;
+                        &lt;Text&gt;OPTION B&lt;/Text&gt;
                         &lt;Move  next=":boton1"  previous=":boton1"  left=":boton1"  right=":boton1" /&gt;
+                        &lt;FAction /&gt;
+                        &lt;FComponent /&gt;
+                &lt;/Component&gt;
+                &lt;Component Id="0" Name="boton1" Type="button" &gt;
+                        &lt;Color&gt;colorMenu&lt;/Color&gt;
+                        &lt;Dimension border="1" x="0" y="0" high="3" width="10"/&gt;
+                        &lt;Text&gt;OPTION A&lt;/Text&gt;
+                        &lt;Move  next=":boton2"  previous=":boton2"  left=":boton2"  right=":boton2" /&gt;
                         &lt;FAction /&gt;
                         &lt;FComponent /&gt;
                 &lt;/Component&gt;
                 &lt;/Components&gt;
                 &lt;/Panel&gt;
                 &lt;Panel Id="0" Name="form1" opToMade="destroy" Level="2"&gt;
-                &lt;Title&gt;Mi first form&lt;/Title&gt;
-                        &lt;Color&gt;colorMenu&lt;/Color&gt;
+                &lt;Title&gt;My first form&lt;/Title&gt;
+                        &lt;Color&gt;colorForm&lt;/Color&gt;
                         &lt;Dimension border="1" x="5" y="5" high="15" width="60"/&gt;
                         &lt;FPanel /&gt;
-                        &lt;Move  out="-:" /&gt;
+                        &lt;Move  out="-1:" /&gt;
                         &lt;FAction /&gt;
                 &lt;Components&gt;
                 &lt;Component Id="4" Name="done" Type="button" &gt;
-                        &lt;Color&gt;colorMenu&lt;/Color&gt;
+                        &lt;Color&gt;colorForm&lt;/Color&gt;
                         &lt;Dimension border="1" x="25" y="10" high="3" width="10"/&gt;
                         &lt;Text&gt;MADE&lt;/Text&gt;
                         &lt;Move  enter="-:"  next=":1"  previous=":3"  up=":3"  down=":1" /&gt;
@@ -824,44 +824,43 @@ El Xml tendrá un aspecto como este:</p>
                         &lt;FComponent /&gt;
                 &lt;/Component&gt;
                 &lt;Component Id="3" Name="gender" Type="lsbutton" &gt;
-                        &lt;Color&gt;noColor&lt;/Color&gt;
+                        &lt;Color&gt;colorForm&lt;/Color&gt;
                         &lt;Dimension border="1" x="24" y="4" high="5" width="12"/&gt;
                         &lt;Text&gt;MALE&lt;/Text&gt;
                         &lt;Text&gt;FEMALE&lt;/Text&gt;
                         &lt;Text&gt;OTHER&lt;/Text&gt;
-                        &lt;Move  enter=":4"  next=":4"  previous=":2" /&gt;
+                        &lt;Move  enter=":4"  next=":4"  previous=":3" /&gt;
                         &lt;FAction /&gt;
                         &lt;FComponent /&gt;
                 &lt;/Component&gt;
                 &lt;Component Id="0" Name="elist" Type="label" &gt;
-                        &lt;Color&gt;noColor&lt;/Color&gt;
+                        &lt;Color&gt;colorForm&lt;/Color&gt;
                         &lt;Dimension border="0" x="2" y="4" high="1" width="20"/&gt;
-                        &lt;Text&gt;GENDER: &lt;/Text&gt;
+                        &lt;Text&gt;GENDER:&lt;/Text&gt;
                         &lt;Move /&gt;
                         &lt;FAction /&gt;
                         &lt;FComponent /&gt;
                 &lt;/Component&gt;
-                &lt;Component Id="2" Name="check" Type="ckbutton"  Check="y"  chIsCheck="A"  chNoCheck="B" &gt;
-                        &lt;Color&gt;noColor&lt;/Color&gt;
+                &lt;Component Id="2" Name="check" Type="ckbutton"  chIsCheck="A"  chNoCheck="B" &gt;
+                        &lt;Color&gt;colorForm&lt;/Color&gt;
                         &lt;Dimension border="0" x="2" y="3" high="1" width="40"/&gt;
-                        &lt;Text&gt;This is a A-B option Check Button ?&lt;/Text&gt;
+                        &lt;Text&gt;This is a A-B check button, ?&lt;/Text&gt;
                         &lt;Move  enter=":3"  next=":3"  previous=":1"  up=":1"  down=":3" /&gt;
                         &lt;FAction /&gt;
                         &lt;FComponent /&gt;
                 &lt;/Component&gt;
                 &lt;Component Id="1" Name="name" Type="field" &gt;
-                        &lt;Edit editType="none"  auto="y" /&gt;
-                        &lt;Color&gt;noColor&lt;/Color&gt;
+                        &lt;Edit editType="alpha"  auto="y" /&gt;
+                        &lt;Color&gt;colorForm&lt;/Color&gt;
                         &lt;Dimension border="0" x="24" y="2" high="1" width="20"/&gt;
-                        &lt;Text&gt;&lt;/Text&gt;
                         &lt;Move  enter=":2"  next=":2"  previous=":4"  up=":4"  down=":2" /&gt;
                         &lt;FAction /&gt;
                         &lt;FComponent /&gt;
                 &lt;/Component&gt;
                 &lt;Component Id="0" Name="ename" Type="label" &gt;
-                        &lt;Color&gt;colorMenu&lt;/Color&gt;
+                        &lt;Color&gt;colorForm&lt;/Color&gt;
                         &lt;Dimension border="0" x="2" y="2" high="1" width="20"/&gt;
-                        &lt;Text&gt;NAME:&lt;/Text&gt;
+                        &lt;Text&gt;NAME: &lt;/Text&gt;
                         &lt;Move /&gt;
                         &lt;FAction /&gt;
                         &lt;FComponent /&gt;
@@ -878,8 +877,7 @@ Empecemos por el caso más evidente recoger los datos del formulario y hacer alg
 <p>Aquí tenemos un formulario donde podemos asignar un callback a los eventos, en este caso asignamos al Enter: madeForm (p.ej).</p>
 <p>Salvamos y vamos abrimos List-&gt;Calls si lo hemos hecho bien aparecerá una entrada en el para ese componente y el evento ENTER estará asignada la función madeForm</p>
 <blockquote>
-<p>List-&gt;Call es una vista tipo table para navegar a izqu/derecha usa las<br>
-flechas.</p>
+<p>List-&gt;Call es una vista tipo table para navegar a izquierda/derecha usa las flechas.</p>
 </blockquote>
 <h3 id="prototipo">Prototipo</h3>
 <p>Compilemos y vayamos al directorio Application1, en el fichero Application_func.c podemos ver algo como:</p>
@@ -920,28 +918,24 @@ Si indicamos NULL como nView nos referiremos a la vista activa.</p>
 <p>Obtendrá el texto y la línea seleccionada.</p>
 <h3 id="ejemplo">Ejemplo</h3>
 <p>Vamos a obtener los datos y escribirlos en un fichero, modificamos el fichero Application1_func.c del directorio Application1 y escribimos:</p>
-<pre><code>trAction* madeForm (tComponent * component,int key){
-static trAction action;
-int lineSelect;
-char * nameValue;
-int checkValue;
-char * genderValue;
-FILE * fd;
-
- initAction(action);
-
-  fd = fopen("/tmp/tuiApplication","w");
-  nameValue = COMPONENT_getValue(LVIEW_getElement(NULL,"name"));
-  checkValue = COMPONENT_getValue(LVIEW_getElement(NULL,"check"))==NULL?0:1;
-  genderValue = COMPONENT_getValue(LVIEW_getElement(NULL,"gender"));
-  genderValue = COMPONENT_getSelectValue(LVIEW_getElement(NULL,"gender"),&amp;lineSelect);
-  fprintf(fd,"name: %s\n checkValue: %d\n, genderValue: %s \n, genderLine: %d\n",
-nameValue,checkValue,genderValue,lineSelect);
-  fclose(fd);
-
-return &amp;action;
-}
-</code></pre>
+<p>trAction* madeForm (tComponent * component,int key){<br>
+static trAction action;<br>
+int lineSelect;<br>
+char * nameValue;<br>
+int checkValue;<br>
+char * genderValue;<br>
+FILE * fd;</p>
+<p>initAction(action);</p>
+<p>fd = fopen("/tmp/tuiApplication",“w”);<br>
+nameValue = COMPONENT_getValue(LVIEW_getElement(NULL,“name”));<br>
+checkValue =     COMPONENT_getValue(LVIEW_getElement(NULL,“check”))==NULL?0:1;<br>
+genderValue = COMPONENT_getValue(LVIEW_getElement(NULL,“gender”));<br>
+genderValue = COMPONENT_getSelectValue(LVIEW_getElement(NULL,“gender”),&amp;lineSelect);<br>
+fprintf(fd,“name: %s\n checkValue: %d\n, genderValue: %s \n, genderLine: %d\n”,<br>
+nameValue,checkValue,genderValue,lineSelect);<br>
+fclose(fd);</p>
+<p>return &amp;action;<br>
+}</p>
 <p>A continuación cambiamos el makefile_tui y eliminamos el -p en la línea 22 dejando:</p>
 <pre><code>     $(TUI_BUILD) -r -i -f $(TUI_PROYECT).xml
 </code></pre>
@@ -2268,7 +2262,7 @@ finalización de la libreria.</li>
 </blockquote>
 <h2 id="uml-diagrams">UML diagrams</h2>
 <p>You can render UML diagrams using <a href="https://mermaidjs.github.io/">Mermaid</a>. For example, this will produce a sequence diagram:</p>
-<pre class=" language-mermaid"><svg id="mermaid-svg-9rAdlVX9l5Z54mnO" width="100%" xmlns="http://www.w3.org/2000/svg" height="543" style="max-width: 814px;" viewBox="-50 -10 814 543"><style>#mermaid-svg-9rAdlVX9l5Z54mnO{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}#mermaid-svg-9rAdlVX9l5Z54mnO .error-icon{fill:#552222;}#mermaid-svg-9rAdlVX9l5Z54mnO .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-9rAdlVX9l5Z54mnO .edge-thickness-normal{stroke-width:2px;}#mermaid-svg-9rAdlVX9l5Z54mnO .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-9rAdlVX9l5Z54mnO .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-9rAdlVX9l5Z54mnO .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-9rAdlVX9l5Z54mnO .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-9rAdlVX9l5Z54mnO .marker{fill:#666;stroke:#666;}#mermaid-svg-9rAdlVX9l5Z54mnO .marker.cross{stroke:#666;}#mermaid-svg-9rAdlVX9l5Z54mnO svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-9rAdlVX9l5Z54mnO .actor{stroke:hsl(0,0%,83%);fill:#eee;}#mermaid-svg-9rAdlVX9l5Z54mnO text.actor > tspan{fill:#333;stroke:none;}#mermaid-svg-9rAdlVX9l5Z54mnO .actor-line{stroke:#666;}#mermaid-svg-9rAdlVX9l5Z54mnO .messageLine0{stroke-width:1.5;stroke-dasharray:none;stroke:#333;}#mermaid-svg-9rAdlVX9l5Z54mnO .messageLine1{stroke-width:1.5;stroke-dasharray:2,2;stroke:#333;}#mermaid-svg-9rAdlVX9l5Z54mnO #arrowhead path{fill:#333;stroke:#333;}#mermaid-svg-9rAdlVX9l5Z54mnO .sequenceNumber{fill:white;}#mermaid-svg-9rAdlVX9l5Z54mnO #sequencenumber{fill:#333;}#mermaid-svg-9rAdlVX9l5Z54mnO #crosshead path{fill:#333;stroke:#333;}#mermaid-svg-9rAdlVX9l5Z54mnO .messageText{fill:#333;stroke:#333;}#mermaid-svg-9rAdlVX9l5Z54mnO .labelBox{stroke:hsl(0,0%,83%);fill:#eee;}#mermaid-svg-9rAdlVX9l5Z54mnO .labelText,#mermaid-svg-9rAdlVX9l5Z54mnO .labelText > tspan{fill:#333;stroke:none;}#mermaid-svg-9rAdlVX9l5Z54mnO .loopText,#mermaid-svg-9rAdlVX9l5Z54mnO .loopText > tspan{fill:#333;stroke:none;}#mermaid-svg-9rAdlVX9l5Z54mnO .loopLine{stroke-width:2px;stroke-dasharray:2,2;stroke:hsl(0,0%,83%);fill:hsl(0,0%,83%);}#mermaid-svg-9rAdlVX9l5Z54mnO .note{stroke:hsl(60,100%,23.3333333333%);fill:#ffa;}#mermaid-svg-9rAdlVX9l5Z54mnO .noteText,#mermaid-svg-9rAdlVX9l5Z54mnO .noteText > tspan{fill:#333;stroke:none;}#mermaid-svg-9rAdlVX9l5Z54mnO .activation0{fill:#f4f4f4;stroke:#666;}#mermaid-svg-9rAdlVX9l5Z54mnO .activation1{fill:#f4f4f4;stroke:#666;}#mermaid-svg-9rAdlVX9l5Z54mnO .activation2{fill:#f4f4f4;stroke:#666;}#mermaid-svg-9rAdlVX9l5Z54mnO:root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-svg-9rAdlVX9l5Z54mnO sequence{fill:apa;}</style><g></g><g><line id="actor9" x1="75" y1="5" x2="75" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="75" dy="0">Alice</tspan></text></g><g><line id="actor10" x1="318" y1="5" x2="318" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="243" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="318" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="318" dy="0">Bob</tspan></text></g><g><line id="actor11" x1="539" y1="5" x2="539" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="464" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="539" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="539" dy="0">John</tspan></text></g><defs><marker id="arrowhead" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><defs><marker id="filled-head" refX="18" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 18,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><defs><marker id="sequencenumber" refX="15" refY="15" markerWidth="60" markerHeight="40" orient="auto"><circle cx="15" cy="15" r="6"></circle></marker></defs><text x="197" y="80" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Hello Bob, how are you?</text><line x1="75" y1="113" x2="318" y2="113" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="fill: none;"></line><text x="429" y="128" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">How about you John?</text><line x1="318" y1="161" x2="539" y2="161" class="messageLine1" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="197" y="176" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">I am good thanks!</text><line x1="318" y1="209" x2="75" y2="209" class="messageLine1" stroke-width="2" stroke="none" marker-end="url(#crosshead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="429" y="224" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">I am good thanks!</text><line x1="318" y1="257" x2="539" y2="257" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#crosshead)" style="fill: none;"></line><g><rect x="564" y="267" fill="#EDF2AE" stroke="#666" width="150" height="84" rx="0" ry="0" class="note"></rect><text x="639" y="272" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">Bob thinks a long</tspan></text><text x="639" y="288" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">long time, so long</tspan></text><text x="639" y="304" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">that the text does</tspan></text><text x="639" y="320" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">not fit on a row.</tspan></text></g><text x="197" y="366" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Checking with John...</text><line x1="318" y1="399" x2="75" y2="399" class="messageLine1" stroke-width="2" stroke="none" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="307" y="414" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Yes... John, how are you?</text><line x1="75" y1="447" x2="539" y2="447" class="messageLine0" stroke-width="2" stroke="none" style="fill: none;"></line><g><rect x="0" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="75" dy="0">Alice</tspan></text></g><g><rect x="243" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="318" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="318" dy="0">Bob</tspan></text></g><g><rect x="464" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="539" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="539" dy="0">John</tspan></text></g></svg></pre>
+<pre class=" language-mermaid"><svg id="mermaid-svg-BU6CnuXp8WYWIFnw" width="100%" xmlns="http://www.w3.org/2000/svg" height="543" style="max-width: 814px;" viewBox="-50 -10 814 543"><style>#mermaid-svg-BU6CnuXp8WYWIFnw{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}#mermaid-svg-BU6CnuXp8WYWIFnw .error-icon{fill:#552222;}#mermaid-svg-BU6CnuXp8WYWIFnw .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-BU6CnuXp8WYWIFnw .edge-thickness-normal{stroke-width:2px;}#mermaid-svg-BU6CnuXp8WYWIFnw .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-BU6CnuXp8WYWIFnw .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-BU6CnuXp8WYWIFnw .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-BU6CnuXp8WYWIFnw .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-BU6CnuXp8WYWIFnw .marker{fill:#666;stroke:#666;}#mermaid-svg-BU6CnuXp8WYWIFnw .marker.cross{stroke:#666;}#mermaid-svg-BU6CnuXp8WYWIFnw svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-BU6CnuXp8WYWIFnw .actor{stroke:hsl(0,0%,83%);fill:#eee;}#mermaid-svg-BU6CnuXp8WYWIFnw text.actor > tspan{fill:#333;stroke:none;}#mermaid-svg-BU6CnuXp8WYWIFnw .actor-line{stroke:#666;}#mermaid-svg-BU6CnuXp8WYWIFnw .messageLine0{stroke-width:1.5;stroke-dasharray:none;stroke:#333;}#mermaid-svg-BU6CnuXp8WYWIFnw .messageLine1{stroke-width:1.5;stroke-dasharray:2,2;stroke:#333;}#mermaid-svg-BU6CnuXp8WYWIFnw #arrowhead path{fill:#333;stroke:#333;}#mermaid-svg-BU6CnuXp8WYWIFnw .sequenceNumber{fill:white;}#mermaid-svg-BU6CnuXp8WYWIFnw #sequencenumber{fill:#333;}#mermaid-svg-BU6CnuXp8WYWIFnw #crosshead path{fill:#333;stroke:#333;}#mermaid-svg-BU6CnuXp8WYWIFnw .messageText{fill:#333;stroke:#333;}#mermaid-svg-BU6CnuXp8WYWIFnw .labelBox{stroke:hsl(0,0%,83%);fill:#eee;}#mermaid-svg-BU6CnuXp8WYWIFnw .labelText,#mermaid-svg-BU6CnuXp8WYWIFnw .labelText > tspan{fill:#333;stroke:none;}#mermaid-svg-BU6CnuXp8WYWIFnw .loopText,#mermaid-svg-BU6CnuXp8WYWIFnw .loopText > tspan{fill:#333;stroke:none;}#mermaid-svg-BU6CnuXp8WYWIFnw .loopLine{stroke-width:2px;stroke-dasharray:2,2;stroke:hsl(0,0%,83%);fill:hsl(0,0%,83%);}#mermaid-svg-BU6CnuXp8WYWIFnw .note{stroke:hsl(60,100%,23.3333333333%);fill:#ffa;}#mermaid-svg-BU6CnuXp8WYWIFnw .noteText,#mermaid-svg-BU6CnuXp8WYWIFnw .noteText > tspan{fill:#333;stroke:none;}#mermaid-svg-BU6CnuXp8WYWIFnw .activation0{fill:#f4f4f4;stroke:#666;}#mermaid-svg-BU6CnuXp8WYWIFnw .activation1{fill:#f4f4f4;stroke:#666;}#mermaid-svg-BU6CnuXp8WYWIFnw .activation2{fill:#f4f4f4;stroke:#666;}#mermaid-svg-BU6CnuXp8WYWIFnw:root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-svg-BU6CnuXp8WYWIFnw sequence{fill:apa;}</style><g></g><g><line id="actor12" x1="75" y1="5" x2="75" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="75" dy="0">Alice</tspan></text></g><g><line id="actor13" x1="318" y1="5" x2="318" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="243" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="318" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="318" dy="0">Bob</tspan></text></g><g><line id="actor14" x1="539" y1="5" x2="539" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="464" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="539" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="539" dy="0">John</tspan></text></g><defs><marker id="arrowhead" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><defs><marker id="filled-head" refX="18" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 18,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><defs><marker id="sequencenumber" refX="15" refY="15" markerWidth="60" markerHeight="40" orient="auto"><circle cx="15" cy="15" r="6"></circle></marker></defs><text x="197" y="80" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Hello Bob, how are you?</text><line x1="75" y1="113" x2="318" y2="113" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="fill: none;"></line><text x="429" y="128" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">How about you John?</text><line x1="318" y1="161" x2="539" y2="161" class="messageLine1" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="197" y="176" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">I am good thanks!</text><line x1="318" y1="209" x2="75" y2="209" class="messageLine1" stroke-width="2" stroke="none" marker-end="url(#crosshead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="429" y="224" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">I am good thanks!</text><line x1="318" y1="257" x2="539" y2="257" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#crosshead)" style="fill: none;"></line><g><rect x="564" y="267" fill="#EDF2AE" stroke="#666" width="150" height="84" rx="0" ry="0" class="note"></rect><text x="639" y="272" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">Bob thinks a long</tspan></text><text x="639" y="288" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">long time, so long</tspan></text><text x="639" y="304" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">that the text does</tspan></text><text x="639" y="320" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">not fit on a row.</tspan></text></g><text x="197" y="366" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Checking with John...</text><line x1="318" y1="399" x2="75" y2="399" class="messageLine1" stroke-width="2" stroke="none" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="307" y="414" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Yes... John, how are you?</text><line x1="75" y1="447" x2="539" y2="447" class="messageLine0" stroke-width="2" stroke="none" style="fill: none;"></line><g><rect x="0" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="75" dy="0">Alice</tspan></text></g><g><rect x="243" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="318" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="318" dy="0">Bob</tspan></text></g><g><rect x="464" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="539" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="539" dy="0">John</tspan></text></g></svg></pre>
 <p>And this will produce a flow chart:</p>
-<pre class=" language-mermaid"><svg id="mermaid-svg-MmrBsMa7gmgTrusp" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="174.4375" style="max-width: 502.75px;" viewBox="0 0 502.75 174.4375"><style>#mermaid-svg-MmrBsMa7gmgTrusp{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}#mermaid-svg-MmrBsMa7gmgTrusp .error-icon{fill:#552222;}#mermaid-svg-MmrBsMa7gmgTrusp .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-MmrBsMa7gmgTrusp .edge-thickness-normal{stroke-width:2px;}#mermaid-svg-MmrBsMa7gmgTrusp .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-MmrBsMa7gmgTrusp .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-MmrBsMa7gmgTrusp .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-MmrBsMa7gmgTrusp .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-MmrBsMa7gmgTrusp .marker{fill:#666;stroke:#666;}#mermaid-svg-MmrBsMa7gmgTrusp .marker.cross{stroke:#666;}#mermaid-svg-MmrBsMa7gmgTrusp svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-MmrBsMa7gmgTrusp .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#mermaid-svg-MmrBsMa7gmgTrusp .cluster-label text{fill:#333;}#mermaid-svg-MmrBsMa7gmgTrusp .cluster-label span{color:#333;}#mermaid-svg-MmrBsMa7gmgTrusp .label text,#mermaid-svg-MmrBsMa7gmgTrusp span{fill:#000000;color:#000000;}#mermaid-svg-MmrBsMa7gmgTrusp .node rect,#mermaid-svg-MmrBsMa7gmgTrusp .node circle,#mermaid-svg-MmrBsMa7gmgTrusp .node ellipse,#mermaid-svg-MmrBsMa7gmgTrusp .node polygon,#mermaid-svg-MmrBsMa7gmgTrusp .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-svg-MmrBsMa7gmgTrusp .node .label{text-align:center;}#mermaid-svg-MmrBsMa7gmgTrusp .node.clickable{cursor:pointer;}#mermaid-svg-MmrBsMa7gmgTrusp .arrowheadPath{fill:#333333;}#mermaid-svg-MmrBsMa7gmgTrusp .edgePath .path{stroke:#666;stroke-width:1.5px;}#mermaid-svg-MmrBsMa7gmgTrusp .flowchart-link{stroke:#666;fill:none;}#mermaid-svg-MmrBsMa7gmgTrusp .edgeLabel{background-color:white;text-align:center;}#mermaid-svg-MmrBsMa7gmgTrusp .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-svg-MmrBsMa7gmgTrusp .cluster rect{fill:hsl(210,66.6666666667%,95%);stroke:#26a;stroke-width:1px;}#mermaid-svg-MmrBsMa7gmgTrusp .cluster text{fill:#333;}#mermaid-svg-MmrBsMa7gmgTrusp .cluster span{color:#333;}#mermaid-svg-MmrBsMa7gmgTrusp div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(-160,0%,93.3333333333%);border:1px solid #26a;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-svg-MmrBsMa7gmgTrusp:root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-svg-MmrBsMa7gmgTrusp flowchart{fill:apa;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-A LE-B" id="L-A-B" style="opacity: 1;"><path class="path" d="M109.66244612068965,67.609375L170.0546875,38.859375L246.125,38.859375" marker-end="url(https://stackedit.io/app#arrowhead13)" style="fill:none"></path><defs><marker id="arrowhead13" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-A LE-C" id="L-A-C" style="opacity: 1;"><path class="path" d="M109.66244612068965,114.328125L170.0546875,143.078125L226.921875,143.078125" marker-end="url(https://stackedit.io/app#arrowhead14)" style="fill:none"></path><defs><marker id="arrowhead14" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-B LE-D" id="L-B-D" style="opacity: 1;"><path class="path" d="M307.84375,38.859375L352.046875,38.859375L400.1027516807447,68.9128733192553" marker-end="url(https://stackedit.io/app#arrowhead15)" style="fill:none"></path><defs><marker id="arrowhead15" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-C LE-D" id="L-C-D" style="opacity: 1;"><path class="path" d="M327.046875,143.078125L352.046875,143.078125L400.1027516807447,114.0246266807447" marker-end="url(https://stackedit.io/app#arrowhead16)" style="fill:none"></path><defs><marker id="arrowhead16" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(170.0546875,38.859375)" style="opacity: 1;"><g transform="translate(-31.8671875,-13.359375)" class="label"><rect rx="0" ry="0" width="63.734375" height="26.71875"></rect><foreignObject width="63.734375" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-B" class="edgeLabel L-LS-A' L-LE-B">Link text</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-C" class="edgeLabel L-LS-A' L-LE-C"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-D" class="edgeLabel L-LS-B' L-LE-D"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-C-D" class="edgeLabel L-LS-C' L-LE-D"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-56" transform="translate(60.59375,90.96875)" style="opacity: 1;"><rect rx="0" ry="0" x="-52.59375" y="-23.359375" width="105.1875" height="46.71875" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-42.59375,-13.359375)"><foreignObject width="85.1875" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Square Rect</div></foreignObject></g></g></g><g class="node default" id="flowchart-B-57" transform="translate(276.984375,38.859375)" style="opacity: 1;"><circle x="-30.859375" y="-23.359375" r="30.859375" class="label-container"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-20.859375,-13.359375)"><foreignObject width="41.71875" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Circle</div></foreignObject></g></g></g><g class="node default" id="flowchart-C-59" transform="translate(276.984375,143.078125)" style="opacity: 1;"><rect rx="5" ry="5" x="-50.0625" y="-23.359375" width="100.125" height="46.71875" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-40.0625,-13.359375)"><foreignObject width="80.125" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Round Rect</div></foreignObject></g></g></g><g class="node default" id="flowchart-D-61" transform="translate(435.8984375,90.96875)" style="opacity: 1;"><polygon points="58.8515625,0 117.703125,-58.8515625 58.8515625,-117.703125 0,-58.8515625" transform="translate(-58.8515625,58.8515625)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-32.03125,-13.359375)"><foreignObject width="64.0625" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Rhombus</div></foreignObject></g></g></g></g></g></g></svg></pre>
+<pre class=" language-mermaid"><svg id="mermaid-svg-c6Alc237zt2bA7vC" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="174.4375" style="max-width: 502.75px;" viewBox="0 0 502.75 174.4375"><style>#mermaid-svg-c6Alc237zt2bA7vC{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}#mermaid-svg-c6Alc237zt2bA7vC .error-icon{fill:#552222;}#mermaid-svg-c6Alc237zt2bA7vC .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-c6Alc237zt2bA7vC .edge-thickness-normal{stroke-width:2px;}#mermaid-svg-c6Alc237zt2bA7vC .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-c6Alc237zt2bA7vC .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-c6Alc237zt2bA7vC .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-c6Alc237zt2bA7vC .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-c6Alc237zt2bA7vC .marker{fill:#666;stroke:#666;}#mermaid-svg-c6Alc237zt2bA7vC .marker.cross{stroke:#666;}#mermaid-svg-c6Alc237zt2bA7vC svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-c6Alc237zt2bA7vC .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#mermaid-svg-c6Alc237zt2bA7vC .cluster-label text{fill:#333;}#mermaid-svg-c6Alc237zt2bA7vC .cluster-label span{color:#333;}#mermaid-svg-c6Alc237zt2bA7vC .label text,#mermaid-svg-c6Alc237zt2bA7vC span{fill:#000000;color:#000000;}#mermaid-svg-c6Alc237zt2bA7vC .node rect,#mermaid-svg-c6Alc237zt2bA7vC .node circle,#mermaid-svg-c6Alc237zt2bA7vC .node ellipse,#mermaid-svg-c6Alc237zt2bA7vC .node polygon,#mermaid-svg-c6Alc237zt2bA7vC .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-svg-c6Alc237zt2bA7vC .node .label{text-align:center;}#mermaid-svg-c6Alc237zt2bA7vC .node.clickable{cursor:pointer;}#mermaid-svg-c6Alc237zt2bA7vC .arrowheadPath{fill:#333333;}#mermaid-svg-c6Alc237zt2bA7vC .edgePath .path{stroke:#666;stroke-width:1.5px;}#mermaid-svg-c6Alc237zt2bA7vC .flowchart-link{stroke:#666;fill:none;}#mermaid-svg-c6Alc237zt2bA7vC .edgeLabel{background-color:white;text-align:center;}#mermaid-svg-c6Alc237zt2bA7vC .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-svg-c6Alc237zt2bA7vC .cluster rect{fill:hsl(210,66.6666666667%,95%);stroke:#26a;stroke-width:1px;}#mermaid-svg-c6Alc237zt2bA7vC .cluster text{fill:#333;}#mermaid-svg-c6Alc237zt2bA7vC .cluster span{color:#333;}#mermaid-svg-c6Alc237zt2bA7vC div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(-160,0%,93.3333333333%);border:1px solid #26a;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-svg-c6Alc237zt2bA7vC:root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-svg-c6Alc237zt2bA7vC flowchart{fill:apa;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-A LE-B" id="L-A-B" style="opacity: 1;"><path class="path" d="M109.66244612068965,67.609375L170.0546875,38.859375L246.125,38.859375" marker-end="url(https://stackedit.io/app#arrowhead17)" style="fill:none"></path><defs><marker id="arrowhead17" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-A LE-C" id="L-A-C" style="opacity: 1;"><path class="path" d="M109.66244612068965,114.328125L170.0546875,143.078125L226.921875,143.078125" marker-end="url(https://stackedit.io/app#arrowhead18)" style="fill:none"></path><defs><marker id="arrowhead18" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-B LE-D" id="L-B-D" style="opacity: 1;"><path class="path" d="M307.84375,38.859375L352.046875,38.859375L400.1027516807447,68.9128733192553" marker-end="url(https://stackedit.io/app#arrowhead19)" style="fill:none"></path><defs><marker id="arrowhead19" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-C LE-D" id="L-C-D" style="opacity: 1;"><path class="path" d="M327.046875,143.078125L352.046875,143.078125L400.1027516807447,114.0246266807447" marker-end="url(https://stackedit.io/app#arrowhead20)" style="fill:none"></path><defs><marker id="arrowhead20" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(170.0546875,38.859375)" style="opacity: 1;"><g transform="translate(-31.8671875,-13.359375)" class="label"><rect rx="0" ry="0" width="63.734375" height="26.71875"></rect><foreignObject width="63.734375" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-B" class="edgeLabel L-LS-A' L-LE-B">Link text</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-C" class="edgeLabel L-LS-A' L-LE-C"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-D" class="edgeLabel L-LS-B' L-LE-D"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-C-D" class="edgeLabel L-LS-C' L-LE-D"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-72" transform="translate(60.59375,90.96875)" style="opacity: 1;"><rect rx="0" ry="0" x="-52.59375" y="-23.359375" width="105.1875" height="46.71875" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-42.59375,-13.359375)"><foreignObject width="85.1875" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Square Rect</div></foreignObject></g></g></g><g class="node default" id="flowchart-B-73" transform="translate(276.984375,38.859375)" style="opacity: 1;"><circle x="-30.859375" y="-23.359375" r="30.859375" class="label-container"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-20.859375,-13.359375)"><foreignObject width="41.71875" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Circle</div></foreignObject></g></g></g><g class="node default" id="flowchart-C-75" transform="translate(276.984375,143.078125)" style="opacity: 1;"><rect rx="5" ry="5" x="-50.0625" y="-23.359375" width="100.125" height="46.71875" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-40.0625,-13.359375)"><foreignObject width="80.125" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Round Rect</div></foreignObject></g></g></g><g class="node default" id="flowchart-D-77" transform="translate(435.8984375,90.96875)" style="opacity: 1;"><polygon points="58.8515625,0 117.703125,-58.8515625 58.8515625,-117.703125 0,-58.8515625" transform="translate(-58.8515625,58.8515625)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-32.03125,-13.359375)"><foreignObject width="64.0625" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Rhombus</div></foreignObject></g></g></g></g></g></g></svg></pre>
 
