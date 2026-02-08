@@ -590,8 +590,13 @@ Dimensión: a 0,4 40,3 para que se muestre justo debajo del anterior.</p>
 <p>Comenzamos como siempre creando un panel, con los siguientes datos por ejemplo:</p>
 <p>Name: form1<br>
 Title: My first form<br>
-Level: 2<br>
-OP: DELE<br>
+Level: 2</p>
+<blockquote>
+<p>En este caso vamos a dejar visible el menú los menús ya que sus<br>
+niveles son menores o iguales a 2. Si no quisiéramos esto tendríamos<br>
+que poner un nivel menor a los menús pero siempre superior a 0.</p>
+</blockquote>
+<p>OP: DELE<br>
 Color: colorForm, color que deberemos haber creado previamente a nuestro gusto.<br>
 Border:S . en este caso vamos a poner marco al panel y además como le hemos puesto titulo es necesario para mostrar el mismo.<br>
 Dimension: 5,5 y 60,15</p>
@@ -940,17 +945,13 @@ nameValue,checkValue,genderValue,lineSelect);
 return &amp;action;
 }
 </code></pre>
-<p>A continuación cambiamos el makefile_tui y eliminamos el -p en la línea 22 dejando:</p>
-<pre><code>     $(TUI_BUILD) -r -i -f $(TUI_PROYECT).xml
-</code></pre>
+<p><strong>Procedemos a compilar pero ahora hay que indicar CANCEL a Rewrite Functions File o perderemos estos cambios.</strong></p>
 <blockquote>
-<p>Sino quitamos el -p al compilar de nuevo el proyecto  desde la aplicación gráfica<br>
-se re-escribirá este fichero.<br>
-Es conveniente hacer copias de seguridad para evitar perder tus cambios en siguientes compilaciones.</p>
+<p>Observa que el efecto es que compilamos sin el -p al ejecutar el tbuild</p>
 </blockquote>
-<p>Ahora al ejecutar la aplicación se escribirá en el fichero /tmp/tuiApplication los valores introducidos.</p>
+<p>Ahora al ejecutar la aplicación se escribirá en el fichero /tmp/tuiApplication los valores introducidos en el formulario.</p>
 <h3 id="mejorando">Mejorando</h3>
-<p>No hemos echo ningún control de errores introduzcamos alguno, por ejemplo si falla el fopen.</p>
+<p>No hemos echo ningún control de errores,  introduzcamos alguno, por ejemplo si falla el fopen.</p>
 <pre><code>char * file="/tmp/tuiApplication";
  initAction(action);
 
@@ -989,7 +990,7 @@ La estructura action consta de 3 campos error, made y opToMade y se retorna como
 </code></pre>
 <p>En este caso decimos por ejemplo que en caso de error vaya a la vista de nivel2 del menú.</p>
 <h3 id="mejorando-más">mejorando más</h3>
-<p>Otra cosa que podemos hacer el control del  MSG, por ejemplo:</p>
+<p>Otra cosa que podemos hacer es obtener el valor del  MSG y operar en consecuencia, por ejemplo:</p>
 <pre><code>  if (fd == NULL){
     if (MSG_create(M_WARNING,CENTER_VIEW,"Unable to Open %s file\n goto nivel2 ?",file) ==0)
     {
@@ -1025,7 +1026,7 @@ return &amp;action;
 <h3 id="programación-carga-de-datos">Programación, carga de datos</h3>
 <p>En cualquier formulario es habitual tener que cargar datos, algunos serán por defecto y otros no.<br>
 En el caso de los valores por defecto ya hemos visto como hacerlo simplemente usamos la etiqueta Text en el Xml y el componente se rellenará con esos datos.<br>
-Para el resto de caso haremos uso de los callback del ciclo de vida.<br>
+Para el resto de casos haremos uso de los callback del ciclo de vida.<br>
 Por ejemplo en este caso haremos que se ejecute una función previamente al mostrado de la vista donde cargaremos los datos.<br>
 Abrimos el formulario de la vista form1 y pulsamos sobre el botón: App.  Functions e indicamos en el campo PRE Show el valor loadForm1 y salvamos.</p>
 <blockquote>
@@ -1035,20 +1036,15 @@ vistas de forma previa a su ejecución o como paso posterior.</p>
 </blockquote>
 <p>En la vista List-&gt;Calls nos debe aparecer la nueva función definida.</p>
 <h3 id="prototipo-1">prototipo</h3>
-<p>Si volvemos a añadir el parámetro -p en el makefile_tui se generará el prototipo de la función loadForm1.</p>
+<p>Si volvemos a compilar indicando “Rewrite application functions” (es decir con -p en el tbuild) podremos observar en el fichero de funciones el prototipado del callback a rellenar.</p>
 <blockquote>
-<p>Cuidado porque perderemos todos los cambios que hayamos hecho a este<br>
-fichero, es conveniente salvar el mismo.</p>
+<p>De momento es mejor seguir indicando NO a Rewrite applications functions para no perder los cambios anteriores.</p>
 </blockquote>
 <pre><code>void loadForm1(tPanel * panel){
 return;
 }
 </code></pre>
-<p>El prototipo de la función es este en el que recibidos como parámetro la vista panel que lo ha disparado.<br>
-Podríamos navegar sobre este parámetro e ir cambiando cosas pero lo normal es hacer uso del API:</p>
-<pre><code>int COMPONENT_setText(tComponent * component,char * text);
-int COMPONENT_addText(tComponent * component,char * texto);
-</code></pre>
+<p>El prototipo de la función es este en el que recibidos como parámetro la vista panel que lo ha disparado.</p>
 <h3 id="ejemplo-1">ejemplo</h3>
 <p>Rellenemos la función loadForm1:</p>
 <pre><code>void loadForm1(tPanel * panel){
@@ -1058,9 +1054,15 @@ int COMPONENT_addText(tComponent * component,char * texto);
   COMPONENT_setSelectValue(LVIEW_getElement("form1","gender"),2,NULL);
   COMPONENT_setText(LVIEW_getElement("form1","done"),"Do");
  return;
- }
+}
 </code></pre>
 <p>Con esto en el formulario aparecerá al abrirlo  como nombre “smith”, el check estará no seleccionado, habremos añadido al select el valor XX y seleccionado el valor 2 de la lista (también podríamos haber puesto -1,“OTHER”.) y hemos cambiado el texto del botón a Do.</p>
+<p>Puedes copiar ese código al fuente de funciones compilar y probar.</p>
+<blockquote>
+<p>Podríamos navegar sobre el parámetro panel recibido y hacer cambios<br>
+como veremos en la sección de programación, pero mejor usar el API que<br>
+veremos.</p>
+</blockquote>
 <blockquote>
 <p>Obsérvese que en este caso si indicamos la vista al llamar a LVIEW ya<br>
 que la vista que estamos manipulando no es la activa.</p>
@@ -1080,7 +1082,12 @@ que la vista que estamos manipulando no es la activa.</p>
 <p>Vamos a crear ahora alguna tabla para visualizar datos, definamos la misma, view-&gt;table NEW</p>
 <h3 id="definición">definición</h3>
 <p>Id: none,<br>
-Name: table1<br>
+Level:3</p>
+<blockquote>
+<p>De nuevo vamos a dejar visible todos los paneles anteriores puedes<br>
+cambiar esto jugando con el nivel.</p>
+</blockquote>
+<p>Name: table1<br>
 Title: Personal Data<br>
 Op: DELETE<br>
 Columns: Len:23,NAME (Add)<br>
@@ -1118,9 +1125,9 @@ Y en el panel nivel2-boton1 App. Moves: Enter=table1: para abrirla.</p>
     &lt;/Tables&gt;
 </code></pre>
 </blockquote>
-<p>Y si lo compilamos y probamos deberá aparecer una tabla vacia al pulsar en el boton1 del nivel2 de nuestro menú:</p>
+<p>Y si lo compilamos y probamos deberá aparecer una tabla vacía al pulsar en el boton1 del nivel2 de nuestro menú:</p>
 <h3 id="carga-datos">carga datos</h3>
-<p>Bien pues vamos a rellenarla con datos, para ello definimos un callback en el preShow de la tabla por ejemplo loadTable de forma similar a como hemos hecho en el panel, (en App. Func del formulario ponemos ese dato, salvamos, verificamos que hay una funcion nueva en List-&gt;Func y procedemos a chequear y generar con -p en el makefile).<br>
+<p>Bien pues vamos a rellenarla con datos, para ello definimos un callback en el preShow de la tabla por ejemplo loadTable de forma similar a como hemos hecho en el panel, (en App. Func del formulario ponemos ese dato, salvamos, verificamos que hay una funcion nueva en List-&gt;Func y procedemos a chequear).<br>
 El Xml resultante tendrá añadido:</p>
 <pre><code>&lt;Tables&gt;
         &lt;Table Id="0" Name="table1" opToMade="destroy" Level="3"&gt;
@@ -1137,7 +1144,7 @@ El Xml resultante tendrá añadido:</p>
         &lt;/Table&gt;
 &lt;/Tables&gt;
 </code></pre>
-<p>Y en Application_func.c, tendremos:</p>
+<p>Y si forzamos la recreación del fichero de funciones  tendremos:</p>
 <pre><code>void loadTable(tTable * table){
 return;
 }
@@ -1170,20 +1177,21 @@ return;
  int i;
  char data[21];
  char * dataLine[4][2]={{"l1dato1","l1dato2"},
-{"l2dato1","l2dato2"},
-{"l3dato1","l3dato2"},
-{"l4dato1","l4dato2"}} ;
-
-/* by simple data. */
+                        {"l2dato1","l2dato2"},
+                        {"l3dato1","l3dato2"},
+                        {"l4dato1","l4dato2"}} ;
+ /* by simple data. /
   for (i=0;i!=4;i++){
-    sprintf(data,"data%d",i);
-    TEXT_addData(table-&gt;text,data);
+   sprintf(data,"data%d",i);
+   TEXT_addData(table-&gt;text,data);
   }
-/* by register */
-  for (i=0;i!=4;i++)
+
+ /* by register */
+ for (i=0;i!=4;i++)
    TEXT_addLine(table-&gt;text,2,dataLine[i]);
 
-return;
+
+ return;
 }
 </code></pre>
 <h3 id="método-3">método 3</h3>
@@ -1192,9 +1200,9 @@ return;
 </code></pre>
 <h3 id="obtener-datos">obtener datos</h3>
 <p>Bien ya tenemos datos y nos podemos mover arriba y abajo entre ellos, nos queda la siguiente parte como saber que datos ha seleccionado el usuario.<br>
-Para ello actuaremos de forma similar a como hemos hecho anteriormente, iremos al formulario tabla y seleccionaremos el botón de App. Moves del mismo  y asociaremos la función selTabla al evento Enter.</p>
+Para ello actuaremos de forma similar a como hemos hecho anteriormente, iremos al formulario tabla y seleccionaremos el botón de “App. Moves” del mismo  y asociaremos la función selTable al evento Enter.</p>
 <p>Añadimos el siguiente código a nuestra función de callback</p>
-<pre><code>trAction* selTabla (tTable * table,int key){
+<pre><code>trAction* selTable (tTable * table,int key){
 static trAction action;
  initAction(action);
 
@@ -1210,7 +1218,7 @@ return &amp;action;
 <p>También puedes exportar la tabla completa a fichero mediante<br>
 int TEXT_saveTabFile(tText * miText, char  * fileName, char separator);</p>
 </blockquote>
-<h3 id="practica">practica</h3>
+<h3 id="práctica">práctica</h3>
 <p>Dejamos como practica el rellenar la tabla con los datos introducidos en el formulario al dar OK.</p>
 <blockquote>
 <p>Pista:    (tTable *)LVIEW_getElement(“table1”,NULL);</p>
@@ -1227,8 +1235,12 @@ Op: DELETE<br>
 Read Only: Y<br>
 File: Application1.xml<br>
 Border:Y<br>
-Dimension: 0,0  y 80,24<br>
-Color: colorEditor<br>
+Dimension: 0,0  y 80,24</p>
+<blockquote>
+<p>En este caso los menús quedarán ocultos porque ocupamos toda la<br>
+pantalla.</p>
+</blockquote>
+<p>Color: colorEditor<br>
 Keymap:  default</p>
 <p>y aplicamos y probamos.<br>
 Con esto tenemos un marco que ocupara típicamente todo el terminal.</p>
@@ -1251,8 +1263,7 @@ Salvamos y comprobamos.</p>
 </code></pre>
 <p>En el xml se ha creado la entrada de Edits y una nueva entrada Edit con los datos que hemos indicado.</p>
 <h3 id="compilación">compilación</h3>
-<p>Como no hemos añadido ningún callback podemos seguir compilando sin el -p<br>
-Así que salvamos, compilamos y ejecutamos, veremos que ahora al pulsar sobre el botón 2 del submenu de nivel 2 se nos muestra un view del fichero Xml  de la aplicación en que nos podemos mover con el teclado o el ratón.<br>
+<p>Así que salvamos, compilamos y ejecutamos, veremos que ahora al pulsar sobre el botón 2 del submenú de nivel 2 se nos muestra un view del fichero Xml  de la aplicación en que nos podemos mover con el teclado o el ratón.<br>
 Pulsando F1 volveremos al menú anterior.</p>
 <h3 id="carga-de-datos">carga de datos</h3>
 <p>En este caso hemos forzado la carga de un fichero en la propia definición de la vista, pero esto no será lo habitual.<br>
@@ -1285,11 +1296,10 @@ Además los parámetros de carga del fichero,  tamaño del buffer de lectura o m
  TEXT_addEditData(edit-&gt;text,"Linea2");
  TEXT_addEditData(edit-&gt;text,"Linea3");
 }
-
-La clase TEXT es el soporte de los datos de las vistas y componentes, se divide en lineas, campos y tamaño de campos.
-Estos pueden ser más o menos dinámicos dependiendo de en donde los utilizemos en el caso de un campo field, por ej, el tamaño viene fijado por el tamaño de componente, en el caso de la vista edit estos son dinamicos en función de tamaño de las lineas leidas.
 </code></pre>
-<h3 id="practica-1">practica</h3>
+<p>La clase TEXT es el soporte de los datos de las vistas y componentes, se divide en líneas, campos y tamaño de campos.<br>
+Estos pueden ser más o menos dinámicos dependiendo de en donde los utilicemos en el caso de un campo field, por ej, el tamaño viene fijado por el tamaño de componente, en el caso de la vista edit estos son dinámicos en función de tamaño de las líneas leídas.</p>
+<h3 id="práctica-1">práctica</h3>
 <p>Dejamos como practica el rellenar la vista view con los datos introducidos en el formulario al dar OK.</p>
 <blockquote>
 <p>Pista:    (tEdit*)LVIEW_getElement(“view”,NULL);</p>
@@ -1299,10 +1309,8 @@ Estos pueden ser más o menos dinámicos dependiendo de en donde los utilizemos 
 <h2 id="resumen-1">Resumen</h2>
 <p>Aunque no hemos visto en detalle todos los posibilidades (como hacer menús adaptativos o formularios dinámicos jugando con las característica display del componente , el uso del refresh para reflejar los cambios de forma inmediata, como cambiar el mapa de eventos, o como pasar información entre distintos callbacks …)  con lo visto hasta ahora se cubren prácticamente la mayoría de los escenarios.</p>
 <p>Para el resto, la propia aplicación gráfica sirve como ejemplo ya que en ella se ha intentado reflejar y probar todos los  escenarios aunque ello resultase en un interfaz algo extraño o no-homogéneo.</p>
-<p>En el menú proyect podrás ver como aparecen y desaparecen opciones según este el proyecto abierto o no, por ejemplo, la definición de una Edit-function y su uso, los formularios dinámicos de MSG, etc.</p>
-<p>Y tantos los fuentes como el tUI.xml son accesibles, puedes atreverte a modificarlo.</p>
 <blockquote>
-<p>Conviene que eches un vistazo al apartado de programación para comprender un poco la estructura del proyecto y como hacer determinadas tareas como puede ser pasar datos entre callback, cambiar dinamicamente los elementos y la información que contienen.</p>
+<p>Conviene que eches un vistazo al apartado de programación para comprender un poco la estructura del proyecto y como hacer determinadas tareas como puede ser pasar datos entre callback, cambiar dinámicamente los elementos y la información que contienen.</p>
 </blockquote>
 <h1 id="tui-xml">TUI XML</h1>
 <p>Bueno pues con esto ya tenemos una visión de como hacer prácticamente cualquier tipo de aplicación.<br>
@@ -1334,19 +1342,19 @@ Se incluye un fichero  un fichero xsd (tui.xsd) que define la estructura válida
 <h3 id="sección-colors">Sección Colors:</h3>
 <p>Si la aplicación utiliza  colores/fonts se creará una sección colors con la definición de los mismos.</p>
 <pre><code>&lt;Colors&gt; (optional)
-        &lt;Color Name="name of Color" foreground="[0-8]" background="[0-8]" attr="WA_*" attr2="WA_*"/&gt;
+        &lt;Color Name="name of Color" foreground="[0-8]" background="[0-8]" attr="WA_*" attr2="WA_*"/&gt; (0-*)
 &lt;/Colors&gt;
 </code></pre>
 <h3 id="sección-check-edit">Sección Check Edit:</h3>
 <p>Las validaciones de los textos de los componentes fields definidos por el usuario se definiran mediante entradas en la seccion .</p>
 <pre><code>    &lt;checksEdit&gt;(optional)
-            &lt;checkEdit Name="name of Check" Align="right|left" Mode="replace|insert" /&gt;
+            &lt;checkEdit Name="name of Check" Align="right|left" Mode="replace|insert" /&gt;(0-*)
     &lt;/checksEdit&gt;
 </code></pre>
 <h3 id="sección-keymap">Sección Keymap</h3>
 <p>Si es necesario utilizar mapas de teclados propios los mismos se definirán en la sección Keymaps.</p>
 <pre><code>&lt;Keymaps&gt; (optional)
-        &lt;Keymap Name="name Of Keymap"&gt;
+        &lt;Keymap Name="name Of Keymap"&gt; (0-*)
         &lt;Enter ch1="10" ch2="0" ch3="0"/&gt; (optional, valid number o character 0 no aplica).
         &lt;Out ch1="27" ch2="0" ch3="0"/&gt; (optional, valid number o character 0 no aplica).
         &lt;Next ch1="9" ch2="0" ch3="0"/&gt; (optional, valid number o character 0 no aplica).
@@ -1362,7 +1370,7 @@ Se incluye un fichero  un fichero xsd (tui.xsd) que define la estructura válida
 <h3 id="sección-msgs">sección Msgs</h3>
 <p>Si se desea modificar la estructura de las ventanas de aviso, las mismas se redefinirán mediante la sección Msgs.</p>
 <pre><code>&lt;Msgs&gt; (opcional, if not default).
-&lt;Msg type="info|warning|error" nroButtons="0|1|2"&gt;
+&lt;Msg type="info|warning|error" nroButtons="0|1|2"&gt; (optional)
         &lt;Title&gt;titulo&lt;/Title&gt; (opcional)
         &lt;Color&gt;color&lt;/Color&gt; (opcional)
         &lt;Buttons&gt;
@@ -1375,12 +1383,12 @@ Se incluye un fichero  un fichero xsd (tui.xsd) que define la estructura válida
 <h3 id="sección-panels">sección Panels</h3>
 <p>Si la aplicación requiere paneles los mismos se definirán el la sección Panels</p>
 <pre><code>    &lt;Panels&gt; (optional)
-          &lt;Panel Id="0 or Id. panel" Name="name of Panel" opToMade="none|hide|destroy" Level="level of Panel"&gt;
+          &lt;Panel Id="0 or Id. panel" Name="name of Panel" opToMade="none|hide|destroy" Level="level of Panel"&gt; (0-*)
                     &lt;Title&gt;Titulo&lt;/Title&gt; (optional)
                     &lt;Color&gt;color Panel&lt;/Color&gt; (optional)
                     &lt;Dimension border="0|1" x="0" y="0" high="24" width="80"/&gt;
                     &lt;Keymap&gt;own keymap&lt;/Keymap&gt; (optional)
-                    &lt;Components&gt; (optional contains component of panel)
+                    &lt;Components&gt; (0-*)
                     &lt;/Components&gt;
                     &lt;FPanel /&gt; (optional descripción of panel life cicle callbacks)
                     &lt;Move  /&gt; (optional descripción moves of panel because of events)
@@ -1390,69 +1398,68 @@ Se incluye un fichero  un fichero xsd (tui.xsd) que define la estructura válida
 </code></pre>
 <h3 id="sección-panel-components">sección Panel Components</h3>
 <p>Los componentes de un panel se incluirán en la sección de componentes del panel</p>
-<p>Label:</p>
-<pre><code>     &lt;Component Id="id. of component" Name="name of component" Type="label" display="normal|hidden|nSelect" (optional) &gt;
-         &lt;Color&gt;color component&lt;/Color&gt; (optional)
-         &lt;Dimension border="0|1" x="2" y="4" high="1" width="20"/&gt;
-         &lt;Text&gt;Texto de la etiqueta&lt;/Text&gt; *(optional y multiple)
-         &lt;Keymap&gt;own keymap&lt;/Keymap&gt; (optional)
-
-         &lt;Move /&gt;(optional descripción moves of panel because of events)
-         &lt;FAction /&gt; (optional descripción of callback of events capture by aplicaction)
-         &lt;FComponent / (optional descripción of component life cicle callbacks)
-       &lt;/Component&gt;
+<h4 id="label-1">Label:</h4>
+<pre><code> &lt;Component Id="id. of component" Name="name of component" Type="label" display="normal|hidden|nSelect" (optional &gt;(0-*)
+     &lt;Color&gt;color component&lt;/Color&gt; (optional)
+     &lt;Dimension border="0|1" x="2" y="4" high="1" width="20"/&gt;
+     &lt;Text&gt;Texto de la etiqueta&lt;/Text&gt; (0-*)
+     &lt;Keymap&gt;own keymap&lt;/Keymap&gt; (optional)
+     &lt;Move /&gt;(optional descripción moves of panel because of events)
+     &lt;FAction /&gt; (optional descripción of callback of events capture by aplicaction)
+     &lt;FComponent / (optional descripción of component life cicle callbacks)
+   &lt;/Component&gt;
 </code></pre>
-<p>Button:</p>
-<pre><code>         &lt;Component Id="id. of component" Name="name of component" Type="button" display="normal|hidden|nSelect" (optional)&gt;
-             &lt;Color&gt;color component&lt;/Color&gt; (optional)
-             &lt;Dimension border="0|1" x="2" y="4" high="1" width="20"/&gt;
-             &lt;Text&gt;Texto del botón &lt;/Text&gt;* (optional y multiple)
-             &lt;Keymap&gt;own keymap&lt;/Keymap&gt; (optional)
-             &lt;Move /&gt;(optional descripción moves of panel because of events)
-             &lt;FAction /&gt; (optional descripción of callback of events capture by aplicaction)
-             &lt;FComponent / (optional descripción of component life cicle callbacks)
-           &lt;/Component&gt;
+<h4 id="button-1">Button:</h4>
+<pre><code> &lt;Component Id="id. of component" Name="name of component" Type="button" display="normal|hidden|nSelect" (optional)&gt; (0-*)
+     &lt;Color&gt;color component&lt;/Color&gt; (optional)
+     &lt;Dimension border="0|1" x="2" y="4" high="1" width="20"/&gt;
+     &lt;Text&gt;Texto del botón &lt;/Text&gt; (0-*)
+     &lt;Keymap&gt;own keymap&lt;/Keymap&gt; (optional)
+     &lt;Move /&gt;(optional descripción moves of panel because of events)
+     &lt;FAction /&gt; (optional descripción of callback of events capture by aplicaction)
+     &lt;FComponent / (optional descripción of component life cicle callbacks)
+   &lt;/Component&gt;
 </code></pre>
-<p>Check Button:</p>
+<h4 id="check-button-1">Check Button:</h4>
 <pre><code>    &lt;Component Id="Id. of component" Name="name of component" Type="ckbutton"  Check="y|n"(optional)  chIsCheck="character|number" (optional)  chNoCheck="character|number" (optional)
-display="normal|hidden|nSelect" (optional) &gt;
+display="normal|hidden|nSelect" (optional) &gt;(0-*)
           &lt;Color&gt;noColor&lt;/Color&gt; (optional)
           &lt;Dimension border="0|1" x="2" y="3" high="1" width="40"/&gt;
-          &lt;Text&gt;Text of de Check &lt;/Text&gt;
+          &lt;Text&gt;Text of de Check &lt;/Text&gt; (0-*)
           &lt;Keymap&gt;own keymap&lt;/Keymap&gt; (optional)
           &lt;Move /&gt; (optional descripción moves of panel because of events)
           &lt;FAction /&gt; (optional descripción of callback of events capture by aplicaction)
           &lt;FComponent /&gt; (optional descripción of component life cicle callbacks)
      &lt;/Component&gt;
 </code></pre>
-<p>List Button:</p>
-<pre><code>         &lt;Component Id="id. of component" Name="name of component" Type="lsbutton" display="normal|hidden|nSelect|open" (optional)&gt;
-             &lt;Color&gt;color component&lt;/Color&gt; (optional)
-             &lt;Dimension border="0|1" x="2" y="4" high="1" width="20"/&gt;
-             &lt;Text&gt;Texto del botón &lt;/Text&gt; * (optional y multiple)
-             &lt;Keymap&gt;own keymap&lt;/Keymap&gt;  (optional)
-             &lt;Move /&gt;(optional descripción moves of panel because of events)
-             &lt;FAction /&gt; (optional descripción of callback of events capture by aplicaction)
-             &lt;FComponent / (optional descripción of component life cicle callbacks)
-           &lt;/Component&gt;
+<h4 id="list-button-1">List Button:</h4>
+<pre><code>     &lt;Component Id="id. of component" Name="name of component" Type="lsbutton" display="normal|hidden|nSelect|open" (optional) &gt;(0-*)
+         &lt;Color&gt;color component&lt;/Color&gt; (optional)
+         &lt;Dimension border="0|1" x="2" y="4" high="1" width="20"/&gt;
+         &lt;Text&gt;Texto del botón &lt;/Text&gt; (0-*)
+         &lt;Keymap&gt;own keymap&lt;/Keymap&gt;  (optional)
+         &lt;Move /&gt;(optional descripción moves of panel because of events)
+         &lt;FAction /&gt; (optional descripción of callback of events capture by aplicaction)
+         &lt;FComponent / (optional descripción of component life cicle callbacks)
+       &lt;/Component&gt;
 </code></pre>
-<p>Field</p>
-<pre><code>         &lt;Component Id="id. of component" Name="name of component" Type="field" display="normal|hidden|nSelect" (optional)&gt;
-             &lt;Color&gt;color component&lt;/Color&gt; (optional)
-             &lt;Dimension border="0|1" x="2" y="4" high="1" width="20"/&gt;
-             &lt;Edit chToEDIT="." (optional) editType="validate callback" (optional)  auto="y|n" (optional) secret="y|n" (optional)/&gt; (optional)
-             &lt;Text&gt;Texto inicial field &lt;/Text&gt; (optional y multiple)
-             &lt;Keymap&gt;own keymap&lt;/Keymap&gt;  (optional)
+<h4 id="field-1">Field</h4>
+<pre><code>     &lt;Component Id="id. of component" Name="name of component" Type="field" display="normal|hidden|nSelect" (optional)&gt; (0-*)
+         &lt;Color&gt;color component&lt;/Color&gt; (optional)
+         &lt;Dimension border="0|1" x="2" y="4" high="1" width="20"/&gt;
+         &lt;Edit chToEDIT="." (optional) editType="validate callback" (optional)  auto="y|n" (optional) secret="y|n" (optional)/&gt; (optional)
+         &lt;Text&gt;Texto inicial field &lt;/Text&gt; (0-*)
+         &lt;Keymap&gt;own keymap&lt;/Keymap&gt;  (optional)
 
-             &lt;Move /&gt;(optional descripción moves of panel because of events)
-             &lt;FAction /&gt; (optional descripción of callback of events capture by aplicaction)
-             &lt;FComponent / (optional descripción of component life cicle callbacks)
-           &lt;/Component&gt;
+         &lt;Move /&gt;(optional descripción moves of panel because of events)
+         &lt;FAction /&gt; (optional descripción of callback of events capture by aplicaction)
+         &lt;FComponent / (optional descripción of component life cicle callbacks)
+       &lt;/Component&gt;
 </code></pre>
 <h3 id="sección-tables">sección Tables</h3>
 <p>Si la aplicación usa tablas  los mismos se definirán el la sección Tables</p>
 <pre><code> &lt;Tables&gt; (optional)
-        &lt;Table Id="Id. of the table" Name="name of the table" opToMade="none|hide|destroy" Level="level of the table"&gt;
+        &lt;Table Id="Id. of the table" Name="name of the table" opToMade="none|hide|destroy" Level="level of the table"&gt; (0-*)
            &lt;Title&gt;View title&lt;/Title&gt; (optional)
           &lt;Dimension border="0|1" x="1" y="4" high="18" width="18"/&gt;
           &lt;Style head="0|1"  vLine="0|1" (optional) hLine="0|1" (optional)  colorHead="color cabecera"(optional)  colorData="color data"(optional)  /&gt;
@@ -1469,7 +1476,7 @@ display="normal|hidden|nSelect" (optional) &gt;
 <h3 id="sección-edit">sección Edit</h3>
 <p>Si la aplicación hace uso de vista tipo edicción, se incluira la sección Edits</p>
 <pre><code>&lt;Edits&gt; (optional)
-        &lt;Edit Id="Id. of view" Name="name of View" opToMade="none|hide|destroy" Level="level of the view"  ReadOnly="y" (optional)&gt;
+        &lt;Edit Id="Id. of view" Name="name of View" opToMade="none|hide|destroy" Level="level of the view"  ReadOnly="y" (optional)&gt; (0-*)
         &lt;Title&gt;View title&lt;/Title&gt; (optional)
         &lt;Dimension border="0|1" x="3" y="3" high="20" width="75"/&gt;
         &lt;Color&gt;view color&lt;/Color&gt; (optional)
@@ -1637,10 +1644,6 @@ Se compone de un puntero a una matriz tridimensional de lineas y campos (text) c
    tFComponent * personalFComponent; /* capturas del ciclo de vida */
 } tComponent, * tComponentPtr;
 </code></pre>
-<blockquote>
-<p>Nos saltamos la descripción de las estructuras tmapKeys, tMove,<br>
-tFactionPanel y tFComponent por ser triviales</p>
-</blockquote>
 <h4 id="tpanel">tPanel</h4>
 <p>Estructura que da soporte al panel</p>
 <pre><code>typedef struct {
@@ -1655,12 +1658,6 @@ tFactionPanel y tFComponent por ser triviales</p>
    tlComponent * elements; /* lista de componentes */
    tComponent * activeElement; /* componente activo */
 } tPanel, * tPanelPtr;
-
-typedef struct tableColumn{
-   char * title;
-   unsigned short len;
-   struct tableColumn * next;
-} tTableColumn, * tTableColumnPtr;
 </code></pre>
 <h4 id="ttable">tTable</h4>
 <p>Estructura que soporta las tablas</p>
@@ -1683,6 +1680,7 @@ typedef struct tableColumn{
    tFTable * personalFTable;
    tTableColumnPtr columns; /* columnas */
 } tTable, * tTablePtr;
+
 
 typedef struct tableColumn{  
    char * title;            /* Titulo columna */
@@ -1709,7 +1707,7 @@ typedef struct tableColumn{
 } tEdit, * tEditPtr;
 </code></pre>
 <h4 id="tview">tView</h4>
-<p>Las conjunto de vistas estan soportadas por la estructura tView.</p>
+<p>El conjunto de vistas estan soportadas por la estructura tView.</p>
 <pre><code>typedef struct {
  enum CViews type; /* panel/table/edit */
  unsigned short level; /* nivel */
@@ -1722,6 +1720,10 @@ typedef struct tableColumn{
     } view;
 }tView,*tViewPtr;
 </code></pre>
+<blockquote>
+<p>Nos saltamos la descripción de las estructuras tmapKeys, tMove,<br>
+tFactionPanel y tFComponent por ser triviales</p>
+</blockquote>
 <h3 id="api">API</h3>
 <h3 id="errores-1">errores</h3>
 <p>El API para el manejo de errores se incluye en el fichero error.h</p>
@@ -1730,6 +1732,7 @@ typedef struct tableColumn{
  * by default no print
  */
 void ERR_printError(int print,char * file);
+
 
 /* Declare a fatal error, print de mesaje y exit */
 void ERR_fatalError(int error, char* format,...);
@@ -1804,15 +1807,14 @@ int TEXT_send(char * texto,int init);
 char * TEXT_recv();
 </code></pre>
 <p>Observar que la FILO se soporta sobre una estructura simple:</p>
-<pre><code>#define MAX_SEND_TEXT 40
-typedef struct{
- char * text[MAX_SEND_TEXT];
- unsigned short rbuffer;
-}tBufferSnd;
-</code></pre>
+<p>#define MAX_PILE      40<br>
+typedef struct{<br>
+char * text[MAX_PILE];<br>
+unsigned short rbuffer;<br>
+}tBufferSnd;</p>
 <blockquote>
-<p>Observese que  esta limitado el tamaño de los textos que se pueden<br>
-insertar a 40 caracteres.</p>
+<p>Obsérvese que  estas funciones no reservan memoria simplemente apuntan a los textos que el usuario quiere transmitir entre vistas, normalmente referencias a algo seleccionado.<br>
+Además esta limitado a 40 datos.</p>
 </blockquote>
 <h3 id="text">Text</h3>
 <p>La manipulación de los datos a bajo nivel se realiza mediante la clase Text, cuyo interfaz se incluye en text.h<br>
@@ -1825,18 +1827,15 @@ tText * TEXT_new(int resize, unsigned short delete,int maxData, int nroLines,int
  */
 tText * TEXT_newEdit(int maxData, int nroLines,unsigned short mustDelete);
 </code></pre>
-<h4 id="manipulación-normal-solo-hay--un-campo-components">Manipulación normal, solo hay  un campo (components):</h4>
+<h4 id="manipulación">Manipulación:</h4>
 <pre><code>/* add a simple Text must contain (\n) */
 tText * TEXT_newSimpleText(tDim * dim, char * newText,unsigned short delete);
 /* add a multiple Text to a component, in field 0 */
 tText * TEXT_newSimpleLineText(tDim * dim, char ** newText,unsigned short delete);
 /* add a Text must contain (\n) int field 0 */
 int TEXT_addSimpleLine(tText * miText, char * newText);
-/* add a simple Text to a line + field  */
-int TEXT_addSimpleData(tText * miText, char * text);
 /* delete Text contain text */
 int TEXT_delSimpleData(tText * miText, char * text);
-
 /* replace the Text in a line, field */
 int TEXT_replaceLine(tText * miText,int line,int field,char * text);
 /* delete all fields from a line */
@@ -1844,7 +1843,7 @@ int TEXT_delLine(tText * miText,unsigned short  line);
 /* delete the line contain text */
 int TEXT_delLineText(tText * miText,char * text);
 </code></pre>
-<h4 id="manipulación-multiples-campos">Manipulación multiples campos:</h4>
+<h4 id="manipulación-múltiples-campos">Manipulación múltiples campos:</h4>
 <p>Caso especifico tablas:</p>
 <pre><code>/* Add data in line+field active */
 int TEXT_addData(tText * miText, char * data);
@@ -1897,7 +1896,7 @@ tComponent * COMPONENT_create(tPanel * panel,
  * Add the editMode to a field component */
 void COMPONENT_createEdit(tComponent * component, tEDIT * editMode);
 </code></pre>
-<h4 id="manipulación">Manipulación</h4>
+<h4 id="manipulación-1">Manipulación</h4>
 <pre><code>/*
  * Change component display */
 void COMPONENT_display(tComponent * component, enum EDisplay display);
@@ -1959,12 +1958,10 @@ tView * PANEL_create(int id,
                       _tFActionPanel * personalAction,
                       _tFPanel * personalFPanel);
 
-
 /*
  * Add a component to the panel. */
 int PANEL_addComponent(tPanel * panel,
                        tComponent * componente);
-
 /*
  * Del a component from the panel */
 int PANEL_delComponent(tPanel * panel,
@@ -1981,7 +1978,7 @@ tComponent * PANEL_searchComponent(tPanel * panel,
  * search the component at X,Y if any */
 char * PANEL_searchXYComponent(tPanelPtr panel,int x,int y);
 </code></pre>
-<h4 id="manipulación-1">manipulación</h4>
+<h4 id="manipulación-2">manipulación</h4>
 <pre><code>/* Change panel dimension */
 int  PANEL_changeDim(tPanel * panel,
                   tDim * dimension);
@@ -2015,12 +2012,10 @@ tView * TABLE_create(int id,
                       _tFActionTable * personalAction,
                       _tFTable * personalFTable);
 
-/*
- * Set the table text. */
+/* Set the table text. */
 void TABLE_text(tTable * table, tText * text);
 
-/*
- * Add a table column. */
+/* Add a table column. */
 int TABLE_addColumn(tTable * table,
                     char * title, unsigned int len);
 
@@ -2039,7 +2034,7 @@ char * TABLE_getColumnValue(tTable * table,int column);
 char ** TABLE_getText(tTable * table);
 char * TABLE_getTextValue(tTable * table,int column);
 </code></pre>
-<h4 id="manipulación-2">Manipulación</h4>
+<h4 id="manipulación-3">Manipulación</h4>
 <pre><code>/* Change table colors */
 int  TABLE_changeColor(tTable * table,
                   tChAttr * colorHead,
@@ -2069,7 +2064,7 @@ tView * EDIT_create(int id,
  * Set the edit text */
 void EDIT_Text(tEdit * edit,tText * text);
 </code></pre>
-<h4 id="manipulación-3">manipulación</h4>
+<h4 id="manipulación-4">manipulación</h4>
 <pre><code> /* Change color the view. */
 int  EDIT_changeColor(tEdit * edit, tChAttr * color);
  /* Rewrite edit . */
@@ -2101,12 +2096,15 @@ void VIEW_Loop(tView * view, char * element);
 </code></pre>
 <h3 id="tui">TUI</h3>
 <p>La inicialización de la librería se realiza mediante la llamada a</p>
-<pre><code>SCREEN * TUI_init (unsigned int useMouse, unsigned int useColor);
+<pre><code>/* Init the TUI library */
+SCREEN * TUI_init (unsigned int useMouse, unsigned int useColor);
+/* End TUI */
+void TUI_end();
 </code></pre>
 <p>que se localiza en tui.h e inicializa los modulos mandatory retornando el puntero al SCREEN de ncurses.</p>
 <h2 id="uso-directo">Uso directo</h2>
 <p>Como ya indicamos es posible obviar el uso de la generación a partir de Xml y la herramienta gráfica tUI y programar directamente el interfaz usando unicamente la libreria TUI.<br>
-Ya se ha descrito el API por lo que simplemente crearemos un ejemplo sencillo de mostrar esto.<br>
+Ya se ha descrito el API por lo que simplemente crearemos un ejemplo sencillo para mostrar esto.<br>
 En el siguiente ejemplo se crea de forma manual el menu1 que llevamos viendo.</p>
 <pre><code>#include &lt;string.h&gt;
 #include &lt;stdlib.h&gt;
@@ -2118,7 +2116,9 @@ SCREEN * scrSTD;
 tChAttr noColor;
 tChAttr colorMenu;
 
-
+/* 
+ * Crear el primer boton 
+ */
 static tComponentPtr _Cmenu_boton1(tPanelPtr panel) {
 tChAttrPtr pColor=&amp;colorMenu;
 tDim pDim ={1,0,0,3,10}; /* Border, X, Y ,High,Width */
@@ -2139,6 +2139,9 @@ tMove move = {
  return elemento;
 }
 
+/*
+ * Crear el boton2
+ */
 static tComponentPtr _Cmenu_boton2(tPanelPtr panel) {
 tChAttrPtr pColor=&amp;colorMenu;
 tDim pDim ={1,12,0,3,10}; /* Border, X, Y ,High,Width */
@@ -2157,6 +2160,9 @@ tMove move = {
  return elemento;
 }
 
+/*
+ * Crear el menu
+ */
 static tViewPtr _Pmenu1() {
 tChAttrPtr pColor=&amp;colorMenu;
 tDim pDim ={0,0,0,3,40}; /* No border, X-Y,High,Width */
@@ -2220,53 +2226,4 @@ finalización de la libreria.</li>
 <blockquote>
 <p>El codigo generado por el generador de Xml  sigue esta misma mecanica, generando el código en proyect_name.c y puede servir de guia si tienes alguna duda.</p>
 </blockquote>
-<h2 id="manage-file-publication">Manage file publication</h2>
-<p>Since one file can be published to multiple locations, you can list and manage publish locations by clicking <strong>File publication</strong> in the <strong>Publish</strong> sub-menu. This allows you to list and remove publication locations that are linked to your file.</p>
-<h1 id="markdown-extensions">Markdown extensions</h1>
-<p>StackEdit extends the standard Markdown syntax by adding extra <strong>Markdown extensions</strong>, providing you with some nice features.</p>
-<blockquote>
-<p><strong>ProTip:</strong> You can disable any <strong>Markdown extension</strong> in the <strong>File properties</strong> dialog.</p>
-</blockquote>
-<h2 id="smartypants">SmartyPants</h2>
-<p>SmartyPants converts ASCII punctuation characters into “smart” typographic punctuation HTML entities. For example:</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th>ASCII</th>
-<th>HTML</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Single backticks</td>
-<td><code>'Isn't this fun?'</code></td>
-<td>‘Isn’t this fun?’</td>
-</tr>
-<tr>
-<td>Quotes</td>
-<td><code>"Isn't this fun?"</code></td>
-<td>“Isn’t this fun?”</td>
-</tr>
-<tr>
-<td>Dashes</td>
-<td><code>-- is en-dash, --- is em-dash</code></td>
-<td>– is en-dash, — is em-dash</td>
-</tr>
-</tbody>
-</table><h2 id="katex">KaTeX</h2>
-<p>You can render LaTeX mathematical expressions using <a href="https://khan.github.io/KaTeX/">KaTeX</a>:</p>
-<p>The <em>Gamma function</em> satisfying <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Γ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">!</mo><mspace width="1em"></mspace><mi mathvariant="normal">∀</mi><mi>n</mi><mo>∈</mo><mi mathvariant="double-struck">N</mi></mrow><annotation encoding="application/x-tex">\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">Γ</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">1</span><span class="mclose">)!</span><span class="mspace" style="margin-right: 1em;"></span><span class="mord">∀</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.68889em; vertical-align: 0em;"></span><span class="mord mathbb">N</span></span></span></span></span> is via the Euler integral</p>
-<p><span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">Γ</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mi mathvariant="normal">∞</mi></msubsup><msup><mi>t</mi><mrow><mi>z</mi><mo>−</mo><mn>1</mn></mrow></msup><msup><mi>e</mi><mrow><mo>−</mo><mi>t</mi></mrow></msup><mi>d</mi><mi>t</mi> <mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
-\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">Γ</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 2.32624em; vertical-align: -0.91195em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right: 0.44445em; position: relative; top: -0.001125em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.41429em;"><span class="" style="top: -1.78805em; margin-left: -0.44445em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span class="" style="top: -3.8129em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">∞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.91195em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right: 0.04398em;">z</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.843556em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">t</span></span></span></span></span></span></span></span></span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">.</span></span></span></span></span></span></p>
-<blockquote>
-<p>You can find more information about <strong>LaTeX</strong> mathematical expressions <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">here</a>.</p>
-</blockquote>
-<h2 id="uml-diagrams">UML diagrams</h2>
-<p>You can render UML diagrams using <a href="https://mermaidjs.github.io/">Mermaid</a>. For example, this will produce a sequence diagram:</p>
-<pre class=" language-mermaid"><svg id="mermaid-svg-a6GnepZB9G8oQI9Q" width="100%" xmlns="http://www.w3.org/2000/svg" height="543" style="max-width: 814px;" viewBox="-50 -10 814 543"><style>#mermaid-svg-a6GnepZB9G8oQI9Q{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}#mermaid-svg-a6GnepZB9G8oQI9Q .error-icon{fill:#552222;}#mermaid-svg-a6GnepZB9G8oQI9Q .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-a6GnepZB9G8oQI9Q .edge-thickness-normal{stroke-width:2px;}#mermaid-svg-a6GnepZB9G8oQI9Q .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-a6GnepZB9G8oQI9Q .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-a6GnepZB9G8oQI9Q .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-a6GnepZB9G8oQI9Q .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-a6GnepZB9G8oQI9Q .marker{fill:#666;stroke:#666;}#mermaid-svg-a6GnepZB9G8oQI9Q .marker.cross{stroke:#666;}#mermaid-svg-a6GnepZB9G8oQI9Q svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-a6GnepZB9G8oQI9Q .actor{stroke:hsl(0,0%,83%);fill:#eee;}#mermaid-svg-a6GnepZB9G8oQI9Q text.actor > tspan{fill:#333;stroke:none;}#mermaid-svg-a6GnepZB9G8oQI9Q .actor-line{stroke:#666;}#mermaid-svg-a6GnepZB9G8oQI9Q .messageLine0{stroke-width:1.5;stroke-dasharray:none;stroke:#333;}#mermaid-svg-a6GnepZB9G8oQI9Q .messageLine1{stroke-width:1.5;stroke-dasharray:2,2;stroke:#333;}#mermaid-svg-a6GnepZB9G8oQI9Q #arrowhead path{fill:#333;stroke:#333;}#mermaid-svg-a6GnepZB9G8oQI9Q .sequenceNumber{fill:white;}#mermaid-svg-a6GnepZB9G8oQI9Q #sequencenumber{fill:#333;}#mermaid-svg-a6GnepZB9G8oQI9Q #crosshead path{fill:#333;stroke:#333;}#mermaid-svg-a6GnepZB9G8oQI9Q .messageText{fill:#333;stroke:#333;}#mermaid-svg-a6GnepZB9G8oQI9Q .labelBox{stroke:hsl(0,0%,83%);fill:#eee;}#mermaid-svg-a6GnepZB9G8oQI9Q .labelText,#mermaid-svg-a6GnepZB9G8oQI9Q .labelText > tspan{fill:#333;stroke:none;}#mermaid-svg-a6GnepZB9G8oQI9Q .loopText,#mermaid-svg-a6GnepZB9G8oQI9Q .loopText > tspan{fill:#333;stroke:none;}#mermaid-svg-a6GnepZB9G8oQI9Q .loopLine{stroke-width:2px;stroke-dasharray:2,2;stroke:hsl(0,0%,83%);fill:hsl(0,0%,83%);}#mermaid-svg-a6GnepZB9G8oQI9Q .note{stroke:hsl(60,100%,23.3333333333%);fill:#ffa;}#mermaid-svg-a6GnepZB9G8oQI9Q .noteText,#mermaid-svg-a6GnepZB9G8oQI9Q .noteText > tspan{fill:#333;stroke:none;}#mermaid-svg-a6GnepZB9G8oQI9Q .activation0{fill:#f4f4f4;stroke:#666;}#mermaid-svg-a6GnepZB9G8oQI9Q .activation1{fill:#f4f4f4;stroke:#666;}#mermaid-svg-a6GnepZB9G8oQI9Q .activation2{fill:#f4f4f4;stroke:#666;}#mermaid-svg-a6GnepZB9G8oQI9Q:root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-svg-a6GnepZB9G8oQI9Q sequence{fill:apa;}</style><g></g><g><line id="actor15" x1="75" y1="5" x2="75" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="75" dy="0">Alice</tspan></text></g><g><line id="actor16" x1="318" y1="5" x2="318" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="243" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="318" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="318" dy="0">Bob</tspan></text></g><g><line id="actor17" x1="539" y1="5" x2="539" y2="532" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="464" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="539" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="539" dy="0">John</tspan></text></g><defs><marker id="arrowhead" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><defs><marker id="filled-head" refX="18" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 18,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><defs><marker id="sequencenumber" refX="15" refY="15" markerWidth="60" markerHeight="40" orient="auto"><circle cx="15" cy="15" r="6"></circle></marker></defs><text x="197" y="80" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Hello Bob, how are you?</text><line x1="75" y1="113" x2="318" y2="113" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="fill: none;"></line><text x="429" y="128" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">How about you John?</text><line x1="318" y1="161" x2="539" y2="161" class="messageLine1" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="197" y="176" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">I am good thanks!</text><line x1="318" y1="209" x2="75" y2="209" class="messageLine1" stroke-width="2" stroke="none" marker-end="url(#crosshead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="429" y="224" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">I am good thanks!</text><line x1="318" y1="257" x2="539" y2="257" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#crosshead)" style="fill: none;"></line><g><rect x="564" y="267" fill="#EDF2AE" stroke="#666" width="150" height="84" rx="0" ry="0" class="note"></rect><text x="639" y="272" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">Bob thinks a long</tspan></text><text x="639" y="288" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">long time, so long</tspan></text><text x="639" y="304" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">that the text does</tspan></text><text x="639" y="320" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 14px; font-weight: 400;"><tspan x="639">not fit on a row.</tspan></text></g><text x="197" y="366" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Checking with John...</text><line x1="318" y1="399" x2="75" y2="399" class="messageLine1" stroke-width="2" stroke="none" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="307" y="414" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;trebuchet ms&quot;, verdana, arial, sans-serif; font-size: 16px; font-weight: 400;">Yes... John, how are you?</text><line x1="75" y1="447" x2="539" y2="447" class="messageLine0" stroke-width="2" stroke="none" style="fill: none;"></line><g><rect x="0" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="75" dy="0">Alice</tspan></text></g><g><rect x="243" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="318" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="318" dy="0">Bob</tspan></text></g><g><rect x="464" y="467" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="539" y="499.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-weight: 400; font-family: Open-Sans, &quot;sans-serif&quot;;"><tspan x="539" dy="0">John</tspan></text></g></svg></pre>
-<p>And this will produce a flow chart:</p>
-<pre class=" language-mermaid"><svg id="mermaid-svg-9hEq7UgQdGKAISxe" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="174.4375" style="max-width: 502.75px;" viewBox="0 0 502.75 174.4375"><style>#mermaid-svg-9hEq7UgQdGKAISxe{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}#mermaid-svg-9hEq7UgQdGKAISxe .error-icon{fill:#552222;}#mermaid-svg-9hEq7UgQdGKAISxe .error-text{fill:#552222;stroke:#552222;}#mermaid-svg-9hEq7UgQdGKAISxe .edge-thickness-normal{stroke-width:2px;}#mermaid-svg-9hEq7UgQdGKAISxe .edge-thickness-thick{stroke-width:3.5px;}#mermaid-svg-9hEq7UgQdGKAISxe .edge-pattern-solid{stroke-dasharray:0;}#mermaid-svg-9hEq7UgQdGKAISxe .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-svg-9hEq7UgQdGKAISxe .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-svg-9hEq7UgQdGKAISxe .marker{fill:#666;stroke:#666;}#mermaid-svg-9hEq7UgQdGKAISxe .marker.cross{stroke:#666;}#mermaid-svg-9hEq7UgQdGKAISxe svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-svg-9hEq7UgQdGKAISxe .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#mermaid-svg-9hEq7UgQdGKAISxe .cluster-label text{fill:#333;}#mermaid-svg-9hEq7UgQdGKAISxe .cluster-label span{color:#333;}#mermaid-svg-9hEq7UgQdGKAISxe .label text,#mermaid-svg-9hEq7UgQdGKAISxe span{fill:#000000;color:#000000;}#mermaid-svg-9hEq7UgQdGKAISxe .node rect,#mermaid-svg-9hEq7UgQdGKAISxe .node circle,#mermaid-svg-9hEq7UgQdGKAISxe .node ellipse,#mermaid-svg-9hEq7UgQdGKAISxe .node polygon,#mermaid-svg-9hEq7UgQdGKAISxe .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-svg-9hEq7UgQdGKAISxe .node .label{text-align:center;}#mermaid-svg-9hEq7UgQdGKAISxe .node.clickable{cursor:pointer;}#mermaid-svg-9hEq7UgQdGKAISxe .arrowheadPath{fill:#333333;}#mermaid-svg-9hEq7UgQdGKAISxe .edgePath .path{stroke:#666;stroke-width:1.5px;}#mermaid-svg-9hEq7UgQdGKAISxe .flowchart-link{stroke:#666;fill:none;}#mermaid-svg-9hEq7UgQdGKAISxe .edgeLabel{background-color:white;text-align:center;}#mermaid-svg-9hEq7UgQdGKAISxe .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-svg-9hEq7UgQdGKAISxe .cluster rect{fill:hsl(210,66.6666666667%,95%);stroke:#26a;stroke-width:1px;}#mermaid-svg-9hEq7UgQdGKAISxe .cluster text{fill:#333;}#mermaid-svg-9hEq7UgQdGKAISxe .cluster span{color:#333;}#mermaid-svg-9hEq7UgQdGKAISxe div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(-160,0%,93.3333333333%);border:1px solid #26a;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-svg-9hEq7UgQdGKAISxe:root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-svg-9hEq7UgQdGKAISxe flowchart{fill:apa;}</style><g><g class="output"><g class="clusters"></g><g class="edgePaths"><g class="edgePath LS-A LE-B" id="L-A-B" style="opacity: 1;"><path class="path" d="M109.66244612068965,67.609375L170.0546875,38.859375L246.125,38.859375" marker-end="url(https://stackedit.io/app#arrowhead21)" style="fill:none"></path><defs><marker id="arrowhead21" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-A LE-C" id="L-A-C" style="opacity: 1;"><path class="path" d="M109.66244612068965,114.328125L170.0546875,143.078125L226.921875,143.078125" marker-end="url(https://stackedit.io/app#arrowhead22)" style="fill:none"></path><defs><marker id="arrowhead22" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-B LE-D" id="L-B-D" style="opacity: 1;"><path class="path" d="M307.84375,38.859375L352.046875,38.859375L400.1027516807447,68.9128733192553" marker-end="url(https://stackedit.io/app#arrowhead23)" style="fill:none"></path><defs><marker id="arrowhead23" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g><g class="edgePath LS-C LE-D" id="L-C-D" style="opacity: 1;"><path class="path" d="M327.046875,143.078125L352.046875,143.078125L400.1027516807447,114.0246266807447" marker-end="url(https://stackedit.io/app#arrowhead24)" style="fill:none"></path><defs><marker id="arrowhead24" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(170.0546875,38.859375)" style="opacity: 1;"><g transform="translate(-31.8671875,-13.359375)" class="label"><rect rx="0" ry="0" width="63.734375" height="26.71875"></rect><foreignObject width="63.734375" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-B" class="edgeLabel L-LS-A' L-LE-B">Link text</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-A-C" class="edgeLabel L-LS-A' L-LE-C"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-B-D" class="edgeLabel L-LS-B' L-LE-D"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span id="L-L-C-D" class="edgeLabel L-LS-C' L-LE-D"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-A-88" transform="translate(60.59375,90.96875)" style="opacity: 1;"><rect rx="0" ry="0" x="-52.59375" y="-23.359375" width="105.1875" height="46.71875" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-42.59375,-13.359375)"><foreignObject width="85.1875" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Square Rect</div></foreignObject></g></g></g><g class="node default" id="flowchart-B-89" transform="translate(276.984375,38.859375)" style="opacity: 1;"><circle x="-30.859375" y="-23.359375" r="30.859375" class="label-container"></circle><g class="label" transform="translate(0,0)"><g transform="translate(-20.859375,-13.359375)"><foreignObject width="41.71875" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Circle</div></foreignObject></g></g></g><g class="node default" id="flowchart-C-91" transform="translate(276.984375,143.078125)" style="opacity: 1;"><rect rx="5" ry="5" x="-50.0625" y="-23.359375" width="100.125" height="46.71875" class="label-container"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-40.0625,-13.359375)"><foreignObject width="80.125" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Round Rect</div></foreignObject></g></g></g><g class="node default" id="flowchart-D-93" transform="translate(435.8984375,90.96875)" style="opacity: 1;"><polygon points="58.8515625,0 117.703125,-58.8515625 58.8515625,-117.703125 0,-58.8515625" transform="translate(-58.8515625,58.8515625)" class="label-container"></polygon><g class="label" transform="translate(0,0)"><g transform="translate(-32.03125,-13.359375)"><foreignObject width="64.0625" height="26.71875"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Rhombus</div></foreignObject></g></g></g></g></g></g></svg></pre>
 
