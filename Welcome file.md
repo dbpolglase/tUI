@@ -458,7 +458,7 @@ En este caso vamos a indicar que tanto flecha derecha como izquierda y siguiente
 Es decir la notación :boton1 es equivalente a menu1:boton1 pero como veremos luego es mejor usar la relativa y no solo por ahorro.</p>
 </blockquote>
 <p>Salvamos el formulario y volvemos a salvar sobre el formulario del elemento para que se guarden los cambios del componente.<br>
-Volvemos a atrás (ESC) y de seleccionamos el botón 2 para de forma espejo indicar el boton1 como destino de los eventos.</p>
+Volvemos a atrás (ESC) y seleccionamos el botón 2 para  indicar indicar los “moves” del botón que en este caso tendrán como destino boton1 para los eventos Next, Previous, left y right.</p>
 <p>Lamentablemente no es posible comprobar la dinámica de la aplicación sin generarla pero antes vamos a ver otros puntos.</p>
 <h3 id="exit">Exit</h3>
 <p>Para indicar la salida del programa vamos a utilizar la definición de movimientos del panel para lo cual utilizaremos el botón <strong>Moves</strong> del formulario de panel y por ejemplo sobre el evento Out: indicaremos como vista exit:.</p>
@@ -552,7 +552,7 @@ Dependiendo de la instalación que hayas realizado es posible que debas ajustar 
 </blockquote>
 <p>En este punto podemos ir al directorio creado y ejecutar la aplicación manualmente o pulsar sobre el botón Make-&gt;Execute.<br>
 Si hacemos esto (Make-Execute) tu  aplicación se ejecutara sobre el terminal de prueba y el control será cedido al mismo es decir será  plenamente operativa pudiendo comprobarse los movimientos.<br>
-Termina la aplicación de prueba pulsando provocando el evento Out (ESC) y de esta forma conseguir el retorno del control a la aplicación gráfica para seguir trabajando.</p>
+Termina la aplicación de prueba provocando el evento Out (ESC) y de esta forma conseguir el retorno del control a la aplicación gráfica para seguir trabajando.</p>
 <h2 id="menú-2-niveles">Menú 2 niveles</h2>
 <p>Para crear un menú de dos niveles procederemos creando dos paneles de forma similar a como lo hemos hecho en el caso anterior uno que contendrá las opciones del nivel 1 y otro con las opciones del nivel 2.<br>
 Para ello vamos a utilizar una facilidad de la aplicación gráfica.<br>
@@ -592,11 +592,13 @@ Dimensión: a 0,4 40,3 para que se muestre justo debajo del anterior.</p>
 Title: My first form<br>
 Level: 2</p>
 <blockquote>
-<p>En este caso vamos a dejar visible el menú los menús ya que sus<br>
-niveles son menores o iguales a 2. Si no quisiéramos esto tendríamos<br>
-que poner un nivel menor a los menús pero siempre superior a 0.</p>
+<p>En este caso vamos a dejar visible el menú principal al abrir el formulario ya que solo se ocultaran las vistas con niveles superiores a 2.</p>
 </blockquote>
-<p>OP: DELE<br>
+<p>OP: DELE</p>
+<blockquote>
+<p>Si usamos HIDE los datos introducidos persistirán entre aperturas del formulario, con DELE se borrarán al ocultar el mismo</p>
+</blockquote>
+<p>.<br>
 Color: colorForm, color que deberemos haber creado previamente a nuestro gusto.<br>
 Border:S . en este caso vamos a poner marco al panel y además como le hemos puesto titulo es necesario para mostrar el mismo.<br>
 Dimension: 5,5 y 60,15</p>
@@ -608,25 +610,24 @@ Name: ename<br>
 Visible: Y, ya deseamos que se muestre.<br>
 Select: N, las etiquetas no son seleccionables.</p>
 <blockquote>
-<p>se puede observar que este campo no es modificable ya que el mismo en<br>
-este caso esta fijado como selected N.</p>
+<p>se puede observar que este campo esta descrito el mismo como “no selecteable” es decir no podemos acceder al mismo cambiar el valor.</p>
 </blockquote>
 <p>Color: colorForm, puede usarse cualquier otro color creado pero el resultado será un poco raro.<br>
 Border: N no queremos marco en la etiqueta.<br>
 Dimension: 2,2 20,1<br>
 Text: NAME:</p>
-<p>Y con eso ya tenemos una etiqueta</p>
+<p>Salvamos y probamos.</p>
 <h2 id="field">field</h2>
 <p>A continuación vamos a definir el campo nombre editable.<br>
 Para lo cual retrocedemos y seleccionamos NEW FIELD e introducimos los datos:</p>
-<p>ID: 1<br>
+<p>ID: 1 , vamos a usar la referencia alternativa.<br>
 Name: name<br>
 Visible Y<br>
-Selec Y,<br>
+Select Y,<br>
 Color, colorForm<br>
 Auto Enter Y, el auto enter fuerza un evento enter en el momento que se rellena el tamaño máximo del campo.<br>
 Secret N, los campos que se marcan como secret muestran * en lugar del echo normal.<br>
-Keymap, si pulsamos sobre este botón nos permite seleccionar entre los keymap de usuario que hayamos definido. En nuestro caso el de defecto.<br>
+Keymap, si pulsamos sobre este botón nos permite seleccionar entre los keymap de usuario que hayamos definido. En nuestro caso no hacemos nada ya que usaremos el de defecto.<br>
 Ch. Ed: . es el  carácter a mostrar en las posiciones no rellenas del campo, por defecto son ‘.’ que indican el tamaño del campo.<br>
 Edit Functions: vamos a pulsar sobre este texto y seleccionar apha como validación.</p>
 <blockquote>
@@ -657,12 +658,8 @@ Seleccionamos NEW LABEL y rellenamos;</p>
 <p>ID:  none<br>
 Name: elist<br>
 Visible: Y, ya deseamos que se muestre.<br>
-Select: N, las etiquetas no son seleccionables.</p>
-<blockquote>
-<p>se puede observar que este campo no es modificable ya que el mismo en<br>
-este caso esta fijado como selected N.</p>
-</blockquote>
-<p>Color: colorForm, puede usarse cualquier otro color creado pero el resultado será un poco raro.<br>
+Select: N, las etiquetas no son seleccionables.<br>
+Color: colorForm, puede usarse cualquier otro color creado pero el resultado será un poco raro.<br>
 Border: N no queremos marco en la etiqueta.<br>
 Dimension: 2,4 20,1<br>
 Text: GENDER:</p>
@@ -672,8 +669,8 @@ Seleccionamos NEW LIST BUTTON</p>
 Name: gender<br>
 Display:  NORMAL,</p>
 <blockquote>
-<p>Este es un list button de alto 1,  activando e mismo y pulsando  las<br>
-flechas arriba/abajo podremos seleccionar las entre las siguientes<br>
+<p>Este es un list button de alto 1,  activando el mismo y pulsando  las<br>
+flechas arriba/abajo podremos seleccionar entre las siguientes<br>
 opciones:<br>
 NORMAL, visible y seleccionable.<br>
 HIDDEN oculto.<br>
@@ -684,7 +681,10 @@ OPEN se comporta como un list desplegable, las opciones solo se visualizan y se 
 Keymap: defecto<br>
 Border Y<br>
 Dimension: 24,4 y 12,5<br>
-Text: Añadimos los texto MALE, FEMALE y OTHER.</p>
+Text: Añadimos los textos MALE, FEMALE y OTHER mediante el botón Add.</p>
+<blockquote>
+<p>Para eliminar seleccionamos de la lista de textos añadidos o lo escribimos direntamente y pulsamos sobre Del</p>
+</blockquote>
 <p>Salvamos y procedemos a verificar el resultado.</p>
 <h2 id="button">button</h2>
 <p>Y ya solo nos queda un elemento que es el botón que ya hemos visto con los menús así que añadiremos simplemente un botón del tipo:</p>
@@ -702,7 +702,7 @@ En el panel: Form1 aplicamos el movimiento "-1: " al evento Out (Formulario de P
 <p>Los movimientos tipo -n, indica a la aplicación hacer “n” retrocesos en el camino de vistas  que ha terminado en esta vista.<br>
 De esta forma una vista puede ser invocada desde distintos puntos y retornar de forma natural a los mismos.</p>
 </blockquote>
-<p>En la vista menu1 / boton2 vamos a aplicar en  Moves form1:name para el evento Enter, de forma que se habrá el formulario al pulsar sobre el botón2 del menu1.</p>
+<p>En la vista menu1 / boton2 vamos a aplicar en  Moves form1:name para el evento Enter, de forma que se abra el formulario al pulsar sobre el botón2 del menu1.</p>
 <p>En el formulario vamos a aplicar los siguientes movimientos:</p>
 <p>En el elemento form1:name<br>
 Enter, “:2”  o :check</p>
@@ -880,7 +880,7 @@ El Xml tendrá un aspecto como este:</p>
 Empecemos por el caso más evidente recoger los datos del formulario y hacer algo.</p>
 <p>Para ello vamos a hacer lo siguiente, vamos al formulario del botón done y abrimos el apartado App. Moves con el botón al efecto.</p>
 <p>Aquí tenemos un formulario donde podemos asignar un callback a los eventos, en este caso asignamos al Enter: madeForm (p.ej).</p>
-<p>Salvamos y vamos abrimos List-&gt;Calls si lo hemos hecho bien aparecerá una entrada en el para ese componente y el evento ENTER estará asignada la función madeForm</p>
+<p>Salvamos y ejecutamos la opción “List-&gt;Calls” si lo hemos hecho bien aparecerá una entrada para ese componente y el evento ENTER y que tendrá asignada la función madeForm</p>
 <blockquote>
 <p>List-&gt;Call es una vista tipo table para navegar a izquierda/derecha usa las flechas.</p>
 </blockquote>
@@ -964,7 +964,7 @@ return &amp;action;
 </code></pre>
 <p>De esta forma forzamos la apertura de un vista MSG de tipo ERROR centrada en la vista del formulario y con el texto indicado.</p>
 <h2 id="redirigiendo">Redirigiendo</h2>
-<p>Esto esta bien pero no evita que la lógica de tratamiento del evento continué, para cambiar uso haremos uso del <strong>action</strong>.<br>
+<p>Esto esta bien pero no evita que la lógica de tratamiento del evento continué, para cambiar eso haremos uso del <strong>action</strong>.<br>
 La estructura action consta de 3 campos error, made y opToMade y se retorna como resultado de la llamada.</p>
 <h3 id="action.error">action.error</h3>
 <p>El campo error tiene los valores 0 o 1, en caso de retornar error=1 se anula cualquier tratamiento posterior del evento, por ejemplo, en nuestro caso:</p>
@@ -1030,9 +1030,7 @@ Para el resto de casos haremos uso de los callback del ciclo de vida.<br>
 Por ejemplo en este caso haremos que se ejecute una función previamente al mostrado de la vista donde cargaremos los datos.<br>
 Abrimos el formulario de la vista form1 y pulsamos sobre el botón: App.  Functions e indicamos en el campo PRE Show el valor loadForm1 y salvamos.</p>
 <blockquote>
-<p>Es posible introducir una función de usuario en cada punto del ciclo<br>
-de vida (create,show, activate, deactivate, hide,destroy) de las<br>
-vistas de forma previa a su ejecución o como paso posterior.</p>
+<p>Es posible introducir una función de usuario en cada punto del ciclo de vida (create,show, activate, deactivate, hide,destroy) de las vistas de forma previa a su ejecución o como paso posterior.</p>
 </blockquote>
 <p>En la vista List-&gt;Calls nos debe aparecer la nueva función definida.</p>
 <h3 id="prototipo-1">prototipo</h3>
@@ -1059,13 +1057,10 @@ return;
 <p>Con esto en el formulario aparecerá al abrirlo  como nombre “smith”, el check estará no seleccionado, habremos añadido al select el valor XX y seleccionado el valor 2 de la lista (también podríamos haber puesto -1,“OTHER”.) y hemos cambiado el texto del botón a Do.</p>
 <p>Puedes copiar ese código al fuente de funciones compilar y probar.</p>
 <blockquote>
-<p>Podríamos navegar sobre el parámetro panel recibido y hacer cambios<br>
-como veremos en la sección de programación, pero mejor usar el API que<br>
-veremos.</p>
+<p>Podríamos navegar sobre el parámetro panel recibido y hacer cambios como veremos en la sección de programación, pero mejor usar el API que veremos.</p>
 </blockquote>
 <blockquote>
-<p>Obsérvese que en este caso si indicamos la vista al llamar a LVIEW ya<br>
-que la vista que estamos manipulando no es la activa.</p>
+<p>Obsérvese que en este caso si indicamos la vista al llamar a LVIEW ya que la vista que estamos manipulando no es la activa.</p>
 </blockquote>
 <h3 id="xml-1">Xml</h3>
 <p>Observe que en el Xml ahora tenemos una entrada para FPanel.</p>
@@ -1101,7 +1096,7 @@ Keymap:  default<br>
 Vtl Line: Y, incluir una línea entre registro y registro.<br>
 Hz. Line:Y, separar los campos de los registros con una línea horizontal.</p>
 <p>y aplicamos y probamos.<br>
-Observaremos que solo se ve la primera columna y … en la cabecera el tamaño del marco no es suficiente para albergar ambas columnas, puedes hacerlo un poco mas grande por ejemplo a 42 en lugar de 40, dejarlo tal cual y que la navegación se haga con las flechas, eliminar las líneas verticales separadoras  o quitar el border.<br>
+Observaremos que solo se ve la primera columna y … en la cabecera, el tamaño del marco no es suficiente para albergar ambas columnas, puedes hacerlo un poco mas grande por ejemplo a 42 en lugar de 40, dejarlo tal cual y que la navegación se haga con las flechas, eliminar las líneas verticales separadoras  o quitar el border.<br>
 En nuestro caso ponemos 42 y ya esta.</p>
 <h3 id="moves-2">moves</h3>
 <p>Añadimos el siguiente movimiento  Out: -1. para retroceder.<br>
@@ -1444,17 +1439,16 @@ display="normal|hidden|nSelect" (optional) &gt;(0-*)
        &lt;/Component&gt;
 </code></pre>
 <h4 id="field-1">Field</h4>
-<pre><code>     &lt;Component Id="id. of component" Name="name of component" Type="field" display="normal|hidden|nSelect" (optional)&gt; (0-*)
-         &lt;Color&gt;color component&lt;/Color&gt; (optional)
-         &lt;Dimension border="0|1" x="2" y="4" high="1" width="20"/&gt;
-         &lt;Edit chToEDIT="." (optional) editType="validate callback" (optional)  auto="y|n" (optional) secret="y|n" (optional)/&gt; (optional)
-         &lt;Text&gt;Texto inicial field &lt;/Text&gt; (0-*)
-         &lt;Keymap&gt;own keymap&lt;/Keymap&gt;  (optional)
-
-         &lt;Move /&gt;(optional descripción moves of panel because of events)
-         &lt;FAction /&gt; (optional descripción of callback of events capture by aplicaction)
-         &lt;FComponent / (optional descripción of component life cicle callbacks)
-       &lt;/Component&gt;
+<pre><code> &lt;Component Id="id. of component" Name="name of component" Type="field" display="normal|hidden|nSelect" (optional)&gt; (0-*)
+             &lt;Color&gt;color component&lt;/Color&gt; (optional)
+             &lt;Dimension border="0|1" x="2" y="4" high="1" width="20"/&gt;
+             &lt;Edit chToEDIT="." (optional) editType="validate callback" (optional)  auto="y|n" (optional) secret="y|n" (optional)/&gt; (optional)
+             &lt;Text&gt;Texto inicial field &lt;/Text&gt; (0-*)
+             &lt;Keymap&gt;own keymap&lt;/Keymap&gt;  (optional)
+             &lt;Move /&gt;(optional descripción moves of panel because of events)
+             &lt;FAction /&gt; (optional descripción of callback of events capture by aplicaction)
+             &lt;FComponent / (optional descripción of component life cicle callbacks)
+           &lt;/Component&gt;
 </code></pre>
 <h3 id="sección-tables">sección Tables</h3>
 <p>Si la aplicación usa tablas  los mismos se definirán el la sección Tables</p>
@@ -1807,11 +1801,12 @@ int TEXT_send(char * texto,int init);
 char * TEXT_recv();
 </code></pre>
 <p>Observar que la FILO se soporta sobre una estructura simple:</p>
-<p>#define MAX_PILE      40<br>
-typedef struct{<br>
-char * text[MAX_PILE];<br>
-unsigned short rbuffer;<br>
-}tBufferSnd;</p>
+<pre><code>   #define MAX_PILE      40
+    typedef struct{
+         char * text[MAX_PILE];
+        unsigned short rbuffer;
+    }tBufferSnd;
+</code></pre>
 <blockquote>
 <p>Obsérvese que  estas funciones no reservan memoria simplemente apuntan a los textos que el usuario quiere transmitir entre vistas, normalmente referencias a algo seleccionado.<br>
 Además esta limitado a 40 datos.</p>
