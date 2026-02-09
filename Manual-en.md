@@ -81,7 +81,7 @@ The content will look something like this:</p>
 </code></pre>
 <h2 id="properties">Properties</h2>
 <p>The first step is to talk about the configuration or parameterization allowed by the project. (General-&gt;Properties)</p>
-<p>https://./doc/tui-2.jpg</p>
+<p><img src="./doc/tui-2.jpg" alt="Properties"></p>
 <h3 id="color">Color</h3>
 <p>The application allows the use of color by applications, but not all terminals support or allow colors.<br>
 For “normal” cases, this is not important; our application will simply be seen in black and white regardless of the colors used.<br>
@@ -198,7 +198,7 @@ In the XML file, we will indicate our custom keymaps as follows:</p>
 <p>Code 0 indicates not necessary.</p>
 </blockquote>
 <p>And in the graphical interface, we will use the menu: General-&gt;Keymap-&gt;new and follow the associated instructions.</p>
-<p>https://./doc/tui-3.jpg</p>
+<p><img src="./doc/tui-3.jpg" alt="Keymap"></p>
 <blockquote>
 <p>In the case of the Fn tag, we indicate that the entries for the<br>
 definition of F0 to F11 from the ncurses library be entered</p>
@@ -241,7 +241,7 @@ A-Z.</li>
 <p>This user function will be invoked by the engine in the fields where its use is indicated.</p>
 <p>In case it returns an invalid value, a beep will be emitted.</p>
 <p>In the graphical interface, the same is done using the menu: General-&gt;Ed.Function.</p>
-<p>https://./doc/tui-4.jpg</p>
+<p><img src="./doc/tui-4.jpg" alt="Ed.Function"></p>
 <h2 id="colors">Colors</h2>
 <p>All elements of the application can have a color associated with them. These colors are defined with three parameters:</p>
 <ul>
@@ -287,7 +287,7 @@ A-Z.</li>
 &lt;/Colors&gt;
 </code></pre>
 <p>And through the graphical application, we will use the form General-&gt;Colors-&gt;New</p>
-<p>https://./doc/tui-5.jpg</p>
+<p><img src="./doc/tui-5.jpg" alt="Definición color"></p>
 <p>For later use in the creation of elements.</p>
 <p>It is possible to define an additional property to the font manually in the xml through the attr2 attribute, for example:</p>
 <pre><code>&lt;Color Name="miColor1" foreground="1" background="2" attr="WA_BOLD" attr2="WA_UNDERLINE/&gt;
@@ -318,7 +318,7 @@ A-Z.</li>
 </code></pre>
 <p>In this way, we change the message window of type information from a window with 0 buttons (default) to 1, we give it the title “Information”, change the color from noColor (default) to colorInfo, and set the button text to OK.</p>
 <p>With the graphical application we will complete the form General-&gt;Msgs-&gt;Info</p>
-<p>https://./doc/tui-6.jpg</p>
+<p><img src="./doc/tui-6.jpg" alt="Msgs Into"></p>
 <p>In the case that the message window does not have any associated button, it will close after 5 seconds (modifiable value with MSG_setSegInfo) or through any keypress or mouse click.<br>
 Message windows will remain as the only active ones, blocking the application until they are closed.</p>
 <h1 id="first-application">FIRST APPLICATION</h1>
@@ -498,7 +498,7 @@ directory.</li>
 since we have not generated it before.</li>
 </ul>
 <p>It proceeds to create a directory with the project name and compile it using this makefile (makefile_tui) which executes tbuild, compilation, and linking.<br>
-https://./doc/compMenu.jpg</p>
+<img src="./doc/compMenu.jpg" alt="enter image description here"></p>
 <blockquote>
 <p>Compilation and execution of projects from the graphical tool is done<br>
 using this makefile (makefile_tui). Depending on the installation you<br>
@@ -521,7 +521,7 @@ of the panel differ.</p>
 <p>Copy moves: Y, we will later adjust it, especially if we have used absolute view:component references and not relative ones.<br>
 Copy applications move: N<br>
 Copy applications calls: N<br>
-https://./doc/copy.jpg<br>
+<img src="./doc/copy.jpg" alt="enter image description here"><br>
 Now let’s make some modifications:<br>
 We go to views-&gt;panels and select the panel nivel2. We change:<br>
 Level: to level 2. (i.e., it is a submenu of the main menu).<br>
@@ -540,8 +540,7 @@ talking about the active view.</p>
 </blockquote>
 <p>If we compile and execute the application, the result will be a two-level menu, the second of which opens when selecting Option A of the first level, and in which the second level is hidden when pressing “ESC”.</p>
 <blockquote>
-<p>Exercise: improve the appearance of the example, check the use of the<br>
-mouse.</p>
+<p>Exercise: improve the appearance of the example, check the use of the mouse.</p>
 </blockquote>
 <p>In a similar way to this, we can define menus of any depth and complexity.</p>
 <h2 id="form">Form</h2>
@@ -1039,7 +1038,7 @@ void loadForm1(tPanel * panel){
 </code></pre>
 <p>With this, when opening the form, the name “smith” will appear, the check will be unchecked, we will have added the value “XX” to the select and selected value 2 of the list (we could also have put -1,“OTHER”), and we have changed the button text to “Do”.</p>
 <p>You can copy that code to the source functions, compile and test.<br>
-https://./doc/form.jpg</p>
+<img src="./doc/form.jpg" alt="enter image description here"></p>
 <blockquote>
 <p>We could navigate over the panel parameter received and make changes as we will see in the programming section, but it is better to use the API that we will see.</p>
 <p>Observe that in this case we specify the view when calling LVIEW because the view we are manipulating is not the active one.</p>
@@ -1194,7 +1193,7 @@ return &amp;action;
 }
 </code></pre>
 <p>We compile and test. Now, by pressing enter on a row or double-clicking with the mouse, an information window will appear with the data of the active line.</p>
-<p>https://./doc/Table.jpg</p>
+<p><img src="./doc/Table.jpg" alt="enter image description here"></p>
 <blockquote>
 <p>You can also export the complete table to a file via<br>
 int TEXT_saveTabFile(tText * miText, char * fileName, char separator);</p>
@@ -1246,7 +1245,7 @@ We save and check.</p>
 <h3 id="compilation">Compilation</h3>
 <p>So we save, compile, and execute. We will see that now, when clicking on button 2 of the level 2 submenu, a view of the application’s XML file is shown, in which we can move with the keyboard or mouse.<br>
 Pressing F1 will return us to the previous menu.<br>
-https://./doc/Edit.jpg</p>
+<img src="./doc/Edit.jpg" alt="enter image description here"></p>
 <h3 id="data-loading">Data Loading</h3>
 <p>In this case, we have forced the loading of a file in the view definition itself, but this will not be the usual case.<br>
 The usual will be that the file to load is something dynamic. How is this done?<br>
