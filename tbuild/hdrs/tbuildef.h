@@ -52,7 +52,7 @@ tComponentPtr  elemento;\n"
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));\n\
  memset(auxFA,0,sizeof(_tFActionPanel));\n"
 
-#define CRE_COMPONENT_PASO3 "elemento=COMPONENT_create(panel,\"%s\",%d,&pDim,pColor,\n\
+#define CRE_COMPONENT_PASO3 "elemento=COMPONENT_create(panel,%d,\"%s\",%d,&pDim,pColor,\n\
 %s,&move,auxFA,auxFC);\n"
 
 #define CRE_COMPONENT_PASO4 " return elemento;\n}\n\n"
@@ -81,7 +81,7 @@ PANEL_addComponent(view->view.panel, componente);\n"
 #define ADD_CHECK_EDIT "  FEDIT_addCheck(%d,%d,%d,%s);\n"
 #define CHECK_EDIT_END "}\n"
 
-#define MSG_INI "static void MSGS_load(){\n MSG_Init();\n\n"
+#define MSG_INI "static void MSGS_load(){\n "
 #define ADD_MSG "  MSG_txtButton(%d,\"%s\",%d,\"%s\",\"%s\");\n\
   MSG_borderColor(%d,%d,&%s);\n"
 #define MSG_FIN "}\n"
@@ -142,40 +142,14 @@ int main(int argc, char * argv[])\n\
   char nPanel[MAX_NAME_VIEW+2]=\"\";\n\
   char nComponent[MAX_COMPONENT_NAME+2]=\"\";\n\
   char * paux;\n\
-  char * pterm;\n\
-  char * ptty;\n\
   int i;\n\
   int retorno;\n\
-  FILE *fd;\n\
 \n\
    %s \n\
-   setlocale(LC_ALL, \"\");\n\
-   pterm = getenv(\"TERM\");\n\
-   ptty = getenv(\"TTY\");\n\
-   if (ptty == NULL){\n\
-    if (pterm == NULL)\n\
-     scrSTD=newterm(\"xterm\",stdin,stdout);\n\
-    else\n\
-     scrSTD=newterm(pterm,stdin,stdout);\n\
-   } else {\n\
-      fd= fopen(ptty,\"r+\");\n\
-      if (fd != NULL){\n\
-        if (pterm == NULL)\n\
-           scrSTD=newterm(\"xterm\",fd,fd);\n\
-        else\n\
-           scrSTD = newterm(pterm,fd,fd); \n\
-      }\n\
-   }\n\
-   raw();\n\
-   keypad(stdscr, TRUE);\n\
-   cbreak();\n\
-   noecho();\n\
-   refresh();\n\
+   scrSTD=TUI_init(%d,%d); \n\
 \n\
-  COLOR_inicializar(%d);\n\
-  MAIN_createColors();\n\
-  KEYS_setMouse(%d);\n\
-  ERR_printError(%d,\"%s\");\n"
+   MAIN_createColors();\n\
+   ERR_printError(%d,\"%s\");\n"
 
 #define MAIN_PASO2 "  if (!strcmp(initProyect,\"\")==0)\n\
   {\n\
@@ -199,7 +173,7 @@ int main(int argc, char * argv[])\n\
    }\n\
   }\n\
   VIEW_Loop(view,nComponent);\n\
-  endwin();\n\
+  TUI_end();\n\
   %s\n\
   return 0;\n\
 }\n"
