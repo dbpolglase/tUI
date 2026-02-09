@@ -17,7 +17,9 @@ int FEDIT_checkEdit(int tipo, int * caracter)
 	return ((*caracter >= 48 && *caracter <= 57) ||
 	        (*caracter >= 65 && *caracter <= 90) ||
 	        (*caracter >= 97 && *caracter <= 122))?0:1;
-       
+     case E_ALPHA: 
+	return ((*caracter >= 65 && *caracter <= 90) ||
+	        (*caracter >= 97 && *caracter <= 122))?0:1;
      case E_7ASCII:
 	return (*caracter >= 32 && *caracter <= 126)?0:1;
      case E_UPPER:
@@ -75,6 +77,7 @@ int FEDIT_getAlign(int tipo )
    {
      case E_NONE: 
      case E_ALFNUMERIC: 
+     case E_ALPHA: 
      case E_7ASCII:
      case E_UPPER:
      case E_LOWER:
@@ -95,6 +98,7 @@ int FEDIT_getInsert(int tipo )
    {
      case E_NONE: 
      case E_ALFNUMERIC: 
+     case E_ALPHA: 
      case E_7ASCII:
      case E_UPPER:
      case E_LOWER:

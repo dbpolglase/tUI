@@ -6,7 +6,7 @@
 #include <stdarg.h>
 
 static int hayError=0;
-static int printError = 1;
+static int printError = 0;
 static int lastError=0;
 static FILE * fderror;
 
@@ -73,8 +73,5 @@ int ERR_isError()
 
 int ERR_lastError()
 {
- int error;
-   error=lastError;
-   lastError=0;
-  return error;
+  return lastError;
 }

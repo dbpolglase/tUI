@@ -15,7 +15,7 @@ DIR_RESULTADOS=../liberacion
 DIR_CABECERAS=../includes
 ODIR=obj
 
-_OBJETOS=msg.o fedit.o error.o keys.o text.o color.o back.o visual.o  component.o view.o lview.o panel.o table.o edit.o 
+_OBJETOS=tui.o msg.o fedit.o error.o keys.o text.o color.o back.o visual.o  component.o view.o lview.o panel.o table.o edit.o 
 OBJETOS = $(patsubst %,$(ODIR)/%,$(_OBJETOS))
 LBFLAGS=-L../../install/lib
 

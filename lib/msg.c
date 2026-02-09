@@ -33,7 +33,7 @@ static int minAlto[3]={0,0,0};
 static struct sigaction new_action,old_action;
 
 static void MSG_minDimension(enum CMsg type);
-static void MSG_calculaDim(enum CMsg type, char * Text);
+static void MSG_calculaDim(enum CMsg type, char * text);
 static void MSG_calculaXY(enum CMsg type,unsigned int center,tDim actVisual);
 static int MSG_show(enum CMsg type);
 static unsigned int nroSeg = MSG_TIME_INFO;
@@ -43,7 +43,7 @@ static void MSG_getAlarm();
 static void MSG_saveCursor(WINDOW * win);
 static void MSG_restoreCursor();
 
-void MSG_Init()
+void MSG_init()
 {
   vistaMsg[M_INFO].color.colorpair = COLOR_get(COLOR_BACK_INFO,COLOR_FORE_INFO);
   vistaMsg[M_INFO].color.attr= ATTR_INFO;
@@ -105,7 +105,7 @@ void MSG_txtButton(enum CMsg type,
 }
 
 
-int MSG_create(enum CMsg type, unsigned int center, char * formato,...)
+int MSG_create(enum CMsg type, enum VIEW_MODE center, char * formato,...)
 {
  va_list       params;
  char text[MAX_MSG_DATA+5];
@@ -169,22 +169,22 @@ static void MSG_getAlarm(){
   isAlarm=1;
 }
 
-static void MSG_calculaDim(enum CMsg type, char * Text)
+static void MSG_calculaDim(enum CMsg type, char * text)
 {
   int ancho=0,alto=0;
   char * textAux;
   char * token;
 
-  if (Text != NULL) /* Just to save strtok core in case constant Text */
+  if (text != NULL) /* Just to save strtok core in case constant Text */
   {
-    textAux = malloc(strlen(Text)+2);
-    strcpy(textAux,Text);
+    textAux = (char *) malloc(sizeof(char) * strlen(text)+2);
     if (textAux == NULL)
     {
       ERR_Error(ERR_MEM,
-		"Error creating msg text malloc %d\n",strlen(Text));
+		"Error creating msg text malloc %d\n",strlen(text));
       return;
     }
+    strcpy(textAux,text);
 
     token = strtok(textAux, "\n");
     while (token != NULL)
@@ -203,6 +203,7 @@ static void MSG_calculaDim(enum CMsg type, char * Text)
   if (ancho > COLS - 4) ancho = COLS-4;
   vistaMsg[type].dimension.alto = alto;
   vistaMsg[type].dimension.ancho = ancho;
+  free(textAux);
 }
 
 static void MSG_calculaXY(enum CMsg type,unsigned int center, tDim actVisual)

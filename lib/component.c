@@ -26,8 +26,9 @@ static trAction * COMPONENT_searchAction(tComponent * component,
 
 
 tComponent * COMPONENT_create(tPanel * panel,
+                        int id,
 			char * name, 
-			char type, 
+			enum CComponents type, 
 			tDim * dimension, 
 			tChAttr * color, 
 			tmapKeys * mapkey,
@@ -51,7 +52,10 @@ tComponent * COMPONENT_create(tPanel * panel,
   component->parent=panel;
 
   strncpy(component->name,name,sizeof(component->name));
-  component->id=++idComponent;
+  if (id <=0)
+   component->id=++idComponent;
+  else
+   component->id=id;
   component->type = type;
   component->editMode = NULL;
 
@@ -108,7 +112,7 @@ tComponent * COMPONENT_create(tPanel * panel,
   return component;
 }
 
-void COMPONENT_display(tComponent * component, int visible) {
+void COMPONENT_display(tComponent * component, enum EDisplay visible) {
  tPanel * aux;
 
   if (component == NULL || component->visual == NULL) return;
@@ -822,7 +826,7 @@ trAction * COMPONENT_Action(tComponent * component,int caracter)
   return &rAction;
 }
 
-int COMPONENT_editMode(tComponent * component, int mode)
+int COMPONENT_editMode(tComponent * component, enum EInsert mode)
 {
    component->visual->status.insert = mode;   
    return 0;

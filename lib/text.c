@@ -1184,7 +1184,7 @@ int TEXT_send(char * texto,int init)
      memset(bufferSnd->text,'\0',sizeof(bufferSnd->text));
   }
   if (init) bufferSnd->rbuffer=0;
-  if (bufferSnd->rbuffer >= MAX_SEND_TEXT){
+  if (bufferSnd->rbuffer >= MAX_PILE){
     return ERR_SIZE;
   }
   bufferSnd->text[bufferSnd->rbuffer]=texto;
