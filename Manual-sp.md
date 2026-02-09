@@ -588,7 +588,7 @@ Dimensión: a 0,4 40,3 para que se muestre justo debajo del anterior.</p>
 <p>De forma análoga a esta podemos definir menús de cualquier nivel de profundidad y complejidad.</p>
 <h2 id="formulario">Formulario</h2>
 <p>A continuación vamos a realizar un formulario típico en el que pondremos un elemento de cada tipo.</p>
-<h2 id="panel-1">panel</h2>
+<h3 id="panel-1">panel</h3>
 <p>Comenzamos como siempre creando un panel, con los siguientes datos por ejemplo:</p>
 <p>Name: form1<br>
 Title: My first form<br>
@@ -605,7 +605,7 @@ Color: colorForm, color que deberemos haber creado previamente a nuestro gusto.<
 Border:S . en este caso vamos a poner marco al panel y además como le hemos puesto titulo es necesario para mostrar el mismo.<br>
 Dimension: 5,5 y 60,15</p>
 <p>Lo creamos y testeamos para ver si el lienzo nos convence.</p>
-<h2 id="label">label</h2>
+<h3 id="label">label</h3>
 <p>Vamos a poner una etiqueta dentro del mismo,  para lo cual pulsamos sobre el botón COMPONENTS y seleccionamos NEW LABEL, aparecerá el formulario correspondiente en donde introduciremos los siguientes datos:</p>
 <p>ID:  none<br>
 Name: ename<br>
@@ -619,7 +619,7 @@ Border: N no queremos marco en la etiqueta.<br>
 Dimension: 2,2 20,1<br>
 Text: NAME:</p>
 <p>Salvamos y probamos.</p>
-<h2 id="field">field</h2>
+<h3 id="field">field</h3>
 <p>A continuación vamos a definir el campo nombre editable.<br>
 Para lo cual retrocedemos y seleccionamos NEW FIELD e introducimos los datos:</p>
 <p>ID: 1 , vamos a usar la referencia alternativa.<br>
@@ -639,7 +639,7 @@ Edit Functions: vamos a pulsar sobre este texto y seleccionar apha como validaci
 Dimension, 24,2 (a continuación de la etiqueta) y 20,1 (campo de 20 caracteres)<br>
 Texto: no indicamos nada ya que no queremos un valor por defecto.</p>
 <p>Salvamos y probamos.</p>
-<h2 id="check-button">Check Button</h2>
+<h3 id="check-button">Check Button</h3>
 <p>Vamos a definir una opción de check a continuación, para ello retrocedemos y seleccionamos NEW CK. BUTTON y rellenamos:</p>
 <p>ID: 2<br>
 Name: check<br>
@@ -654,7 +654,7 @@ Ch. Check,  (vacio) es el carácter a sustituir dependiendo de si esta marcado o
 Ch. is Check, A cuando marquemos se mostrará A.<br>
 Ch is no Check, B cuando desmarquemos se mostrará B.</p>
 <p>Salvamos y comprobamos el resultado.</p>
-<h2 id="list-button">List Button</h2>
+<h4 id="list-button">List Button</h4>
 <p>Continuemos con el list button, primero le ponemos una etiqueta al list button:<br>
 Seleccionamos NEW LABEL y rellenamos;</p>
 <p>ID:  none<br>
@@ -688,7 +688,7 @@ Text: Añadimos los textos MALE, FEMALE y OTHER mediante el botón Add.</p>
 <p>Para eliminar seleccionamos de la lista de textos añadidos o lo escribimos direntamente y pulsamos sobre Del</p>
 </blockquote>
 <p>Salvamos y procedemos a verificar el resultado.</p>
-<h2 id="button">button</h2>
+<h4 id="button">button</h4>
 <p>Y ya solo nos queda un elemento que es el botón que ya hemos visto con los menús así que añadiremos simplemente un botón del tipo:</p>
 <p>Id:4<br>
 Name: done<br>
@@ -697,7 +697,7 @@ Border:Y<br>
 Dimension: 25,10 y 10,3<br>
 Text: MADE</p>
 <p>Salvamos y procedemos a verificar el resultado.</p>
-<h2 id="moves-1">Moves</h2>
+<h3 id="moves-1">Moves</h3>
 <p>Vamos a definir los movimientos del formulario:<br>
 En el panel: Form1 aplicamos el movimiento "-1: " al evento Out (Formulario de Panel -&gt; Moves). Esto provocará que la tecla ESC en cualquier lugar del formulario retorne a la vista anterior.</p>
 <blockquote>
@@ -738,7 +738,7 @@ Enter, -:</p>
 </blockquote>
 <p>Next down, :1<br>
 Previous,up , :-3</p>
-<h2 id="compilamos-y-probamos">Compilamos y probamos</h2>
+<h3 id="compilamos-y-probamos">Compilamos y probamos</h3>
 <p>Salvamos, compilamos y probamos.<br>
 El Xml tendrá un aspecto como este:</p>
 <pre><code>&lt;?xml version="1.0"?&gt;
@@ -877,7 +877,7 @@ El Xml tendrá un aspecto como este:</p>
         &lt;/Panels&gt;
 &lt;/TUI&gt;
 </code></pre>
-<h2 id="tratar-evento">Tratar evento</h2>
+<h3 id="tratar-evento">Tratar evento</h3>
 <p>Todo lo anterior esta muy bien, podemos crear menús y formularios pero algo habrá que hacer con ellos.<br>
 Empecemos por el caso más evidente recoger los datos del formulario y hacer algo.</p>
 <p>Para ello vamos a hacer lo siguiente, vamos al formulario del botón done y abrimos el apartado App. Moves con el botón al efecto.</p>
@@ -886,7 +886,7 @@ Empecemos por el caso más evidente recoger los datos del formulario y hacer alg
 <blockquote>
 <p>List-&gt;Call es una vista tipo table para navegar a izquierda/derecha usa las flechas.</p>
 </blockquote>
-<h3 id="prototipo">Prototipo</h3>
+<h4 id="prototipo">Prototipo</h4>
 <p>Compilemos y vayamos al directorio Application1, en el fichero Application_func.c podemos ver algo como:</p>
 <pre><code>trAction* madeForm (tComponent * component,int key){ 
 static trAction action;
@@ -895,20 +895,15 @@ return &amp;action;
 }
 </code></pre>
 <p>Esto compone el prototipo de la función que deberemos rellenar con nuestra lógica, recibe como parámetros la pulsación que ha provocado el evento y el componente que ha capturado el mismo, esto  nos permite por ejemplo utilizar una misma función en distintos lugares de nuestro interfaz.</p>
-<h3 id="programación-obtención-datos">Programación, obtención datos</h3>
+<h4 id="programación-obtención-datos">Programación, obtención datos</h4>
 <p>Vamos con lo primero, recogida de datos,  para ello hay dos funciones clave:</p>
 <pre><code>void * LVIEW_getElement(char * nView, char * nComponent);
 </code></pre>
-<blockquote>
-<p>que nos permite obtener la refencia a cualquier elemento de cualquier vista tanto usando el id como el nombre.<br>
-Si indicamos NULL como nView nos referiremos a la vista activa.</p>
-</blockquote>
+<p>que nos permite obtener la refencia a cualquier elemento de cualquier vista tanto usando el id como el nombre.  Si indicamos NULL como nView nos referiremos a la vista activa.</p>
 <p>y</p>
 <pre><code> char * COMPONENT_getValue(tComponent * component);
 </code></pre>
-<blockquote>
 <p>que nos permite obtener el valor actual del componente, en el caso de los componentes checkButton el valor NULL indicara no marcado y !=NULL marcado.</p>
-</blockquote>
 <p>En nuestro sencillo ejemplo:</p>
 <pre><code>char * nameValue = COMPONENT_getValue(LVIEW_getElement(NULL,"name"));
 </code></pre>
@@ -923,7 +918,7 @@ Si indicamos NULL como nView nos referiremos a la vista activa.</p>
       char * genderValue = COMPONENT_getSelectValue(LVIEW_getElement(NULL,"gender"),&amp;lineSelect);
 </code></pre>
 <p>Obtendrá el texto y la línea seleccionada.</p>
-<h3 id="ejemplo">Ejemplo</h3>
+<h4 id="ejemplo">Ejemplo</h4>
 <p>Vamos a obtener los datos y escribirlos en un fichero, modificamos el fichero Application1_func.c del directorio Application1 y escribimos:</p>
 <pre><code>trAction* madeForm (tComponent * component,int key){
 static trAction action;
@@ -952,7 +947,7 @@ return &amp;action;
 <p>Observa que el efecto es que compilamos sin el -p al ejecutar el tbuild</p>
 </blockquote>
 <p>Ahora al ejecutar la aplicación se escribirá en el fichero /tmp/tuiApplication los valores introducidos en el formulario.</p>
-<h3 id="mejorando">Mejorando</h3>
+<h4 id="mejorando">Mejorando</h4>
 <p>No hemos echo ningún control de errores,  introduzcamos alguno, por ejemplo si falla el fopen.</p>
 <pre><code>char * file="/tmp/tuiApplication";
  initAction(action);
@@ -965,7 +960,7 @@ return &amp;action;
   }
 </code></pre>
 <p>De esta forma forzamos la apertura de un vista MSG de tipo ERROR centrada en la vista del formulario y con el texto indicado.</p>
-<h2 id="redirigiendo">Redirigiendo</h2>
+<h4 id="redirigiendo">Redirigiendo</h4>
 <p>Esto esta bien pero no evita que la lógica de tratamiento del evento continué, para cambiar eso haremos uso del <strong>action</strong>.<br>
 La estructura action consta de 3 campos error, made y opToMade y se retorna como resultado de la llamada.</p>
 <h3 id="action.error">action.error</h3>
@@ -978,9 +973,9 @@ La estructura action consta de 3 campos error, made y opToMade y se retorna como
   }
 </code></pre>
 <p>Hará que la herramienta ya no considere válido los posteriores tratamientos del evento, en este caso la orden de volver a la vista anterior.</p>
-<h3 id="action.made">action.made</h3>
+<h5 id="action.made">action.made</h5>
 <p>El campo made puede tener los valores 0 o 1, el valor 1 indica que el evento es tratado por el usuario y no debe tratarse por la aplicación.</p>
-<h3 id="action-optomade-y-componentnext">action opToMade y componentNext</h3>
+<h5 id="action-optomade-y-componentnext">action opToMade y componentNext</h5>
 <p>En los casos en que el evento es tratado por la aplicación debemos indicar el tratamiento a realizar esto se hace con los campos componentNext que será una cadena del tipo vista:elemento con la siguiente vista y/o componente  a mostrar y opToMade que indicará que hacer con la vista actual: NONE,HIDE,DESTROY… valores definidos en enum Ops.</p>
 <pre><code>  if (fd == NULL){
     MSG_create(M_ERROR,CENTER_VIEW,"Unable to Open %s file",file);
@@ -991,7 +986,7 @@ La estructura action consta de 3 campos error, made y opToMade y se retorna como
   }
 </code></pre>
 <p>En este caso decimos por ejemplo que en caso de error vaya a la vista de nivel2 del menú.</p>
-<h3 id="mejorando-más">mejorando más</h3>
+<h4 id="mejorando-más">mejorando más</h4>
 <p>Otra cosa que podemos hacer es obtener el valor del  MSG y operar en consecuencia, por ejemplo:</p>
 <pre><code>  if (fd == NULL){
     if (MSG_create(M_WARNING,CENTER_VIEW,"Unable to Open %s file\n goto nivel2 ?",file) ==0)
@@ -1006,7 +1001,7 @@ La estructura action consta de 3 campos error, made y opToMade y se retorna como
   }
 </code></pre>
 <p>Hemos cambiado el MSG a tipo WARNING que tiene 2 botones (por defecto) OK,CANCEL y si el usuario pulsa el primero (botón 0 , OK ) vamos a la vista nivel2 sino simplemente decimos error y continuamos en la vista.</p>
-<h3 id="teclas-función">teclas función</h3>
+<h4 id="teclas-función">teclas función</h4>
 <p>Los eventos de tecla de función se pueden capturar de forma similar la única diferencia es que el callback será genérico a todas ellas.</p>
 <p>Se recibirá  como parámetro adicional la Fn pulsada (0-11)  y será la programación la que indica cual es tratada y cual no.</p>
 <pre><code>trAction* fnKey (tComponent * component,int key,int Fn){
@@ -1015,7 +1010,7 @@ static trAction action;
 return &amp;action;
 }
 </code></pre>
-<h3 id="xml">Xml</h3>
+<h4 id="xml">Xml</h4>
 <p>Echemos un vistazo al Xml generado con esta funciones de callbak:</p>
 <pre><code>       &lt;Component Id="4" Name="done" Type="button" &gt;
                 &lt;Color&gt;colorMenu&lt;/Color&gt;
@@ -1025,7 +1020,7 @@ return &amp;action;
                 &lt;FAction  enter="madeForm"  Fn="fnKey" /&gt;
                 &lt;FComponent /&gt;
 </code></pre>
-<h3 id="programación-carga-de-datos">Programación, carga de datos</h3>
+<h4 id="programación-carga-de-datos">Programación, carga de datos</h4>
 <p>En cualquier formulario es habitual tener que cargar datos, algunos serán por defecto y otros no.<br>
 En el caso de los valores por defecto ya hemos visto como hacerlo simplemente usamos la etiqueta Text en el Xml y el componente se rellenará con esos datos.<br>
 Para el resto de casos haremos uso de los callback del ciclo de vida.<br>
@@ -1035,7 +1030,7 @@ Abrimos el formulario de la vista form1 y pulsamos sobre el botón: App.  Functi
 <p>Es posible introducir una función de usuario en cada punto del ciclo de vida (create,show, activate, deactivate, hide,destroy) de las vistas de forma previa a su ejecución o como paso posterior.</p>
 </blockquote>
 <p>En la vista List-&gt;Calls nos debe aparecer la nueva función definida.</p>
-<h3 id="prototipo-1">prototipo</h3>
+<h4 id="prototipo-1">prototipo</h4>
 <p>Si volvemos a compilar indicando “Rewrite application functions” (es decir con -p en el tbuild) podremos observar en el fichero de funciones el prototipado del callback a rellenar.</p>
 <blockquote>
 <p>De momento es mejor seguir indicando NO a Rewrite applications functions para no perder los cambios anteriores.</p>
@@ -1045,7 +1040,7 @@ return;
 }
 </code></pre>
 <p>El prototipo de la función es este en el que recibidos como parámetro la vista panel que lo ha disparado.</p>
-<h3 id="ejemplo-1">ejemplo</h3>
+<h4 id="ejemplo-1">ejemplo</h4>
 <p>Rellenemos la función loadForm1:</p>
 <pre><code>void loadForm1(tPanel * panel){
   COMPONENT_setValue(LVIEW_getElement("form1","name"),"Smith");
@@ -1065,7 +1060,7 @@ return;
 <blockquote>
 <p>Obsérvese que en este caso si indicamos la vista al llamar a LVIEW ya que la vista que estamos manipulando no es la activa.</p>
 </blockquote>
-<h3 id="xml-1">Xml</h3>
+<h4 id="xml-1">Xml</h4>
 <p>Observe que en el Xml ahora tenemos una entrada para FPanel.</p>
 <pre><code>        &lt;Panel Id="0" Name="form1" opToMade="destroy" Level="2"&gt;
         &lt;Title&gt;Mi first form&lt;/Title&gt;
@@ -1155,7 +1150,7 @@ return;
 Esta estructura esta compuesta por una array de arrays de líneas y campos es decir un array tridimensional.<br>
 Hasta ahora, las manipulaciones de los datos las hemos realizado mediante funciones especificas del API de component y esto es así porque la estructura y función de estos componentes recomienda una manipulación de este tipo.<br>
 En el caso de las vistas table y edit  sin embargo es más conveniente hacer uso directo de esta clase y de la estructura asociada ya que la comprensión de la misma puede ser necesaria.</p>
-<h4 id="metodo1-de-carga">metodo1 de carga:</h4>
+<h3 id="metodo1-de-carga">metodo1 de carga:</h3>
 <p>Cargamos la tabla dato a dato:</p>
 <pre><code>void loadTable(tTable * table){
  int i;
@@ -1526,12 +1521,12 @@ postHide="callback" (optional)
 postDestroy="callback" (optional)
 /&gt;
 </code></pre>
-<h2 id="api-programación">API Programación</h2>
-<h3 id="estructuras">Estructuras</h3>
+<h1 id="api-programación">API Programación</h1>
+<h2 id="estructuras">Estructuras</h2>
 <p>Las estructuras básicas se incluyen en tBasic.h y describen los tipos que dan soporte a la misma.<br>
 Pueden ser manipulables directamente por el usuario en los callbacks pero no es aconsejable.<br>
 En cualquier caso vamos a mostrar las más importantes.</p>
-<h4 id="ttext">tTEXT</h4>
+<h3 id="ttext">tTEXT</h3>
 <p>Es la estructura básica que da soporte a la información asociada a cada elemento.<br>
 Se compone de un puntero a una matriz tridimensional de lineas y campos (text) con su  tamaño, ocupación, posición y alguna otra caracteristica.</p>
 <pre><code>typedef struct {
@@ -1552,7 +1547,7 @@ Se compone de un puntero a una matriz tridimensional de lineas y campos (text) c
   unsigned short check;     (chek by default).
 }tText,*tTextPtr;
 </code></pre>
-<h4 id="tdim">tDim</h4>
+<h3 id="tdim">tDim</h3>
 <p>Definición del marco</p>
 <pre><code>typedef struct {
    unsigned short border;
@@ -1562,21 +1557,21 @@ Se compone de un puntero a una matriz tridimensional de lineas y campos (text) c
    unsigned short ancho;
 } tDim,*tDimPtr;
 </code></pre>
-<h4 id="tcursor">tCursor</h4>
+<h3 id="tcursor">tCursor</h3>
 <p>Posición del cursor.</p>
 <pre><code>typedef struct {
    unsigned short x;
    unsigned short y;
 } tCursor,*tCursorPtr;
 </code></pre>
-<h4 id="tchattr">tChAttr</h4>
+<h3 id="tchattr">tChAttr</h3>
 <p>Da soporte a los colores de la aplicación</p>
 <pre><code>typedef struct {
    int colorpair; /* par color background/foreground */
    int   attr;   /* conjunto de attributos WA* */
 }tChAttr,*tChAttrPtr;
 </code></pre>
-<h4 id="tstatus">tStatus</h4>
+<h3 id="tstatus">tStatus</h3>
 <p>Se utilizá dentro de la lógica de la aplicación para gestionar el estado de los elementos.</p>
 <pre><code>typedef struct {
    enum EAlign align;    /* left|right */
@@ -1596,7 +1591,7 @@ Se compone de un puntero a una matriz tridimensional de lineas y campos (text) c
    unsigned short nactColumns;
 } tStatus,*tStatusPtr;
 </code></pre>
-<h4 id="feditcheck">feditCheck</h4>
+<h3 id="feditcheck">feditCheck</h3>
 <p>Describe las funciones de validación de los fields</p>
 <pre><code>typedef struct feditCheck{
   enum EditType tipo; /* predefinida o de usuario */
@@ -1606,7 +1601,7 @@ Se compone de un puntero a una matriz tridimensional de lineas y campos (text) c
   struct feditCheck * siguiente;
 } tfeditCheck, * tfeditCheckPtr;
 </code></pre>
-<h4 id="tedit">tEDIT</h4>
+<h3 id="tedit">tEDIT</h3>
 <p>Contiene la información especifica de los campos fields</p>
 <pre><code>typedef struct {
    unsigned short secret; /* mostrar con * */
@@ -1615,7 +1610,7 @@ Se compone de un puntero a una matriz tridimensional de lineas y campos (text) c
    unsigned short autoComplet; 
 } tEDIT, * tEDITPtr;
 </code></pre>
-<h4 id="tvisual">tVisual</h4>
+<h3 id="tvisual">tVisual</h3>
 <p>Estructura  maestra de visualización con todo lo necesario</p>
 <pre><code>typedef struct {
    WINDOW * win; /* ncurses window */
@@ -1627,7 +1622,7 @@ Se compone de un puntero a una matriz tridimensional de lineas y campos (text) c
    tStatus status; /estado */
 } tVisual,*tVisualPtr;
 </code></pre>
-<h4 id="tcomponent">tComponent</h4>
+<h3 id="tcomponent">tComponent</h3>
 <p>Estructura que define el componente</p>
 <pre><code>typedef struct miComponente{
    int id;   
@@ -1643,7 +1638,7 @@ Se compone de un puntero a una matriz tridimensional de lineas y campos (text) c
    tFComponent * personalFComponent; /* capturas del ciclo de vida */
 } tComponent, * tComponentPtr;
 </code></pre>
-<h4 id="tpanel">tPanel</h4>
+<h3 id="tpanel">tPanel</h3>
 <p>Estructura que da soporte al panel</p>
 <pre><code>typedef struct {
    int id;
@@ -1658,7 +1653,7 @@ Se compone de un puntero a una matriz tridimensional de lineas y campos (text) c
    tComponent * activeElement; /* componente activo */
 } tPanel, * tPanelPtr;
 </code></pre>
-<h4 id="ttable">tTable</h4>
+<h3 id="ttable">tTable</h3>
 <p>Estructura que soporta las tablas</p>
 <pre><code>typedef struct {
    int id;
@@ -1687,7 +1682,7 @@ typedef struct tableColumn{
    struct tableColumn * next;
 } tTableColumn, * tTableColumnPtr;
 </code></pre>
-<h4 id="tedit-1">tEdit</h4>
+<h3 id="tedit-1">tEdit</h3>
 <p>Estructura de la vista Edit.</p>
 <pre><code>typedef struct {
    int id;
@@ -1705,7 +1700,7 @@ typedef struct tableColumn{
    tFEdit * personalFEdit;
 } tEdit, * tEditPtr;
 </code></pre>
-<h4 id="tview">tView</h4>
+<h3 id="tview">tView</h3>
 <p>El conjunto de vistas estan soportadas por la estructura tView.</p>
 <pre><code>typedef struct {
  enum CViews type; /* panel/table/edit */
@@ -1723,7 +1718,7 @@ typedef struct tableColumn{
 <p>Nos saltamos la descripción de las estructuras tmapKeys, tMove,<br>
 tFactionPanel y tFComponent por ser triviales</p>
 </blockquote>
-<h3 id="api">API</h3>
+<h2 id="api">API</h2>
 <h3 id="errores-1">errores</h3>
 <p>El API para el manejo de errores se incluye en el fichero error.h</p>
 <pre><code>/*
@@ -1805,17 +1800,13 @@ int TEXT_send(char * texto,int init);
 /* Extract from the FILO pile */
 char * TEXT_recv();
 </code></pre>
-<p>Observar que la FILO se soporta sobre una estructura simple:</p>
+<p><strong>No Reserva Memoria</strong>: La función <code>TEXT_send</code>  <strong>NO copia ni reserva memoria</strong> para el texto. Simplemente almacena el <strong>puntero</strong> (<code>char*</code>) que se le pasa</p>
 <pre><code>   #define MAX_PILE      40
     typedef struct{
          char * text[MAX_PILE];
         unsigned short rbuffer;
     }tBufferSnd;
 </code></pre>
-<blockquote>
-<p>Obsérvese que  estas funciones no reservan memoria simplemente apuntan a los textos que el usuario quiere transmitir entre vistas, normalmente referencias a algo seleccionado.<br>
-Además esta limitado a 40 datos.</p>
-</blockquote>
 <h3 id="text">Text</h3>
 <p>La manipulación de los datos a bajo nivel se realiza mediante la clase Text, cuyo interfaz se incluye en text.h<br>
 El interfaz es complejo y debe evitarse salvo necesidad.</p>
@@ -2102,7 +2093,7 @@ SCREEN * TUI_init (unsigned int useMouse, unsigned int useColor);
 void TUI_end();
 </code></pre>
 <p>que se localiza en tui.h e inicializa los modulos mandatory retornando el puntero al SCREEN de ncurses.</p>
-<h2 id="uso-directo">Uso directo</h2>
+<h1 id="uso-directo">Uso directo</h1>
 <p>Como ya indicamos es posible obviar el uso de la generación a partir de Xml y la herramienta gráfica tUI y programar directamente el interfaz usando unicamente la libreria TUI.<br>
 Ya se ha descrito el API por lo que simplemente crearemos un ejemplo sencillo para mostrar esto.<br>
 En el siguiente ejemplo se crea de forma manual el menu1 que llevamos viendo.</p>
