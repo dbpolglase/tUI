@@ -50,6 +50,7 @@ tXmlPanelPtr VIEW_searchPanel(char * name);
 tXmlTablePtr VIEW_searchTable(char * name);
 tXmlEditPtr VIEW_searchEdit(char * name);
 static void VIEW_addTableElemens(tXmlTablePtr auxTable);
+static void VIEW_copyTableElements(tXmlTablePtr newTable,tXmlTablePtr oldTable);
 static void VIEW_copyComponents(tXmlPanelPtr newPanel,tXmlPanelPtr oldPanel,
           unsigned short cMove,unsigned short caMove,unsigned short caCall);
 static void VIEW_deleteComponents(tXmlPanelPtr panel);
@@ -68,6 +69,7 @@ void PANEL_addComp(char * panel, tXmlComponentPtr comp){
   elComp->siguiente =NULL;
   while (aux != NULL){
    if (strcmp(aux->name,comp->panelName)==0){
+     comp->panel = aux;
      elComp->siguiente = aux->elements;
      aux->elements=elComp;
      return;
@@ -464,6 +466,7 @@ tXmlEditPtr auxEdit=NULL,newEdit;
  auxC = (tComponent *)LVIEW_getElement(NULL,"appCalls");
  caCall=COMPONENT_getValue(auxC)==NULL?0:1;
 
+
  auxPanel = VIEW_searchPanel(from);
  if (auxPanel == NULL) {auxTable = VIEW_searchTable(from);
     if (auxTable == NULL) auxEdit = VIEW_searchEdit(from); }
@@ -480,6 +483,12 @@ tXmlEditPtr auxEdit=NULL,newEdit;
      VIEW_searchEdit(to)!= NULL )
  {
    MSG_create(M_ERROR,CENTER_VIEW,"Destination View already exists ");
+   action.error=1;
+   return &action;
+ }
+
+ if (cComp && strncmp(from,to,4)==0){
+   MSG_create(M_ERROR,CENTER_VIEW,"Copy components require \n that the name firsts 4 characters of from: and to: differ");
    action.error=1;
    return &action;
  }
@@ -501,11 +510,11 @@ tXmlEditPtr auxEdit=NULL,newEdit;
  if (auxTable != NULL) {
     newTable = (tXmlTablePtr) malloc(sizeof(tXmlTable));
     memcpy(newTable,auxTable,sizeof(tXmlTable));
+    VIEW_copyTableElements(newTable,auxTable);
     strcpy(newTable->name,to);
     if (!cMove) memset(&newTable->move,'\0',sizeof(tXmlMove));
     if (!caMove) memset(&newTable->personalAction,'\0',sizeof(tXmlMove));
     if (!caCall) memset(&newTable->personalFTable,'\0',sizeof(tXmlFApplication));
-    newTable->elements=NULL;
     newTable->siguiente=newTable->anterior=NULL;
     VIEW_addTable(newTable);
  }
@@ -538,12 +547,29 @@ static void VIEW_deleteComponents(tXmlPanelPtr panel)
   }
 }
 
+static void VIEW_copyTableElements(tXmlTablePtr newTable,tXmlTablePtr oldTable)
+{
+  tXmlElemsTablePtr auxOldElement,auxNewElement,auxJoin=NULL;
+ 
+  newTable->elements = NULL;
+  auxOldElement = oldTable->elements;
+  while (auxOldElement != NULL){
+     auxNewElement = (tXmlElemsTable *) malloc (sizeof(tXmlElemsTable));
+     memcpy(auxNewElement,auxOldElement,sizeof(tXmlElemsTable));
+     auxNewElement->siguiente = NULL;
+     if (auxJoin == NULL) newTable->elements = auxNewElement;
+     else auxJoin->siguiente = auxNewElement;
+     auxJoin = auxNewElement;
+     auxOldElement = auxOldElement->siguiente;
+  } 
+}
+
 static void VIEW_copyComponents(tXmlPanelPtr newPanel,tXmlPanelPtr oldPanel,
           unsigned short cMove,unsigned short caMove,unsigned short caCall)
 {
- tXmlCompPanel * aux;
- tXmlCompPanel * newCP, * enlaceCP;
+ tXmlCompPanel * aux; tXmlCompPanel * newCP, * enlaceCP;
  tXmlComponent * auxC;
+ tXmlTextPtr auxOldText=NULL,auxNewText=NULL; 
 
   
  aux=oldPanel->elements;
@@ -553,10 +579,32 @@ static void VIEW_copyComponents(tXmlPanelPtr newPanel,tXmlPanelPtr oldPanel,
    newCP = (tXmlCompPanel *) malloc(sizeof(tXmlCompPanel));
    auxC = (tXmlComponent *) malloc(sizeof(tXmlComponent));
    memcpy(auxC,aux->componente,sizeof(tXmlComponent));
+   auxC->siguiente=NULL;
+   if (aux->componente->text != NULL){
+     auxOldText = aux->componente->text;
+     while (auxOldText != NULL) {
+       if (auxNewText!=NULL) {
+        auxNewText->siguiente = (tXmlText *) malloc(sizeof(tXmlText));
+        auxNewText->siguiente->anterior = auxNewText;
+        auxNewText= auxNewText->siguiente;
+        auxNewText->siguiente = NULL;
+       } else {
+        auxNewText = (tXmlText *) malloc(sizeof(tXmlText));
+        auxNewText->siguiente = auxNewText->anterior=NULL;
+       }
+       if (auxOldText->texto !=NULL) {
+          auxNewText->texto = malloc(sizeof(char) * strlen(auxOldText->texto+2));
+          strcpy(auxNewText->texto,auxOldText->texto);
+       } else auxNewText->texto = NULL;
+      auxOldText = auxOldText->siguiente;
+     }
+   }
+   auxC->text = auxNewText;
+   auxNewText = NULL;
    if (!cMove) memset(&auxC->move,'\0',sizeof(tXmlMove));
    if (!caMove) memset(&auxC->personalAction,'\0',sizeof(tXmlMove));
    if (!caCall) memset(&auxC->personalFComponent,'\0',sizeof(tXmlFApplication));
-   strcpy(auxC->panelName,oldPanel->name);
+   strcpy(auxC->panelName,newPanel->name);
    newCP->componente=auxC;
    newCP->siguiente=NULL;
    if (enlaceCP== NULL){ newPanel->elements=newCP; enlaceCP=newCP;}
@@ -892,7 +940,7 @@ static trAction action;
    auxEditTable.elements=NULL;
    auxT = (tTable *)LVIEW_getElement("telement",NULL);
    TEXT_addData(auxT->text, auxEditTable.name);
-   TABLE_refresh(auxT);
+   LVIEW_refresh("telement");
    TEXT_send(auxEditTable.name,1);
  }
  else {

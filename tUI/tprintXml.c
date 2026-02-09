@@ -30,8 +30,8 @@
 #define PROP_COLOR  "\t\t\t<Color/>\n"
 #define PROP_ERROR  "\t\t\t<Error>%s</Error>\n"
 #define PROP_CHECK "\t\t\t<Check chCheck=\"%d\" chIsCheck=\"%d\" chNoCheck=\"%d\" />\n"
-#define PROP_BORDER "\t\t\t<Borders Up=\"%d\" Dw=\"%d\" Lf=\"%d\" Rg=\"%d\" Cul=\"%d\" Cur=\"%d\" Cdl=\"%d\" Cdr=\"%d\"/>\n"
-#define PROP_SBORDER "\t\t\t<SBorders Up=\"%d\" Dw=\"%d\" Lf=\"%d\" Rg=\"%d\" Cul=\"%d\" Cur=\"%d\" Cdl=\"%d\" Cdr=\"%d\"/>\n"
+#define PROP_BORDER "\t\t\t<Borders Lf=\"%d\" Rg=\"%d\" Up=\"%d\" Dw=\"%d\" Cul=\"%d\" Cur=\"%d\" Cdl=\"%d\" Cdr=\"%d\"/>\n"
+#define PROP_SBORDER "\t\t\t<SBorders Lf=\"%d\" Rg=\"%d\" Up=\"%d\" Dw=\"%d\" Cul=\"%d\" Cur=\"%d\" Cdl=\"%d\" Cdr=\"%d\"/>\n"
 
 #define INI_CHECKEDIT "\t<checksEdit>\n"
 #define FIN_CHECKEDIT "\t</checksEdit>\n"

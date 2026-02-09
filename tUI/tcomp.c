@@ -107,6 +107,7 @@ static void COMP_replaceComp()
       LVIEW_refresh("tcomp");
    }
  }
+ actComp.text = NULL;
 }
 
 void COMP_addComp(tXmlComponentPtr comp)
@@ -784,8 +785,10 @@ return &action;
 void COMP_loadLABEL()
 {
 tComponent * auxC;
-char * ncomp;
-char * panel;
+static char * ncomp;
+static char * panel;
+char * lcomp;
+char * lpanel;
 char auxdata[400];
 tXmlcolorPtr auxColor;
 tXmlTextPtr auxText;
@@ -802,8 +805,10 @@ tXmlComponentPtr auxComp;
 
  newComp =0;
  strcpy(auxdata,"");
- ncomp = TEXT_recv();
- panel = TEXT_recv();
+ lcomp = TEXT_recv();
+ lpanel = TEXT_recv();
+ if (lcomp != NULL) ncomp=lcomp;
+ if (lpanel != NULL) panel=lpanel;
  update=TEXT_recv()==NULL?0:1;
 
  memset(&actComp,'\0',sizeof(tXmlComponent));
@@ -867,8 +872,10 @@ tXmlComponentPtr auxComp;
 void COMP_loadButton()
 {
 tComponent * auxC;
-char * ncomp;
-char * panel;
+char * lcomp;
+char * lpanel;
+static char * ncomp;
+static char * panel;
 char auxdata[400];
 tXmlcolorPtr auxColor;
 tXmlTextPtr auxText;
@@ -895,9 +902,12 @@ tXmlMapKeyPtr auxKeymap;
  }
 
  newComp =0;
- ncomp = TEXT_recv();
- panel = TEXT_recv();
+ lcomp = TEXT_recv();
+ lpanel = TEXT_recv();
  update=TEXT_recv()==NULL?0:1;
+ 
+ if (lcomp != NULL) ncomp=lcomp;
+ if (lpanel != NULL) panel=lpanel;
 
  memset(&actComp,'\0',sizeof(tXmlComponent));
  actComp.type=C_BUTTON;
@@ -978,8 +988,10 @@ tXmlMapKeyPtr auxKeymap;
 void COMP_loadCkButton()
 {
 tComponent * auxC;
-char * ncomp;
-char * panel;
+static char * ncomp;
+static char * panel;
+char * lcomp;
+char * lpanel;
 char auxdata[400];
 tXmlcolorPtr auxColor;
 tXmlTextPtr auxText;
@@ -1006,8 +1018,10 @@ tXmlMapKeyPtr auxKeymap;
  }
 
  newComp =0;
- ncomp = TEXT_recv();
- panel = TEXT_recv();
+ lcomp = TEXT_recv();
+ lpanel = TEXT_recv();
+ if (lcomp != NULL) ncomp=lcomp;
+ if (lpanel != NULL) panel=lpanel;
  update=TEXT_recv()==NULL?0:1;
 
  memset(&actComp,'\0',sizeof(tXmlComponent));
@@ -1102,8 +1116,10 @@ tXmlMapKeyPtr auxKeymap;
 void COMP_loadLsButton()
 {
 tComponent * auxC;
-char * ncomp;
-char * panel;
+static char * ncomp;
+static char * panel;
+char * lcomp;
+char * lpanel;
 char auxdata[400];
 tXmlcolorPtr auxColor;
 tXmlTextPtr auxText;
@@ -1130,9 +1146,11 @@ tXmlMapKeyPtr auxKeymap;
  }
 
  newComp =0;
- ncomp = TEXT_recv();
- panel = TEXT_recv();
+ lcomp = TEXT_recv();
+ lpanel = TEXT_recv();
  update=TEXT_recv()==NULL?0:1;
+ if (lcomp != NULL) ncomp=lcomp;
+ if (lpanel != NULL) panel=lpanel;
 
  memset(&actComp,'\0',sizeof(tXmlComponent));
  actComp.type=C_LSBUTTON;
@@ -1196,8 +1214,10 @@ tXmlMapKeyPtr auxKeymap;
 void COMP_loadField()
 {
 tComponent * auxC;
-char * ncomp;
-char * panel;
+static char * ncomp;
+static char * panel;
+char * lcomp;
+char * lpanel;
 char auxdata[400];
 tXmlcolorPtr auxColor;
 tXmlTextPtr auxText;
@@ -1231,6 +1251,7 @@ tXmlCEdFunctionPtr auxEDF;
  COMPONENT_addText(auxC,"none");
  COMPONENT_addText(auxC,"7ascii");
  COMPONENT_addText(auxC,"numeric");
+ COMPONENT_addText(auxC,"alpha");
  COMPONENT_addText(auxC,"alfnumeric");
  COMPONENT_addText(auxC,"upper");
  COMPONENT_addText(auxC,"lower");
@@ -1240,9 +1261,12 @@ tXmlCEdFunctionPtr auxEDF;
  }
 
  newComp =0;
- ncomp = TEXT_recv();
- panel = TEXT_recv();
+ lcomp = TEXT_recv();
+ lpanel = TEXT_recv();
  update=TEXT_recv()==NULL?0:1;
+
+ if (lcomp != NULL) ncomp=lcomp;
+ if (lpanel != NULL) panel=lpanel;
 
  memset(&actComp,'\0',sizeof(tXmlComponent));
  actComp.type=C_EDIT;

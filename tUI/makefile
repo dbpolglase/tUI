@@ -28,13 +28,14 @@ $(ODIR)/%.o: %.c
 todo: dotmake maketUI 
 
 dotmake: 
-	../$(ODIR)/tbuildo -f tUI.xml -r
+	../$(ODIR)/tbuildo -f tUI.xml -i -r
 	mv *.h hdrs
 	$(CC) $(CFLAGS) -o obj/$(PROYECT).o $(PROYECT).c
 
 maketUI: $(OBJETOS_PROYECT) 
 	$(CC) $^ -o ../$(ODIR)/$(PROYECT) $(LBFLAGS) -ltui -L../tbuild -lparser -lncursesw -lxml2
 	$(CC) $^ -o ../$(ODIR)/$(PROYECT)o $(LBFLAGS) -l:libtui.a -L../tbuild -l:libparser.a -lncursesw -lxml2
+	cp makefile_tui ../$(ODIR)
 
 
 clean:	

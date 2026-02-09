@@ -1712,7 +1712,7 @@
 			<Color>miColor1</Color>
 			<Dimension border="0" x="11" y="3" high="1" width="37"/>
 			<Edit chToEDIT="." editType="7ascii" auto="y"/>
-			<Move  enter=":eop"  next=":eop"  previous=":elevel"  up=":epid"  down=":eread"  right=":eop" />
+			<Move  enter=":eop"  next=":eop"  previous=":elevel"  up=":epid"  down=":eread"  />
 		</Component>
 		<Component Name="fneet15" Type="label">
 			<Color>miColor1</Color>
@@ -1930,7 +1930,7 @@
 			<Color>miColor1</Color>
 			<Dimension border="0" x="11" y="2" high="1" width="37"/>
 			<Edit chToEDIT="." editType="7ascii" auto="y"/>
-			<Move  enter=":top"  next=":top"  previous=":tlevel"  up=":tpid"  down=":tlcolumn"  right=":top" />
+			<Move  enter=":top"  next=":top"  previous=":tlevel"  up=":tpid"  down=":tlcolumn" />
 		</Component>
 		<Component Name="fntet15" Type="label">
 			<Color>miColor1</Color>
@@ -2297,7 +2297,7 @@
 		<Component Name="em00" Type="label">
 			<Color>miColor4</Color>
 			<Dimension border="0" x="1" y="1" high="1" width="58"/>
-                        <Text>Describe Application Moves Functions</Text>
+			<Text>Describe Moves</Text>
 		</Component>
 		<Component Name="panel" Type="field" display="hidden">
 			<Color>miColor1</Color>
@@ -2672,8 +2672,7 @@
 		<Component Name="frmac00" Type="label">
 			<Color>miColor4</Color>
 			<Dimension border="0" x="1" y="1" high="1" width="58"/>
-			<Text>Describe Application Callbacks </Text>
-
+                        <Text>Describe Life Cicle Callbacks </Text>
 		</Component>
 		<Component Name="frmac01" Type="label">
 			<Color>miColor1</Color>
@@ -2825,7 +2824,7 @@
 		<Component Name="am00" Type="label">
 			<Color>miColor4</Color>
 			<Dimension border="0" x="1" y="1" high="1" width="58"/>
-			<Text>Describe Element Moves</Text>
+                        <Text>Describe Application Moves Functions</Text>
 		</Component>
 		<Component Name="am01" Type="label">
 			<Color>miColor1</Color>
@@ -3146,7 +3145,7 @@
 			<Dimension border="1" x="33" y="15" high="3" width="8"/>
 			<Text>Test</Text>
 			<Move  next=":CoLcreate"  previous=":CoLdelete"  up=":CoLFunctions"  left=":CoLdelete"  right=":CoLcreate" />
-			<FAction />
+			<FAction  enter="TEST_componentPanel" />
 			<FComponent />
 		</Component>
 		<Component Name="CoLcreate" Type="button">
@@ -3380,7 +3379,7 @@
 		<Component Name="CoBamove" Type="button">
 			<Color>miColor6</Color>
 			<Dimension border="1" x="25" y="12" high="3" width="14"/>
-			<Text> Aut. Moves </Text>
+			<Text> Moves </Text>
 			<Move  enter="aMove:empanelenter"  next=":CoBpmove"  previous=":CoBFunctions"  up=":CoBText"  down=":CoBtest"  left=":CoBFunctions"  right=":CoBpmove" />
 			<FAction  enter="COMP_reqMoves" />
 			<FComponent />
@@ -3414,7 +3413,7 @@
 			<Dimension border="1" x="33" y="15" high="3" width="8"/>
 			<Text>Test</Text>
 			<Move  next=":CoBcreate"  previous=":CoBdelete"  up=":CoBamove"  left=":CoBdelete"  right=":CoBcreate" />
-			<FAction />
+			<FAction  enter="TEST_componentPanel" />
 			<FComponent />
 		</Component>
 		<Component Name="CoBcreate" Type="button">
@@ -3705,7 +3704,7 @@
 		<Component Name="CoCBamove" Type="button">
 			<Color>miColor6</Color>
 			<Dimension border="1" x="25" y="12" high="3" width="14"/>
-			<Text> Aut. Moves </Text>
+			<Text>  Moves </Text>
 			<Move  enter="aMove:empanelenter"  next=":CoCBpmove"  previous=":CoCBFunctions"  up=":CoCBchischeck"  down=":CoCBtest"  left=":CoCBFunctions"  right=":CoCBpmove" />
 			<FAction  enter="COMP_reqMoves" />
 			<FComponent />
@@ -3739,7 +3738,7 @@
 			<Dimension border="1" x="33" y="15" high="3" width="8"/>
 			<Text>Test</Text>
 			<Move  next=":CoCBcreate"  previous=":CoCBdelete"  up=":CoCBamove"  left=":CoCBdelete"  right=":CoCBcreate" />
-			<FAction />
+			<FAction  enter="TEST_componentPanel" />
 			<FComponent />
 		</Component>
 		<Component Name="CoCBcreate" Type="button">
@@ -4001,7 +4000,7 @@
 		<Component Name="CoLBamove" Type="button">
 			<Color>miColor6</Color>
 			<Dimension border="1" x="25" y="13" high="3" width="14"/>
-			<Text> Aut. Moves </Text>
+			<Text>  Moves </Text>
 			<Move  enter="aMove:empanelenter"  next=":CoLBpmove"  previous=":CoLBFunctions"  up=":CoLBText"  down=":CoLBtest"  left=":CoLBFunctions"  right=":CoLBpmove" />
 			<FAction  enter="COMP_reqMoves" />
 			<FComponent />
@@ -4035,7 +4034,7 @@
 			<Dimension border="1" x="33" y="16" high="3" width="8"/>
 			<Text>Test</Text>
 			<Move  next=":CoLBcreate"  previous=":CoLBdelete"  up=":CoLBamove"  left=":CoLBdelete"  right=":CoLBcreate" />
-			<FAction />
+			<FAction  enter="TEST_componentPanel" />
 			<FComponent />
 		</Component>
 		<Component Name="CoLBcreate" Type="button">
@@ -4210,7 +4209,7 @@
 			<FAction />
 			<FComponent postDeactivate="COMP_deselectEdFunc"/>
 		</Component>
-		<Component Name="CoEDTEFunction" Type="field">
+		<Component Name="CoEDTEFunction" Type="field" display="nSelect">
 			<Color>miColor1</Color>
 			<Dimension border="0" x="37" y="8" high="1" width="20"/>
                         <Text>none</Text>
@@ -4326,7 +4325,7 @@
 		<Component Name="CoEDamove" Type="button">
 			<Color>miColor6</Color>
 			<Dimension border="1" x="25" y="13" high="3" width="14"/>
-			 <Text> Aut. Moves </Text>
+			 <Text> Moves </Text>
 			<Move  enter="aMove:empanelenter"  next=":CoEDpmove"  previous=":CoEDFunctions"  up=":CoEDText"  down=":CoEDtest"  left=":CoEDFunctions"  right=":CoEDpmove" />
 			<FAction  enter="COMP_reqMoves" />
 			<FComponent />
@@ -4358,9 +4357,9 @@
 		<Component Name="CoEDtest" Type="button">
 			<Color>miColor1</Color>
 			<Dimension border="1" x="33" y="16" high="3" width="8"/>
-			<Text> Test </Text>
+			<Text>Test </Text>
 			<Move  next=":CoEDcreate"  previous=":CoEDdelete"  up=":CoEDamove"  left=":CoEDdelete"  right=":CoEDcreate" />
-			<FAction />
+			<FAction  enter="TEST_componentPanel" />
 			<FComponent />
 		</Component>
 		<Component Name="CoEDcreate" Type="button">

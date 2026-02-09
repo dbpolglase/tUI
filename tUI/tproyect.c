@@ -45,14 +45,14 @@ tXmlProyect theProyect={"","","",NULL,0};
 
 tXmlProp proyectInitXmlProperties={1,1,1,"errors.err",
 		'?','X','_',
-		{'-','-','|','|','+','+','+','+'},
-		{'-','-','|','#','+','+','^','v'},
+		{'|','|','-','-','+','+','+','+'},
+		{'|','#','-','-','+','^','+','v'},
                 "","","view:component"};
 
 tXmlProp proyectXmlProperties={1,1,1,"errors.err",
 		'?','X','_',
-		{'-','-','|','|','+','+','+','+'},
-		{'-','-','|','#','+','+','^','v'},
+		{'|','|','-','-','+','+','+','+'},
+		{'|','#','-','-','+','^','+','v'},
                 "","","view:component"};
 
 tTest testTerminal={NULL,"/dev/pts",NULL,"xterm-256color"};
@@ -100,22 +100,22 @@ tComponent * aux;
 
  aux = (tComponent *)LVIEW_getElement(NULL,"frmPPup");
  if (aux!=NULL)
-   proyectXmlProperties.borders[0]=COMPONENT_getValue(aux)[0];
+   proyectXmlProperties.borders[2]=COMPONENT_getValue(aux)[0];
  else
    action.error=1;
  aux = (tComponent *)LVIEW_getElement(NULL,"frmPPdw");
  if (aux!=NULL)
-   proyectXmlProperties.borders[1]=COMPONENT_getValue(aux)[0];
+   proyectXmlProperties.borders[3]=COMPONENT_getValue(aux)[0];
  else
    action.error=1;
  aux = (tComponent *)LVIEW_getElement(NULL,"frmPPlf");
  if (aux!=NULL)
-   proyectXmlProperties.borders[2]=COMPONENT_getValue(aux)[0];
+   proyectXmlProperties.borders[0]=COMPONENT_getValue(aux)[0];
  else
    action.error=1;
  aux = (tComponent *)LVIEW_getElement(NULL,"frmPPrg");
  if (aux!=NULL)
-   proyectXmlProperties.borders[3]=COMPONENT_getValue(aux)[0];
+   proyectXmlProperties.borders[1]=COMPONENT_getValue(aux)[0];
  else
    action.error=1;
  aux = (tComponent *)LVIEW_getElement(NULL,"frmPPcul");
@@ -141,22 +141,22 @@ tComponent * aux;
 
  aux = (tComponent *)LVIEW_getElement(NULL,"frmSPup");
  if (aux!=NULL)
-   proyectXmlProperties.sborders[0]=COMPONENT_getValue(aux)[0];
+   proyectXmlProperties.sborders[2]=COMPONENT_getValue(aux)[0];
  else
    action.error=1;
  aux = (tComponent *)LVIEW_getElement(NULL,"frmSPdw");
  if (aux!=NULL)
-   proyectXmlProperties.sborders[1]=COMPONENT_getValue(aux)[0];
+   proyectXmlProperties.sborders[3]=COMPONENT_getValue(aux)[0];
  else
    action.error=1;
  aux = (tComponent *)LVIEW_getElement(NULL,"frmSPlf");
  if (aux!=NULL)
-   proyectXmlProperties.sborders[2]=COMPONENT_getValue(aux)[0];
+   proyectXmlProperties.sborders[0]=COMPONENT_getValue(aux)[0];
  else
    action.error=1;
  aux = (tComponent *)LVIEW_getElement(NULL,"frmSPrg");
  if (aux!=NULL)
-   proyectXmlProperties.sborders[3]=COMPONENT_getValue(aux)[0];
+   proyectXmlProperties.sborders[1]=COMPONENT_getValue(aux)[0];
  else
    action.error=1;
  aux = (tComponent *)LVIEW_getElement(NULL,"frmSPcul");
@@ -248,22 +248,22 @@ char buffer[4];
 
  aux = (tComponent *)LVIEW_getElement("frmPProyect","frmPPup");
  if (aux!=NULL){
-   sprintf(buffer,"%c",(char)proyectXmlProperties.borders[0]);
+   sprintf(buffer,"%c",(char)proyectXmlProperties.borders[2]);
    COMPONENT_setValue(aux,buffer);
  }
  aux = (tComponent *)LVIEW_getElement("frmPProyect","frmPPdw");
  if (aux!=NULL){
-   sprintf(buffer,"%c",(char)proyectXmlProperties.borders[1]);
+   sprintf(buffer,"%c",(char)proyectXmlProperties.borders[3]);
    COMPONENT_setValue(aux,buffer);
  }
  aux = (tComponent *)LVIEW_getElement("frmPProyect","frmPPlf");
  if (aux!=NULL){
-   sprintf(buffer,"%c",(char)proyectXmlProperties.borders[2]);
+   sprintf(buffer,"%c",(char)proyectXmlProperties.borders[0]);
    COMPONENT_setValue(aux,buffer);
  }
  aux = (tComponent *)LVIEW_getElement("frmPProyect","frmPPrg");
  if (aux!=NULL){
-   sprintf(buffer,"%c",(char)proyectXmlProperties.borders[3]);
+   sprintf(buffer,"%c",(char)proyectXmlProperties.borders[1]);
    COMPONENT_setValue(aux,buffer);
  }
  aux = (tComponent *)LVIEW_getElement("frmPProyect","frmPPcul");
@@ -289,22 +289,22 @@ char buffer[4];
 
  aux = (tComponent *)LVIEW_getElement("frmPProyect","frmSPup");
  if (aux!=NULL){
-   sprintf(buffer,"%c",(char)proyectXmlProperties.sborders[0]);
+   sprintf(buffer,"%c",(char)proyectXmlProperties.sborders[2]);
    COMPONENT_setValue(aux,buffer);
  }
  aux = (tComponent *)LVIEW_getElement("frmPProyect","frmSPdw");
  if (aux!=NULL){
-   sprintf(buffer,"%c",(char)proyectXmlProperties.sborders[1]);
+   sprintf(buffer,"%c",(char)proyectXmlProperties.sborders[3]);
    COMPONENT_setValue(aux,buffer);
  }
  aux = (tComponent *)LVIEW_getElement("frmPProyect","frmSPlf");
  if (aux!=NULL){
-   sprintf(buffer,"%c",(char)proyectXmlProperties.sborders[2]);
+   sprintf(buffer,"%c",(char)proyectXmlProperties.sborders[0]);
    COMPONENT_setValue(aux,buffer);
  }
  aux = (tComponent *)LVIEW_getElement("frmPProyect","frmSPrg");
  if (aux!=NULL){
-   sprintf(buffer,"%c",(char)proyectXmlProperties.sborders[3]);
+   sprintf(buffer,"%c",(char)proyectXmlProperties.sborders[1]);
    COMPONENT_setValue(aux,buffer);
  }
  aux = (tComponent *)LVIEW_getElement("frmPProyect","frmSPcul");
@@ -480,7 +480,7 @@ tComponent * auxC;
    return &action;
   }
   sprintf(buffer,"%s.xml",theProyect.name);
-  if (MSG_create(M_WARNING,CENTER_VIEW,"OK to Save Current Work before open Proyect File") == 1) {
+  if (MSG_create(M_WARNING,CENTER_VIEW,"OK to Save Current Work before open Proyect File") == 0) {
    if (WXML_print(buffer) != 0) {
      MSG_create(M_ERROR,CENTER_VIEW,"Error saving current proyect");
      action.error=1;

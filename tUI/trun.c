@@ -688,6 +688,7 @@ static int RUN_edfNull(char * edf)
   if (strcmp(edf,"") == 0 )  return 0;
   if (strcmp(edf,"none") == 0 )  return 0;
   if (strcmp(edf,"numeric") == 0 )  return 0;
+  if (strcmp(edf,"alpha") == 0 )  return 0;
   if (strcmp(edf,"alfnumeric") == 0 )  return 0;
   if (strcmp(edf,"7ascii") == 0 )  return 0;
   if (strcmp(edf,"upper") == 0 )  return 0;
@@ -743,6 +744,7 @@ static int RUN_checkMove(char * name, char  * move,tXmlCompPanel * panelComp,
   if (strcmp(move,"")==0) return 0;
   if (strcmp(move,"exit:")==0) return 0;
   if (strcmp(move,"-:")==0) return 0;
+  if (move[0] == '-' && move[1]<=57 && move[1]>=48) return 0;
 
   aux = move;
   while (*aux != '\0' && *aux!=':') aux++;
@@ -788,7 +790,7 @@ char * token;
 int y=dimension->border;
 char textAux[500];
 
-  while(text!=NULL){
+  while(text!=NULL && text->texto != NULL){
     strcpy(textAux,text->texto);
     token = strtok(textAux,"\n");
     while (token != NULL){
@@ -806,6 +808,7 @@ void RUN_compile () {
 tComponent * auxC;
 struct stat st;
 tXmlProyectPtr auxProy;
+unsigned int rwFunctions=0;
 pid_t pid;
 int status;
 char * argv[]={"/bin/sh","-c","make -f makefile_tui 2>/tmp/tcomp 1>/tmp/tcomp",0};
@@ -838,15 +841,18 @@ extern char ** environ;
  auxC = (tComponent *)LVIEW_getElement("frCompile","saving");
  COMPONENT_setValue(auxC,"done");
  COMPONENT_refresh(auxC);
-
  auxC = (tComponent *)LVIEW_getElement("frCompile","compile");
- 
- sprintf(sproy,"TUI_PROYECT=%s",auxProy->name);
+
+ if (MSG_create(M_WARNING,CENTER_TERMINAL," Rewrite Functions File ? ") == 0){
+   rwFunctions=1;
+ }
 
  pid = vfork();  
 
  if (pid == 0) { 
         setenv("TUI_PROYECT",auxProy->name , 1);
+        if (rwFunctions) setenv("WFUNCTION"," -p " , 1); 
+          else setenv("WFUNCTION"," " , 1);
         execve(argv[0],argv,environ);
  } else if (pid > 0) {  
 	waitpid(pid,&status,0);

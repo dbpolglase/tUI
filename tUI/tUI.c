@@ -49,9 +49,7 @@ static void FEDIT_load(){
   FEDIT_addCheck(17,1,1,OneTo9);
 }
 static void MSGS_load(){
- MSG_Init();
-
-}
+ }
 static tComponentPtr _Cwelc_welcome(tPanelPtr panel) {
 tChAttrPtr pColor=&miColor1;
 tDim pDim ={1,25,4,16,28};
@@ -73,7 +71,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"welcome",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"welcome",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"@@@@@@@@@@@@@@@@@@@@@    \n @@@@@@@@@@@@@@@@@@@@@@@  \n @@@@                 @@@ \n @@@@@@@ TERMINAL  @@@@@@ \n @@@@ USER INTERFACE  @@@ \n @@@@@@@           @@@@@@ \n @@@@                 @@@ \n @@@@       TUI       @@@ \n  @@@      =====      @@@ \n  @@@                  #@ \n  @##   Press Enter    #@@\n  @#                  ##@ \n   ### DBP ###############\n      ###########2025#####",0);
  return elemento;
@@ -100,7 +98,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"mnPproyect",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,1,"mnPproyect",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Proyect",0);
  return elemento;
@@ -128,7 +126,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_checkOpen;
-elemento=COMPONENT_create(panel,"mnPgeneral",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,2,"mnPgeneral",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"General",0);
  return elemento;
@@ -156,7 +154,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_checkOpen;
-elemento=COMPONENT_create(panel,"mnPviews",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,3,"mnPviews",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Views",0);
  return elemento;
@@ -184,7 +182,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_checkOpen;
-elemento=COMPONENT_create(panel,"mnPcomponents",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnPcomponents",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Components",0);
  return elemento;
@@ -212,7 +210,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_checkOpen;
-elemento=COMPONENT_create(panel,"mnPlist",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnPlist",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"List",0);
  return elemento;
@@ -240,7 +238,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_checkOpen;
-elemento=COMPONENT_create(panel,"mnPedit",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnPedit",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Edit",0);
  return elemento;
@@ -268,7 +266,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_checkOpen;
-elemento=COMPONENT_create(panel,"mnPcompile",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnPcompile",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Make ",0);
  return elemento;
@@ -296,7 +294,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_exit;
-elemento=COMPONENT_create(panel,"mnPexit",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnPexit",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Exit",0);
  return elemento;
@@ -323,7 +321,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"mnGproperties",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnGproperties",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Properties",0);
  return elemento;
@@ -350,7 +348,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"mnGkeymap",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnGkeymap",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Keymap",0);
  return elemento;
@@ -377,7 +375,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"mnGeditFunction",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnGeditFunction",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Ed. Functions",0);
  return elemento;
@@ -404,7 +402,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"mnGcolors",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnGcolors",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Colors",0);
  return elemento;
@@ -431,7 +429,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"mnGmsgs",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnGmsgs",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Msgs",0);
  return elemento;
@@ -458,7 +456,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"mnPnew",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnPnew",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"New",0);
  return elemento;
@@ -485,7 +483,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"mnPopen",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnPopen",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Open",0);
  return elemento;
@@ -513,7 +511,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_close;
-elemento=COMPONENT_create(panel,"mnPclose",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnPclose",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Close",0);
 COMPONENT_display(elemento,1);
@@ -541,7 +539,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"mnPsave",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnPsave",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Save",0);
 COMPONENT_display(elemento,2);
@@ -569,7 +567,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"mnPtest",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnPtest",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"T.TEST",0);
  return elemento;
@@ -596,7 +594,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"mnKnew",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnKnew",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"New",0);
  return elemento;
@@ -624,7 +622,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=KEYM_change;
-elemento=COMPONENT_create(panel,"mnKchange",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"mnKchange",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Change",0);
  return elemento;
@@ -651,7 +649,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"colors",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"colors",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Colors",0);
  return elemento;
@@ -678,7 +676,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"views",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"views",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Views",0);
  return elemento;
@@ -705,7 +703,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"calls",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"calls",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Calls",0);
  return elemento;
@@ -732,7 +730,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"check",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"check",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Check",0);
  return elemento;
@@ -759,7 +757,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"compile",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"compile",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Compile",0);
  return elemento;
@@ -787,7 +785,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=RUN_execute;
-elemento=COMPONENT_create(panel,"run",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"run",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Execute",0);
  return elemento;
@@ -814,7 +812,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmK00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmK00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Define a user KEYMAP  ",0);
  return elemento;
@@ -841,7 +839,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmK01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmK01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Name:",0);
  return elemento;
@@ -868,9 +866,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"nkeymap",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"nkeymap",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -898,7 +896,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=KEYM_new;
-elemento=COMPONENT_create(panel,"bkmEnter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"bkmEnter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Enter:",0);
  return elemento;
@@ -925,7 +923,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkenter0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkenter0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -952,7 +950,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"enter0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"enter0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -979,7 +977,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkenter1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkenter1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1006,7 +1004,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"enter1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"enter1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1033,7 +1031,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkenter2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkenter2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1060,7 +1058,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"enter2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"enter2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1088,7 +1086,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=KEYM_new;
-elemento=COMPONENT_create(panel,"bkmOut",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"bkmOut",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Out:",0);
  return elemento;
@@ -1115,7 +1113,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkout0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkout0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1142,7 +1140,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"out0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"out0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1169,7 +1167,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkout1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkout1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1196,7 +1194,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"out1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"out1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1223,7 +1221,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkout2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkout2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1250,7 +1248,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"out2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"out2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1278,7 +1276,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=KEYM_new;
-elemento=COMPONENT_create(panel,"bkmNext",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"bkmNext",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Next:",0);
  return elemento;
@@ -1305,7 +1303,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etknext0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etknext0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1332,7 +1330,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"next0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"next0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1359,7 +1357,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etknext1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etknext1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1386,7 +1384,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"next1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"next1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1413,7 +1411,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etknext2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etknext2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1440,7 +1438,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"next2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"next2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1468,7 +1466,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=KEYM_new;
-elemento=COMPONENT_create(panel,"bkmPrevious",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"bkmPrevious",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Previous:",0);
  return elemento;
@@ -1495,7 +1493,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkprevious0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkprevious0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1522,7 +1520,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"previous0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"previous0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1549,7 +1547,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkprevious1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkprevious1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1576,7 +1574,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"previous1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"previous1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1603,7 +1601,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkprevious2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkprevious2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1630,7 +1628,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"previous2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"previous2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1658,7 +1656,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=KEYM_new;
-elemento=COMPONENT_create(panel,"bkmUp",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"bkmUp",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Up:",0);
  return elemento;
@@ -1685,7 +1683,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkup0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkup0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1712,7 +1710,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"up0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"up0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1739,7 +1737,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkup1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkup1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1766,7 +1764,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"up1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"up1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1793,7 +1791,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkup2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkup2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1820,7 +1818,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"up2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"up2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1848,7 +1846,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=KEYM_new;
-elemento=COMPONENT_create(panel,"bkmDown",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"bkmDown",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Down:",0);
  return elemento;
@@ -1875,7 +1873,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkdown0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkdown0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1902,7 +1900,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"down0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"down0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1929,7 +1927,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkdown1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkdown1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1956,7 +1954,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"down1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"down1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -1983,7 +1981,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkdown2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkdown2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2010,7 +2008,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"down2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"down2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2038,7 +2036,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=KEYM_new;
-elemento=COMPONENT_create(panel,"bkmLeft",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"bkmLeft",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Left:",0);
  return elemento;
@@ -2065,7 +2063,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkleft0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkleft0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2092,7 +2090,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"left0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"left0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2119,7 +2117,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkleft1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkleft1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2146,7 +2144,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"left1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"left1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2173,7 +2171,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkleft2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkleft2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2200,7 +2198,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"left2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"left2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2228,7 +2226,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=KEYM_new;
-elemento=COMPONENT_create(panel,"bkmRight",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"bkmRight",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Right:",0);
  return elemento;
@@ -2255,7 +2253,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkright0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkright0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2282,7 +2280,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"right0",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"right0",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2309,7 +2307,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkright1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkright1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2336,7 +2334,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"right1",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"right1",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2363,7 +2361,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etkright2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etkright2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2390,7 +2388,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"right2",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"right2",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -2417,7 +2415,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"bkmFunction",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"bkmFunction",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Use Keys Functions: ? ",0);
 elemento->visual->status.defCheck=1;
@@ -2448,7 +2446,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmKcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmKcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -2476,7 +2474,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=TEST_keymap;
-elemento=COMPONENT_create(panel,"frmKtest",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmKtest",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Test",0);
  return elemento;
@@ -2504,7 +2502,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=KEYM_delete;
-elemento=COMPONENT_create(panel,"frmKdelete",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmKdelete",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Delete",0);
  return elemento;
@@ -2532,7 +2530,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=KEYM_create;
-elemento=COMPONENT_create(panel,"frmKenter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmKenter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do it!",0);
  return elemento;
@@ -2559,7 +2557,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEF00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEF00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Define yours Application Check Edit Functions ",0);
  return elemento;
@@ -2586,7 +2584,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEF01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEF01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Existing Edit Functions:",0);
  return elemento;
@@ -2614,7 +2612,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=EDF_select;
-elemento=COMPONENT_create(panel,"frmEFlist",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEFlist",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,5,1);
  return elemento;
@@ -2641,7 +2639,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEF02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEF02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"User Edit Function:",0);
  return elemento;
@@ -2668,9 +2666,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEFname",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEFname",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -2697,7 +2695,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEF03",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEF03",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Align :",0);
  return elemento;
@@ -2724,7 +2722,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEFAlign",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEFAlign",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,0,80,2,1);
 TEXT_addSimpleLine(elemento->text,"LEFT");
@@ -2753,7 +2751,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEF04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEF04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Mode :",0);
  return elemento;
@@ -2780,7 +2778,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEFMode",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEFMode",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,0,80,2,1);
 TEXT_addSimpleLine(elemento->text,"INSERT");
@@ -2810,7 +2808,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=EDF_new;
-elemento=COMPONENT_create(panel,"frmEFAdd",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEFAdd",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Add",0);
  return elemento;
@@ -2838,7 +2836,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=EDF_delete;
-elemento=COMPONENT_create(panel,"frmEFDel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEFDel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Del",0);
  return elemento;
@@ -2865,7 +2863,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEFenter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEFenter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Done",0);
  return elemento;
@@ -2892,7 +2890,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"Cnew",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"Cnew",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"New",0);
  return elemento;
@@ -2920,7 +2918,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COLOR_change;
-elemento=COMPONENT_create(panel,"Cchange",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"Cchange",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Change",0);
  return elemento;
@@ -2948,7 +2946,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=MSG_select;
-elemento=COMPONENT_create(panel,"information",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"information",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Information",0);
  return elemento;
@@ -2976,7 +2974,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=MSG_select;
-elemento=COMPONENT_create(panel,"warning",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"warning",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Warning",0);
  return elemento;
@@ -3004,7 +3002,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=MSG_select;
-elemento=COMPONENT_create(panel,"error",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"error",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Error",0);
  return elemento;
@@ -3032,7 +3030,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelChange;
-elemento=COMPONENT_create(panel,"Vpanels",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"Vpanels",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Panels",0);
  return elemento;
@@ -3060,7 +3058,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_tableChange;
-elemento=COMPONENT_create(panel,"Vtables",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"Vtables",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Tables",0);
  return elemento;
@@ -3088,7 +3086,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_editChange;
-elemento=COMPONENT_create(panel,"Vedit",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"Vedit",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Edit",0);
  return elemento;
@@ -3116,7 +3114,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_copyChange;
-elemento=COMPONENT_create(panel,"Vcopy",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"Vcopy",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Copy",0);
  return elemento;
@@ -3143,7 +3141,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"Colabel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"Colabel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Label",0);
  return elemento;
@@ -3170,7 +3168,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoButton",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoButton",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Button",0);
  return elemento;
@@ -3197,7 +3195,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCheck",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCheck",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Ck. Button",0);
  return elemento;
@@ -3224,7 +3222,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLsButton",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLsButton",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"List Button",0);
  return elemento;
@@ -3251,7 +3249,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoField",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoField",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Field",0);
  return elemento;
@@ -3278,7 +3276,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmNP00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmNP00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"INDICATE THE NAME OF THE NEW PROYECT ",0);
  return elemento;
@@ -3305,7 +3303,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmNP01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmNP01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Name:",0);
  return elemento;
@@ -3332,9 +3330,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmNPname",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmNPname",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -3361,7 +3359,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmNP02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmNP02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Description:",0);
  return elemento;
@@ -3388,9 +3386,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmNPdescripcion",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmNPdescripcion",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,2,1);
  return elemento;
@@ -3417,7 +3415,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmNPcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmNPcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -3445,7 +3443,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_new;
-elemento=COMPONENT_create(panel,"frmNPenter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmNPenter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -3472,7 +3470,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmOP00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmOP00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"INDICATE THE NAME OF THE XML PROYECT FILE ",0);
  return elemento;
@@ -3499,7 +3497,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmOP01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmOP01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Proyect:",0);
  return elemento;
@@ -3526,9 +3524,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmOPname",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmOPname",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -3555,7 +3553,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmOPcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmOPcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -3583,7 +3581,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_open;
-elemento=COMPONENT_create(panel,"frmOPenter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmOPenter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -3610,7 +3608,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSP00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSP00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"INDICATE THE NAME OF THE SAVE FILE ",0);
  return elemento;
@@ -3637,7 +3635,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSP01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSP01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Name:",0);
  return elemento;
@@ -3664,7 +3662,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSPname",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSPname",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -3693,7 +3691,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSPcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSPcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -3721,7 +3719,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_save;
-elemento=COMPONENT_create(panel,"frmSPenter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSPenter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -3748,7 +3746,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"ett00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ett00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"SPECIFY the TTY  TERM for TEST ",0);
  return elemento;
@@ -3775,7 +3773,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"ett01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ett01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Term:",0);
  return elemento;
@@ -3802,9 +3800,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"term",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"term",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 COMPONENT_simpleText(elemento,"xterm-256color",0);
  return elemento;
@@ -3831,7 +3829,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"ett02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ett02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Tty:",0);
  return elemento;
@@ -3858,9 +3856,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"ttytest",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ttytest",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 COMPONENT_simpleText(elemento,"/dev/pts",0);
  return elemento;
@@ -3887,7 +3885,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fttcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fttcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -3915,7 +3913,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_test;
-elemento=COMPONENT_create(panel,"fttenter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fttenter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -3942,7 +3940,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"SPECIFY the Proyect Properties ",0);
  return elemento;
@@ -3969,7 +3967,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPPmouse",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPmouse",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Use Mouse: ? ",0);
 elemento->visual->status.defCheck=1;
@@ -4000,7 +3998,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPPcolor",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPcolor",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Use Colors: ? ",0);
 elemento->visual->status.defCheck=1;
@@ -4031,7 +4029,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPPerror",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPerror",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Print Errors: ? to File: ",0);
 elemento->visual->status.defCheck=1;
@@ -4060,9 +4058,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPPferror",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPferror",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 COMPONENT_simpleText(elemento,"errors.err",0);
  return elemento;
@@ -4089,7 +4087,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP21",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP21",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Ch. Check:",0);
  return elemento;
@@ -4116,9 +4114,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"chCheck",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"chCheck",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4145,7 +4143,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP22",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP22",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Ch. is Check:",0);
  return elemento;
@@ -4172,9 +4170,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"chisCheck",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"chisCheck",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4201,7 +4199,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP23",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP23",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Ch. No Check:",0);
  return elemento;
@@ -4228,9 +4226,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"chnoCheck",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"chnoCheck",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4257,7 +4255,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Borders:",0);
  return elemento;
@@ -4284,7 +4282,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Up:",0);
  return elemento;
@@ -4312,9 +4310,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmPPup",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPup",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4341,7 +4339,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP03",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP03",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Dw:",0);
  return elemento;
@@ -4369,9 +4367,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmPPdw",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPdw",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4398,7 +4396,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Lf:",0);
  return elemento;
@@ -4426,9 +4424,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmPPlf",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPlf",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4455,7 +4453,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Rg:",0);
  return elemento;
@@ -4483,9 +4481,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmPPrg",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPrg",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4512,7 +4510,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP06",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP06",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cul:",0);
  return elemento;
@@ -4540,9 +4538,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmPPcul",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPcul",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4569,7 +4567,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP07",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP07",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cur:",0);
  return elemento;
@@ -4597,9 +4595,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmPPcur",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPcur",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4626,7 +4624,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP08",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP08",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cdl:",0);
  return elemento;
@@ -4654,9 +4652,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmPPcdl",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPcdl",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4683,7 +4681,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP09",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP09",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cdr:",0);
  return elemento;
@@ -4711,9 +4709,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmPPcdr",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPcdr",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4740,7 +4738,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSP01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSP01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Scr. Borders:",0);
  return elemento;
@@ -4767,7 +4765,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSP02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSP02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Up:",0);
  return elemento;
@@ -4795,9 +4793,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmSPup",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSPup",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4824,7 +4822,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSP03",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSP03",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Dw:",0);
  return elemento;
@@ -4852,9 +4850,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmSPdw",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSPdw",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4881,7 +4879,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSP04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSP04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Lf:",0);
  return elemento;
@@ -4909,9 +4907,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmSPlf",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSPlf",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4938,7 +4936,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSP05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSP05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Rg:",0);
  return elemento;
@@ -4966,9 +4964,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmSPrg",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSPrg",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -4995,7 +4993,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSP06",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSP06",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cul:",0);
  return elemento;
@@ -5023,9 +5021,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmSPcul",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSPcul",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -5052,7 +5050,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSP07",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSP07",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cur:",0);
  return elemento;
@@ -5080,9 +5078,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmSPcur",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSPcur",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -5109,7 +5107,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSP08",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSP08",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cdl:",0);
  return elemento;
@@ -5137,9 +5135,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmSPcdl",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSPcdl",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -5166,7 +5164,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSP09",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSP09",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cdr:",0);
  return elemento;
@@ -5194,9 +5192,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_create=PROY_replace;
-elemento=COMPONENT_create(panel,"frmSPcdr",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSPcdr",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -5223,7 +5221,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmSP10",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmSP10",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"User Main Function:",0);
  return elemento;
@@ -5250,9 +5248,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPPmainf",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPmainf",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -5279,7 +5277,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP11",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP11",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"User End  Function:",0);
  return elemento;
@@ -5306,9 +5304,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPPendf",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPendf",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -5335,7 +5333,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPP12",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPP12",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Init View:",0);
  return elemento;
@@ -5362,9 +5360,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPPinit",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPinit",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 COMPONENT_simpleText(elemento,"<view:component>",0);
  return elemento;
@@ -5391,7 +5389,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmPPcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -5419,7 +5417,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_propertiesDoIt;
-elemento=COMPONENT_create(panel,"frmPPenter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmPPenter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -5446,7 +5444,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmMet00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMet00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"SPECIFY the Characteristics for the Message ",0);
  return elemento;
@@ -5473,7 +5471,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmMet01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMet01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Title:",0);
  return elemento;
@@ -5500,9 +5498,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmMtitle",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMtitle",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -5529,7 +5527,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmMet02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMet02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Nro Buttons:",0);
  return elemento;
@@ -5557,7 +5555,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=MSG_buttons;
-elemento=COMPONENT_create(panel,"frmMnbuttons",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMnbuttons",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,0,80,3,1);
 TEXT_addSimpleLine(elemento->text,"0");
@@ -5587,7 +5585,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmMet03",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMet03",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Color:",0);
  return elemento;
@@ -5614,7 +5612,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmMcolor",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMcolor",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
  return elemento;
@@ -5641,7 +5639,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmMet04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMet04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Button1 Text:",0);
  return elemento;
@@ -5668,9 +5666,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmMbutton1",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMbutton1",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -5697,7 +5695,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmMet05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMet05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Button2 Text:",0);
  return elemento;
@@ -5724,7 +5722,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmMbutton2",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMbutton2",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -5753,7 +5751,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmMcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -5781,7 +5779,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=TEST_msg;
-elemento=COMPONENT_create(panel,"frmMtest",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMtest",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"TEST",0);
  return elemento;
@@ -5809,7 +5807,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=MSG_change;
-elemento=COMPONENT_create(panel,"frmMenter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmMenter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -5836,7 +5834,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmC00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmC00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Define the Colors",0);
  return elemento;
@@ -5863,7 +5861,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmC01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmC01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Name:",0);
  return elemento;
@@ -5890,9 +5888,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmCname",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmCname",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -5919,7 +5917,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmC02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmC02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Background:",0);
  return elemento;
@@ -5946,7 +5944,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmCbcolor",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmCbcolor",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,0,80,8,1);
 TEXT_addSimpleLine(elemento->text,"0-BLACK");
@@ -5981,7 +5979,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmC03",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmC03",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Foreground:",0);
  return elemento;
@@ -6008,7 +6006,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmCfcolor",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmCfcolor",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,0,80,8,1);
 TEXT_addSimpleLine(elemento->text,"0-BLACK");
@@ -6043,7 +6041,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmC04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmC04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Type Text:",0);
  return elemento;
@@ -6070,7 +6068,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmCtext",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmCtext",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,0,80,17,1);
 TEXT_addSimpleLine(elemento->text,"WA_NORMAL");
@@ -6114,7 +6112,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmCcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmCcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -6142,7 +6140,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=TEST_color;
-elemento=COMPONENT_create(panel,"frmCtest",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmCtest",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Test",0);
  return elemento;
@@ -6170,7 +6168,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COLOR_delete;
-elemento=COMPONENT_create(panel,"frmCdelete",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmCdelete",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Delete",0);
  return elemento;
@@ -6198,7 +6196,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COLOR_new;
-elemento=COMPONENT_create(panel,"frmCcreate",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmCcreate",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -6225,7 +6223,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"npe00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"npe00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Describe a PANEL View",0);
  return elemento;
@@ -6252,7 +6250,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpet00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpet00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"ID:",0);
  return elemento;
@@ -6279,7 +6277,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"pid",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"pid",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -6308,7 +6306,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpet01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpet01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Name:",0);
  return elemento;
@@ -6335,9 +6333,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpnombre",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpnombre",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -6364,7 +6362,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpet04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpet04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Level:",0);
  return elemento;
@@ -6391,7 +6389,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"plevel",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"plevel",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -6420,7 +6418,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpet14",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpet14",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Title:",0);
  return elemento;
@@ -6447,9 +6445,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"ptitle",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ptitle",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -6476,7 +6474,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpet15",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpet15",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Op:",0);
  return elemento;
@@ -6503,7 +6501,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"pop",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"pop",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,0,80,3,1);
 TEXT_addSimpleLine(elemento->text,"NONE");
@@ -6533,7 +6531,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpet05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpet05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Color:",0);
  return elemento;
@@ -6560,7 +6558,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"pcolor",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"pcolor",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
  return elemento;
@@ -6587,7 +6585,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpborder",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpborder",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Border : ? ",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -6616,7 +6614,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpet06",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpet06",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"DIMENSIONS",0);
  return elemento;
@@ -6643,7 +6641,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpet07",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpet07",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"X:",0);
  return elemento;
@@ -6670,7 +6668,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"pX",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"pX",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -6699,7 +6697,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpet08",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpet08",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Y:",0);
  return elemento;
@@ -6726,7 +6724,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"pY",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"pY",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -6755,7 +6753,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpet09",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpet09",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Width:",0);
  return elemento;
@@ -6782,7 +6780,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"pWidth",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"pWidth",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -6811,7 +6809,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnpet10",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnpet10",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"High:",0);
  return elemento;
@@ -6838,7 +6836,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"pHigh",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"pHigh",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -6868,7 +6866,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelComps;
-elemento=COMPONENT_create(panel,"comps",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"comps",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"COMPONENTS:",0);
  return elemento;
@@ -6896,7 +6894,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelCalls;
-elemento=COMPONENT_create(panel,"npfunctions",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"npfunctions",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"App. Functions",0);
  return elemento;
@@ -6924,7 +6922,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelMove;
-elemento=COMPONENT_create(panel,"pmove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"pmove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Moves",0);
  return elemento;
@@ -6952,7 +6950,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelMove;
-elemento=COMPONENT_create(panel,"pamove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"pamove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"App. Moves",0);
  return elemento;
@@ -6979,7 +6977,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"npcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"npcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -7007,7 +7005,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelDelete;
-elemento=COMPONENT_create(panel,"npdelete",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"npdelete",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Delete",0);
  return elemento;
@@ -7035,7 +7033,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=TEST_panel;
-elemento=COMPONENT_create(panel,"nptest",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"nptest",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Test",0);
  return elemento;
@@ -7063,7 +7061,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelDoIt;
-elemento=COMPONENT_create(panel,"npcreate",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"npcreate",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -7090,7 +7088,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"nee00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"nee00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Describe a EDIT View",0);
  return elemento;
@@ -7117,7 +7115,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fepet00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fepet00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"ID:",0);
  return elemento;
@@ -7144,7 +7142,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"epid",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"epid",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -7173,7 +7171,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fneet01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fneet01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Name:",0);
  return elemento;
@@ -7200,9 +7198,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fnenombre",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fnenombre",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -7229,7 +7227,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fneet04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fneet04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Level:",0);
  return elemento;
@@ -7256,7 +7254,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"elevel",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"elevel",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -7285,7 +7283,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fneet14",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fneet14",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Title:",0);
  return elemento;
@@ -7303,7 +7301,7 @@ tMove move = {
    ":epid",
    ":eread",
    "",
-   ":eop",
+   "",
    {"","","","","","","","","","","",""},
    ""
    };
@@ -7312,9 +7310,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etitle",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etitle",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -7341,7 +7339,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fneet15",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fneet15",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Op:",0);
  return elemento;
@@ -7368,7 +7366,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"eop",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"eop",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,0,80,3,1);
 TEXT_addSimpleLine(elemento->text,"NONE");
@@ -7398,7 +7396,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"eread",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"eread",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Read Only: ?",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -7427,7 +7425,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fneet24",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fneet24",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"File: ",0);
  return elemento;
@@ -7454,9 +7452,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"efile",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"efile",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -7483,7 +7481,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fneborder",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fneborder",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Border : ? ",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -7512,7 +7510,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fneet06",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fneet06",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"DIMENSIONS",0);
  return elemento;
@@ -7539,7 +7537,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fneet07",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fneet07",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"X:",0);
  return elemento;
@@ -7566,7 +7564,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"eX",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"eX",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -7595,7 +7593,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fneet08",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fneet08",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Y:",0);
  return elemento;
@@ -7622,7 +7620,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"eY",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"eY",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -7651,7 +7649,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fneet09",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fneet09",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Width:",0);
  return elemento;
@@ -7678,7 +7676,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"eWidth",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"eWidth",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -7707,7 +7705,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fneet10",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fneet10",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"High:",0);
  return elemento;
@@ -7734,7 +7732,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"eHigh",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"eHigh",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -7763,7 +7761,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fneet05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fneet05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Color:",0);
  return elemento;
@@ -7790,7 +7788,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"ecolor",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ecolor",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
  return elemento;
@@ -7818,7 +7816,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_selectKEYM;
-elemento=COMPONENT_create(panel,"ekeymap",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ekeymap",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Keymap:",0);
  return elemento;
@@ -7846,7 +7844,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_deactivate=COMP_deselectKEYM;
-elemento=COMPONENT_create(panel,"CoLKeymap",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLKeymap",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
 COMPONENT_display(elemento,3);
@@ -7874,7 +7872,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoTKeymap",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoTKeymap",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -7904,7 +7902,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelCalls;
-elemento=COMPONENT_create(panel,"efunctions",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"efunctions",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"App. Functions",0);
  return elemento;
@@ -7932,7 +7930,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelMove;
-elemento=COMPONENT_create(panel,"emove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Moves",0);
  return elemento;
@@ -7960,7 +7958,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelMove;
-elemento=COMPONENT_create(panel,"eamove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"eamove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"App. Moves",0);
  return elemento;
@@ -7987,7 +7985,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"necancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"necancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -8015,7 +8013,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_editDelete;
-elemento=COMPONENT_create(panel,"nedelete",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"nedelete",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Delete",0);
  return elemento;
@@ -8043,7 +8041,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=TEST_edit;
-elemento=COMPONENT_create(panel,"netest",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"netest",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Test",0);
  return elemento;
@@ -8071,7 +8069,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_editDoIt;
-elemento=COMPONENT_create(panel,"necreate",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"necreate",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -8098,7 +8096,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"ID:",0);
  return elemento;
@@ -8125,7 +8123,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"tpid",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tpid",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -8154,7 +8152,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Name:",0);
  return elemento;
@@ -8181,9 +8179,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntnombre",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntnombre",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -8210,7 +8208,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Level:",0);
  return elemento;
@@ -8237,7 +8235,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"tlevel",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tlevel",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -8266,7 +8264,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet44",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet44",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Title:",0);
  return elemento;
@@ -8284,7 +8282,7 @@ tMove move = {
    ":tpid",
    ":tlcolumn",
    "",
-   ":top",
+   "",
    {"","","","","","","","","","","",""},
    ""
    };
@@ -8293,9 +8291,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"ttitle",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ttitle",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -8322,7 +8320,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet15",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet15",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Op:",0);
  return elemento;
@@ -8349,7 +8347,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"top",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"top",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,0,80,3,1);
 TEXT_addSimpleLine(elemento->text,"NONE");
@@ -8379,7 +8377,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet34",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet34",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -8406,7 +8404,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet14",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet14",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Columns Len:",0);
  return elemento;
@@ -8433,7 +8431,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"tlcolumn",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tlcolumn",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -8462,9 +8460,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"tcolumn",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tcolumn",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -8492,7 +8490,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_addTableColumn;
-elemento=COMPONENT_create(panel,"taddElem",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"taddElem",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Add:",0);
  return elemento;
@@ -8520,7 +8518,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_delTableColumn;
-elemento=COMPONENT_create(panel,"tdelElem",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tdelElem",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Del:",0);
  return elemento;
@@ -8548,7 +8546,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_selTableColumn;
-elemento=COMPONENT_create(panel,"tElemens",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tElemens",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,5,1);
  return elemento;
@@ -8575,7 +8573,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"tborder",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tborder",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Border: ? ",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -8604,7 +8602,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet06",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet06",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"DIMENSIONS",0);
  return elemento;
@@ -8631,7 +8629,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet07",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet07",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"X:",0);
  return elemento;
@@ -8658,7 +8656,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"tX",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tX",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -8687,7 +8685,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet08",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet08",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Y:",0);
  return elemento;
@@ -8714,7 +8712,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"tY",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tY",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -8743,7 +8741,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet09",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet09",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Width:",0);
  return elemento;
@@ -8770,7 +8768,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"tWidth",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tWidth",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -8799,7 +8797,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet10",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet10",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"High:",0);
  return elemento;
@@ -8826,7 +8824,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"tHigh",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tHigh",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -8855,7 +8853,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Head C.:",0);
  return elemento;
@@ -8882,7 +8880,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"thcolor",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"thcolor",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,3,1);
  return elemento;
@@ -8909,7 +8907,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fntet25",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fntet25",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Data C.:",0);
  return elemento;
@@ -8936,7 +8934,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"tdcolor",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tdcolor",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,3,1);
  return elemento;
@@ -8963,7 +8961,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"head",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"head",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Show Head: ? ",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -8992,7 +8990,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"vline",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"vline",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Vtl. Line: ? ",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -9021,7 +9019,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"hline",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"hline",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Hzt. Line: ? ",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -9051,7 +9049,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_selectKEYM;
-elemento=COMPONENT_create(panel,"tkeymap",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tkeymap",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Keymap:",0);
  return elemento;
@@ -9079,7 +9077,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_deactivate=COMP_deselectKEYM;
-elemento=COMPONENT_create(panel,"CoLKeymap",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLKeymap",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
 COMPONENT_display(elemento,3);
@@ -9107,7 +9105,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoTKeymap",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoTKeymap",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -9138,7 +9136,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelCalls;
-elemento=COMPONENT_create(panel,"tfunctions",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tfunctions",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"App. Functions",0);
  return elemento;
@@ -9166,7 +9164,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelMove;
-elemento=COMPONENT_create(panel,"tmove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tmove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Moves",0);
  return elemento;
@@ -9194,7 +9192,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_panelMove;
-elemento=COMPONENT_create(panel,"tamove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tamove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"App. Moves",0);
  return elemento;
@@ -9221,7 +9219,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"ntcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ntcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -9249,7 +9247,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_tableDelete;
-elemento=COMPONENT_create(panel,"ntdelete",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ntdelete",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Delete",0);
  return elemento;
@@ -9277,7 +9275,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=TEST_table;
-elemento=COMPONENT_create(panel,"nttest",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"nttest",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Test",0);
  return elemento;
@@ -9305,7 +9303,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_tableDoIt;
-elemento=COMPONENT_create(panel,"ntcreate",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ntcreate",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -9332,7 +9330,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEF00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEF00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Create a View by Copy ",0);
  return elemento;
@@ -9359,7 +9357,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEF01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEF01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"From:",0);
  return elemento;
@@ -9386,9 +9384,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fromView",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fromView",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -9415,7 +9413,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"to",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"to",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"To:",0);
  return elemento;
@@ -9442,9 +9440,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"toView",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"toView",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -9471,7 +9469,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"component",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"component",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Copy components .......... : ?",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -9500,7 +9498,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"moves",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"moves",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Copy moves ............... : ?",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -9529,7 +9527,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"appMoves",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"appMoves",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Copy applications moves .. : ?",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -9558,7 +9556,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"appCalls",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"appCalls",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Copy applications calls .. : ?",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -9587,7 +9585,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -9615,7 +9613,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=VIEW_copyDoIt;
-elemento=COMPONENT_create(panel,"enter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"enter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -9642,7 +9640,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEF00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEF00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -9669,7 +9667,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEF01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEF01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -9696,7 +9694,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fromComponent",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fromComponent",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -9725,7 +9723,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"to",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"to",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -9752,7 +9750,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"toComponent",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"toComponent",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -9781,7 +9779,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"etAttach",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"etAttach",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -9808,7 +9806,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"attach",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"attach",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
  return elemento;
@@ -9835,7 +9833,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"moves",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"moves",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -9862,7 +9860,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"appMoves",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"appMoves",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -9889,7 +9887,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"appCalls",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"appCalls",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -9916,7 +9914,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -9943,7 +9941,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"enter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"enter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"",0);
  return elemento;
@@ -9970,9 +9968,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-COMPONENT_simpleText(elemento,"Describe Application Moves Functions",0);
+COMPONENT_simpleText(elemento,"Describe Moves",0);
  return elemento;
 }
 
@@ -9997,7 +9995,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"panel",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"panel",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -10027,7 +10025,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Enter   :",0);
  return elemento;
@@ -10054,7 +10052,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em11",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em11",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Out     :",0);
  return elemento;
@@ -10081,7 +10079,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em21",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em21",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Next    :",0);
  return elemento;
@@ -10108,7 +10106,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em31",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em31",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Previous:",0);
  return elemento;
@@ -10135,7 +10133,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em41",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em41",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Up      :",0);
  return elemento;
@@ -10162,7 +10160,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em51",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em51",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Down    :",0);
  return elemento;
@@ -10189,7 +10187,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em61",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em61",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Left    :",0);
  return elemento;
@@ -10216,7 +10214,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em71",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em71",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Right   :",0);
  return elemento;
@@ -10243,7 +10241,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em81",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em81",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Fn :",0);
  return elemento;
@@ -10270,7 +10268,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em83",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em83",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Fn :",0);
  return elemento;
@@ -10297,7 +10295,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em84",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em84",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Fn :",0);
  return elemento;
@@ -10324,7 +10322,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em85",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em85",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Fn :",0);
  return elemento;
@@ -10353,9 +10351,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
 auxFA->enter=MOVE_enterPanel;
-elemento=COMPONENT_create(panel,"empanelenter",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelenter",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -10384,9 +10382,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
 auxFA->enter=MOVE_enterPanel;
-elemento=COMPONENT_create(panel,"empanelout",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelout",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -10415,9 +10413,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
 auxFA->enter=MOVE_enterPanel;
-elemento=COMPONENT_create(panel,"empanelnext",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelnext",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -10446,9 +10444,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
 auxFA->enter=MOVE_enterPanel;
-elemento=COMPONENT_create(panel,"empanelprev",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelprev",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -10477,9 +10475,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
 auxFA->enter=MOVE_enterPanel;
-elemento=COMPONENT_create(panel,"empanelup",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelup",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -10508,9 +10506,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
 auxFA->enter=MOVE_enterPanel;
-elemento=COMPONENT_create(panel,"empaneldown",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empaneldown",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -10539,9 +10537,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
 auxFA->enter=MOVE_enterPanel;
-elemento=COMPONENT_create(panel,"empanelleft",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelleft",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -10570,9 +10568,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
 auxFA->enter=MOVE_enterPanel;
-elemento=COMPONENT_create(panel,"empanelright",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelright",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -10599,7 +10597,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"empanelFn0",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelFn0",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,17,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -10630,9 +10628,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
 auxFA->enter=MOVE_enterPanel;
-elemento=COMPONENT_create(panel,"empanelF0",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelF0",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -10659,7 +10657,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"empanelFn1",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelFn1",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,17,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -10690,9 +10688,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
 auxFA->enter=MOVE_enterPanel;
-elemento=COMPONENT_create(panel,"empanelF1",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelF1",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -10719,7 +10717,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"empanelFn2",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelFn2",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,17,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -10750,9 +10748,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
 auxFA->enter=MOVE_enterPanel;
-elemento=COMPONENT_create(panel,"empanelF2",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelF2",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -10779,7 +10777,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"empanelFn3",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelFn3",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,17,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -10810,9 +10808,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
 auxFA->enter=MOVE_enterPanel;
-elemento=COMPONENT_create(panel,"empanelF3",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"empanelF3",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -10839,7 +10837,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em12",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em12",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,":",0);
  return elemento;
@@ -10866,7 +10864,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em22",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em22",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,":",0);
  return elemento;
@@ -10893,7 +10891,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em32",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em32",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,":",0);
  return elemento;
@@ -10920,7 +10918,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em42",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em42",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,":",0);
  return elemento;
@@ -10947,7 +10945,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em52",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em52",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,":",0);
  return elemento;
@@ -10974,7 +10972,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em62",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em62",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,":",0);
  return elemento;
@@ -11001,7 +10999,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em72",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em72",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,":",0);
  return elemento;
@@ -11028,7 +11026,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em82",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em82",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,":",0);
  return elemento;
@@ -11055,7 +11053,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em92",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em92",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,":",0);
  return elemento;
@@ -11082,7 +11080,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em93",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em93",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,":",0);
  return elemento;
@@ -11109,7 +11107,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em94",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em94",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,":",0);
  return elemento;
@@ -11136,7 +11134,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em95",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em95",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,":",0);
  return elemento;
@@ -11164,9 +11162,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
-elemento=COMPONENT_create(panel,"emcompenter",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emcompenter",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11194,9 +11192,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
-elemento=COMPONENT_create(panel,"emcompout",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emcompout",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11224,9 +11222,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
-elemento=COMPONENT_create(panel,"emcompnext",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emcompnext",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11254,9 +11252,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
-elemento=COMPONENT_create(panel,"emcompprev",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emcompprev",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11284,9 +11282,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
-elemento=COMPONENT_create(panel,"emcompup",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emcompup",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11314,9 +11312,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
-elemento=COMPONENT_create(panel,"emcompdown",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emcompdown",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11344,9 +11342,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
-elemento=COMPONENT_create(panel,"emcompleft",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emcompleft",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11374,9 +11372,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
-elemento=COMPONENT_create(panel,"emcompright",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emcompright",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11404,9 +11402,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
-elemento=COMPONENT_create(panel,"emcompF0",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emcompF0",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11434,9 +11432,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
-elemento=COMPONENT_create(panel,"emcompF1",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emcompF1",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11464,9 +11462,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
-elemento=COMPONENT_create(panel,"emcompF2",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emcompF2",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11494,9 +11492,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->pre_activate=COMP_preEnterPanel;
-elemento=COMPONENT_create(panel,"emcompF3",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"emcompF3",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11523,7 +11521,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"em99",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"em99",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento," F2 to Select List ",0);
  return elemento;
@@ -11551,7 +11549,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=MOVE_save;
-elemento=COMPONENT_create(panel,"nesave",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"nesave",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -11578,9 +11576,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-COMPONENT_simpleText(elemento,"Describe Application Callbacks ",0);
+COMPONENT_simpleText(elemento,"Describe Life Cicle Callbacks ",0);
  return elemento;
 }
 
@@ -11605,7 +11603,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"PRE Create     :",0);
  return elemento;
@@ -11632,7 +11630,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"POST Create    :",0);
  return elemento;
@@ -11659,7 +11657,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac03",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac03",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"PRE Show       :",0);
  return elemento;
@@ -11686,7 +11684,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"POST Show      :",0);
  return elemento;
@@ -11713,7 +11711,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"PRE Activate   :",0);
  return elemento;
@@ -11740,7 +11738,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac06",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac06",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"POST Activate  :",0);
  return elemento;
@@ -11767,7 +11765,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac07",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac07",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"PRE Deactivate :",0);
  return elemento;
@@ -11794,7 +11792,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac08",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac08",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"POST Deactivate:",0);
  return elemento;
@@ -11821,7 +11819,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac09",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac09",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"PRE Hide       :",0);
  return elemento;
@@ -11848,7 +11846,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac10",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac10",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"POST Hide      :",0);
  return elemento;
@@ -11875,7 +11873,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac11",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac11",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"PRE Destroy    :",0);
  return elemento;
@@ -11902,7 +11900,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmac12",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmac12",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"POST Destroy   :",0);
  return elemento;
@@ -11929,9 +11927,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fACPreCr",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACPreCr",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11958,9 +11956,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fACPostCr",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACPostCr",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -11987,9 +11985,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fACPreSh",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACPreSh",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12016,9 +12014,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fACPostSh",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACPostSh",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12045,9 +12043,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fACPreAct",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACPreAct",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12074,9 +12072,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fACPostAct",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACPostAct",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12103,9 +12101,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fACPreDAct",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACPreDAct",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12132,9 +12130,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fACPostDAct",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACPostDAct",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12161,9 +12159,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fACPreHide",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACPreHide",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12190,9 +12188,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fACPostHide",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACPostHide",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12219,9 +12217,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fACPreDest",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACPreDest",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12248,9 +12246,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"fACPostDest",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACPostDest",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12278,7 +12276,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=FUNC_save;
-elemento=COMPONENT_create(panel,"fACsave",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"fACsave",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -12305,9 +12303,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"am00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"am00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-COMPONENT_simpleText(elemento,"Describe Element Moves",0);
+COMPONENT_simpleText(elemento,"Describe Application Moves Functions",0);
  return elemento;
 }
 
@@ -12332,7 +12330,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"am01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"am01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Enter   :",0);
  return elemento;
@@ -12359,7 +12357,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"am11",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"am11",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Out     :",0);
  return elemento;
@@ -12386,7 +12384,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"am21",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"am21",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Next    :",0);
  return elemento;
@@ -12413,7 +12411,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"am31",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"am31",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Previous:",0);
  return elemento;
@@ -12440,7 +12438,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"am41",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"am41",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Up      :",0);
  return elemento;
@@ -12467,7 +12465,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"am51",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"am51",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Down    :",0);
  return elemento;
@@ -12494,7 +12492,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"am61",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"am61",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Left    :",0);
  return elemento;
@@ -12521,7 +12519,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"am71",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"am71",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Right   :",0);
  return elemento;
@@ -12548,7 +12546,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"am81",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"am81",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Fn      :",0);
  return elemento;
@@ -12575,9 +12573,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"amenterfunction",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"amenterfunction",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12604,9 +12602,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"amoutfunction",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"amoutfunction",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12633,9 +12631,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"amnextfunction",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"amnextfunction",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12662,9 +12660,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"amprevfunction",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"amprevfunction",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12691,9 +12689,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"amupfunction",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"amupfunction",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12720,9 +12718,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"amdownfunction",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"amdownfunction",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12749,9 +12747,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"amleftfunction",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"amleftfunction",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12778,9 +12776,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"amrightfunction",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"amrightfunction",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12807,9 +12805,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"amFnfunction",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"amFnfunction",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -12837,7 +12835,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=MOVE_saveFunction;
-elemento=COMPONENT_create(panel,"nasave",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"nasave",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -12864,7 +12862,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"col00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"col00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Describe a New Label Component ",0);
  return elemento;
@@ -12891,7 +12889,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"col01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"col01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"ID:",0);
  return elemento;
@@ -12918,7 +12916,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLid",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLid",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -12947,7 +12945,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"col02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"col02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Name:",0);
  return elemento;
@@ -12974,9 +12972,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cname",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cname",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -13003,7 +13001,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"col11",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"col11",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Panel:",0);
  return elemento;
@@ -13030,7 +13028,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cpanel",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cpanel",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -13059,7 +13057,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLVisible",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLVisible",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Visible: ? ",0);
 elemento->visual->status.defCheck=1;
@@ -13090,7 +13088,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLSelect",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLSelect",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Select.: ?",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -13119,7 +13117,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"col04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"col04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Color :",0);
  return elemento;
@@ -13146,7 +13144,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLColor",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLColor",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
  return elemento;
@@ -13173,7 +13171,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLBorder",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBorder",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Border : ? ",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -13202,7 +13200,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"col05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"col05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Dimensions ",0);
  return elemento;
@@ -13229,7 +13227,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"col06",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"col06",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"X:",0);
  return elemento;
@@ -13256,7 +13254,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLX",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLX",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -13285,7 +13283,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"col07",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"col07",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Y:",0);
  return elemento;
@@ -13312,7 +13310,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLY",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLY",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -13341,7 +13339,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"col08",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"col08",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Width:",0);
  return elemento;
@@ -13368,7 +13366,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLWidth",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLWidth",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -13397,7 +13395,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"col09",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"col09",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"High:",0);
  return elemento;
@@ -13424,7 +13422,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLHigh",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLHigh",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -13453,7 +13451,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"col03",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"col03",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Text:",0);
  return elemento;
@@ -13480,7 +13478,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLText",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLText",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -13510,7 +13508,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqCalls;
-elemento=COMPONENT_create(panel,"CoLFunctions",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLFunctions",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento," App. Functions ",0);
  return elemento;
@@ -13538,7 +13536,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_out;
-elemento=COMPONENT_create(panel,"CoLcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -13566,7 +13564,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_delete;
-elemento=COMPONENT_create(panel,"CoLdelete",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLdelete",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Delete",0);
  return elemento;
@@ -13593,7 +13591,8 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLtest",1,&pDim,pColor,
+auxFA->enter=TEST_componentPanel;
+elemento=COMPONENT_create(panel,-1,"CoLtest",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Test",0);
  return elemento;
@@ -13621,7 +13620,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_labelDoIt;
-elemento=COMPONENT_create(panel,"CoLcreate",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLcreate",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -13648,7 +13647,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cob00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cob00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Describe a New BUTTON Component",0);
  return elemento;
@@ -13675,7 +13674,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cob01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cob01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Id:",0);
  return elemento;
@@ -13702,7 +13701,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoBid",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBid",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -13731,7 +13730,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cob02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cob02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Name:",0);
  return elemento;
@@ -13758,9 +13757,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cname",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cname",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -13787,7 +13786,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cob11",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cob11",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Panel:",0);
  return elemento;
@@ -13814,7 +13813,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cpanel",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cpanel",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -13844,7 +13843,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_Visible;
-elemento=COMPONENT_create(panel,"CoBVisible",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBVisible",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Visible: ?",0);
 elemento->visual->status.defCheck=1;
@@ -13875,7 +13874,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoBSelect",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBSelect",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Select.: ?",0);
 elemento->visual->status.defCheck=1;
@@ -13907,7 +13906,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_selectKEYM;
-elemento=COMPONENT_create(panel,"CoBKeymap",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBKeymap",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Keymap",0);
  return elemento;
@@ -13935,7 +13934,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_deactivate=COMP_deselectKEYM;
-elemento=COMPONENT_create(panel,"CoLKeymap",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLKeymap",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
 COMPONENT_display(elemento,3);
@@ -13963,7 +13962,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoTKeymap",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoTKeymap",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -13993,7 +13992,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cob04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cob04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Color:",0);
  return elemento;
@@ -14020,7 +14019,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoBColor",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBColor",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
  return elemento;
@@ -14047,7 +14046,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoBBorder",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBBorder",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Border: ? ",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -14076,7 +14075,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cob05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cob05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Dimensions:",0);
  return elemento;
@@ -14103,7 +14102,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cob06",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cob06",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"X:",0);
  return elemento;
@@ -14130,7 +14129,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoBX",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBX",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -14159,7 +14158,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cob07",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cob07",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Y:",0);
  return elemento;
@@ -14186,7 +14185,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoBY",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBY",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -14215,7 +14214,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cob08",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cob08",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Width:",0);
  return elemento;
@@ -14242,7 +14241,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoBWidth",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBWidth",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -14271,7 +14270,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cob09",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cob09",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"High:",0);
  return elemento;
@@ -14298,7 +14297,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoBHigh",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBHigh",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -14327,7 +14326,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cob03",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cob03",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Text:",0);
  return elemento;
@@ -14354,9 +14353,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoBText",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBText",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,2,1);
  return elemento;
@@ -14384,7 +14383,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqCalls;
-elemento=COMPONENT_create(panel,"CoBFunctions",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBFunctions",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento," App. Functions ",0);
  return elemento;
@@ -14412,9 +14411,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqMoves;
-elemento=COMPONENT_create(panel,"CoBamove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBamove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-COMPONENT_simpleText(elemento," Aut. Moves ",0);
+COMPONENT_simpleText(elemento," Moves ",0);
  return elemento;
 }
 
@@ -14440,7 +14439,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqMoves;
-elemento=COMPONENT_create(panel,"CoBpmove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBpmove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento," App. Moves ",0);
  return elemento;
@@ -14468,7 +14467,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_out;
-elemento=COMPONENT_create(panel,"CoBcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -14496,7 +14495,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_delete;
-elemento=COMPONENT_create(panel,"CoBdelete",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBdelete",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Delete",0);
  return elemento;
@@ -14523,7 +14522,8 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoBtest",1,&pDim,pColor,
+auxFA->enter=TEST_componentPanel;
+elemento=COMPONENT_create(panel,-1,"CoBtest",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Test",0);
  return elemento;
@@ -14551,7 +14551,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_buttonDoIt;
-elemento=COMPONENT_create(panel,"CoBcreate",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoBcreate",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -14578,7 +14578,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Describe a New Check Button Component",0);
  return elemento;
@@ -14605,7 +14605,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Id:",0);
  return elemento;
@@ -14632,7 +14632,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBid",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBid",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -14661,7 +14661,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Name:",0);
  return elemento;
@@ -14688,9 +14688,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cname",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cname",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -14717,7 +14717,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cbol11",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cbol11",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Panel:",0);
  return elemento;
@@ -14744,7 +14744,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cpanel",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cpanel",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -14774,7 +14774,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_Visible;
-elemento=COMPONENT_create(panel,"CoCBVisible",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBVisible",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Visible: ?",0);
 elemento->visual->status.defCheck=1;
@@ -14805,7 +14805,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBSelect",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBSelect",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Select.: ?",0);
 elemento->visual->status.defCheck=1;
@@ -14837,7 +14837,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_selectKEYM;
-elemento=COMPONENT_create(panel,"CoCBKeymap",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBKeymap",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Keymap",0);
  return elemento;
@@ -14865,7 +14865,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_deactivate=COMP_deselectKEYM;
-elemento=COMPONENT_create(panel,"CoLKeymap",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLKeymap",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
 COMPONENT_display(elemento,3);
@@ -14893,7 +14893,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoTKeymap",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoTKeymap",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -14923,7 +14923,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Color:",0);
  return elemento;
@@ -14950,7 +14950,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBColor",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBColor",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
  return elemento;
@@ -14977,7 +14977,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBBorder",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBBorder",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Border: ?",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -15006,7 +15006,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Dimensions",0);
  return elemento;
@@ -15033,7 +15033,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb06",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb06",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"X:",0);
  return elemento;
@@ -15060,7 +15060,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBX",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBX",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -15089,7 +15089,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb07",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb07",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Y:",0);
  return elemento;
@@ -15116,7 +15116,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBY",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBY",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -15145,7 +15145,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb08",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb08",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Width:",0);
  return elemento;
@@ -15172,7 +15172,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBWidth",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBWidth",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -15201,7 +15201,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb09",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb09",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"High:",0);
  return elemento;
@@ -15228,7 +15228,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBHigh",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBHigh",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -15257,7 +15257,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb10",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb10",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Text:",0);
  return elemento;
@@ -15284,9 +15284,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBText",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBText",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,2,1);
  return elemento;
@@ -15313,7 +15313,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBisCheck",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBisCheck",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Check: ?",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -15342,7 +15342,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb21",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb21",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Ch Check",0);
  return elemento;
@@ -15369,9 +15369,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBchcheck",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBchcheck",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -15398,7 +15398,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb11",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb11",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Ch Is Check",0);
  return elemento;
@@ -15425,9 +15425,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBchischeck",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBchischeck",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -15454,7 +15454,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cocb12",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cocb12",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Ch No Check",0);
  return elemento;
@@ -15481,9 +15481,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBchncheck",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBchncheck",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -15511,7 +15511,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqCalls;
-elemento=COMPONENT_create(panel,"CoCBFunctions",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBFunctions",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento," App. Functions ",0);
  return elemento;
@@ -15539,9 +15539,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqMoves;
-elemento=COMPONENT_create(panel,"CoCBamove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBamove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-COMPONENT_simpleText(elemento," Aut. Moves ",0);
+COMPONENT_simpleText(elemento,"  Moves ",0);
  return elemento;
 }
 
@@ -15567,7 +15567,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqMoves;
-elemento=COMPONENT_create(panel,"CoCBpmove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBpmove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento," App. Moves ",0);
  return elemento;
@@ -15595,7 +15595,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_out;
-elemento=COMPONENT_create(panel,"CoCBcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -15623,7 +15623,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_delete;
-elemento=COMPONENT_create(panel,"CoCBdelete",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBdelete",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Delete",0);
  return elemento;
@@ -15650,7 +15650,8 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoCBtest",1,&pDim,pColor,
+auxFA->enter=TEST_componentPanel;
+elemento=COMPONENT_create(panel,-1,"CoCBtest",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Test",0);
  return elemento;
@@ -15678,7 +15679,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_ckbuttonDoIt;
-elemento=COMPONENT_create(panel,"CoCBcreate",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoCBcreate",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -15705,7 +15706,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"colb00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"colb00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Describe a New Component List Button",0);
  return elemento;
@@ -15732,7 +15733,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"colb01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"colb01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Id:",0);
  return elemento;
@@ -15759,7 +15760,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLBid",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBid",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -15788,7 +15789,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"colb02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"colb02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Name:",0);
  return elemento;
@@ -15815,9 +15816,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cname",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cname",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -15844,7 +15845,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"lbol11",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"lbol11",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Panel:",0);
  return elemento;
@@ -15871,7 +15872,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cpanel",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cpanel",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -15900,7 +15901,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"colb98",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"colb98",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Display:",0);
  return elemento;
@@ -15927,7 +15928,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoDisplay",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoDisplay",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,0,80,4,1);
 TEXT_addSimpleLine(elemento->text,"NORMAL");
@@ -15959,7 +15960,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_selectKEYM;
-elemento=COMPONENT_create(panel,"CoLBKeymap",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBKeymap",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Keymap",0);
  return elemento;
@@ -15987,7 +15988,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_deactivate=COMP_deselectKEYM;
-elemento=COMPONENT_create(panel,"CoLKeymap",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLKeymap",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
 COMPONENT_display(elemento,3);
@@ -16015,7 +16016,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoTKeymap",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoTKeymap",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -16045,7 +16046,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"colb04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"colb04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Color:",0);
  return elemento;
@@ -16072,7 +16073,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLBColor",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBColor",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
  return elemento;
@@ -16099,7 +16100,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLBBorder",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBBorder",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Border: ?",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -16128,7 +16129,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"colb05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"colb05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Dimensions",0);
  return elemento;
@@ -16155,7 +16156,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"colb06",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"colb06",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"X:",0);
  return elemento;
@@ -16182,7 +16183,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLBX",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBX",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -16211,7 +16212,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"colb07",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"colb07",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Y:",0);
  return elemento;
@@ -16238,7 +16239,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLBY",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBY",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -16267,7 +16268,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"colb08",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"colb08",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Width:",0);
  return elemento;
@@ -16294,7 +16295,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLBWidth",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBWidth",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -16323,7 +16324,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"colb09",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"colb09",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"High:",0);
  return elemento;
@@ -16350,7 +16351,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLBHigh",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBHigh",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -16379,7 +16380,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"colb10",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"colb10",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Text:",0);
  return elemento;
@@ -16406,9 +16407,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLBText",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBText",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -16436,7 +16437,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_lbData;
-elemento=COMPONENT_create(panel,"CoLBData",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBData",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
  return elemento;
@@ -16464,7 +16465,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_addList;
-elemento=COMPONENT_create(panel,"CoLBTAdd",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBTAdd",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Add",0);
  return elemento;
@@ -16492,7 +16493,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_delList;
-elemento=COMPONENT_create(panel,"CoLBTdel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBTdel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Del",0);
  return elemento;
@@ -16520,7 +16521,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqCalls;
-elemento=COMPONENT_create(panel,"CoLBFunctions",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBFunctions",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,0,80,2,1);
 TEXT_addSimpleLine(elemento->text," App. Functions ");
@@ -16550,9 +16551,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqMoves;
-elemento=COMPONENT_create(panel,"CoLBamove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBamove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-COMPONENT_simpleText(elemento," Aut. Moves ",0);
+COMPONENT_simpleText(elemento,"  Moves ",0);
  return elemento;
 }
 
@@ -16578,7 +16579,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqMoves;
-elemento=COMPONENT_create(panel,"CoLBpmove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBpmove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento," App. Moves ",0);
  return elemento;
@@ -16606,7 +16607,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_out;
-elemento=COMPONENT_create(panel,"CoLBcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -16634,7 +16635,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_delete;
-elemento=COMPONENT_create(panel,"CoLBdelete",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBdelete",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Delete",0);
  return elemento;
@@ -16661,7 +16662,8 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoLBtest",1,&pDim,pColor,
+auxFA->enter=TEST_componentPanel;
+elemento=COMPONENT_create(panel,-1,"CoLBtest",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Test",0);
  return elemento;
@@ -16689,7 +16691,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_lsbuttonDoIt;
-elemento=COMPONENT_create(panel,"CoLBcreate",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLBcreate",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -16716,7 +16718,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"coed00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"coed00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Describe a New Field Component",0);
  return elemento;
@@ -16743,7 +16745,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"coed01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"coed01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Id:",0);
  return elemento;
@@ -16770,7 +16772,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDid",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDid",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -16799,7 +16801,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"coed02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"coed02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Name:",0);
  return elemento;
@@ -16826,9 +16828,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cname",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cname",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,1,1);
  return elemento;
@@ -16855,7 +16857,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"edol11",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"edol11",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Panel:",0);
  return elemento;
@@ -16882,7 +16884,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"cpanel",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"cpanel",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -16912,7 +16914,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_Visible;
-elemento=COMPONENT_create(panel,"CoEDVisible",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDVisible",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Visible: ?",0);
 elemento->visual->status.defCheck=1;
@@ -16943,7 +16945,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDSelect",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDSelect",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Select.: ?",0);
 elemento->visual->status.defCheck=1;
@@ -16974,7 +16976,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDAuto",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDAuto",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Auto Enter: ?",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -17003,7 +17005,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDSecret",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDSecret",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Secret: ?",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -17033,7 +17035,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_selectKEYM;
-elemento=COMPONENT_create(panel,"CoEDKeymap",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDKeymap",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Keymap",0);
  return elemento;
@@ -17061,7 +17063,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_deactivate=COMP_deselectKEYM;
-elemento=COMPONENT_create(panel,"CoLKeymap",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoLKeymap",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
 COMPONENT_display(elemento,3);
@@ -17089,7 +17091,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoTKeymap",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoTKeymap",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -17119,7 +17121,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"coed04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"coed04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Color:",0);
  return elemento;
@@ -17146,7 +17148,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDColor",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDColor",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
  return elemento;
@@ -17173,7 +17175,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"coed34",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"coed34",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Ch ED:",0);
  return elemento;
@@ -17200,9 +17202,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDmode",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDmode",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 COMPONENT_simpleText(elemento,".",0);
  return elemento;
@@ -17229,7 +17231,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDBFunction",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDBFunction",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Edit Functions",0);
  return elemento;
@@ -17257,7 +17259,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFC->post_deactivate=COMP_deselectEdFunc;
-elemento=COMPONENT_create(panel,"CoEDLEFunction",3,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDLEFunction",3,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 elemento->text=TEXT_new(RESIZE,1,80,4,1);
 COMPONENT_display(elemento,3);
@@ -17285,11 +17287,12 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDTEFunction",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDTEFunction",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,0,0,0};
 COMPONENT_createEdit(elemento,&auxEDIT);
 COMPONENT_simpleText(elemento,"none",0);
+COMPONENT_display(elemento,2);
  return elemento;
 }
 
@@ -17314,7 +17317,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDBorder",2,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDBorder",2,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Border: ?",0);
 VISUAL_changeIsCheck(elemento,'Y');
@@ -17343,7 +17346,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"coed05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"coed05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Dimensions",0);
  return elemento;
@@ -17370,7 +17373,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"coed06",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"coed06",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"X:",0);
  return elemento;
@@ -17397,7 +17400,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDX",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDX",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -17426,7 +17429,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"coed07",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"coed07",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Y:",0);
  return elemento;
@@ -17453,7 +17456,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDY",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDY",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -17482,7 +17485,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"coed08",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"coed08",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Width:",0);
  return elemento;
@@ -17509,7 +17512,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDWidth",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDWidth",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -17538,7 +17541,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"coed09",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"coed09",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"High:",0);
  return elemento;
@@ -17565,7 +17568,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDHigh",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDHigh",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 tEDIT auxEDIT={0,46,1,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
@@ -17594,7 +17597,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"coed10",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"coed10",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Text:",0);
  return elemento;
@@ -17621,9 +17624,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDText",4,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDText",4,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-tEDIT auxEDIT={0,46,3,1};
+tEDIT auxEDIT={0,46,4,1};
 COMPONENT_createEdit(elemento,&auxEDIT);
 elemento->text=TEXT_new(RESIZE,1,80,2,1);
  return elemento;
@@ -17651,7 +17654,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqCalls;
-elemento=COMPONENT_create(panel,"CoEDFunctions",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDFunctions",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento," App. Functions ",0);
  return elemento;
@@ -17679,9 +17682,9 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqMoves;
-elemento=COMPONENT_create(panel,"CoEDamove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDamove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-COMPONENT_simpleText(elemento," Aut. Moves ",0);
+COMPONENT_simpleText(elemento," Moves ",0);
  return elemento;
 }
 
@@ -17707,7 +17710,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_reqMoves;
-elemento=COMPONENT_create(panel,"CoEDpmove",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDpmove",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento," App. Moves ",0);
  return elemento;
@@ -17735,7 +17738,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_out;
-elemento=COMPONENT_create(panel,"CoEDcancel",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDcancel",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Cancel",0);
  return elemento;
@@ -17763,7 +17766,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_delete;
-elemento=COMPONENT_create(panel,"CoEDdelete",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDdelete",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Delete",0);
  return elemento;
@@ -17790,9 +17793,10 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"CoEDtest",1,&pDim,pColor,
+auxFA->enter=TEST_componentPanel;
+elemento=COMPONENT_create(panel,-1,"CoEDtest",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
-COMPONENT_simpleText(elemento," Test ",0);
+COMPONENT_simpleText(elemento,"Test ",0);
  return elemento;
 }
 
@@ -17818,7 +17822,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=COMP_fieldDoIt;
-elemento=COMPONENT_create(panel,"CoEDcreate",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"CoEDcreate",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Do It!",0);
  return elemento;
@@ -17845,7 +17849,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Checking  The Proyect ",0);
  return elemento;
@@ -17872,7 +17876,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Checking  The Properties ",0);
  return elemento;
@@ -17899,7 +17903,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"prop",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"prop",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"pending",0);
  return elemento;
@@ -17926,7 +17930,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Checking  Keymaps        ",0);
  return elemento;
@@ -17953,7 +17957,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"keymap",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"keymap",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"pending",0);
  return elemento;
@@ -17980,7 +17984,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC03",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC03",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Checking  Edit Functions ",0);
  return elemento;
@@ -18007,7 +18011,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"edf",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"edf",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"pending",0);
  return elemento;
@@ -18034,7 +18038,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC04",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC04",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Checking  Colors         ",0);
  return elemento;
@@ -18061,7 +18065,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"color",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"color",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"pending",0);
  return elemento;
@@ -18088,7 +18092,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC05",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC05",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Checking  Message  Box   ",0);
  return elemento;
@@ -18115,7 +18119,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"msgs",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"msgs",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"pending",0);
  return elemento;
@@ -18142,7 +18146,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC06",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC06",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Checking  Components     ",0);
  return elemento;
@@ -18169,7 +18173,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"comps",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"comps",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"pending",0);
  return elemento;
@@ -18196,7 +18200,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC07",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC07",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Checking  Panel Views    ",0);
  return elemento;
@@ -18223,7 +18227,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"panels",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"panels",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"pending",0);
  return elemento;
@@ -18250,7 +18254,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC08",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC08",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Checking  Table Views    ",0);
  return elemento;
@@ -18277,7 +18281,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"tables",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"tables",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"pending",0);
  return elemento;
@@ -18304,7 +18308,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC09",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC09",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Checking  Edits Views    ",0);
  return elemento;
@@ -18331,7 +18335,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"edit",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"edit",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"pending",0);
  return elemento;
@@ -18358,7 +18362,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"ckenter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ckenter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Result ",0);
  return elemento;
@@ -18385,7 +18389,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC00",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC00",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Compiling The Proyect ",0);
  return elemento;
@@ -18412,7 +18416,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC01",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC01",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Creating  The Directory     : ",0);
  return elemento;
@@ -18439,7 +18443,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"directory",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"directory",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"pending",0);
  return elemento;
@@ -18466,7 +18470,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC02",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC02",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Saving & copy the Proyect   : ",0);
  return elemento;
@@ -18493,7 +18497,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"saving",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"saving",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"pending",0);
  return elemento;
@@ -18520,7 +18524,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"frmEC03",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"frmEC03",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Compiling the Proyect       : ",0);
  return elemento;
@@ -18547,7 +18551,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  memset(auxFC,0,sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
-elemento=COMPONENT_create(panel,"compile",0,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"compile",0,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"pending",0);
  return elemento;
@@ -18575,7 +18579,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=RUN_compileFile;
-elemento=COMPONENT_create(panel,"ckenter",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"ckenter",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"Results",0);
  return elemento;
@@ -18603,7 +18607,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_editOpen;
-elemento=COMPONENT_create(panel,"open",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"open",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"F2 - Open",0);
  return elemento;
@@ -18631,7 +18635,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_editSave;
-elemento=COMPONENT_create(panel,"save",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"save",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"F3 - Save",0);
 COMPONENT_display(elemento,1);
@@ -18660,7 +18664,7 @@ _tFComponent * auxFC=(_tFComponent *)malloc(sizeof(_tFComponent));
  _tFActionPanel * auxFA=(_tFActionPanel *)malloc(sizeof(_tFActionPanel));
  memset(auxFA,0,sizeof(_tFActionPanel));
 auxFA->enter=PROY_editClose;
-elemento=COMPONENT_create(panel,"close",1,&pDim,pColor,
+elemento=COMPONENT_create(panel,-1,"close",1,&pDim,pColor,
 NULL,&move,auxFA,auxFC);
 COMPONENT_simpleText(elemento,"F4 - Close",0);
  return elemento;
@@ -21334,42 +21338,15 @@ int main(int argc, char * argv[])
   char nPanel[MAX_NAME_VIEW+2]="";
   char nComponent[MAX_COMPONENT_NAME+2]="";
   char * paux;
-  char * pterm;
-  char * ptty;
   int i;
   int retorno;
-  FILE *fd;
 
    if ((retorno=MyMain(argc,argv) != 0)) exit (retorno); 
-   setlocale(LC_ALL, "");
-   pterm = getenv("TERM");
-   ptty = getenv("TTY");
-   if (ptty == NULL){
-    if (pterm == NULL)
-     scrSTD=newterm("xterm",stdin,stdout);
-    else
-     scrSTD=newterm(pterm,stdin,stdout);
-   } else {
-      fd= fopen(ptty,"r+");
-      if (fd != NULL){
-        if (pterm == NULL)
-           scrSTD=newterm("xterm",fd,fd);
-        else
-           scrSTD = newterm(pterm,fd,fd); 
-      }
-   }
-   raw();
-   keypad(stdscr, TRUE);
-   cbreak();
-   noecho();
-   refresh();
+   scrSTD=TUI_init(1,1); 
 
-  COLOR_inicializar(1);
-  MAIN_createColors();
-  KEYS_setMouse(1);
-  ERR_printError(1,"errores.txt");
+   MAIN_createColors();
+   ERR_printError(1,"errores.txt");
   VISUAL_changeCheck(0,0,0);
-  FEDIT_load();
   FEDIT_load();
   MSGS_load();
   BACK_init();
@@ -21395,7 +21372,7 @@ int main(int argc, char * argv[])
    }
   }
   VIEW_Loop(view,nComponent);
-  endwin();
+  TUI_end();
    return MyEnd();
   return 0;
 }

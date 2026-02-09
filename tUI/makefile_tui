@@ -1,8 +1,8 @@
 TUI_HEADERS=/usr/include/tui
 TUI_LIBRARY=/usr/lib
-TUI_BUILD=/usr/bin/tbuild
+TUI_BUILD=tbuild
 TUI_PARSER_HEADER=/usr/include/tui
-TUI_PARSER_LIBRARY=/usr/lib
+TUI_PARSER_LIBRARY=
 CC = gcc -ansi -g -D__USE_GNU -D_GNU_SOURCE
 CFLAGS =-I. -I$(TUI_PROYECT) -I$(TUI_HEADERS) -I$(TUI_PARSER_HEADER)
 AR = ar r
@@ -19,11 +19,11 @@ make: clean dotui all
 
 dotui:
 	cd $(TUI_PROYECT);\
-	$(TUI_BUILD) -i -p -f $(TUI_PROYECT).xml -r
+	$(TUI_BUILD) -r -i  $(WFUNCTION) -f $(TUI_PROYECT).xml 
 
 all: 
 	cd $(TUI_PROYECT);\
-	$(CC) $^ -o $(OBJ_BUILD) $(CFLAGS) $(OBJ_PROYECT) -L$(TUI_LIBRARY) -ltui -L$(TUI_PARSER_LIBRARY) -lparser -lncursesw -lxml2
+	$(CC) $^ -o $(OBJ_BUILD) $(CFLAGS) $(OBJ_PROYECT) -L$(TUI_LIBRARY) -ltui -L$(TUI_PARSER_LIBRARY) -lparser -lncursesw 
 
 clean:	
 	/usr/bin/mkdir -p $(OBJ_DIR)
@@ -31,8 +31,8 @@ clean:
 	rm -f $(OBJ_DIR)/*.a
 	rm -f $(OBJ_DIR)/$(TUI_PROYECT)
 	rm -f $(OBJ_DIR)/$(TUI_PROYECT).c
-	rm -f $(OBJ_DIR)/$(TUI_PROYECT)_func.c
-	rm -f $(OBJ_DIR)/$(TUI_PROYECT)_func.h
+#	rm -f $(OBJ_DIR)/$(TUI_PROYECT)_func.c
+#	rm -f $(OBJ_DIR)/$(TUI_PROYECT)_func.h
 
 run: 
 	cd $(TUI_PROYECT);\

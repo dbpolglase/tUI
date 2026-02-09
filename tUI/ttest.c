@@ -597,6 +597,140 @@ tXmlText * texto;
 
     
     auxNComp= COMPONENT_create(auxView->view.panel,
+			0,
+                        auxComp->name,
+                        auxComp->type,
+                        &auxComp->visual.dimension,
+                        ((auxColor==NULL)?&noColor:&auxChColor), 
+                        NULL, NULL, NULL, NULL);
+
+    if (auxComp->visual.visible != DIS_NORMAL)
+        COMPONENT_display(auxNComp,auxComp->visual.visible);
+
+
+    if (auxNComp->type == C_LSBUTTON || auxNComp->type == C_EDIT){
+        auxNComp->text=TEXT_new(RESIZE,1,80,auxNComp->visual->dimension.alto,1);
+    }
+
+    if (auxComp->visual.isCheck){
+        auxNComp->visual->status.defCheck=1;
+    }
+
+    if (auxComp->visual.chCheck !=0 && auxComp->visual.chCheck != CH_CHECK)
+        VISUAL_changeChCheck(auxNComp,auxComp->visual.chCheck);
+
+    if (auxComp->visual.chIsCheck !=0 && auxComp->visual.chIsCheck != CH_IS_CHECK)
+        VISUAL_changeIsCheck(auxNComp,auxComp->visual.chIsCheck);
+    if (auxComp->visual.chNoCheck !=0 && auxComp->visual.chNoCheck != CH_NO_CHECK)
+        VISUAL_changeNoCheck(auxNComp,auxComp->visual.chNoCheck);
+
+
+    texto = auxComp->text;
+    if (texto == NULL) COMPONENT_simpleText(auxNComp,"",0);
+    else {
+    while (texto != NULL) {
+     COMPONENT_simpleText(auxNComp,texto->texto,0);
+     texto = texto->siguiente;
+    }
+    }
+
+    PANEL_addComponent(auxView->view.panel, auxNComp);
+
+    auxElemns=auxElemns->siguiente;
+  }
+
+  if (cabIsShow == NULL) {
+   setlocale(LC_ALL, "");
+   raw();
+   cbreak();
+   noecho();
+  }
+  PANEL_show(auxView->view.panel);
+  set_term(scrSTD);
+
+  TEST_add(T_VIEW,NULL,auxView);
+  if (MSG_create(M_WARNING,CENTER_TERMINAL,"Clean Test Terminal ? ") == 0) {
+    set_term(scrTest);
+    TEST_del();
+    clear();
+    set_term(scrSTD);
+ }
+
+  return &action;
+}
+
+trAction* TEST_componentPanel(tComponent * component,int key){
+static trAction action;
+
+SCREEN * scrTest;
+tComponent * auxC;
+char * nPanel;
+tXmlPanelPtr auxPanel;
+tView * auxView;
+tChAttr auxChColor;
+extern tChAttr noColor;
+tXmlcolorPtr auxColor;
+tXmlCompPanel * auxElemns;
+tXmlComponent * auxComp;
+tComponent * auxNComp;
+tXmlText * texto;
+
+ initAction(action);
+
+
+ if ((scrTest = PROY_testScreen()) == NULL){
+  MSG_create(M_ERROR,CENTER_VIEW,"Must Indicate the Test Terminal (project->t.test)");
+  action.error=1;
+  return &action;
+ }
+
+ auxC = (tComponent *)LVIEW_getElement(NULL,"cpanel");
+ nPanel = COMPONENT_getValue(auxC);
+ if (nPanel == NULL || strcmp(nPanel,"")==0) {
+  MSG_create(M_ERROR,CENTER_VIEW,"Panel name require ");
+  action.error=1;
+  return &action;
+ }
+
+ auxPanel = VIEW_searchPanel(nPanel);
+ if (auxPanel == NULL) {
+  MSG_create(M_ERROR,CENTER_VIEW,"Save/Create view before test ");
+  action.error=1;
+  return &action;
+ }
+
+ auxColor=COLOR_searchColor(auxPanel->visual.color);
+
+ set_term(scrTest);
+ COLOR_inicializar(1);
+ if (auxColor != NULL){ 
+  auxChColor.attr=auxColor->attr; 
+  auxChColor.colorpair=COLOR_get(auxColor->bcolor,auxColor->fcolor);
+ }
+
+ LVIEW_testView();
+ auxView = PANEL_create(-1,
+                      nPanel,
+                      0,
+                      auxPanel->title,
+                      &auxPanel->visual.dimension,
+                      ((auxColor==NULL)?&noColor:&auxChColor), 
+                      OP_NONE,
+                      NULL,NULL,NULL);
+
+  auxElemns = auxPanel->elements;
+
+  while (auxElemns != NULL) {
+    auxComp = auxElemns->componente;
+    auxColor=COLOR_searchColor(auxComp->visual.color);
+    if (auxColor != NULL){ 
+      auxChColor.attr=auxColor->attr; 
+      auxChColor.colorpair=COLOR_get(auxColor->bcolor,auxColor->fcolor);
+    }
+
+    
+    auxNComp= COMPONENT_create(auxView->view.panel,
+			0,
                         auxComp->name,
                         auxComp->type,
                         &auxComp->visual.dimension,
