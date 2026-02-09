@@ -544,7 +544,8 @@ A partir de este Xml y mediante la herramienta <strong>tbuild</strong> se genera
 <ul>
 <li>Copia al directorio de trabajo el fichero makefile_tui que se localiza en /usr/include/tui.</li>
 <li>Ejecuta Make-&gt;compile y responde OK a Rewrite Functions File ya que no hemos generado anteriormente.</li>
-<li>Se procede a crear un directorio con el nombre del proyecto y a compilar el mismo mediante este makefile  (makefile_tui ) el cual  ejecuta el tbuild, la compilación y el montaje.</li>
+<li>Se procede a crear un directorio con el nombre del proyecto y a compilar el mismo mediante este makefile  (makefile_tui ) el cual  ejecuta el tbuild, la compilación y el montaje.<br>
+<img src="./doc/compMenu.jpg" alt="enter image description here"></li>
 </ul>
 <blockquote>
 <p>La compilación y ejecución de los proyectos desde la herramienta gráfica se realiza utilizando este makefile (makefile_tui).<br>
@@ -564,8 +565,9 @@ Copy componentes: Y, la nueva vista “nivel2” tendrá dos botones también bo
 </blockquote>
 <p>Copy moves: Y, posteriormente deberemos ajustarlo especialmente si hemos utilizado referencias absolutas vista:componente y no relativas.<br>
 Copy applications move: N<br>
-Copy applications calls: N</p>
-<p>Ahora vamos a hacer algunas modificaciones:<br>
+Copy applications calls: N<br>
+<img src="./doc/copy.jpg" alt="enter image description here"><br>
+Ahora vamos a hacer algunas modificaciones:<br>
 Vamos a views-&gt;panels  y seleccionamos el panel nivel2 cambiamos:<br>
 Nivel: a nivel 2. (es decir es un submenú del menú principal).<br>
 OP: a HIDE para que se oculte cuando volvamos al nivel principal menu1.<br>
@@ -1055,7 +1057,8 @@ return;
 }
 </code></pre>
 <p>Con esto en el formulario aparecerá al abrirlo  como nombre “smith”, el check estará no seleccionado, habremos añadido al select el valor XX y seleccionado el valor 2 de la lista (también podríamos haber puesto -1,“OTHER”.) y hemos cambiado el texto del botón a Do.</p>
-<p>Puedes copiar ese código al fuente de funciones compilar y probar.</p>
+<p>Puedes copiar ese código al fuente de funciones compilar y probar.<br>
+<img src="./doc/form.jpg" alt="enter image description here"></p>
 <blockquote>
 <p>Podríamos navegar sobre el parámetro panel recibido y hacer cambios como veremos en la sección de programación, pero mejor usar el API que veremos.</p>
 </blockquote>
@@ -1209,6 +1212,7 @@ return &amp;action;
 }
 </code></pre>
 <p>Compilamos y probamos, ahora al pulsar con enter sobre una fila o haciendo doble click con el ratón nos aparecerá una ventana de información  con los datos de la línea activa.</p>
+<p><img src="./doc/Table.jpg" alt="enter image description here"></p>
 <blockquote>
 <p>También puedes exportar la tabla completa a fichero mediante<br>
 int TEXT_saveTabFile(tText * miText, char  * fileName, char separator);</p>
@@ -1259,7 +1263,8 @@ Salvamos y comprobamos.</p>
 <p>En el xml se ha creado la entrada de Edits y una nueva entrada Edit con los datos que hemos indicado.</p>
 <h3 id="compilación">compilación</h3>
 <p>Así que salvamos, compilamos y ejecutamos, veremos que ahora al pulsar sobre el botón 2 del submenú de nivel 2 se nos muestra un view del fichero Xml  de la aplicación en que nos podemos mover con el teclado o el ratón.<br>
-Pulsando F1 volveremos al menú anterior.</p>
+Pulsando F1 volveremos al menú anterior.<br>
+<img src="./doc/Edit.jpg" alt="enter image description here"></p>
 <h3 id="carga-de-datos">carga de datos</h3>
 <p>En este caso hemos forzado la carga de un fichero en la propia definición de la vista, pero esto no será lo habitual.<br>
 Lo normal será que el fichero a cargar sea algo dinámico, como se hace esto.<br>
