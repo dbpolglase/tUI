@@ -74,6 +74,7 @@ void COMP_loadLABEL(tPanel * panel);
 trAction* COMP_out (tComponent *,int );
 trAction* COMP_reqCalls (tComponent *,int );
 trAction* COMP_delete (tComponent *,int );
+trAction* TEST_componentPanel (tComponent *,int );
 trAction* COMP_labelDoIt (tComponent *,int );
 void COMP_loadButton(tPanel * panel);
 trAction* COMP_Visible (tComponent *,int );
