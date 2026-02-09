@@ -1865,6 +1865,7 @@ static int PARSER_decodeEditType(char * x){
  if (x==NULL) return E_NONE;
    if (strcmp(x,"none") == 0 )  return E_NONE;
    if (strcmp(x,"numeric") == 0 )  return E_NUMERIC;
+   if (strcmp(x,"alpha") == 0 )  return E_ALPHA;
    if (strcmp(x,"alfnumeric") == 0 )  return E_ALFNUMERIC;
    if (strcmp(x,"7ascii") == 0 )  return E_7ASCII;
    if (strcmp(x,"upper") == 0 )  return E_UPPER;

@@ -248,7 +248,7 @@ static void BUILD_writeComponents(FILE * fBuild)
 
     BUILD_writeActions(fBuild, 'C',&aux->personalAction);
 
-    fprintf(fBuild,CRE_COMPONENT_PASO3,aux->name,aux->type,(strcmp(aux->mapkey,"")==0?"NULL":strcat(buf,aux->mapkey)));
+    fprintf(fBuild,CRE_COMPONENT_PASO3,aux->id,aux->name,aux->type,(strcmp(aux->mapkey,"")==0?"NULL":strcat(buf,aux->mapkey)));
 
     if (aux->type == C_EDIT){
      fprintf(fBuild,"tEDIT auxEDIT={%d,%d,%d,%d};\nCOMPONENT_createEdit(elemento,&auxEDIT);\n",aux->editMode.secret,aux->editMode.chToEDIT,aux->editMode.editType,aux->editMode.autoComplet);
@@ -607,7 +607,6 @@ static void BUILD_writeMain(FILE * fBuild)
               parseProperties->sborders[4],parseProperties->sborders[5],
               parseProperties->sborders[6],parseProperties->sborders[7]);
 
-  fprintf(fBuild,"  FEDIT_load();\n");
 
   fprintf(fBuild,"  FEDIT_load();\n");
   fprintf(fBuild,"  MSGS_load();\n");

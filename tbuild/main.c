@@ -13,8 +13,8 @@ static void Use(char * program);
 
 int main(int argc, char **argv) {
   int opt;
-  unsigned short createInterfaz=1;
-  unsigned short createPrototipe=1;
+  unsigned short createInterfaz=0;
+  unsigned short createPrototipe=0;
   unsigned short rewrite=0;
   char * fileXml=NULL;
     
