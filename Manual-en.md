@@ -8,12 +8,12 @@
 <ul>
 <li>The first element of the project is the <strong>libtui</strong> library, which provides a wrapper for the ncurses API. It allows interface creation by describing common elements for any interface: panels, buttons… and implements an engine to manage their actions.</li>
 <li>The second element is a compiler (<strong>tbuild</strong>) that translates a user interface description in XML format into the necessary source files, which together with the libtui library, build the application.</li>
-<li>The last element is a graphical application (<strong>tUI</strong>) built using the libtui library. Through it, we can construct our project’s interface visually, and it also serves as a demonstrator.</li>
+<li>The last element is a graphical application (<strong>tUI</strong>) built using the libtui library. Through it, you can construct your project’s interface visually, and it also serves as a demonstrator.</li>
 </ul>
 <h1 id="model">Model</h1>
-<p>The project is based on a view model. Currently, three types of views can be handled:</p>
+<p>The project is based on a View model. Currently, three types of Views can be handled:</p>
 <ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <strong>Panel</strong> view, which is essentially a canvas on which the following components or elements can be represented:
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <strong>Panel</strong> View, which is essentially a canvas on which the following components or elements can be represented:
 <ul>
 <li><strong>Label</strong> element, for fixed texts in our interface.</li>
 <li><strong>Button</strong> element, for application buttons.</li>
@@ -22,23 +22,23 @@
 <li><strong>Field</strong> element, for fields the user must fill in.</li>
 </ul>
 </li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <strong>Table</strong> view, which allows representing data through tabulated lists.</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <strong>Edit</strong> view, which consists of a simple editor for handling files or plain text.</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <strong>Table</strong> View, which allows representing data through tabulated lists.</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> <strong>Edit</strong> View, which consists of a simple editor for handling files or plain text.</li>
 </ul>
 <h2 id="life-cycle">Life Cycle</h2>
 <p>Views will have the following states:</p>
 <ul>
 <li><strong>Creation</strong>: Views are created at the start of the application according to their initial properties (size, color, …). Associated elements are also created if they exist.</li>
-<li><strong>Show</strong>: Views are displayed at the time associated with the keyboard (or mouse) events indicated in the project description.</li>
-<li><strong>Activation</strong>: This applies to the entire view or an element within it if there are several, meaning this element takes control of user events. The active element is shown in inverse video so the user understands it is active.</li>
+<li><strong>Show</strong>: Views are displayed at the time associated with the keyboard (or mouse) events indicated in the project tUI XML description.</li>
+<li><strong>Activation</strong>: When the View or an element within it, if there are several, is activated it can take control of user events. The active element is shown in inverse video so the user perceives  it is active.</li>
 <li><strong>Deactivation</strong>: When navigating from one element to another, the previously active element is deactivated before activating the next one.</li>
-<li><strong>Hiding</strong>: When activating a new view, currently visible views will be hidden according to a level management system, so any view with a level higher than the one to be activated will be hidden.</li>
-<li><strong>Destruction</strong>: In the case of destruction, besides being hidden, all entered data will be erased, which would otherwise remain if the view were shown again.</li>
+<li><strong>Hiding</strong>: When activating a new View, currently visible Views will be hidden according to a level management system, so any View with a level higher than the one to be activated will be hidden.Hiding a View does not erase the data entered.</li>
+<li><strong>Destruction</strong>: In the case of destruction, besides hiding the View, all entered data will be erased.</li>
 </ul>
 <p>The life cycle therefore will be:<br>
-<code>creation -&gt; displayed -&gt; activation -&gt; deactivation -&gt; hide/destroy -&gt; displayed -&gt; ...</code></p>
+<code>Create -&gt; Show -&gt; Activate -&gt; Deactivate -&gt; hide/destroy -&gt; Show -&gt; ...</code></p>
 <h2 id="events">Events</h2>
-<p>The active element will manage the input events that occur.</p>
+<p>The active element will handle the input events that occur.</p>
 <p>The following possible events associated with keyboard input are considered:</p>
 <ul>
 <li><strong>Enter</strong>, or enter. (Intro)</li>
@@ -52,17 +52,25 @@
 <li><strong>Fn</strong>, or Function key. (F1-F12)</li>
 </ul>
 <p>When appropriate, the following events are handled internally (they are not configurable):<br>
-PgUp, page up; PgDw, page down; Init, go to the beginning; End, go to the end; Ins, change mode between insert and replace; Backspace, delete backward; Del, delete forward.</p>
+<ul>    
+<li>PgUp, page up</li>
+    <li>PgDw, page down</li>
+    <li> Init, go to the beginning</li>
+    <li>End, go to the end</li>
+    <li> Ins, change mode between insert and replace</li>
+    <li>Backspace, delete backward</li>
+    <li> Del, delete forward</li>
+</ul></p>
 <p>Additionally, if we allow mouse use:</p>
 <ul>
 <li>The <strong>left button</strong> will translate as:
 <ul>
-<li>If clicked on the active element, and if it is a component of a panel, into an “enter” event on it. If the view is a table, into selecting the record. If it is an edit view, into positioning the cursor at that location.</li>
-<li>If clicked on another view and/or element among those shown, into navigating to it, i.e., activating that view/element.</li>
+<li>If clicked on the active element, and if it is a component of a panel, into an “enter” event on it. If the View is a table, into selecting the record. If it is an edit View, into positioning the cursor at that location.</li>
+<li>If clicked on another View and/or element among those shown, into navigating to it, i.e., activating that View/element.</li>
 </ul>
 </li>
 <li>Clicking the <strong>right button</strong> will generally result in an “out” event.</li>
-<li>The <strong>middle button</strong> will translate as Up/Down in table and edit views.</li>
+<li>The <strong>middle button</strong> will translate as Up/Down in table and edit Views.</li>
 </ul>
 <h1 id="general-aspects">General Aspects</h1>
 <p>Below, some initial characteristics to consider before starting to create an application using tUI will be described. The easiest way is to explain the points described in the General section of the tUI graphical user interface, for which we start it with the command <code>tUI</code>.</p>
@@ -120,7 +128,7 @@ In the XML, the same is achieved with the tag:</p>
 <h3 id="framing">Framing</h3>
 <p>Views are displayed within a frame according to the given dimensions; these frames can be bordered.<br>
 Borders are defined as border characters for top, bottom, left, right, and the four corners, typically dashes, bars, and the + symbol.<br>
-For table and editor views (others in the future) where scrolling can be performed, the scroll border description defined by the SBorder characters will be used instead of the Border ones.<br>
+For table and editor Views (others in the future) where scrolling can be performed, the scroll border description defined by the SBorder characters will be used instead of the Border ones.<br>
 The characters configuring these borders are parameterizable in the application.</p>
 <p>In the XML, it is possible to customize these borders with the tags:</p>
 <pre><code>xml
@@ -142,8 +150,8 @@ It has no input parameters, and the output result will be used in the main’s r
 This is declared in the General-&gt;properties section and will result in the following entry in the XML:</p>
 <pre><code>&lt;End&gt;userEnd&lt;/End&gt;
 </code></pre>
-<h3 id="init-view">Init View</h3>
-<p>As init-view, the view to activate at application startup should be indicated.<br>
+<h3 id="init-View">Init View</h3>
+<p>As init-View, the View to activate at application startup should be indicated.<br>
 The format will be:</p>
 <pre><code>viewName:[elementName]
 </code></pre>
@@ -300,7 +308,7 @@ A-Z.</li>
 <li>Warning</li>
 <li>Error</li>
 </ul>
-<p>The user will open these windows as appropriate in each circumstance programmatically. They will consist of a panel view with a title, centered on the screen or on the frame of the active view, in which the provided text will be displayed, in a certain style or color, and with 0 to 2 buttons also determined.</p>
+<p>The user will open these windows as appropriate in each circumstance programmatically. They will consist of a panel View with a title, centered on the screen or on the frame of the active View, in which the provided text will be displayed, in a certain style or color, and with 0 to 2 buttons also determined.</p>
 <p>The application allows parameterizing these warning windows. To do this we can use the XML:</p>
 <pre><code>xml
 &lt;Colors&gt;
@@ -513,7 +521,7 @@ End the test application by triggering the Out event (ESC) and thus regain contr
 To do this, we will use a feature of the graphical application.<br>
 We go to View-&gt;Copy and select menu1. A form will open where we will indicate:<br>
 To: nivel2<br>
-Copy components: Y, the new view “nivel2” will also have two buttons, boton1 and boton2.</p>
+Copy components: Y, the new View “nivel2” will also have two buttons, boton1 and boton2.</p>
 <blockquote>
 <p>Component names will not clash with each other if the first 4 letters<br>
 of the panel differ.</p>
@@ -676,7 +684,7 @@ In the panel: Form1 we apply the movement "-1: " to the Out event (Panel Form -&
 <blockquote>
 <p>Movements of type -n indicate to the application to make “n” steps back in the path of views that ended in this view. In this way, a view can be invoked from different points and return naturally to them.</p>
 </blockquote>
-<p>In the view menu1 / boton2 we are going to apply in Moves form1:name for the Enter event, so that the form opens when clicking on boton2 of menu1.</p>
+<p>In the View menu1 / boton2 we are going to apply in Moves form1:name for the Enter event, so that the form opens when clicking on boton2 of menu1.</p>
 <p>In the form, we are going to apply the following movements:</p>
 <p>In the element form1:name<br>
 Enter, “:2” or :check</p>
@@ -856,7 +864,7 @@ Let’s start with the most evident case: collecting data from the form and doin
 <p>Here we have a form where we can assign a callback to events. In this case, we assign to Enter: madeForm (for example).</p>
 <p>We save and execute the “List-&gt;Calls” option. If we have done it well, an entry will appear for that component and the ENTER event, which will have the madeForm function assigned.</p>
 <blockquote>
-<p>List-&gt;Call is a table-type view. To navigate left/right, use the arrows.</p>
+<p>List-&gt;Call is a table-type View. To navigate left/right, use the arrows.</p>
 </blockquote>
 <h4 id="prototype">Prototype</h4>
 <p>Let’s compile and go to the Application1 directory. In the file Application_func.c we can see something like:</p>
@@ -872,8 +880,8 @@ return &amp;action;
 <p>Let’s start with data retrieval. For this, there are two key functions:</p>
 <pre><code>void * LVIEW_getElement(char * nView, char * nComponent);
 </code></pre>
-<p>that allows us to obtain the reference to any element of any view, using either the id or the name.<br>
-If we indicate NULL as nView, we will refer to the active view.</p>
+<p>that allows us to obtain the reference to any element of any View, using either the id or the name.<br>
+If we indicate NULL as nView, we will refer to the active View.</p>
 <p>and</p>
 <pre><code>char * COMPONENT_getValue(tComponent * component);
 </code></pre>
@@ -939,7 +947,7 @@ char * file="/tmp/tuiApplication";
     MSG_create(M_ERROR,CENTER_VIEW,"Unable to Open %s file",file);
   }
 </code></pre>
-<p>In this way, we force the opening of an MSG view of type ERROR, centered on the form view, with the indicated text.</p>
+<p>In this way, we force the opening of an MSG View of type ERROR, centered on the form View, with the indicated text.</p>
 <h4 id="redirecting">Redirecting</h4>
 <p>This is fine, but it does not prevent the event handling logic from continuing. To change that, we will make use of the action.<br>
 The action structure consists of 3 fields: error, made and opToMade, and is returned as the result of the call.</p>
@@ -953,11 +961,11 @@ if (fd == NULL){
     return &amp;action;
 }
 </code></pre>
-<p>Will cause the tool to no longer consider valid subsequent treatments of the event, in this case the order to return to the previous view.</p>
+<p>Will cause the tool to no longer consider valid subsequent treatments of the event, in this case the order to return to the previous View.</p>
 <h5 id="action.made">action.made</h5>
 <p>The made field can have values 0 or 1. The value 1 indicates that the event is handled by the user and should not be handled by the application.</p>
 <h6 id="action-optomade-and-componentnext">action opToMade and componentNext</h6>
-<p>In cases where the event is handled by the application, we must indicate the treatment to perform. This is done with the componentNext field, which will be a string of the type view:element with the next view and/or component to show, and opToMade, which will indicate what to do with the current view: NONE, HIDE, DESTROY… values defined in enum Ops.</p>
+<p>In cases where the event is handled by the application, we must indicate the treatment to perform. This is done with the componentNext field, which will be a string of the type view:element with the next view and/or component to show, and opToMade, which will indicate what to do with the current View: NONE, HIDE, DESTROY… values defined in enum Ops.</p>
 <pre><code>c
 if (fd == NULL){
     MSG_create(M_ERROR,CENTER_VIEW,"Unable to Open %s file",file);
@@ -967,7 +975,7 @@ if (fd == NULL){
     return &amp;action;
 }
 </code></pre>
-<p>In this case, we say that in case of error, go to the nivel2 view of the menu.</p>
+<p>In this case, we say that in case of error, go to the nivel2 View of the menu.</p>
 <h4 id="improving-more">Improving more</h4>
 <p>Another thing we can do is obtain the value of the MSG and act accordingly. For example:</p>
 <pre><code>c
@@ -983,7 +991,7 @@ if (fd == NULL){
     return &amp;action;
 }
 </code></pre>
-<p>We have changed the MSG to type WARNING, which has 2 buttons (by default) OK, CANCEL, and if the user presses the first one (button 0, OK), we go to the nivel2 view; otherwise, we simply say error and continue in the view.</p>
+<p>We have changed the MSG to type WARNING, which has 2 buttons (by default) OK, CANCEL, and if the user presses the first one (button 0, OK), we go to the nivel2 View; otherwise, we simply say error and continue in the View.</p>
 <h4 id="function-keys">Function Keys</h4>
 <p>Function key events can be captured in a similar way. The only difference is that the callback will be generic to all of them.</p>
 <p>It will receive as an additional parameter the Fn pressed (0-11), and it will be the programming that indicates which one is handled and which one is not.</p>
@@ -1009,12 +1017,12 @@ Let’s take a look at the XML generated with these callback functions:</p>
 <p>In any form, it is common to have to load data; some will be default and others not.<br>
 In the case of default values, we have already seen how to do it: simply use the Text tag in the XML, and the component will be filled with that data.<br>
 For the rest of the cases, we will make use of the life cycle callbacks.<br>
-For example, in this case, we will make a function execute before showing the view, where we will load the data.<br>
-Open the form1 view form and click on the button: “App. Functions” and indicate in the “PRE Show” field the value loadForm1 and save.</p>
+For example, in this case, we will make a function execute before showing the View, where we will load the data.<br>
+Open the form1 View form and click on the button: “App. Functions” and indicate in the “PRE Show” field the value loadForm1 and save.</p>
 <blockquote>
-<p>It is possible to introduce a user function at each point of the life cycle (create, show, activate, deactivate, hide, destroy) of the views, either prior to its execution or as a subsequent step.</p>
+<p>It is possible to introduce a user function at each point of the life cycle (create, show, activate, deactivate, hide, destroy) of the Views, either prior to its execution or as a subsequent step.</p>
 </blockquote>
-<p>In the view List-&gt;Calls, the new defined function should appear.</p>
+<p>In the View List-&gt;Calls, the new defined function should appear.</p>
 <h4 id="prototype-1">prototype</h4>
 <p>If we compile again indicating “Rewrite application functions” (i.e., with -p in tbuild), we will be able to observe in the functions file the prototyping of the callback to be filled.</p>
 <p>For now, it is better to continue indicating NO to “Rewrite applications functions” so as not to lose previous changes.</p>
@@ -1023,7 +1031,7 @@ void loadForm1(tPanel * panel){
 return;
 }
 </code></pre>
-<p>The prototype of the function is this, in which we receive as a parameter the panel view that triggered it.</p>
+<p>The prototype of the function is this, in which we receive as a parameter the panel View that triggered it.</p>
 <p>example<br>
 Let’s fill the loadForm1 function:</p>
 <pre><code>c
@@ -1041,7 +1049,7 @@ void loadForm1(tPanel * panel){
 <img src="./doc/form.jpg" alt="enter image description here"></p>
 <blockquote>
 <p>We could navigate over the panel parameter received and make changes as we will see in the programming section, but it is better to use the API that we will see.</p>
-<p>Observe that in this case we specify the view when calling LVIEW because the view we are manipulating is not the active one.</p>
+<p>Observe that in this case we specify the View when calling LVIEW because the View we are manipulating is not the active one.</p>
 </blockquote>
 <h4 id="xml">XML</h4>
 <p>Observe that in the XML we now have an entry for FPanel.</p>
@@ -1056,7 +1064,7 @@ void loadForm1(tPanel * panel){
     &lt;Components&gt;
 </code></pre>
 <h2 id="tables">TABLES</h2>
-<p>Let’s now create some tables to visualize data. Let’s define one: view-&gt;table NEW</p>
+<p>Let’s now create some tables to visualize data. Let’s define one: View-&gt;table NEW</p>
 <p>Definition<br>
 Id: none,<br>
 Level: 3</p>
@@ -1126,12 +1134,12 @@ void loadTable(tTable * table){
 return;
 }
 </code></pre>
-<p>Observe that now we have the table view as a parameter.</p>
+<p>Observe that now we have the table View as a parameter.</p>
 <h3 id="text-class">TEXT class</h3>
 <p>All elements that are part of the interface have an associated text structure to support data.<br>
 This structure consists of an array of arrays of lines and fields, i.e., a three-dimensional array.<br>
 So far, we have performed data manipulations using specific functions from the component API, and this is because the structure and function of these components recommend this type of manipulation.<br>
-In the case of table and edit views, however, it is more convenient to make direct use of this class and its associated structure since understanding it may be necessary.</p>
+In the case of table and edit Views, however, it is more convenient to make direct use of this class and its associated structure since understanding it may be necessary.</p>
 <h3 id="method-1-of-loading">Method 1 of loading:</h3>
 <p>We load the table data by data:</p>
 <pre><code>c
@@ -1205,10 +1213,10 @@ int TEXT_saveTabFile(tText * miText, char * fileName, char separator);</p>
 </blockquote>
 <p>We also leave as practice trying the difference between OP_HIDE and OP_DELETE.</p>
 <h2 id="edit-1">EDIT</h2>
-<p>Let’s now create an editing view, EDIT. For this, view-&gt;edit NEW</p>
+<p>Let’s now create an editing View, EDIT. For this, View-&gt;edit NEW</p>
 <p>Definition<br>
 Id: none,<br>
-Name: view<br>
+Name: View<br>
 Level: 3<br>
 Title: View of file Xml<br>
 Op: DELETE<br>
@@ -1224,8 +1232,8 @@ Keymap: default</p>
 <p>We apply and test.<br>
 With this, we have a frame that will typically occupy the entire terminal.</p>
 <h3 id="moves-3">Moves</h3>
-<p>In the view we have created, we apply as move Fn: 1 -:, meaning that the F1 function key goes back to the previous screen.<br>
-In the panel nivel2, boton2, we apply as enter view:, meaning that it opens this view.<br>
+<p>In the View we have created, we apply as move Fn: 1 -:, meaning that the F1 function key goes back to the previous screen.<br>
+In the panel nivel2, boton2, we apply as enter View:, meaning that it opens this View.<br>
 We save and check.</p>
 <h3 id="xml-1">xml</h3>
 <pre><code>xml
@@ -1243,18 +1251,18 @@ We save and check.</p>
 </code></pre>
 <p>In the xml, the Edits entry and a new Edit entry with the data we indicated have been created.</p>
 <h3 id="compilation">Compilation</h3>
-<p>So we save, compile, and execute. We will see that now, when clicking on button 2 of the level 2 submenu, a view of the application’s XML file is shown, in which we can move with the keyboard or mouse.<br>
+<p>So we save, compile, and execute. We will see that now, when clicking on button 2 of the level 2 submenu, a View of the application’s XML file is shown, in which we can move with the keyboard or mouse.<br>
 Pressing F1 will return us to the previous menu.<br>
 <img src="./doc/Edit.jpg" alt="enter image description here"></p>
 <h3 id="data-loading">Data Loading</h3>
-<p>In this case, we have forced the loading of a file in the view definition itself, but this will not be the usual case.<br>
+<p>In this case, we have forced the loading of a file in the View definition itself, but this will not be the usual case.<br>
 The usual will be that the file to load is something dynamic. How is this done?<br>
-We remove the File entry from the Edit view definition.<br>
-We introduce a new callback in the preShow of the Edit view, for example loadFile (App. Functions).</p>
+We remove the File entry from the Edit View definition.<br>
+We introduce a new callback in the preShow of the Edit View, for example loadFile (App. Functions).</p>
 <pre><code>c
 void loadFile(tEdit * edit);
 </code></pre>
-<p>We will have to fill the loadFile function, which receives the associated view as a parameter.</p>
+<p>We will have to fill the loadFile function, which receives the associated View as a parameter.</p>
 <pre><code>c
 void loadFile(tEdit * edit)
 {
@@ -1264,10 +1272,10 @@ void loadFile(tEdit * edit)
   EDIT_loadFile(edit,"Application1.xml",maxLineSize,linesBlockRead);
 }
 </code></pre>
-<p>The differences with the previous one are as follows: in the first case, when we indicate it with the XML tag, the file will be loaded immediately after creating the component and never again, so it will constitute a static view of the file.<br>
+<p>The differences with the previous one are as follows: in the first case, when we indicate it with the XML tag, the file will be loaded immediately after creating the component and never again, so it will constitute a static View of the file.<br>
 In addition, the file loading parameters, buffer reading size or maxLineSize and block of number of lines to create, are fixed via defines in the application_func.h file according to the size given to the window.</p>
 <h3 id="dynamic-data-loading">Dynamic Data Loading</h3>
-<p>The edit view can also be used more dynamically, i.e., to include data that does not come from a file. For this, we use the TEXT class methods at a low level.</p>
+<p>The edit View can also be used more dynamically, i.e., to include data that does not come from a file. For this, we use the TEXT class methods at a low level.</p>
 <pre><code>c
 void loadFile(tEdit * edit)
 {
@@ -1281,10 +1289,10 @@ void loadFile(tEdit * edit)
  TEXT_addEditData(edit-&gt;text,"Linea3");
 }
 </code></pre>
-<p>The TEXT class is the support for the data of views and components. It is divided into lines, fields, and field sizes.<br>
-These can be more or less dynamic depending on where we use them. In the case of a field, for example, the size is fixed by the component size. In the case of the edit view, these are dynamic based on the size of the lines read.</p>
+<p>The TEXT class is the support for the data of Views and components. It is divided into lines, fields, and field sizes.<br>
+These can be more or less dynamic depending on where we use them. In the case of a field, for example, the size is fixed by the component size. In the case of the edit View, these are dynamic based on the size of the lines read.</p>
 <h3 id="practice-1">Practice</h3>
-<p>We leave as practice filling the view view with the data entered in the form when giving OK.</p>
+<p>We leave as practice filling the View view with the data entered in the form when giving OK.</p>
 <blockquote>
 <p>Hint: (tEdit*)LVIEW_getElement(“view”,NULL);</p>
 </blockquote>
@@ -1469,10 +1477,10 @@ A file <code>tui.xsd</code> that defines the valid structure of this XML is incl
 &lt;/Tables&gt;
 </code></pre>
 <h2 id="edit-section">Edit Section</h2>
-<p>If the application makes use of edit-type views, the Edits section will be included.</p>
+<p>If the application makes use of edit-type Views, the Edits section will be included.</p>
 <pre><code>xml
 &lt;Edits&gt; (optional)
-    &lt;Edit Id="Id. of view" Name="name of View" opToMade="none|hide|destroy" Level="level of the view" ReadOnly="y" (optional)&gt; (0-*)
+    &lt;Edit Id="Id. of view" Name="name of View" opToMade="none|hide|destroy" Level="level of the View" ReadOnly="y" (optional)&gt; (0-*)
         &lt;Title&gt;View title&lt;/Title&gt; (optional)
         &lt;Dimension border="0|1" x="3" y="3" high="20" width="75"/&gt;
         &lt;Color&gt;view color&lt;/Color&gt; (optional)
@@ -1718,7 +1726,7 @@ typedef struct {
 } tEdit, * tEditPtr;
 </code></pre>
 <h3 id="tview">tView</h3>
-<p>The set of views is supported by the tView structure.</p>
+<p>The set of Views is supported by the tView structure.</p>
 <pre><code>c
 typedef struct {
  enum CViews type; /* panel/table/edit */
@@ -1770,21 +1778,21 @@ int COLOR_getForeground(int colorpair );
 int COLOR_Attrb(tChAttr * color,int attributo);
 </code></pre>
 <h3 id="msgs-1">Msgs</h3>
-<p>The API for handling warning views is declared in the header msg.h.</p>
+<p>The API for handling warning Views is declared in the header msg.h.</p>
 <pre><code>c
 /* MSG initialize, mandatory */
 void MSG_Init();
-/* Open a msg view */
+/* Open a msg View */
 int MSG_create(enum CMsg type, unsigned int center, char * formato,...);
-/* change msg view color */
+/* change msg View color */
 void MSG_borderColor(enum CMsg type, unsigned short border,tChAttr * color);
-/* change msg view */
+/* change msg View */
 void MSG_txtButton(enum CMsg type,
                    char * title,
                    unsigned short nButtons,
                    char * text1, char * text2);
 
-/* Set close timeout msg view with 0 buttons */
+/* Set close timeout msg View with 0 buttons */
 void MSG_setSegInfo(unsigned int nseg);
 </code></pre>
 <h3 id="keymap-1">KeyMap</h3>
@@ -1810,7 +1818,7 @@ int FEDIT_addCheck(unsigned short tipo, unsigned short align,
                   int (*checkEdit)(int * caracter));
 </code></pre>
 <h3 id="data-passing">Data Passing</h3>
-<p>Sometimes it may be necessary to pass data between views, or more clearly, between user callbacks.<br>
+<p>Sometimes it may be necessary to pass data between Views, or more clearly, between user callbacks.<br>
 For this, a FILO stack (First Input Last Output) is provided, in which texts can be deposited for later retrieval.<br>
 The interface is part of the text class included in text.h and has two functions:</p>
 <pre><code>c
@@ -1834,7 +1842,7 @@ The interface is complex and should be avoided unless necessary.</p>
 <pre><code>c
 /* Create a new struct for the text, reserve the memory. */
 tText * TEXT_new(int resize, unsigned short delete,int maxData, int nroLines,int nroFields);
-/* Create a new struct for the text of a tEdit view, don't reserve the memory. */
+/* Create a new struct for the text of a tEdit View, don't reserve the memory. */
 tText * TEXT_newEdit(int maxData, int nroLines,unsigned short mustDelete);
 </code></pre>
 <h4 id="manipulation">Manipulation:</h4>
@@ -2065,11 +2073,11 @@ int  TABLE_changeColor(tTable * table,
 int TABLE_refresh(tTable * table);
 </code></pre>
 <h3 id="edit-2">Edit</h3>
-<p>The edit view API is located in edit.h.</p>
+<p>The edit View API is located in edit.h.</p>
 <h4 id="creation-2">Creation</h4>
 <pre><code>c
 /*
- * Create the view. */
+ * Create the View. */
 tView * EDIT_create(int id,
                       char * name,
                       unsigned short level,
@@ -2089,7 +2097,7 @@ void EDIT_Text(tEdit * edit,tText * text);
 </code></pre>
 <h4 id="manipulation-4">Manipulation</h4>
 <pre><code>c
- /* Change color the view. */
+ /* Change color the View. */
 int  EDIT_changeColor(tEdit * edit, tChAttr * color);
  /* Rewrite edit . */
 int EDIT_refresh(tEdit * edit);
@@ -2108,16 +2116,16 @@ int EDIT_saveFile(tEdit * edit);
  * Get Active View. */
 tViewPtr VIEW_getActive();
 /*
- * Get the view or component. */
+ * Get the View or component. */
 void * LVIEW_getElement(char * nView, char * nComponent);
 /*
- * locate a view */
+ * locate a View */
 tView * LVIEW_searchView(char * name);
 </code></pre>
 <h4 id="process">Process</h4>
 <pre><code>c
 /*
- * Process the view. */
+ * Process the View. */
 void VIEW_Loop(tView * view, char * element);
 </code></pre>
 <h3 id="tui">TUI</h3>
@@ -2249,7 +2257,7 @@ according to the dimension,… and associate them with the panel.</li>
 <li>Finally, and so as not to end with a messed-up terminal, we call the<br>
 library termination.</li>
 </ul>
-<p>If we had other panels or views, we would act similarly: we would create them with the appropriate parameters and finally give control to the starting point of the application.</p>
+<p>If we had other panels or Views, we would act similarly: we would create them with the appropriate parameters and finally give control to the starting point of the application.</p>
 <blockquote>
 <p>The code generated by the XML generator follows this same mechanism, generating the code in <code>project_name.c</code> and can serve as a guide if you have any doubt.</p>
 </blockquote>
