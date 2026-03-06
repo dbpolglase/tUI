@@ -55,17 +55,17 @@
 <ul>    
 <li>PgUp, page up</li>
     <li>PgDw, page down</li>
-    <li> Init, go to the beginning</li>
+    <li>Init, go to the beginning</li>
     <li>End, go to the end</li>
-    <li> Ins, change mode between insert and replace</li>
+    <li>Ins, change mode between insert and replace</li>
     <li>Backspace, delete backward</li>
-    <li> Del, delete forward</li>
+    <li>Del, delete forward</li>
 </ul></p>
 <p>Additionally, if we allow mouse use:</p>
 <ul>
 <li>The <strong>left button</strong> will translate as:
 <ul>
-<li>If clicked on the active element, and if it is a component of a panel, into an “enter” event on it. If the View is a table, into selecting the record. If it is an edit View, into positioning the cursor at that location.</li>
+<li>If clicked on the active panel view:component, into an “enter” event on it.</li><li> If the View is a table, into selecting the record.</li><li> If it is an edit View, into positioning the cursor at that location.</li>
 <li>If clicked on another View and/or element among those shown, into navigating to it, i.e., activating that View/element.</li>
 </ul>
 </li>
